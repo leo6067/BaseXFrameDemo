@@ -1,0 +1,33 @@
+ext {
+
+    // rootProject.ext.isDebug.toBoolean()
+    //com.dsdata.test
+    isDebug = true
+    android = [
+            channel                :'yingyongbao',
+
+            //西柚 签名store
+            storeFile              : "../dqvideo.jks",
+            storePassword          : "dqvideo",
+            keyAlias               : "dqvideo",
+            keyPassword            : "dqvideo",
+
+            //豆趣 签名store
+            dqStoreFile            : "../dqvideo.jks",
+            dqStorePassword        : "dqvideo",
+            dqKeyAlias             : "dqvideo",
+            dqKeyPassword          : "dqvideo",
+
+
+
+            //2.5.10 使用2.5.9版本号  code+1
+            versionCode            : 82,
+            versionName            : "4.0.3", //dev分支在升级VN的时候，后缀必须带-dev（仅dev分支），如2.6.0-dev，目的要区分友盟上的崩溃来源dev还是release
+
+
+    ]
+
+
+
+
+}
