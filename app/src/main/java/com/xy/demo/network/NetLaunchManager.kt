@@ -19,11 +19,7 @@ import java.util.concurrent.CancellationException
 object NetLaunchManager {
     /**
      * @description 直接网络发送
-     *
-     * @date: 2021/9/16 17:44
-     * @author: zengqingshuai
-     * @param
-     * @return
+
      */
     fun <T> launchRequest(
         block: suspend () -> MBResponse<T>,
@@ -37,11 +33,7 @@ object NetLaunchManager {
 
     /**
      * @description 依附式网络发送
-     *
-     * @date: 2021/9/16 17:44
-     * @author: zengqingshuai
-     * @param
-     * @return
+
      */
     suspend fun <T> launchRequestSuspend(
         block: suspend () -> MBResponse<T>,
