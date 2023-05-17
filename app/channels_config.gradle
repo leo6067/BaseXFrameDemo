@@ -59,6 +59,16 @@ android {
     }
 }
 
+//android.applicationVariants.all { variant ->
+//    variant.outputs.all {
+//        if (variant.productFlavors[0] == null) {
+//            outputFileName = "qiyoutui_v${variant.versionName}_build${variant.versionCode}.apk"
+//        } else {
+//            outputFileName = "${variant.productFlavors[0].name}_v${variant.versionName}_build${variant.versionCode}.apk"
+//        }
+//    }
+//}
+
 walle {
     // 指定渠道包的输出路径
     apkOutputFolder = new File("${project.buildDir}/${rootProject.ext.android.channel}")

@@ -1,9 +1,10 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
     id 'kotlin-kapt'
 }
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -28,7 +29,6 @@ android {
             consumerProguardFiles "consumer-rules.pro"
         }
     }
-
 
     sourceSets {
         main.java.srcDirs += 'src/main/java'
@@ -55,11 +55,7 @@ android {
         }
     }
 
-    repositories {
-//        flatDir {
-//            dirs 'libs'
-//        }
-    }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -67,25 +63,92 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    api 'androidx.appcompat:appcompat:1.2.0'
-    api 'androidx.fragment:fragment-ktx:1.3.4'
-    api 'androidx.activity:activity-ktx:1.2.2'
-    api 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+
+    //kotlin 支持
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.5.20"
+    //kotlin 语法拓展
+    implementation 'androidx.core:core-ktx:1.3.2'
+    //协程
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
+
+
+    //网络请求
+    api 'com.squareup.retrofit2:retrofit:2.9.0'
+    api 'com.squareup.retrofit2:converter-gson:2.9.0'
+    api 'com.squareup.okhttp3:okhttp:4.9.0'
+    api 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
 
     api 'com.github.bumptech.glide:glide:4.11.0'
     api 'io.github.jeremyliao:live-event-bus-x:1.8.0'
     api 'com.scwang.smart:refresh-layout-kernel:2.0.3'
     api 'com.scwang.smart:refresh-header-material:2.0.3'
     api 'com.scwang.smart:refresh-footer-classics:2.0.3'
-    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6'
+
     api 'com.airbnb.android:lottie:4.1.0'
     api 'com.alibaba:fastjson:1.1.71.android'
+
+
+    //沉浸式状态栏
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
+
+    //动态权限
+    api 'com.yanzhenjie:permission:2.0.0-rc12'
+
+    //奔溃日志initlog
+    api 'com.simple:spiderman:1.0.2'
+
+    //带有点击效果颜色控件
+    api 'com.github.RuffianZhong:RWidgetHelper:androidx.v0.0.13'
+
+
+    api 'com.github.naumanmir:filedownloadservice:1.2'
+
+
+    //动态权限
+    // 权限申请管理
+    api 'com.github.getActivity:XXPermissions:18.0'
+    //核心库
+    api 'com.github.qinweiforandroid:QDownload:2.0.0807'
+    //多任务下载管理
+    api 'com.github.qinweiforandroid.QDownload:download-manager:2.0.0807'
+
+
+    //多任务下载管理
+    api 'com.liulishuo.filedownloader:library:1.7.7'
+
+
+    //webview
+    api 'com.just.agentweb:agentweb-androidx:4.1.4' // (必选)
+    api 'com.just.agentweb:filechooser-androidx:4.1.4'// (可选)
+    api 'com.download.library:downloader-androidx:4.1.4'// (可选)
+
+    //导航栏
+    api 'io.github.h07000223:flycoTabLayout:3.0.0'
+
+    //相册加载框架
+    api 'com.github.yalantis:ucrop:2.2.2'
+    //图片选择器 小红书
+    api 'com.ypx.yimagepicker:androidx:3.1.4'
+
+    //轮播框架
+    api 'com.jude:rollviewpager:1.4.6'
+
+    //多级联动---省市区，时间
+    api 'com.contrarywind:Android-PickerView:4.1.9'
+
+    //流布局
+    api 'com.github.alidili:FlowLayout:v1.5'
+
+    //流布局  https://blog.51cto.com/u_12657710/5024217
+    api 'com.hyman:flowlayout-lib:1.1.2'
+
+
+    api 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
 
 }

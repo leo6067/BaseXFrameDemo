@@ -3,7 +3,7 @@ package com.xy.xframework.command;
 import androidx.annotation.Keep;
 
 /**
- * kelin的ReplyCommand，执行的命令回调, 用于ViewModel与xml之间的数据绑定
+ * kolin的ReplyCommand，执行的命令回调, 用于ViewModel与xml之间的数据绑定
  */
 @Keep
 public class BindingCommand<T> {

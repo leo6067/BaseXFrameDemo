@@ -3,25 +3,31 @@ package com.xy.xframework.web
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.os.Build
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.webkit.WebSettings
 import android.widget.Toast
+import androidx.databinding.ViewDataBinding
+import com.bumptech.glide.Glide
+import com.gyf.immersionbar.ImmersionBar
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.xy.xframework.BR
 import com.xy.xframework.R
 import com.xy.xframework.base.XBaseActivity
 import com.xy.xframework.base.XBaseApplication
+import com.xy.xframework.base.XBaseViewModel
 import com.xy.xframework.databinding.BaseWebViewLayoutBinding
 import com.xy.xframework.statusBar.StatusBarUtil
+import java.util.*
 
 /**
  * 默认webView容器类，目前功能比较简单
  */
-abstract class WebBaseActivity : XBaseActivity<BaseWebViewLayoutBinding, WebBaseViewModel>() {
+abstract class WebBaseActivity() : XBaseActivity<BaseWebViewLayoutBinding, WebBaseViewModel>() {
+
+
 
     /**
      * 是否可以返回，如果被拦截了则设置为false
@@ -53,6 +59,7 @@ abstract class WebBaseActivity : XBaseActivity<BaseWebViewLayoutBinding, WebBase
      */
     val statusBarBgColor: String? by lazy { intent.getStringExtra("statusBarBgColor")  }
 
+
     val uiChangeEvent = WebViewUIChangeEvent()
 
     override fun initVariableId(): Int = BR.viewModel
@@ -62,6 +69,12 @@ abstract class WebBaseActivity : XBaseActivity<BaseWebViewLayoutBinding, WebBase
     override fun createViewModel(): WebBaseViewModel {
         return WebBaseViewModel(application, url)
     }
+
+
+
+    abstract fun getWebViewJs():WebViewJS
+
+
 
     @SuppressLint("JavascriptInterface", "SetJavaScriptEnabled")
     override fun initBase() {
@@ -75,15 +88,29 @@ abstract class WebBaseActivity : XBaseActivity<BaseWebViewLayoutBinding, WebBase
             javaScriptEnabled = true
             domStorageEnabled = true
             databaseEnabled = true
+
+            setAppCacheMaxSize(1024 * 1024 * 9);//设置缓冲大小，我设的是8M
             defaultTextEncodingName = "utf-8"
             // 特别注意：5.1以上默认禁止了https和http混用，以下方式是开启
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
             }
+                 setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK)
+
         }
-        val js = WebViewJS(uiChangeEvent)
+//        if (webViewJS  is  Int)
+//        {
+//            webViewJS = WebViewJS(uiChangeEvent)
+//        }
+        val js = getWebViewJs()
         binding.mWebView.addJavascriptInterface(js, "jsObj")
         handleTitleBar()
+
+
+        val url = "file:///android_asset/webloading.gif"
+
+        Glide.with(this@WebBaseActivity).asGif().load(url).into(binding.webLoadImg)
+
     }
 
   private  fun handleTitleBar() {
@@ -166,17 +193,21 @@ abstract class WebBaseActivity : XBaseActivity<BaseWebViewLayoutBinding, WebBase
 
     override fun onPause() {
         super.onPause()
-        binding.mWebView.onPause()
-        binding.mWebView.pauseTimers()
+
+        Log.e("xxxxxonPause","onPause")
+//        binding.mWebView.onPause()
+//        binding.mWebView.pauseTimers()
     }
 
     override fun onResume() {
         super.onResume()
-        binding.mWebView.resumeTimers()
-        binding.mWebView.onResume()
+
+//        binding.mWebView.resumeTimers()
+//        binding.mWebView.onResume()
     }
 
     override fun onDestroy() {
+
         binding.mWebView.visibility = View.GONE
         binding.mWebView.destroy()
         super.onDestroy()
@@ -217,6 +248,8 @@ abstract class WebBaseActivity : XBaseActivity<BaseWebViewLayoutBinding, WebBase
     private fun receiveWebBack() {
         evaluateJavascript("receiveWebBack")
     }
+
+
 
 
     private fun evaluateJavascript(functionName: String, callback: ((String) -> Unit)? = null) {

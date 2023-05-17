@@ -1,4 +1,4 @@
-package com.magicomath.magicbox.network
+package com.xy.demo.network;
 
 import com.alibaba.fastjson.JSONObject
 

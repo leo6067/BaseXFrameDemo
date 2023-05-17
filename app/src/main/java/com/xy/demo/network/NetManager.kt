@@ -1,14 +1,8 @@
 package com.xy.demo.network
-
-
-import com.alibaba.fastjson.JSONObject
-import com.magicomath.magicbox.network.Api
-
-
 import com.xy.demo.BuildConfig
 import com.xy.network.NetworkManager
-import com.xy.network.log.Level
-import com.xy.network.log.LoggingInterceptor
+import com.xy.xframework.network.log.Level
+import com.xy.xframework.network.log.LoggingInterceptor
 
 
 object NetManager {

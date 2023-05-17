@@ -26,6 +26,9 @@ import com.xy.xframework.swipeback.SwipeBackActivityHelper
 import com.xy.xframework.swipeback.SwipeBackLayout
 import com.xy.xframework.titlebar.GlobalTitleBarProvider
 import com.xy.xframework.titlebar.TitleBarView
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.lang.reflect.ParameterizedType
 
 abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppCompatActivity() {
@@ -57,8 +60,8 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
             }
         }
         super.onCreate(savedInstanceState)
-        initParams()
         binding = DataBindingUtil.setContentView(this, getLayoutId())
+        initParams()
         addTitleBar(showTitleBar())
         initViewModel()
         binding.setVariable(viewModelId, viewModel)
@@ -75,6 +78,8 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         initBase()
         initView()
         initViewObservable()
+        AppActivityManager.getInstance()
+
     }
 
     open fun initBase() {
@@ -92,6 +97,11 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
      * 处理ui通知，如liveDate
      */
     open fun initViewObservable() {
+
+    }
+
+    override fun onResume() {
+        super.onResume()
 
     }
 
@@ -136,6 +146,8 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         isCancelOutside: Boolean = false,
         onCancelListener: DialogInterface.OnCancelListener? = null
     ) {
+
+        Log.e("xxxxxxxxisDestroyed",""+ !isDestroyed)
         if (!isDestroyed) {
             if (dialog == null) {
                 dialog = LoadingDialogProvider.createLoadingDialog(this, title)
@@ -144,6 +156,14 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
             dialog?.setCanceledOnTouchOutside(isCancelOutside)
             dialog?.setOnCancelListener(onCancelListener)
             dialog?.show()
+            
+            GlobalScope.launch {
+                delay(4500)
+                if (dialog != null && dialog!!.isShowing) {
+                    dialog!!.dismiss()
+                    dialog = null
+                }
+            }
         }
     }
 
@@ -166,7 +186,7 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         }
     }
 
-    open fun isSwipeBackClose(): Boolean = false
+    open fun isSwipeBackClose(): Boolean = true
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
@@ -214,6 +234,7 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
     override fun onDestroy() {
         super.onDestroy()
         dismissLoading()
+
     }
 
     /**

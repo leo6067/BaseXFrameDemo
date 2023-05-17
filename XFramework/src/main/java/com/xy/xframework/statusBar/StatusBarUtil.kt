@@ -355,7 +355,7 @@ object StatusBarUtil {
         ) statusBarAlpha: Int
     ) {
         val contentView =
-            activity.findViewById<View>(R.id.content) as ViewGroup
+            activity.findViewById<View>(android.R.id.content) as ViewGroup
         val fakeTranslucentView =
             contentView.findViewById<View>(FAKE_TRANSLUCENT_VIEW_ID)
         if (fakeTranslucentView != null) {

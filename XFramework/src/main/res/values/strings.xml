@@ -16,6 +16,8 @@
     <string name="footer_loading">加载中</string>
     <string name="footer_end">~没有更多数据了~</string>
     <string name="footer_retry">点击重试</string>
+    <string name="net_error">网络错误</string>
+    <string name="message_permission_always_failed">请到设置中开启以下权限:\n\n%1$s</string>
     <!-- APK 升级 -->
     <string name="apk_update_tips_title">正在更新</string>
     <string name="apk_update_tips_error_title">更新出现错误</string>

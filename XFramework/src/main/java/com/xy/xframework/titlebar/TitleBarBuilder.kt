@@ -53,7 +53,7 @@ class TitleBarBuilder {
     /**
      * 状态栏颜色
      */
-    private var mStatusBarColor: Int = R.color.color_FF3B00.color()
+    private var mStatusBarColor: Int = R.color.color_999999.color()
 
     /**
      * 点击标题返回

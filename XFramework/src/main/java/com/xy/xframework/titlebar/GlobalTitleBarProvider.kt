@@ -10,7 +10,7 @@ object GlobalTitleBarProvider {
 
     private var titleBarBuilder: TitleBarBuilder = TitleBarBuilder()
         .setTitleGravity(TitleBarBuilder.CENTER)
-        .setTitleBarBackgroundColorRes(R.color.color_FF3B00)
+        .setTitleBarBackgroundColorRes(R.color.white)
         .setTitleBarLeftBackIcon(R.mipmap.nav_back)
 
 

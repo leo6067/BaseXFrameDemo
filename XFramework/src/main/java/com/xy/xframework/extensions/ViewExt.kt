@@ -9,7 +9,7 @@ import android.view.View
  * @param onclick Function1<View, Unit>
  * @param ignoreTime Int
  */
-fun View?.setSingleClick(ignoreTime: Int = 1000, onclick: (View) -> Unit) {
+fun View?.setSingleClick(ignoreTime: Int = 800, onclick: (View) -> Unit) {
     var mLastClickMills = 0L
     this?.setOnClickListener {
         try {

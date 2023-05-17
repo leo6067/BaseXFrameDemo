@@ -44,4 +44,22 @@ class WebViewUIChangeEvent {
      */
     val toast = SingleLiveEvent<String>()
 
+
+    /*
+    * 带json 参数
+    * */
+    val adParameter = SingleLiveEvent<String>()
+
+    /*
+    * 带json 参数
+    * */
+    val parameter = SingleLiveEvent<String>()
+  /*
+    * 带json 参数
+    * */
+    val startGame = SingleLiveEvent<String>()
+
+
+    val screenVideo = SingleLiveEvent<String>()
+
 }

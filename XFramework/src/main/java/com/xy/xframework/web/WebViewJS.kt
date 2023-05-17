@@ -1,7 +1,9 @@
 package com.xy.xframework.web
 
+
 import android.util.Log
 import android.webkit.JavascriptInterface
+import android.widget.Toast
 import androidx.annotation.Keep
 import com.alibaba.fastjson.JSON
 import com.xy.xframework.base.XBaseApplication
@@ -9,7 +11,7 @@ import com.xy.xframework.statusBar.StatusBarUtil
 import com.xy.xframework.utils.ResourceUtils
 
 @Keep
-class WebViewJS(var uiEvent: WebViewUIChangeEvent) {
+open class WebViewJS(var uiEvent: WebViewUIChangeEvent) {
 
     /**
      * 获取用户信息
@@ -111,4 +113,11 @@ class WebViewJS(var uiEvent: WebViewUIChangeEvent) {
             uiEvent.toast.postValue(it)
         }
     }
+
+
+
+
+
+
+
 }

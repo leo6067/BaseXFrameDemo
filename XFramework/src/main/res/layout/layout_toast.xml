@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ruffian.library.widget.RLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="15dp"
+    android:paddingVertical="1dp"
+    app:corner_radius="20dp"
+    app:background_normal="#56000000"
+    android:layout_gravity="center"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/toast_icon"/>
+
+
+    <TextView
+        android:id="@+id/toast_text"
+        android:layout_marginStart="5dp"
+        android:layout_width="wrap_content"
+        android:text="888888888"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"/>
+
+</com.ruffian.library.widget.RLinearLayout>

@@ -8,7 +8,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.xy.xframework.R
-import com.xy.xframework.utils.ScreenUtil
+import com.xy.xframework.utils.ScreenUtils
 
 abstract class XDialogFragment<VB : ViewDataBinding> : DialogFragment() {
 
@@ -70,7 +70,7 @@ abstract class XDialogFragment<VB : ViewDataBinding> : DialogFragment() {
 
     open fun getGravity(): Int = Gravity.CENTER
 
-    open fun getWidth(): Int = ScreenUtil.getScreenWidth(requireContext())
+    open fun getWidth(): Int = ScreenUtils.getScreenWidth(requireContext())
 
     open fun getHeight(): Int = WindowManager.LayoutParams.WRAP_CONTENT
 

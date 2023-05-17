@@ -3,9 +3,11 @@ package com.xy.xframework.base
 import android.app.Application
 import android.content.DialogInterface
 import androidx.lifecycle.AndroidViewModel
+import com.xy.xframework.base.XBaseApplication.Companion.application
 import com.xy.xframework.dialog.loading.ShowDialogEntity
 
-open class XBaseViewModel(application: Application) : AndroidViewModel(XBaseApplication.application) {
+open class XBaseViewModel(application: Application) : AndroidViewModel(application) {
+
 
     val mUiEvent by lazy { UIChangeEvent() }
 
