@@ -11,6 +11,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
 
 import com.xy.network.NetworkManager
+import com.xy.xframework.base.BaseAppContext
 import com.xy.xframework.base.XBaseApplication
 import com.xy.xframework.titlebar.GlobalTitleBarProvider
 
@@ -39,7 +40,7 @@ class MyApplication : XBaseApplication() {
 
     override fun onCreate() {
         super.onCreate()
-
+BaseAppContext.init(this)
         instance = this
         // 路由初始化
         initRouter()

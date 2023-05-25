@@ -1,7 +1,9 @@
 package com.xy.xframework.base
 
 import android.app.Application
-import com.liulishuo.filedownloader.FileDownloader
+import com.downloader.PRDownloader
+import com.downloader.PRDownloaderConfig
+
 import com.xy.xframework.web.WebViewParam
 
 
@@ -13,35 +15,21 @@ abstract class XBaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
+        BaseAppContext.init(this)
         application = this
 
         initDown()
-
-
     }
 
 
+    fun initDown() {
 
+        val config: PRDownloaderConfig = PRDownloaderConfig.newBuilder()
+            .setDatabaseEnabled(true)
+            .build()
+        PRDownloader.initialize(applicationContext, config)
 
-    fun initDown(){
-        //下載全局配置  https://github.com/qinweiforandroid/QDownload
-
-        //另外一套
-//        FileDownloader.setupOnApplicationOnCreate(this)
-//            .connectionCreator(
-//                FileDownloadUrlConnection.Creator(
-//                    FileDownloadUrlConnection.Configuration()
-//                        .connectTimeout(15000) // set connection timeout.
-//                        .readTimeout(15000) // set read timeout.
-//                )
-//            )
-//            .commit()
-//https://github.com/lingochamp/FileDownloader/blob/master/README-zh.md
-        FileDownloader.setup(this)
     }
-
-
 
 
     /**

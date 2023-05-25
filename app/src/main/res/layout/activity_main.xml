@@ -6,14 +6,66 @@
     tools:context=".MainActivity">
 
 
-    <RelativeLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <ProgressBar
+            android:id="@+id/progressA"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_20"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="@dimen/dp_20"
+            android:progressDrawable="@drawable/progressbar_color" />
 
 
         <Button
+            android:id="@+id/downTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="热热热"/>
-    </RelativeLayout>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_30"
+            android:text="开始下载" />
+
+
+        <Button
+            android:id="@+id/pauseTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="暂停下载" />
+
+
+        <Button
+            android:id="@+id/cancelTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="取消下载" />
+
+
+        <Button
+            android:id="@+id/continueTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="继续下载" />
+
+        <Button
+            android:id="@+id/nextTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="下一步" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
