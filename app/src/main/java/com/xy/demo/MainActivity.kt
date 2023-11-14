@@ -4,9 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Environment
 import androidx.core.content.ContextCompat
-import com.downloader.OnCancelListener
-import com.downloader.OnDownloadListener
-import com.downloader.PRDownloader
+
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.databinding.ActivityMainBinding
 import com.xy.demo.network.Globals
@@ -43,7 +41,8 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
 
         val rootDirPath = getRootDirPath(BaseAppContext.getInstance());
         Globals.log("xxxxxfilesDir", getRootDirPath(BaseAppContext.getInstance()))
-        Globals.log("xxxxxfilesDir--",filesDir.absolutePath.toString())
+        Globals.log("xxxxxfilesDir--本地可用的存储 路劲",filesDir.absolutePath.toString()+"新增的文件名")
+
 
 
 
@@ -55,11 +54,11 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
         }
 
         binding.pauseTV.setOnClickListener {
-            PRDownloader.pause(downloadId)
+
         }
 
         binding.continueTV.setOnClickListener {
-            PRDownloader.resume(downloadId)
+
         }
 
 
@@ -67,42 +66,6 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
         binding.downTV.setOnClickListener {
 
 
-              downloadId = PRDownloader.download(downUrl, filesDir.absolutePath.toString() , "aaaa")
-                .build()
-                .setOnStartOrResumeListener {
-                    binding.progressA.progress = 20
-                }
-                .setOnPauseListener {
-
-                }
-                .setOnCancelListener(object : OnCancelListener {
-                    override fun onCancel() {
-                        binding.progressA.progress = 0
-                    }
-                })
-                .setOnProgressListener {
-
-                    val progressPercent: Long = it.currentBytes * 100 / it.totalBytes
-                    binding.progressA.setProgress(progressPercent.toInt())
-
-//                binding.progress.progress = progress.progress
-                    Globals.log("xxxxxfilesDir-progress.progress-"+ it.currentBytes.toDouble() /it.totalBytes.toDouble() )
-
-                }
-
-                .start(object : OnDownloadListener {
-                    override fun onDownloadComplete() {
-                        Globals.log("xxxxxonDownloadComplete"  )
-
-
-
-                    }
-                    override fun onError(error: com.downloader.Error?) {
-
-                    }
-
-
-                })
 
         }
 
@@ -118,7 +81,7 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
 
     override fun onResume() {
         super.onResume()
-        PRDownloader.resume(downloadId)
+
     }
 
     fun getRootDirPath(context: Context): String? {

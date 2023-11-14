@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--设置progress背景颜色-->
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="@dimen/dp_12" />
+            <solid android:color="#64B5FF" />
+        </shape>
+    </item>
+    <!--设置progress进度条颜色-->
+    <item android:id="@android:id/progress">
+        <clip android:clipOrientation="horizontal">
+            <shape>
+                <corners android:radius="@dimen/dp_12" />
+
+                <solid android:color="#00a4ff" />
+            </shape>
+        </clip>
+    </item>
+
+
+</layer-list>
