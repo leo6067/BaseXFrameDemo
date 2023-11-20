@@ -3,11 +3,14 @@ package com.xy.demo.base
 import android.content.Context
 import android.text.TextUtils
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import com.alibaba.android.arouter.launcher.ARouter
 
 
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.xy.demo.BuildConfig
 
 
 import com.xy.network.NetworkManager
@@ -36,21 +39,26 @@ class MyApplication : XBaseApplication() {
                 context
             )
         }
+
     }
 
     override fun onCreate() {
         super.onCreate()
-BaseAppContext.init(this)
+        BaseAppContext.init(this)
         instance = this
         // 路由初始化
-        initRouter()
+
+        initFun()
 
 
         NetworkManager.initNetWatch(this)
     }
 
-    fun init() {
-
+    private fun initFun() {
+        AppCompatDelegate.setDefaultNightMode(
+            AppCompatDelegate.MODE_NIGHT_NO
+        )
+        initRouter()
     }
 
     fun initBugLy() {
@@ -87,18 +95,13 @@ BaseAppContext.init(this)
     }
 
 
-
     private fun initRouter() {
-//        if (BuildConfig.DEBUG) {
-//            ARouter.openLog()
-//            ARouter.openDebug()
-//        }
-//        ARouter.init(this)
+        if (BuildConfig.DEBUG) {
+            ARouter.openLog()
+            ARouter.openDebug()
+        }
+        ARouter.init(this)
     }
-
-
-
-
 
 
 }

@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:background="?attr/bg_main"
         android:orientation="vertical">
 
 
@@ -23,40 +24,28 @@
             android:progressDrawable="@drawable/progressbar_color" />
 
 
-        <Button
-            android:id="@+id/downTV"
+        <TextView
+            android:id="@+id/nightTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dp_30"
+            android:background="?attr/tv_bg"
+            android:textColor="?attr/tv_font"
             android:text="开始下载" />
 
 
-        <Button
-            android:id="@+id/pauseTV"
+        <TextView
+            android:id="@+id/lightTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:background="?attr/tv_bg"
+            android:textColor="?attr/tv_font"
             android:layout_marginTop="@dimen/dp_10"
-            android:text="暂停下载" />
+            android:text="修改主题" />
 
 
-        <Button
-            android:id="@+id/cancelTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_10"
-            android:text="取消下载" />
-
-
-        <Button
-            android:id="@+id/continueTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_10"
-            android:text="继续下载" />
 
         <Button
             android:id="@+id/nextTV"

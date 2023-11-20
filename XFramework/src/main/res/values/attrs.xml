@@ -29,4 +29,22 @@
         <attr name="indicatorColor" format="color|reference" />
     </declare-styleable>
 
+
+
+
+
+
+
+
+<!--              皮肤颜色      -->
+
+    <attr name="tv_font" format="color" />
+    <attr name="tv_bg" format="color" />
+
+    <attr name="bg_main" format="color"/>
+    <attr name="imgBg_main" format="integer"/>
+    <attr name="imgBg_second" format="integer"/>
+
+
+
 </resources>

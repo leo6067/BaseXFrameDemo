@@ -51,7 +51,5 @@
         <item name="android:windowNoTitle">true</item><!--除去title-->
         <item name="android:backgroundDimEnabled">true</item><!--半透明-->
 <!--        <item name="android:windowBackground">@color/transparent</item>&lt;!&ndash;除去背景色&ndash;&gt;-->
-
-
     </style>
 </resources>
