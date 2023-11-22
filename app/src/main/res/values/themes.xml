@@ -52,4 +52,34 @@
         <item name="android:backgroundDimEnabled">true</item><!--半透明-->
 <!--        <item name="android:windowBackground">@color/transparent</item>&lt;!&ndash;除去背景色&ndash;&gt;-->
     </style>
+
+
+
+
+
+
+
+
+    <!-- 普通界面主题 -->
+    <style name="AppLightTheme" parent="AppTheme">
+        <item name="tv_font">@color/black</item>
+        <item name="tv_bg">@color/white</item>
+        <item name="bg_main">@color/color_FE3B30</item>
+        <item name="app_white_or_black">@color/white</item>
+        <item name="app_black_or_white">@color/black</item>
+
+
+    </style>
+
+    <!-- 深色界面主题 -->
+    <style name="AppDarkTheme" parent="AppTheme">
+        <item name="tv_font">@color/white</item>
+        <item name="tv_bg">@color/black</item>
+        <item name="bg_main">@color/color_FC951E</item>
+        <item name="app_white_or_black">@color/black</item>
+        <item name="app_black_or_white">@color/white</item>
+
+
+
+    </style>
 </resources>

@@ -2,6 +2,7 @@ package com.xy.demo.base
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
+import com.xy.demo.network.Globals
 import com.xy.demo.network.MBResponse
 import com.xy.demo.network.NetLaunchManager
 import com.xy.xframework.base.XBaseViewModel

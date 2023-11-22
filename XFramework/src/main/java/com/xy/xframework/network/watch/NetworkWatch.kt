@@ -29,6 +29,7 @@ class NetworkWatch(var context: Context) : ConnectivityManager.NetworkCallback()
     override fun onLost(network: Network) {
         super.onLost(network)
         post(NetworkType.NONE);
+
         Log.d("NetworkWatch", "onLost: 网络已断开");
     }
 

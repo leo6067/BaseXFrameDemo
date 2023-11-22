@@ -56,64 +56,6 @@ class Constants {
                 .toString()
 
 
-        //切换正式 测试环境  正式  true    false debug
-        const val KEY_APP_RELEASE = "key_app_release"
-        const val KEY_PRIVACY = "key_privacy"
-        const val KEY_USER = "key_user"
-
-        //web版本号
-        const val KEY_WEB_CODE = "key_web_code"
-        const val KEY_LOCATION = "key_location"
-
-        //抖音授权
-        const val KEY_DY_TASK = "key_dy_task_id"
-        const val KEY_DY_USER = "key_dy_used_id"
-        const val KEY_DY_FILE = "key_dy_file_path"
-
-        const val KEY_DY_AUTH = "key_dy_auth"
-        const val KEY_DY_SHARE = "key_dy_share"
-
-
-        const val KEY_SEARCH_HISTORY = "key_search_history"
-
-
-        const val EVENT_TYPE = "event_type"
-        const val EVENT_SEARCH_LIST = "event_search_list"
-        const val EVENT_SEARCH_SPINNER = "event_search_spinner"  //4 删除全部客源
-
-        const val EVENT_SELECT = "event_select"  //批量操作
-        const val EVENT_SELECT_CUSTOM = "event_select_custom"  //批量操作
-        const val EVENT_TASK_PL = "event_task_pl"  //脚本评论
-
-
-        const val WEB_ZIP_NAME = "/qiyoutui.zip"
-
-        const val FILE_CACHE_APP = "app_cache"
-
-        //zip 包存放文件名
-        const val WEB_NAME = "/qiyoutui"
-
-
-        const val WEB_URL = "web_url"
-        const val WEB_URL_NAME = "web_url_name"
-
-
-        const val KEY_TASK_MODEL = "taskModel"
-
-        const val KEY_TASK_VIDEO_JG = "taskVideoJG"
-        const val KEY_TASK_VIDEO_JG_STR = "taskVideoJGSTR"
-        const val KEY_CITY = "CityEntity"  //省市区
-        const val KEY_SCREEN = "screen"  //筛选
-
-
-        const val SP_POWER = "SP_POWER"  //权限
-        const val SP_FOLLOW = "SP_FOLLOW"  //关注
-        const val SP_ZAN = "SP_ZAN"  //
-        const val SP_REMARK = "SP_REMARK"  //
-        const val SP_OSS = "oss"  //阿里云
-
-
-        const val EV_PHONE = "ev_phone"
 
 
 //        fun assembleAgreement(context: Context, agreementCheckbox: CheckBox) {

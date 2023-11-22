@@ -2,7 +2,10 @@ package com.xy.demo.network
 
 
 import com.bumptech.glide.load.HttpException
-
+import com.xy.demo.R
+import com.xy.demo.base.MyApplication
+import com.xy.demo.network.params.AESUtils
+import com.xy.xframework.utils.ToastUtils
 import kotlinx.coroutines.*
 import java.net.ConnectException
 import java.net.UnknownHostException
@@ -11,10 +14,6 @@ import java.util.concurrent.CancellationException
 /**
  *
  * 网络发送器和错误统一处理
- *
- * email zengqingshuai@98du.com
- * author zengqingshuai
- * time 2021/9/16
  */
 object NetLaunchManager {
     /**
@@ -49,29 +48,40 @@ object NetLaunchManager {
                 }
             }
         }.onSuccess {
-            success2?.invoke(it)
-            when (it.code) {
-                0 -> success(it.data)
-                401 -> {
-//                    UserManager.tokenInvalid()
-//                    RouterManager.routerPare(RouterManager.ROUTER_LOGIN.pageRouter())
-                    error(Throwable("token invalid"))
+            Globals.log("xxxxxxxx999999" + it.toString())
+            try {
+                when (it.code) {
+                    0 -> success(it.data)
+                    315 -> {
+                        ToastUtils.showShort(it.msg)
+                        error(it)
+                    }
+                    318 -> {
+                        ToastUtils.showShort(it.msg)
+                        error(it)
+                    }
+                    1302 -> ToastUtils.showShort(it.msg)
+                    301 -> ToastUtils.showShort(it.msg)
+                    302 -> {
+                        // 用户封禁
+                        ToastUtils.showShort(it.msg)
+//                        SettingActivity.exitUser(activity)
+                    }
+//                    else -> {
+//                        ToastUtils.showShort(it.msg)
+//                        error(it)
+//                    }
                 }
-                623 -> {
-//                    ToastUtils.show(R.string.time_error.string())
-                    error(Throwable("time error"))
-                }
-                else -> error(Throwable(it.message))
+            } catch (s: Exception) {
             }
             complete()
+            success2?.invoke(it)
         }.onFailure {
-
             if (it is CancellationException) {
                 complete()
                 return
             }
             if (it is HttpException || it is ConnectException || it is UnknownHostException || it is TimeoutCancellationException) {
-
             }
             error(it)
             complete()

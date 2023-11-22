@@ -2,58 +2,73 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
-    tools:context=".MainActivity">
+    tools:context=".ui.main.MainActivity">
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center_horizontal"
-        android:background="?attr/bg_main"
         android:orientation="vertical">
 
-
-        <ProgressBar
-            android:id="@+id/progressA"
-            style="?android:attr/progressBarStyleHorizontal"
+        <com.xy.demo.view.CustomScrollViewPager
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_20"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="@dimen/dp_20"
-            android:progressDrawable="@drawable/progressbar_color" />
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
 
-        <TextView
-            android:id="@+id/nightTV"
-            android:layout_width="wrap_content"
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_30"
-            android:background="?attr/tv_bg"
-            android:textColor="?attr/tv_font"
-            android:text="开始下载" />
+            android:checkedButton="@id/main_home"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/dp_6">
 
 
-        <TextView
-            android:id="@+id/lightTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:background="?attr/tv_bg"
-            android:textColor="?attr/tv_font"
-            android:layout_marginTop="@dimen/dp_10"
-            android:text="修改主题" />
+            <com.xy.demo.view.RadioButton
+                android:id="@+id/main_home"
+                style="@style/home_menu_style"
+                android:drawableTop="@drawable/selector_home_a"
+                android:text="首页"
+                android:textColor="@color/home_color_selector"
+                app:rtopDrawableHeight="@dimen/dp_26"
+                app:rtopDrawableWidth="@dimen/dp_26" />
 
 
+            <com.xy.demo.view.RadioButton
+                android:id="@+id/main_video"
+                style="@style/home_menu_style"
+                android:drawableTop="@drawable/selector_home_b"
+                android:text="短剧"
+                android:textColor="@color/home_color_selector"
+                app:rtopDrawableHeight="@dimen/dp_26"
+                app:rtopDrawableWidth="@dimen/dp_26" />
 
-        <Button
-            android:id="@+id/nextTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_10"
-            android:text="下一步" />
+
+            <com.xy.demo.view.RadioButton
+                android:id="@+id/main_welf"
+                style="@style/home_menu_style"
+                android:drawableTop="@drawable/selector_home_c"
+                android:text="福利"
+                android:textColor="@color/home_color_selector"
+                app:rtopDrawableHeight="@dimen/dp_26"
+                app:rtopDrawableWidth="@dimen/dp_26" />
+
+
+            <com.xy.demo.view.RadioButton
+                android:id="@+id/main_mine"
+                style="@style/home_menu_style"
+                android:drawableTop="@drawable/selector_home_d"
+                android:text="我的"
+                android:textColor="@color/home_color_selector"
+                app:rtopDrawableHeight="@dimen/dp_26"
+                app:rtopDrawableWidth="@dimen/dp_26" />
+
+
+        </RadioGroup>
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

@@ -8,7 +8,7 @@ class MBResponse<T> {
 
     var code: Int = 99999
     var data: T? = null
-    var message: String? = null
+    var msg: String? = null
 
     /**
      * 判断是否成功
@@ -18,7 +18,7 @@ class MBResponse<T> {
     }
 
     override fun toString(): String {
-        Log.e("BaseResponse","code=$code, data=$data, message='$message'")
-        return "BaseResponse(code=$code, data=$data, message='$message')"
+        Log.e("BaseResponse","code=$code, data=$data, message='$msg'")
+        return "BaseResponse(code=$code, data=$data, message='$msg')"
     }
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- 背景 -->
+    <attr name="app_back_ground_color" format="color" />
+    <!-- App背景白色or黑色 -->
+    <attr name="app_white_or_black" format="color" />
+    <attr name="app_black_or_white" format="color" />
+
+
+
+
+
+    <declare-styleable name="RadioButton">
+        <attr name="rleftDrawableWidth" format="dimension" />
+        <attr name="rleftDrawableHeight" format="dimension" />
+        <attr name="rrightDrawableWidth" format="dimension" />
+        <attr name="rrightDrawableHeight" format="dimension" />
+        <attr name="rtopDrawableWidth" format="dimension" />
+        <attr name="rtopDrawableHeight" format="dimension" />
+        <attr name="rbottomDrawableWidth" format="dimension" />
+        <attr name="rbottomDrawableHeight" format="dimension" />
+
+    </declare-styleable>
+
+
+
+</resources>

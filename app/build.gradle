@@ -6,26 +6,68 @@ plugins {
 }
 
 apply plugin: 'kotlin-android'
-apply from: "channels_config.gradle"
+//apply from: "channels_config.gradle"
+
+
+
+// 加载 gradle.properties 资源  app定制参数
+Properties myProperties = new Properties()
+InputStream inputStream = project.rootProject.file('ParameterConfiguration.properties').newDataInputStream();
+InputStreamReader isr = new InputStreamReader(inputStream, "UTF-8");
+BufferedReader br = new BufferedReader(isr);
+myProperties.load(br)
+
+
 
 android {
-    compileSdk 32
+    compileSdk 33
 
 
     defaultConfig {
-        minSdkVersion 24
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-        flavorDimensions "1.0"
-        renderscriptTargetApi 28
-        renderscriptSupportModeEnabled true
+        minSdkVersion 23
+        targetSdkVersion 33
+        applicationId myProperties.getProperty('appPackName')
+        versionCode myProperties.get('versionCode', 1) as int
+        versionName myProperties.getProperty('versionName')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+        renderscriptTargetApi 18
+        renderscriptSupportModeEnabled true
         ndk {
             // 设置支持的 SO 库构架
             abiFilters 'armeabi-v7a'
         }
+
+        packagingOptions {
+            exclude 'META-INF/DEPENDENCIES'
+            exclude 'META-INF/INDEX.LIST'
+        }
+
+        setProperty("archivesBaseName", myProperties.getProperty('appName') + "-" + myProperties.getProperty('versionName') + "-" + myProperties.getProperty('versionCode'))
+        resConfigs "zh-rCN", "en-rGB", "th-rTH", "zh-rTW", "es-rES", "pt-rPT"
+
+        resValue "string", "appName", myProperties.getProperty('appName')
+        resValue "integer", "apiEnvironment", myProperties.getProperty('apiEnvironment')
+        resValue "string", "apiUrl", myProperties.getProperty('apiUrl')
+        resValue "string", "apiUrl_dev", myProperties.getProperty('apiUrl_dev')
+        resValue "string", "mAppkey", myProperties.getProperty('mAppkey')
+        resValue "string", "mAppSecretKey", myProperties.getProperty('mAppSecretKey')
+        resValue "string", "AES_KEY", myProperties.getProperty('AES_KEY')
+        resValue "string", "AES_SECRET", myProperties.getProperty('AES_SECRET')
+        resValue "string", "GOOGLE_CLIENT_ID", myProperties.getProperty('GOOGLE_CLIENT_ID')
+        resValue "string", "GOOGLE_CLIENT_SECRET", myProperties.getProperty('GOOGLE_CLIENT_SECRET')
+        resValue "string", "FaceBook_appSecret", myProperties.getProperty('FaceBook_appSecret')
+        resValue "string", "FaceBook_ID", myProperties.getProperty('FaceBook_ID')
+        resValue "string", "FB_LOGIN_PROTOCOL_SCHEME", myProperties.getProperty('FB_LOGIN_PROTOCOL_SCHEME')
+        resValue "string", "FaceBook_Scheme", myProperties.getProperty('FaceBook_Scheme')
+        resValue "string", "AF_APPID", myProperties.getProperty('AF_APPID')
+        resValue "string", "AF_Scheme", myProperties.getProperty('AF_Scheme')
+        resValue "string", "AF_Scheme_HOST", myProperties.getProperty('AF_Scheme_HOST')
+        resValue "string", "AF_PathPrefix", myProperties.getProperty('AF_PathPrefix')
+        resValue "bool", "isDebug", myProperties.getProperty('isDebug')
+        resValue "string", "OpenInStall_APPID", ""
+
     }
 
     kotlinOptions {
@@ -84,6 +126,26 @@ dependencies {
     //阿里路由
     api 'com.alibaba:arouter-api:1.5.1'
     kapt 'com.alibaba:arouter-compiler:1.5.1'
+
+
+    // google
+    implementation 'com.android.billingclient:billing:6.0.1'
+    implementation 'com.google.api-client:google-api-client:1.35.1'
+    implementation 'com.google.android.gms:play-services-auth:20.6.0'
+    implementation 'com.google.firebase:firebase-core:21.1.1'
+    implementation platform('com.google.firebase:firebase-bom:28.3.1')
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // facebook
+    implementation 'com.facebook.android:facebook-android-sdk:14.1.0'
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    //appsfley
+    implementation 'com.appsflyer:af-android-sdk:6.12.1'
+    implementation 'com.android.installreferrer:installreferrer:2.2'
+    //视频播放框架
+    implementation 'com.github.CarGuo.GSYVideoPlayer:GSYVideoPlayer:v8.3.5-release-jitpack'
+
 
 
 

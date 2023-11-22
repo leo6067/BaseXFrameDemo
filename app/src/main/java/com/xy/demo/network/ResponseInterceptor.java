@@ -1,5 +1,9 @@
 package com.xy.demo.network;
 
+import com.xy.demo.R;
+import com.xy.demo.base.MyApplication;
+import com.xy.demo.network.params.AESUtils;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
@@ -36,7 +40,7 @@ public class ResponseInterceptor implements Interceptor {
             }
             reqBody = buffer.readString(charset);
         }
-      Globals.log("TAG"+ String.format("发送请求\nmethod：%s\nurl：%s\nheaders: %s\nbody：%s",
+        Globals.log("TAG" + String.format("发送请求\nmethod：%s\nurl：%s\nheaders: %s\nbody：%s",
                 request.method(), request.url(), request.headers(), reqBody));
 
         // 打印返回报文
@@ -59,8 +63,18 @@ public class ResponseInterceptor implements Interceptor {
             }
             respBody = buffer.clone().readString(charset);
         }
+
+
+        //如果 是 正式环境  接口返回参数 加密  此处做拦截  解密返回
+        boolean isDebug = MyApplication.instance.getResources().getBoolean(R.bool.isDebug);
+        assert respBody != null;
+        if (respBody.length() > 0 && !isDebug) {
+            response = response.newBuilder().body(ResponseBody.create(responseBody.contentType(), new AESUtils().decrypt(respBody))).build();
+        }
+
         Globals.log(" " + String.format("收到响应\n%s %s\n请求url：%s\n请求body：%s\n响应body：%s",
                 response.code(), response.message(), response.request().url(), reqBody, respBody));
+
         return response;
     }
 }

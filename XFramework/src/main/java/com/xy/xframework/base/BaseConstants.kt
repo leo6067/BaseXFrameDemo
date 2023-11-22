@@ -5,7 +5,7 @@ class BaseConstants {
 
     companion object{
 
-        const val baseShareName = "xAPP"
+        const val baseShareName = "xAPP.xml"
 
 
     }
