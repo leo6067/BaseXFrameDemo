@@ -70,9 +70,7 @@ object IpAddress {
             val address = "https://ifconfig.co/json" //json格式信息的API，使用这个自己搞代码
 
             NetLaunchManager.launchRequest({ NetManager.getOutIp() }, {
-                                                                      Globals.log("oooooo"+it?.ip)
-
-
+                Globals.log("oooooo" + it?.ip)
             }, {})
 
             return ipAddress

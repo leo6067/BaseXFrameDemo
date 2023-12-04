@@ -48,7 +48,7 @@ object NetLaunchManager {
                 }
             }
         }.onSuccess {
-            Globals.log("xxxxxxxx999999" + it.toString())
+//            Globals.log("xxxxxxxx999999" + it.toString())
             try {
                 when (it.code) {
                     0 -> success(it.data)

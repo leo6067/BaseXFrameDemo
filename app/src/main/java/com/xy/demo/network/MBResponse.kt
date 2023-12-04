@@ -18,7 +18,7 @@ class MBResponse<T> {
     }
 
     override fun toString(): String {
-        Log.e("BaseResponse","code=$code, data=$data, message='$msg'")
+//        Log.e("BaseResponse","code=$code, data=$data, message='$msg'")
         return "BaseResponse(code=$code, data=$data, message='$msg')"
     }
 }
