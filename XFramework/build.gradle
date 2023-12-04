@@ -149,7 +149,7 @@ dependencies {
     api 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
 
     // Banner
-    api 'io.github.youth5201314:banner:2.2.2'
+    api 'com.youth.banner:banner:2.1.0'
 
     //多线程下载  https://github.com/qinweiforandroid/QDownload
     api 'com.github.qinweiforandroid:QDownload:2.0.0807'

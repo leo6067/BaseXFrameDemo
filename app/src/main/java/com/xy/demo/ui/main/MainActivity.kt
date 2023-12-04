@@ -53,6 +53,7 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
 
         val rootDirPath = getRootDirPath(BaseAppContext.getInstance());
         Globals.log("xxxxxfilesDir", getRootDirPath(BaseAppContext.getInstance()))
+        Globals.log("xxxxxfilesDir", getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString() )  //外部路径
         Globals.log("xxxxxfilesDir--本地可用的存储 路劲", filesDir.absolutePath.toString() + "新增的文件名")
 
 
@@ -72,7 +73,7 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
     }
 
     fun getRootDirPath(context: Context): String? {
-        return if (Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()) {
+        return if (Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()) {   // 检查外部路径是否可用
             val file: File = ContextCompat.getExternalFilesDirs(
                 context.applicationContext,
                 null

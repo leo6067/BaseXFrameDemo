@@ -1,25 +1,33 @@
 package com.xy.demo.ui.main
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.scwang.smart.refresh.layout.api.RefreshLayout
-import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.xy.demo.R
 import com.xy.demo.base.MBBaseFragment
-import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.FragmentHomeBinding
+import com.xy.demo.model.VideoStoreModel
 import com.xy.demo.network.Globals
-import com.xy.demo.network.NetLaunchManager
-import com.xy.demo.network.NetManager
 import com.xy.demo.ui.main.adapter.HomeAdapter
 import com.xy.demo.ui.main.viewModel.MainViewModel
-import java.util.zip.Inflater
+import com.xy.demo.ui.video.VideoPlayActivity
+import com.youth.banner.Banner
+import com.youth.banner.adapter.BannerImageAdapter
+import com.youth.banner.holder.BannerImageHolder
+import com.youth.banner.indicator.CircleIndicator
+import com.youth.banner.listener.OnBannerListener
+import com.youth.banner.transformer.DepthPageTransformer
 
 class HomeFragment : MBBaseFragment<FragmentHomeBinding, MainViewModel>() {
+
+    val homeAdapter = HomeAdapter()
+
+
+    var bannerView: Banner<VideoStoreModel.BannerDTO, BannerImageAdapter<VideoStoreModel.BannerDTO>>? =
+        null
+
     override fun getLayoutId(): Int {
         return R.layout.fragment_home;
     }
@@ -27,27 +35,20 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MainViewModel>() {
     override fun initView() {
 
         initRecyclerView(binding.recyclerView, LinearLayoutManager.VERTICAL, 0)
-        val homeAdapter = HomeAdapter()
+
         binding.recyclerView.adapter = homeAdapter
 
-        val bannerView = layoutInflater.inflate(R.layout.include_banner, null)
-        homeAdapter.addHeaderView(bannerView)
-
-        binding.refreshView.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
-            override fun onRefresh(refreshLayout: RefreshLayout) {
-
-            }
-
-            override fun onLoadMore(refreshLayout: RefreshLayout) {
-
-            }
-        })
+        val bannerLin = layoutInflater.inflate(R.layout.include_banner, null)
+        bannerView = bannerLin.findViewById(R.id.bannerView)
+        homeAdapter.addHeaderView(bannerLin)
+        binding.refreshView.setEnableLoadMore(false)
+        binding.refreshView.setOnRefreshListener { initArgument() }
     }
 
 
     override fun initArgument() {
         super.initArgument()
-        readerParams?.let { viewModel.getCheckSetting(it) }
+//        readerParams?.let { viewModel.getCheckSetting(it) }
         readerParams?.let { viewModel.getVideoStore(it) }
     }
 
@@ -56,9 +57,43 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MainViewModel>() {
         super.initViewObservable()
 
         viewModel.videoStoreModel.observe(this) {
-            Globals.log("xxxxxxx" + it.label.toString())
+            homeAdapter.setNewInstance(it.label)
+            setBannerLin(it)
         }
     }
 
+
+    fun setBannerLin(bean: VideoStoreModel) {
+
+
+        bannerView!!.setAdapter(object :
+            BannerImageAdapter<VideoStoreModel.BannerDTO>(bean.banner) {
+
+            override fun onBindView(
+                holder: BannerImageHolder,
+                data: VideoStoreModel.BannerDTO,
+                position: Int,
+                size: Int
+            ) {
+
+                Glide.with(holder.itemView)
+                    .load(data.image)
+                    .apply(RequestOptions.bitmapTransform(RoundedCorners(30)))
+                    .into(holder.imageView)
+            }
+        })
+        bannerView?.addBannerLifecycleObserver(this)
+        bannerView?.indicator = CircleIndicator(activity)
+
+        bannerView?.setPageTransformer(DepthPageTransformer())
+
+        bannerView?.setOnBannerListener { data, position ->
+            run {
+
+                startActivity(Intent(activity, VideoPlayActivity::class.java))
+            }
+        }
+
+    }
 
 }

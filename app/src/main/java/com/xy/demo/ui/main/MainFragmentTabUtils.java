@@ -38,7 +38,7 @@ public class MainFragmentTabUtils implements RadioGroup.OnCheckedChangeListener 
         MyFragmentPagerAdapter myFragmentPagerAdapter = new MyFragmentPagerAdapter(fragmentManager, fragments);
         customScrollViewPager.setAdapter(myFragmentPagerAdapter);
 //        EventBus.getDefault().post(new ToStore(VideoIsFirst() ? VIDEO_CONSTANT : BOOK_CONSTANT));
-        customScrollViewPager.post(() -> customScrollViewPager.setOffscreenPageLimit(fragments.size()));
+//        customScrollViewPager.post(() -> customScrollViewPager.setOffscreenPageLimit(fragments.size()));
     }
 
     public boolean USE_BOOK, USE_VIDEO;
@@ -59,7 +59,6 @@ public class MainFragmentTabUtils implements RadioGroup.OnCheckedChangeListener 
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.main_home:
-
                 IntentFragment(0);
                 break;
             case R.id.main_video:

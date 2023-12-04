@@ -62,6 +62,13 @@ object NetManager {
     }
 
 
+   suspend fun getUserInfo(jsonString: Map<String, String>): MBResponse<VideoStoreModel> {
+        return apiService.getUserInfo(jsonString)
+    }
+
+
+
+
 }
 
 

@@ -23,7 +23,6 @@ class MainViewModel(application: Application) : MBBaseViewModel(application) {
         }, {
             ToastUtils.showShort(it.message)
         })
-
     }
 
 

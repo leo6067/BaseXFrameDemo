@@ -13,11 +13,8 @@ import java.util.Objects
 interface Api {
 
 
-
-
     @GET("https://ifconfig.co/json")
     suspend fun getOutIp(): MBResponse<IpModel>
-
 
 
     @POST("service/check-setting")
@@ -26,4 +23,14 @@ interface Api {
 
     @POST("video/store")
     suspend fun getVideoStore(@Body jsonString: Map<String,String>): MBResponse<VideoStoreModel>
+
+
+    // 个人中心首页接口
+     @POST("/user/index")
+    suspend fun getUserInfo(@Body jsonString: Map<String,String>): MBResponse<VideoStoreModel>
+
+
+
+
+
 }

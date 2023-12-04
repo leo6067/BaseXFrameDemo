@@ -1,4 +1,4 @@
-package com.xy.demo.ui
+package com.xy.demo.ui.login.viewmodel
 
 import android.app.Application
 import com.xy.demo.base.MBBaseViewModel

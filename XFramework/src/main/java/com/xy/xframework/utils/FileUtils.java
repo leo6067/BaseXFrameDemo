@@ -2,10 +2,7 @@ package com.xy.xframework.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Build;
 import android.util.Log;
-
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -17,8 +14,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -28,8 +23,19 @@ import java.util.List;
 import java.util.Locale;
 
 
+//
+//context.getFilesDir() 内部存储data/data/包名/files目录
+//        context.getCacheDir() 内部存储data/data/包名/cache目录
+//        Environment.getExternalStorageDirectory() 外部存储根目录
+//        Environment.getExternalStoragePublicDirectory (Environment.DIRECTORY_DCIM) 外部存储公有目录
+//        context.getExternalFilesDir() 外部存储私有目录storage/sdcard/Android/data/包名/files。一般存储长时间保存的数据。
+//        context.getExternalCacheDir() 外部存储私有目录storage/sdcard/Android/data/包名/cache。一般存储临时缓存数据。
+//        注意上述最后两个API：当app被卸载后，sdCard/Android/data/PackageName/下的所有文件都会被删除，不会留下垃圾信息。两个API对应的目录分别对应着 设置->应用->应用详情里面的“清除数据”与“清除缓存”选项。
 
 public class FileUtils {
+
+
+
     private static final String LINE_SEP = System.getProperty("line.separator");
 
     private FileUtils() {

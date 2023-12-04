@@ -1,13 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     tools:context=".ui.main.MineFragment">
 
 
-    <TextView
+    <FrameLayout
+        android:id="@+id/mine_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="我的" />
+        android:background="?attr/app_white_or_black"
+        android:orientation="vertical">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mine_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <FrameLayout
+            android:id="@+id/fragment_mine_activityLay"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:layout_gravity="end|bottom"
+            android:layout_marginEnd="@dimen/dp_25"
+            android:layout_marginBottom="@dimen/dp_15"
+            android:visibility="gone">
+
+            <com.ruffian.library.widget.RImageView
+                android:id="@+id/fragment_mine_activity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/public_placeholder_image_v"
+                app:corner_radius="@dimen/dp_8" />
+
+            <ImageView
+                android:id="@+id/dialog_iv_close_new_activity"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_gravity="end"
+                android:src="@drawable/icon_close" />
+        </FrameLayout>
+
+
+        <com.ruffian.library.widget.RLinearLayout
+            android:id="@+id/notice_lin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_35"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="#FFEEF4"
+            android:gravity="center_vertical">
+
+
+            <ImageView
+                android:id="@+id/close_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_14"
+                android:background="@drawable/login_close" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_weight="1"
+                android:text="開啓通知獲取更多精彩内容"
+                android:textColor="#fff50c36"
+                android:textSize="15sp" />
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/open_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:paddingHorizontal="@dimen/dp_12"
+                android:paddingVertical="@dimen/dp_3"
+                android:text="去開啓"
+                android:textColor="@color/white"
+                app:background_normal="#F50C36"
+                app:corner_radius="@dimen/dp_14"
+
+                />
+
+
+        </com.ruffian.library.widget.RLinearLayout>
+
+
+    </FrameLayout>
 
 </layout>
