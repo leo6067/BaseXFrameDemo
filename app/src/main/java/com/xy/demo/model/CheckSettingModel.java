@@ -1,7 +1,5 @@
 package com.xy.demo.model;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 /**
@@ -57,104 +55,89 @@ import java.util.List;
 public class CheckSettingModel {
 
 
-    @SerializedName("system_setting")
-    private SystemSettingDTO systemSetting;
-    @SerializedName("version_update")
-    private VersionUpdateDTO versionUpdate;
-    @SerializedName("start_page")
-    private StartPageDTO startPage;
-    @SerializedName("ad_status_setting")
-    private AdStatusSettingDTO adStatusSetting;
-    @SerializedName("protocol_list")
-    private ProtocolListDTO protocolList;
-    @SerializedName("switch_info")
-    private SwitchInfoDTO switchInfo;
-    @SerializedName("readadinfo")
-    private List<?> readadinfo;
-    @SerializedName("online_service")
-    private String onlineService;
+    private SystemSetting system_setting;
+    private VersionUpdate version_update;
+    private StartPage start_page;
+    private ProtocolList protocol_list;
+    private SwitchInfo switch_info;
+    private List<Readadinfo> readadinfo;
+    private String online_service;
+    private AdvertMob advert_mob;
 
-    public SystemSettingDTO getSystemSetting() {
-        return systemSetting;
+    public SystemSetting getSystem_setting() {
+        return system_setting;
     }
 
-    public void setSystemSetting(SystemSettingDTO systemSetting) {
-        this.systemSetting = systemSetting;
+    public void setSystem_setting(SystemSetting system_setting) {
+        this.system_setting = system_setting;
     }
 
-    public VersionUpdateDTO getVersionUpdate() {
-        return versionUpdate;
+    public VersionUpdate getVersion_update() {
+        return version_update;
     }
 
-    public void setVersionUpdate(VersionUpdateDTO versionUpdate) {
-        this.versionUpdate = versionUpdate;
+    public void setVersion_update(VersionUpdate version_update) {
+        this.version_update = version_update;
     }
 
-    public StartPageDTO getStartPage() {
-        return startPage;
+    public StartPage getStart_page() {
+        return start_page;
     }
 
-    public void setStartPage(StartPageDTO startPage) {
-        this.startPage = startPage;
+    public void setStart_page(StartPage start_page) {
+        this.start_page = start_page;
     }
 
-    public AdStatusSettingDTO getAdStatusSetting() {
-        return adStatusSetting;
+    public ProtocolList getProtocol_list() {
+        return protocol_list;
     }
 
-    public void setAdStatusSetting(AdStatusSettingDTO adStatusSetting) {
-        this.adStatusSetting = adStatusSetting;
+    public void setProtocol_list(ProtocolList protocol_list) {
+        this.protocol_list = protocol_list;
     }
 
-    public ProtocolListDTO getProtocolList() {
-        return protocolList;
+    public SwitchInfo getSwitch_info() {
+        return switch_info;
     }
 
-    public void setProtocolList(ProtocolListDTO protocolList) {
-        this.protocolList = protocolList;
+    public void setSwitch_info(SwitchInfo switch_info) {
+        this.switch_info = switch_info;
     }
 
-    public SwitchInfoDTO getSwitchInfo() {
-        return switchInfo;
-    }
-
-    public void setSwitchInfo(SwitchInfoDTO switchInfo) {
-        this.switchInfo = switchInfo;
-    }
-
-    public List<?> getReadadinfo() {
+    public List<Readadinfo> getReadadinfo() {
         return readadinfo;
     }
 
-    public void setReadadinfo(List<?> readadinfo) {
+    public void setReadadinfo(List<Readadinfo> readadinfo) {
         this.readadinfo = readadinfo;
     }
 
-    public String getOnlineService() {
-        return onlineService;
+    public String getOnline_service() {
+        return online_service;
     }
 
-    public void setOnlineService(String onlineService) {
-        this.onlineService = onlineService;
+    public void setOnline_service(String online_service) {
+        this.online_service = online_service;
     }
 
-    public static class SystemSettingDTO {
-        @SerializedName("currencyUnit")
+    public AdvertMob getAdvert_mob() {
+        return advert_mob;
+    }
+
+    public void setAdvert_mob(AdvertMob advert_mob) {
+        this.advert_mob = advert_mob;
+    }
+
+    public static class SystemSetting {
         private String currencyUnit;
-        @SerializedName("subUnit")
         private String subUnit;
-        @SerializedName("check_status")
-        private Integer checkStatus;
-        @SerializedName("site_type")
-        private List<Integer> siteType;
-        @SerializedName("novel_reward_switch")
-        private Integer novelRewardSwitch;
-        @SerializedName("site_content_comic_version")
-        private String siteContentComicVersion;
-        @SerializedName("email_login_switch")
-        private Integer emailLoginSwitch;
-        @SerializedName("is_read")
-        private Integer isRead;
+        private int check_status;
+        private List<Integer> site_type;
+        private int novel_reward_switch;
+        private String site_content_comic_version;
+        private int email_login_switch;
+        private int limit_switch;
+        private int is_read;
 
         public String getCurrencyUnit() {
             return currencyUnit;
@@ -172,68 +155,73 @@ public class CheckSettingModel {
             this.subUnit = subUnit;
         }
 
-        public Integer getCheckStatus() {
-            return checkStatus;
+        public int getCheck_status() {
+            return check_status;
         }
 
-        public void setCheckStatus(Integer checkStatus) {
-            this.checkStatus = checkStatus;
+        public void setCheck_status(int check_status) {
+            this.check_status = check_status;
         }
 
-        public List<Integer> getSiteType() {
-            return siteType;
+        public List<Integer> getSite_type() {
+            return site_type;
         }
 
-        public void setSiteType(List<Integer> siteType) {
-            this.siteType = siteType;
+        public void setSite_type(List<Integer> site_type) {
+            this.site_type = site_type;
         }
 
-        public Integer getNovelRewardSwitch() {
-            return novelRewardSwitch;
+        public int getNovel_reward_switch() {
+            return novel_reward_switch;
         }
 
-        public void setNovelRewardSwitch(Integer novelRewardSwitch) {
-            this.novelRewardSwitch = novelRewardSwitch;
+        public void setNovel_reward_switch(int novel_reward_switch) {
+            this.novel_reward_switch = novel_reward_switch;
         }
 
-        public String getSiteContentComicVersion() {
-            return siteContentComicVersion;
+        public String getSite_content_comic_version() {
+            return site_content_comic_version;
         }
 
-        public void setSiteContentComicVersion(String siteContentComicVersion) {
-            this.siteContentComicVersion = siteContentComicVersion;
+        public void setSite_content_comic_version(String site_content_comic_version) {
+            this.site_content_comic_version = site_content_comic_version;
         }
 
-        public Integer getEmailLoginSwitch() {
-            return emailLoginSwitch;
+        public int getEmail_login_switch() {
+            return email_login_switch;
         }
 
-        public void setEmailLoginSwitch(Integer emailLoginSwitch) {
-            this.emailLoginSwitch = emailLoginSwitch;
+        public void setEmail_login_switch(int email_login_switch) {
+            this.email_login_switch = email_login_switch;
         }
 
-        public Integer getIsRead() {
-            return isRead;
+        public int getLimit_switch() {
+            return limit_switch;
         }
 
-        public void setIsRead(Integer isRead) {
-            this.isRead = isRead;
+        public void setLimit_switch(int limit_switch) {
+            this.limit_switch = limit_switch;
+        }
+
+        public int getIs_read() {
+            return is_read;
+        }
+
+        public void setIs_read(int is_read) {
+            this.is_read = is_read;
         }
     }
 
-    public static class VersionUpdateDTO {
-        @SerializedName("status")
-        private Integer status;
-        @SerializedName("msg")
+    public static class VersionUpdate {
+        private int status;
         private String msg;
-        @SerializedName("url")
         private String url;
 
-        public Integer getStatus() {
+        public int getStatus() {
             return status;
         }
 
-        public void setStatus(Integer status) {
+        public void setStatus(int status) {
             this.status = status;
         }
 
@@ -254,26 +242,20 @@ public class CheckSettingModel {
         }
     }
 
-    public static class StartPageDTO {
-        @SerializedName("skip_type")
-        private Integer skipType;
-        @SerializedName("image")
+    public static class StartPage {
+        private int skip_type;
         private String image;
-        @SerializedName("title")
         private String title;
-        @SerializedName("skip_content")
-        private String skipContent;
-        @SerializedName("ad_key")
-        private String adKey;
-        @SerializedName("ad_android_key")
-        private String adAndroidKey;
+        private String skip_content;
+        private String ad_key;
+        private String ad_android_key;
 
-        public Integer getSkipType() {
-            return skipType;
+        public int getSkip_type() {
+            return skip_type;
         }
 
-        public void setSkipType(Integer skipType) {
-            this.skipType = skipType;
+        public void setSkip_type(int skip_type) {
+            this.skip_type = skip_type;
         }
 
         public String getImage() {
@@ -292,92 +274,35 @@ public class CheckSettingModel {
             this.title = title;
         }
 
-        public String getSkipContent() {
-            return skipContent;
+        public String getSkip_content() {
+            return skip_content;
         }
 
-        public void setSkipContent(String skipContent) {
-            this.skipContent = skipContent;
+        public void setSkip_content(String skip_content) {
+            this.skip_content = skip_content;
         }
 
-        public String getAdKey() {
-            return adKey;
+        public String getAd_key() {
+            return ad_key;
         }
 
-        public void setAdKey(String adKey) {
-            this.adKey = adKey;
+        public void setAd_key(String ad_key) {
+            this.ad_key = ad_key;
         }
 
-        public String getAdAndroidKey() {
-            return adAndroidKey;
+        public String getAd_android_key() {
+            return ad_android_key;
         }
 
-        public void setAdAndroidKey(String adAndroidKey) {
-            this.adAndroidKey = adAndroidKey;
-        }
-    }
-
-    public static class AdStatusSettingDTO {
-        @SerializedName("chapter_read_end")
-        private Integer chapterReadEnd;
-        @SerializedName("chapter_read_bottom")
-        private Integer chapterReadBottom;
-        @SerializedName("comic_read_end")
-        private Integer comicReadEnd;
-        @SerializedName("video_ad_switch")
-        private Integer videoAdSwitch;
-        @SerializedName("book_read_gap")
-        private Integer bookReadGap;
-
-        public Integer getChapterReadEnd() {
-            return chapterReadEnd;
-        }
-
-        public void setChapterReadEnd(Integer chapterReadEnd) {
-            this.chapterReadEnd = chapterReadEnd;
-        }
-
-        public Integer getChapterReadBottom() {
-            return chapterReadBottom;
-        }
-
-        public void setChapterReadBottom(Integer chapterReadBottom) {
-            this.chapterReadBottom = chapterReadBottom;
-        }
-
-        public Integer getComicReadEnd() {
-            return comicReadEnd;
-        }
-
-        public void setComicReadEnd(Integer comicReadEnd) {
-            this.comicReadEnd = comicReadEnd;
-        }
-
-        public Integer getVideoAdSwitch() {
-            return videoAdSwitch;
-        }
-
-        public void setVideoAdSwitch(Integer videoAdSwitch) {
-            this.videoAdSwitch = videoAdSwitch;
-        }
-
-        public Integer getBookReadGap() {
-            return bookReadGap;
-        }
-
-        public void setBookReadGap(Integer bookReadGap) {
-            this.bookReadGap = bookReadGap;
+        public void setAd_android_key(String ad_android_key) {
+            this.ad_android_key = ad_android_key;
         }
     }
 
-    public static class ProtocolListDTO {
-        @SerializedName("notify")
+    public static class ProtocolList {
         private String notify;
-        @SerializedName("privacy")
         private String privacy;
-        @SerializedName("logoff")
         private String logoff;
-        @SerializedName("user")
         private String user;
 
         public String getNotify() {
@@ -413,81 +338,255 @@ public class CheckSettingModel {
         }
     }
 
-    public static class SwitchInfoDTO {
-        @SerializedName("vip_switch")
-        private Integer vipSwitch;
-        @SerializedName("recharge_switch")
-        private Integer rechargeSwitch;
-        @SerializedName("email_login_switch")
-        private Integer emailLoginSwitch;
-        @SerializedName("unit_switch")
-        private Integer unitSwitch;
-        @SerializedName("vip_read_all")
-        private Integer vipReadAll;
+    public static class SwitchInfo {
+        private int vip_switch;
+        private int recharge_switch;
+        private int email_login_switch;
+        private int unit_switch;
+        private int vip_read_all;
 
-        public Integer getVipSwitch() {
-            return vipSwitch;
+        public int getVip_switch() {
+            return vip_switch;
         }
 
-        public void setVipSwitch(Integer vipSwitch) {
-            this.vipSwitch = vipSwitch;
+        public void setVip_switch(int vip_switch) {
+            this.vip_switch = vip_switch;
         }
 
-        public Integer getRechargeSwitch() {
-            return rechargeSwitch;
+        public int getRecharge_switch() {
+            return recharge_switch;
         }
 
-        public void setRechargeSwitch(Integer rechargeSwitch) {
-            this.rechargeSwitch = rechargeSwitch;
+        public void setRecharge_switch(int recharge_switch) {
+            this.recharge_switch = recharge_switch;
         }
 
-        public Integer getEmailLoginSwitch() {
-            return emailLoginSwitch;
+        public int getEmail_login_switch() {
+            return email_login_switch;
         }
 
-        public void setEmailLoginSwitch(Integer emailLoginSwitch) {
-            this.emailLoginSwitch = emailLoginSwitch;
+        public void setEmail_login_switch(int email_login_switch) {
+            this.email_login_switch = email_login_switch;
         }
 
-        public Integer getUnitSwitch() {
-            return unitSwitch;
+        public int getUnit_switch() {
+            return unit_switch;
         }
 
-        public void setUnitSwitch(Integer unitSwitch) {
-            this.unitSwitch = unitSwitch;
+        public void setUnit_switch(int unit_switch) {
+            this.unit_switch = unit_switch;
         }
 
-        public Integer getVipReadAll() {
-            return vipReadAll;
+        public int getVip_read_all() {
+            return vip_read_all;
         }
 
-        public void setVipReadAll(Integer vipReadAll) {
-            this.vipReadAll = vipReadAll;
-        }
-
-        @Override
-        public String toString() {
-            return "{" +
-                    "\"vipSwitch\":" + vipSwitch +
-                    ", \"rechargeSwitch\":" + rechargeSwitch +
-                    ", \"emailLoginSwitch\":" + emailLoginSwitch +
-                    ", \"unitSwitch\":" + unitSwitch +
-                    ", \"vipReadAll\":" + vipReadAll +
-                    '}';
+        public void setVip_read_all(int vip_read_all) {
+            this.vip_read_all = vip_read_all;
         }
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                "\"systemSetting\":" + systemSetting +
-                ", \"versionUpdate\":" + versionUpdate +
-                ", \"startPage\":" + startPage +
-                ", \"adStatusSetting\":" + adStatusSetting +
-                ", \"protocolList\":" + protocolList +
-                ", \"switchInfo\":" + switchInfo +
-                ", \"readadinfo\":" + readadinfo +
-                ", \"onlineService\":\'" + onlineService + "\'" +
-                '}';
+    public static class AdvertMob {
+        private int advert_id;
+        private AdKey ad_key;
+        private AdAndroidKey ad_android_key;
+
+        public int getAdvert_id() {
+            return advert_id;
+        }
+
+        public void setAdvert_id(int advert_id) {
+            this.advert_id = advert_id;
+        }
+
+        public AdKey getAd_key() {
+            return ad_key;
+        }
+
+        public void setAd_key(AdKey ad_key) {
+            this.ad_key = ad_key;
+        }
+
+        public AdAndroidKey getAd_android_key() {
+            return ad_android_key;
+        }
+
+        public void setAd_android_key(AdAndroidKey ad_android_key) {
+            this.ad_android_key = ad_android_key;
+        }
+
+        public static class AdKey {
+            private Recharge recharge;
+            private String center;
+            private String bottom;
+            private String back;
+
+            public Recharge getRecharge() {
+                return recharge;
+            }
+
+            public void setRecharge(Recharge recharge) {
+                this.recharge = recharge;
+            }
+
+            public String getCenter() {
+                return center;
+            }
+
+            public void setCenter(String center) {
+                this.center = center;
+            }
+
+            public String getBottom() {
+                return bottom;
+            }
+
+            public void setBottom(String bottom) {
+                this.bottom = bottom;
+            }
+
+            public String getBack() {
+                return back;
+            }
+
+            public void setBack(String back) {
+                this.back = back;
+            }
+
+            public static class Recharge {
+                private String id;
+                private String num;
+                private String val;
+                private String day_num;
+                private String text;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getNum() {
+                    return num;
+                }
+
+                public void setNum(String num) {
+                    this.num = num;
+                }
+
+                public String getVal() {
+                    return val;
+                }
+
+                public void setVal(String val) {
+                    this.val = val;
+                }
+
+                public String getDay_num() {
+                    return day_num;
+                }
+
+                public void setDay_num(String day_num) {
+                    this.day_num = day_num;
+                }
+
+                public String getText() {
+                    return text;
+                }
+
+                public void setText(String text) {
+                    this.text = text;
+                }
+            }
+        }
+
+        public static class AdAndroidKey {
+            private AdKey.Recharge recharge;
+            private String center;
+            private String bottom;
+            private String back;
+
+            public AdKey.Recharge getRecharge() {
+                return recharge;
+            }
+
+            public void setRecharge(AdKey.Recharge recharge) {
+                this.recharge = recharge;
+            }
+
+            public String getCenter() {
+                return center;
+            }
+
+            public void setCenter(String center) {
+                this.center = center;
+            }
+
+            public String getBottom() {
+                return bottom;
+            }
+
+            public void setBottom(String bottom) {
+                this.bottom = bottom;
+            }
+
+            public String getBack() {
+                return back;
+            }
+
+            public void setBack(String back) {
+                this.back = back;
+            }
+        }
+    }
+
+    public static class Readadinfo {
+        private String title;
+        private String img;
+        private int skip_type;
+        private Object skip_content;
+        private int type;
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getImg() {
+            return img;
+        }
+
+        public void setImg(String img) {
+            this.img = img;
+        }
+
+        public int getSkip_type() {
+            return skip_type;
+        }
+
+        public void setSkip_type(int skip_type) {
+            this.skip_type = skip_type;
+        }
+
+        public Object getSkip_content() {
+            return skip_content;
+        }
+
+        public void setSkip_content(Object skip_content) {
+            this.skip_content = skip_content;
+        }
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
+        }
     }
 }

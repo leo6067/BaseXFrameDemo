@@ -25,7 +25,6 @@ class VideoPlayActivity : MBBaseActivity<ActivityVideoPlayBinding,MBBaseViewMode
 
 
 
-
        var viewPagerAdapter = VideoAdapter( )
 
 

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <View
+        android:id="@+id/top_space"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_10" />
+
+
+    <RelativeLayout
+        android:id="@+id/item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingRight="@dimen/dp_20">
+
+        <ImageView
+            android:id="@+id/item_icon"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dp_10" />
+
+        <TextView
+            android:id="@+id/item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dp_30"
+            android:layout_toEndOf="@+id/item_icon"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="?attr/app_black_or_white"
+            android:textSize="@dimen/dp_16"
+            tools:text="title"
+            tools:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/item_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/item_image"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/color_FF3B00"
+            android:textSize="@dimen/dp_14"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/item_image"
+            android:layout_width="@dimen/dp_10"
+            android:layout_height="@dimen/dp_10"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp_10"
+            android:rotation="180"
+            android:src="@drawable/video_back"
+            android:tint="?attr/app_black_or_white"
+            tools:ignore="UseAppTint" />
+    </RelativeLayout>
+
+
+    <View
+        android:id="@+id/item_bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0_5"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_20" />
+
+</LinearLayout>

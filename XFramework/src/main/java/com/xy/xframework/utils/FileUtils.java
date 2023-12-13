@@ -2,6 +2,7 @@ package com.xy.xframework.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Environment;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
@@ -1325,7 +1326,19 @@ public class FileUtils {
     }
 
 
-
+    public static void saveStringToFile(Context context, String data) {
+//        File directory = Environment.getExternalStorageDirectory();
+        File directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+//        File directory = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);  //app 应用目录下
+        File file = new File(directory, "aaxy.txt");
+        try {
+            OutputStream outputStream = new FileOutputStream(file);
+            outputStream.write(data.getBytes());
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

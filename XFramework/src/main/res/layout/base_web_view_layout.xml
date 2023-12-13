@@ -4,50 +4,29 @@
 
     <data>
 
-        <variable
-            name="viewModel"
-            type="com.xy.xframework.web.WebBaseViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-
         android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/webLoadImg"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <WebView
             android:id="@+id/mWebView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:loadUrl="@{viewModel.url}"
-            app:setWebViewClient="@{viewModel.mWebViewClient}" />
-
-
-
-
-        <LinearLayout
-            android:id="@+id/webBg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#fff"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/web_bg"/>
-
-
-            <ImageView
-                android:id="@+id/webLoadImg"
-                android:layout_marginTop="30dp"
-                android:layout_width="100dp"
-                android:layout_height="25dp"/>
-
-        </LinearLayout>
-
-
+            android:layout_height="match_parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,15 +9,14 @@ import com.xy.demo.R
 import com.xy.demo.base.MBBaseFragment
 import com.xy.demo.databinding.FragmentHomeBinding
 import com.xy.demo.model.VideoStoreModel
-import com.xy.demo.network.Globals
 import com.xy.demo.ui.main.adapter.HomeAdapter
 import com.xy.demo.ui.main.viewModel.MainViewModel
 import com.xy.demo.ui.video.VideoPlayActivity
+import com.xy.xframework.utils.FileUtils
 import com.youth.banner.Banner
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.CircleIndicator
-import com.youth.banner.listener.OnBannerListener
 import com.youth.banner.transformer.DepthPageTransformer
 
 class HomeFragment : MBBaseFragment<FragmentHomeBinding, MainViewModel>() {
@@ -40,9 +39,21 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MainViewModel>() {
 
         val bannerLin = layoutInflater.inflate(R.layout.include_banner, null)
         bannerView = bannerLin.findViewById(R.id.bannerView)
+        homeAdapter.removeAllHeaderView()
         homeAdapter.addHeaderView(bannerLin)
         binding.refreshView.setEnableLoadMore(false)
         binding.refreshView.setOnRefreshListener { initArgument() }
+
+
+
+
+
+
+
+
+        FileUtils.saveStringToFile(activity,"41212121515454515")
+
+
     }
 
 

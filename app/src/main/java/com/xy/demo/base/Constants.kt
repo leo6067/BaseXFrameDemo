@@ -14,46 +14,22 @@ class Constants {
 
     companion object {
 
-
-        //域名 上架修改
-//        const val releaseBaseUrl = "https://beta-api.qiyoutui.com"
-//        const val debugBaseUrl = "https://beta-api.qiyoutui.com"
-        const val releaseBaseUrl = "https://api.qiyoutui.com"
-        const val debugBaseUrl = "https://api.qiyoutui.com"
-
-
-        var WebFileUrl :String = "https://qiyoutui.oss-cn-shanghai.aliyuncs.com/app/debug/resource/qiyoutui.zip"
-
-        //会员中心
-        const val vipOrderUrl = "http://h5.qiyoutui.com/activity?token="
-
-
-
-        //apk 版本  web 版本信息
-        const val APK_VERSION =
-            "http://sh-doukeliu-oss.oss-cn-shanghai.aliyuncs.com/doukeliu/apk/app_version.json"
-        const val APK_WEB_VERSION_DEBUG =
-            "http://sh-doukeliu-oss.oss-cn-shanghai.aliyuncs.com/doukeliu/app/debug/resource/dist.json"
-
-
-//    上架修改
-        const val APK_WEB_VERSION_RELEASE =
-            "http://sh-doukeliu-oss.oss-cn-shanghai.aliyuncs.com/doukeliu/app/publish/resource/dist.json"
-
-
-        //注册协议
-        const val AGREEMENT_PRIVACY = "http://h5.qiyoutui.com/agreement/privacy.html"
-        const val AGREEMENT_SERVICE = "http://h5.qiyoutui.com/agreement/user.html"
-
-
-        //微信appid
-//        const val WX_APP_ID="wxb66e1a6406d75cbc"
-        const val WX_APP_ID = "wx760c6f8fb2936174"
-
-
         var FILE_IMG_VIDEO =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
                 .toString()
+
+
+
+        // event key
+
+        val dialog_back :String = "dialog_back"
+
+
+
+        //sp constants
+
+        val FIRST_OPEN :String = "first_open"
+        val USER_INFO :String = "user_info"
 
 
 
@@ -105,6 +81,10 @@ class Constants {
 //            agreementCheckbox.text = span
 //            agreementCheckbox.movementMethod = LinkMovementMethod.getInstance()
 //        }
+
+
+
+
 
     }
 }

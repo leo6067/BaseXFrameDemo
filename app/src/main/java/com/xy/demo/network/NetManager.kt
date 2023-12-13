@@ -5,6 +5,7 @@ import com.xy.demo.base.Constants
 import com.xy.demo.base.MyApplication
 import com.xy.demo.model.CheckSettingModel
 import com.xy.demo.model.IpModel
+import com.xy.demo.model.MineModel
 import com.xy.demo.model.VideoStoreModel
 import com.xy.network.NetworkManager
 import com.xy.xframework.base.BaseSharePreference
@@ -62,7 +63,7 @@ object NetManager {
     }
 
 
-   suspend fun getUserInfo(jsonString: Map<String, String>): MBResponse<VideoStoreModel> {
+   suspend fun getUserInfo(jsonString: Map<String, String>): MBResponse<MineModel> {
         return apiService.getUserInfo(jsonString)
     }
 

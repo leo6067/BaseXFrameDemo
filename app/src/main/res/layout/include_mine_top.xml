@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+
+
+
+    <com.ruffian.library.widget.RImageView
+        android:id="@+id/userIcon"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        app:is_circle="true"
+        app:srcCompat="@android:drawable/ic_menu_crop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="@dimen/dp_30"/>
+
+
+
+    <TextView
+        android:id="@+id/userName"
+        app:layout_constraintStart_toEndOf="@+id/userIcon"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_30"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        tools:text="用户名字"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/userID"
+        app:layout_constraintStart_toEndOf="@+id/userIcon"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/userName"
+        android:layout_width="wrap_content"
+        tools:text="用户ID"
+        android:layout_height="wrap_content"/>
+
+
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:src="@drawable/video_back"
+        android:rotation="180"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,15 +22,15 @@ class BaseSharePreference private constructor(private val mContext: Context) {
 
         lateinit var mSharedPreferences: SharedPreferences
         //外部使用
-        lateinit var mInstance: BaseSharePreference
+//        lateinit var mInstance: BaseSharePreference
         private val mSyncLock = Any()
 
          val spObject: BaseSharePreference
             get() {
                 synchronized(mSyncLock) {
-                        mInstance = BaseSharePreference(XBaseApplication.application)
+                    return BaseSharePreference(XBaseApplication.application)
                 }
-                return mInstance
+
             }
     }
 

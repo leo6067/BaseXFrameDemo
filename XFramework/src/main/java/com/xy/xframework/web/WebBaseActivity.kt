@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.webkit.WebSettings
+import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import com.bumptech.glide.Glide
@@ -20,13 +21,13 @@ import com.xy.xframework.base.XBaseApplication
 import com.xy.xframework.base.XBaseViewModel
 import com.xy.xframework.databinding.BaseWebViewLayoutBinding
 import com.xy.xframework.statusBar.StatusBarUtil
+import com.xy.xframework.utils.Globals
 import java.util.*
 
 /**
  * 默认webView容器类，目前功能比较简单
  */
-abstract class WebBaseActivity() : XBaseActivity<BaseWebViewLayoutBinding, WebBaseViewModel>() {
-
+abstract class WebBaseActivity() : XBaseActivity<BaseWebViewLayoutBinding, XBaseViewModel>() {
 
 
     /**
@@ -47,38 +48,40 @@ abstract class WebBaseActivity() : XBaseActivity<BaseWebViewLayoutBinding, WebBa
     /**
      * 是否显示状态栏
      */
-    val isShowTitleBar: Boolean by lazy { intent.getBooleanExtra("isShowTitleBar",true) }
+    val isShowTitleBar: Boolean by lazy { intent.getBooleanExtra("isShowTitleBar", true) }
 
     /**
      * 状态栏字体颜色是否是黑色：默认true=黑色
      */
-    val statusBarFontBlack: Boolean by lazy { intent.getBooleanExtra("statusBarFontBlack",true) }
+    val statusBarFontBlack: Boolean by lazy { intent.getBooleanExtra("statusBarFontBlack", true) }
 
     /**
      * 状态栏背景颜色
      */
-    val statusBarBgColor: String? by lazy { intent.getStringExtra("statusBarBgColor")  }
+    val statusBarBgColor: String? by lazy { intent.getStringExtra("statusBarBgColor") }
 
 
     val uiChangeEvent = WebViewUIChangeEvent()
 
-    override fun initVariableId(): Int = BR.viewModel
+    override fun initVariableId(): Int = 0
 
     override fun getLayoutId(): Int = R.layout.base_web_view_layout
 
-    override fun createViewModel(): WebBaseViewModel {
-        return WebBaseViewModel(application, url)
+    override fun createViewModel(): XBaseViewModel {
+        return XBaseViewModel(application)
     }
 
 
-
-    abstract fun getWebViewJs():WebViewJS
-
+    abstract fun getWebViewJs(): WebViewJS
 
 
     @SuppressLint("JavascriptInterface", "SetJavaScriptEnabled")
     override fun initBase() {
         titleBarView?.setTitle(title)
+
+        titleBarView?.tvTitle?.setTextColor(resources.getColor(R.color.black))
+
+
         binding.mWebView.settings.apply {
             setSupportZoom(false)
             builtInZoomControls = false
@@ -95,25 +98,33 @@ abstract class WebBaseActivity() : XBaseActivity<BaseWebViewLayoutBinding, WebBa
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
             }
-                 setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK)
+            setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK)
 
         }
+        binding.mWebView.webViewClient = object :WebViewClient(){}
+
 //        if (webViewJS  is  Int)
 //        {
 //            webViewJS = WebViewJS(uiChangeEvent)
 //        }
         val js = getWebViewJs()
+
+
         binding.mWebView.addJavascriptInterface(js, "jsObj")
+
         handleTitleBar()
 
 
-        val url = "file:///android_asset/webloading.gif"
+        val loadImg = "file:///android_asset/webloading.gif"
 
-        Glide.with(this@WebBaseActivity).asGif().load(url).into(binding.webLoadImg)
+        Glide.with(this@WebBaseActivity).asGif().load(loadImg).into(binding.webLoadImg)
+
+
+        loadUrl()
 
     }
 
-  private  fun handleTitleBar() {
+    private fun handleTitleBar() {
         try {
             if (!isShowTitleBar) {
                 StatusBarUtil.setFitsSystemWindows(this, false)
@@ -129,7 +140,8 @@ abstract class WebBaseActivity() : XBaseActivity<BaseWebViewLayoutBinding, WebBa
         }
     }
 
-    fun loadUrl(url: String) {
+    fun loadUrl() {
+        Log.d("WebBaseActivity url", "reloadH5Event = $url")
         binding.mWebView.loadUrl(url)
     }
 
@@ -145,7 +157,7 @@ abstract class WebBaseActivity() : XBaseActivity<BaseWebViewLayoutBinding, WebBa
             Log.d("WebBaseActivity", "goBackEvent = $it")
             if (binding.mWebView.canGoBack()) {
                 binding.mWebView.goBack()
-            }else{
+            } else {
                 finish()
             }
         }
@@ -194,21 +206,19 @@ abstract class WebBaseActivity() : XBaseActivity<BaseWebViewLayoutBinding, WebBa
     override fun onPause() {
         super.onPause()
 
-        Log.e("xxxxxonPause","onPause")
-//        binding.mWebView.onPause()
-//        binding.mWebView.pauseTimers()
+        Log.e("xxxxxonPause", "onPause")
+        binding.mWebView.onPause()
+        binding.mWebView.pauseTimers()
     }
 
     override fun onResume() {
         super.onResume()
 
-//        binding.mWebView.resumeTimers()
-//        binding.mWebView.onResume()
+        binding.mWebView.resumeTimers()
+        binding.mWebView.onResume()
     }
 
     override fun onDestroy() {
-
-        binding.mWebView.visibility = View.GONE
         binding.mWebView.destroy()
         super.onDestroy()
     }
@@ -248,8 +258,6 @@ abstract class WebBaseActivity() : XBaseActivity<BaseWebViewLayoutBinding, WebBa
     private fun receiveWebBack() {
         evaluateJavascript("receiveWebBack")
     }
-
-
 
 
     private fun evaluateJavascript(functionName: String, callback: ((String) -> Unit)? = null) {
