@@ -8,6 +8,16 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+
+
+
+    <!--红外遥控-->
+    <uses-permission android:name="android.permission.TRANSMIT_IR" />
+    <!-- 是否仅在支持红外的设备上运行 -->
+    <uses-feature android:name="android.hardware.ConsumerIrManager" android:required="false" />
+
+
+
     <application
         android:name=".base.MyApplication"
         android:icon="@mipmap/ic_launcher"
