@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.login.LaunchActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/icon_launch_bg">
+
+
+        <ImageView
+            android:id="@+id/wifiIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_180"
+            android:background="@drawable/icon_launch_wifi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/remoteIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_6"
+            android:background="@drawable/icon_launch_yk"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wifiIV" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="TV Remote Control"
+            android:textColor="#ffffffff"
+            android:textSize="@dimen/sp_22"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/remoteIV" />
+
+
+        <ProgressBar
+            android:id="@+id/progressView"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_8"
+            android:layout_marginHorizontal="@dimen/dp_30"
+            android:layout_marginBottom="@dimen/dp_60"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/color_00A3FF"
+            android:indeterminateTintMode="src_in"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/entryTV"
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_50"
+            android:gravity="center"
+            android:paddingVertical="@dimen/dp_7"
+            android:text="START"
+            android:textColor="@color/white"
+            app:background_normal="@color/color_00A3FF"
+            app:corner_radius="@dimen/dp_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/addTV"
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_100"
+            android:gravity="center"
+            android:paddingVertical="@dimen/dp_7"
+            android:text="添加设备"
+            android:textColor="@color/white"
+            app:background_normal="@color/color_00A3FF"
+            app:corner_radius="@dimen/dp_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/languageTV"
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_150"
+            android:gravity="center"
+            android:paddingVertical="@dimen/dp_7"
+            android:text="遥控测试"
+            android:textColor="@color/white"
+            app:background_normal="@color/color_00A3FF"
+            app:corner_radius="@dimen/dp_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

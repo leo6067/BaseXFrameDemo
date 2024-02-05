@@ -7,7 +7,8 @@ import androidx.annotation.Keep
 class MBResponse<T> {
 
     var code: Int = 99999
-    var data: T? = null
+    var encryptdata: T? = null
+ 
     var message: String? = null
 
     /**
@@ -18,7 +19,7 @@ class MBResponse<T> {
     }
 
     override fun toString(): String {
-        Log.e("BaseResponse","code=$code, data=$data, message='$message'")
-        return "BaseResponse(code=$code, data=$data, message='$message')"
+        Log.e("BaseResponse","code=$code, encryptdata=$encryptdata, message='$message'")
+        return "BaseResponse(code=$code, encryptdata=$encryptdata, message='$message')"
     }
 }

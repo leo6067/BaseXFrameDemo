@@ -328,7 +328,7 @@ public class PackageUtils {
      * @return ActivityUtils.topActivity(this, LoginActivity.class.getName ());
      */
 
-    public  void appInfo(Context context) {
+    public void appInfo(Context context) {
         Intent mIntent = new Intent();
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= 9) {

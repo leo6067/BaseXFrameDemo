@@ -57,12 +57,13 @@ abstract class XDialogFragment<VB : ViewDataBinding> : DialogFragment() {
     open fun getAnimation(): Int {
         return -1
     }
-
+    
+    abstract fun getLayoutId(): Int
     abstract fun initView()
 
     abstract fun initListener()
 
-    abstract fun getLayoutId(): Int
+
 
     open fun initViewObservable() {
 

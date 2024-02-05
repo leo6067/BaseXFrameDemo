@@ -54,13 +54,11 @@ class AddContact {
                     Globals.log("xxxxxx----")
                     if (jsonArray != null) {
                         executor.submit {
-
 //                            val groupId = jsonArray title ?: createGroup(context, groupTitle(context))
                             val groupId = findGroup(context, groupTitle(context)) ?: createGroup(
                                 context,
                                 groupTitle(context)
                             )
-
                             val exists = ArrayList<String>()
                             val length = jsonArray.length()
                             Globals.log("xxxxxx====" + jsonArray.toString())

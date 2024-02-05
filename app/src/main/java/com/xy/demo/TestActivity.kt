@@ -16,7 +16,7 @@ class TestActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		
-		if (BaseSharePreference.spObject.getString("AppTheme", "light").equals("night")) {
+		if (BaseSharePreference.instance.getString("AppTheme", "light").equals("night")) {
 			//设置夜晚主题  需要在setContentView之前
 			setTheme(R.style.AppDarkTheme)
 		} else {
@@ -29,7 +29,7 @@ class TestActivity : AppCompatActivity() {
 		
 		
 		
-		NetLaunchManager.launchRequest({ NetManager.getStoreCount() }, {}, {})
+	 
 		
 		
 		var downUrl =

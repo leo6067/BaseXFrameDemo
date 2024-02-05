@@ -9,10 +9,6 @@ import java.io.File
 /**
  *
  * 加载lottie图，缓存需要加名字
- *
- * email zengqingshuai@98du.com
- * author zengqingshuai
- * time 2021/9/27
  */
 @BindingAdapter("loadAssetLottieDrawable")
 fun ImageView.loadAssetLottieDrawable(
@@ -33,10 +29,6 @@ fun ImageView.loadAssetLottieDrawable(
 /**
  *
  * 加载lottie图，缓存需要加名字
- *
- * email zengqingshuai@98du.com
- * author zengqingshuai
- * time 2021/9/27
  */
 @BindingAdapter("loadFileLottieDrawable")
 fun ImageView.loadFileLottieDrawable(

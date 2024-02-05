@@ -5,32 +5,32 @@
     <item android:id="@android:id/background">
         <shape>
             <corners android:radius="10dp" />
-
-            <solid android:color="#ffffff" />
+            <solid android:color="@color/color_000000_60" />
         </shape>
     </item>
     <!-- 第二条进度条颜色 -->
-    <item android:id="@android:id/secondaryProgress">
-        <clip>
-            <shape>
-                <corners android:radius="10dip" />
-
-                <gradient
-                    android:angle="90.0"
-                    android:centerColor="#ac6079"
-                    android:centerY="0.45"
-                    android:endColor="#6c213a"
-                    android:startColor="#e71a5e" />
-            </shape>
-        </clip>
-    </item>
+<!--    <item android:id="@android:id/secondaryProgress">-->
+<!--        <clip>-->
+<!--            <shape>-->
+<!--                <size android:width="@dimen/dp_30"/>&ndash;&gt;-->
+<!--                <corners android:radius="10dip" />-->
+<!--                <gradient-->
+<!--                    android:angle="90.0"-->
+<!--                    android:centerColor="#ac6079"-->
+<!--                    android:centerY="0.45"-->
+<!--                    android:endColor="#6c213a"-->
+<!--                    android:startColor="#e71a5e" />-->
+<!--            </shape>-->
+<!--        </clip>-->
+<!--    </item>-->
     <!-- 进度条 -->
     <item android:id="@android:id/progress">
         <clip>
             <shape>
-                <corners android:radius="10dip" />
+                <size android:width="@dimen/dp_30"/>
+                <corners android:radius="@dimen/dp_10" />
 
-                <solid android:color="#FF8080" />
+                <solid android:color="#026DFF" />
             </shape>
         </clip>
     </item>

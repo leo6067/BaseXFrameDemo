@@ -1,107 +1,116 @@
 package com.xy.demo.base
 
-import android.content.Context
-import android.text.TextUtils
-import android.util.Log
+
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import com.alibaba.android.arouter.launcher.ARouter
-
-
+import com.connectsdk.discovery.DiscoveryManager
+import com.connectsdk.discovery.DiscoveryProvider
+import com.connectsdk.service.DIALService
+import com.connectsdk.service.DeviceService
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.xy.demo.BuildConfig
-
-
+import com.xy.demo.cast.HttpService
+import com.xy.demo.logic.ad.AdManage
 import com.xy.network.NetworkManager
 import com.xy.xframework.base.BaseAppContext
 import com.xy.xframework.base.XBaseApplication
-import com.xy.xframework.titlebar.GlobalTitleBarProvider
+import fi.iki.elonen.NanoHTTPD
 
 class MyApplication : XBaseApplication() {
-
-    companion object {
-        const val TAG = "MyApplication"
-
-        lateinit var instance: MyApplication
-
-
-    }
-
-    init {
+	
+	companion object {
+		const val TAG = "MyApplication"
+		
+		lateinit var instance: MyApplication
+		lateinit var mDiscoveryManager: DiscoveryManager
+		val httpService = HttpService()
+		
+	}
+	
+	init {
 //        SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, _ ->
 //            MRefreshHeaderView(
 //                context
 //            )
 //        }
-        SmartRefreshLayout.setDefaultRefreshFooterCreator { context, _ ->
-            ClassicsFooter(
-                context
-            )
-        }
-
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        BaseAppContext.init(this)
-        instance = this
-        // 路由初始化
-
-        initFun()
-
-
-        NetworkManager.initNetWatch(this)
-    }
-
-    private fun initFun() {
-        AppCompatDelegate.setDefaultNightMode(
-            AppCompatDelegate.MODE_NIGHT_NO
-        )
-        initRouter()
-    }
-
-    fun initBugLy() {
+		SmartRefreshLayout.setDefaultRefreshFooterCreator { context, _ ->
+			ClassicsFooter(
+				context
+			)
+		}
+		
+	}
+	
+	override fun onCreate() {
+		super.onCreate()
+		AdManage.initAdMob(this)
+		BaseAppContext.init(this)
+		instance = this
+		// 路由初始化
+		initFun()
+		NetworkManager.initNetWatch(this)
+		
+		DIALService.registerApp("Levak")
+		DiscoveryManager.init(this)
+		
+		mDiscoveryManager = DiscoveryManager.getInstance()
+		
+		
+		try {
+			// DLNA
+			mDiscoveryManager?.registerDeviceService(
+				(Class.forName("com.connectsdk.service.DLNAService") as Class<DeviceService>),
+				(Class.forName("com.connectsdk.discovery.provider.SSDPDiscoveryProvider") as Class<DiscoveryProvider>)
+			)
+		} catch (e: ClassNotFoundException) {
+			e.printStackTrace();
+		}
+		
+		mDiscoveryManager.setPairingLevel(DiscoveryManager.PairingLevel.ON); //始终处于可连接状态
+		
+		
+		httpService.start(50000,false)
+		
+	}
+	
+	private fun initFun() {
+		AppCompatDelegate.setDefaultNightMode(
+			AppCompatDelegate.MODE_NIGHT_NO
+		)
+		initRouter()
+	}
+	
+	fun initBugLy() {
 //        Beta.autoInit = true
 //        Beta.autoCheckAppUpgrade = true
 //        Beta.upgradeDialogLayoutId = R.layout.upgrade_dialog
 //        Bugly.init(this, "33247bc835", BuildConfig.DEBUG)
-    }
-
-    /**
-     * @description 处理部分配置项
-     *
-     * @date: 2021/9/22 14:54
-     * @author: zengqingshuai
-     * @param
-     * @return
-     */
-    private fun initConfig() {
-        //获得应用tab//缓存lottie
-
-
-    }
-
-    /**
-     * @description 获得用户信息和token
-     *
-     * @date: 2021/8/19 17:23
-     * @author: zengqingshuai
-     * @param
-     * @return
-     */
-    private fun getUserInfo() {
-
-    }
-
-
-    private fun initRouter() {
-        if (BuildConfig.DEBUG) {
-            ARouter.openLog()
-            ARouter.openDebug()
-        }
-        ARouter.init(this)
-    }
-
-
+	}
+	
+	/**
+	 * @description 处理部分配置项
+	 */
+	private fun initConfig() {
+		//获得应用tab//缓存lottie
+		
+		
+	}
+	
+	/**
+	 */
+	private fun getUserInfo() {
+	
+	}
+	
+	
+	private fun initRouter() {
+		if (BuildConfig.DEBUG) {
+			ARouter.openLog()
+			ARouter.openDebug()
+		}
+		ARouter.init(this)
+	}
+	
+	
 }

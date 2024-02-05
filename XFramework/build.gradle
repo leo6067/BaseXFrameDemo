@@ -109,7 +109,7 @@ dependencies {
     api 'com.simple:spiderman:1.0.2'
 
     //带有点击效果颜色控件
-    api 'com.github.RuffianZhong:RWidgetHelper:androidx.v0.0.13'
+    api 'com.github.RuffianZhong:RWidgetHelper:androidx.v0.0.14'
 
 
 

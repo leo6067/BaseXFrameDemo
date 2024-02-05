@@ -126,8 +126,6 @@ abstract class XBaseFragment<T : ViewDataBinding, VM : XBaseViewModel> : Fragmen
     /**
      * 关闭加载对话框
      * <p>
-     * Author: zhuanghongzhan
-     * Date: 2020-12-24
      */
     open fun dismissLoading() {
         if (dialog != null && dialog!!.isShowing) {

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.ruffian.library.widget.RLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:background_normal="#F5F5F5"
+        app:corner_radius_top_left="@dimen/dp_20"
+        app:corner_radius_top_right="@dimen/dp_20">
+
+
+        <ImageView
+            android:id="@+id/closeIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:minWidth="@dimen/dp_50"
+            android:minHeight="@dimen/dp_50"
+            android:scaleType="centerInside"
+            android:src="@drawable/close_w" />
+
+
+        <TextView
+            android:id="@+id/titleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_m_15"
+            android:text="More"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_24" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_20" />
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/zeroTV"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_50"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/dp_25"
+            app:background_normal="@color/colorAccent"
+            app:background_pressed="@color/colorPress"
+            android:gravity="center"
+            android:clickable="true"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold"
+            app:corner_radius="@dimen/dp_25" />
+
+
+    </com.ruffian.library.widget.RLinearLayout>
+
+</layout>

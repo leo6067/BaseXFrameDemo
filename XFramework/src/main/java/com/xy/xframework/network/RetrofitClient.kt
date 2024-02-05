@@ -3,6 +3,7 @@ package com.xy.network
 import com.xy.network.converter.FastJsonConverterFactory
 import okhttp3.Interceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.net.Proxy
 
 /**
@@ -96,7 +97,7 @@ class RetrofitClient(private val baseUrl: String) {
             }
             retrofit = Retrofit.Builder()
                 .client(okHttpBuilder.build())
-                .addConverterFactory(FastJsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(baseUrl)
                 .build()
         }

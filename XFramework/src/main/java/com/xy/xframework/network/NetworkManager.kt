@@ -42,7 +42,7 @@ object NetworkManager {
 
     fun createBuilder(): OkHttpClient.Builder {
         return OkHttpClient.Builder()
-            .readTimeout(TIME_OUT, TimeUnit.SECONDS)
+            .readTimeout(TIME_OUT, TimeUnit.SECONDS)  //网络超时定义
             .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
             .writeTimeout(TIME_OUT, TimeUnit.SECONDS)
             .retryOnConnectionFailure(true)

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <com.ruffian.library.widget.RLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_50"
+            android:layout_marginHorizontal="@dimen/dp_40"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:background_normal="#666666"
+            app:corner_radius="@dimen/dp_20"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_30"
+                android:layout_marginTop="@dimen/dp_70"
+                android:text="@string/we_are_working_hard_for"
+                android:textColor="#ffffffff"
+                android:textSize="@dimen/sp_16"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                android:drawableEnd="@drawable/icon_jt"
+                android:drawablePadding="@dimen/dp_10"
+                android:text="@string/the_best_we_can_get"
+                android:textColor="#fffff457"
+                android:textSize="16sp" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/dp_4"
+                android:layout_marginEnd="@dimen/dp_25"
+                android:background="@drawable/icon_jc" />
+
+
+
+            <com.xingliuhua.xlhratingbar.XLHRatingBar
+                android:id="@+id/rateBar"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/dp_30"
+                android:layout_height="wrap_content"
+                app:numStars="5"
+                app:rating="5"
+                android:isIndicator = "true"
+                app:ratingViewClass="com.xy.demo.ui.view.SimpleRatingView"
+
+               />
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/rateTV"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_30"
+                android:layout_marginBottom="@dimen/dp_20"
+                android:gravity="center"
+                android:text="@string/rate"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                app:background_normal="@drawable/shape_view_bg"
+                app:corner_radius="@dimen/dp_20" />
+
+
+        </com.ruffian.library.widget.RLinearLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_rate_gold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

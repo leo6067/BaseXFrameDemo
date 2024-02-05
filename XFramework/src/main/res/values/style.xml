@@ -4,9 +4,21 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowNoTitle">true</item>
         <item name="android:windowDisablePreview">true</item>
-        <item name="colorPrimary">@color/color_FFFFFF</item>
-        <item name="colorPrimaryDark">@color/color_FFFFFF</item>
-        <item name="colorAccent">@color/color_FFFFFF</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- Secondary brand color. -->
+        <!--        <item name="colorSecondary">@color/color_FF03DAC5</item>-->
+        <!--        <item name="colorSecondaryVariant">@color/color_FF018786</item>-->
+        <item name="colorOnSecondary">@color/color_000000_80</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:screenOrientation">portrait</item>
+
+
     </style>
 
 

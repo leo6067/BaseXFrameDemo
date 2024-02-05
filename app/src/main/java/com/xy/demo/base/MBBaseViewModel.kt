@@ -38,5 +38,8 @@ open class MBBaseViewModel(application: Application) : XBaseViewModel(applicatio
         return withContext(Dispatchers.IO) { call.invoke() }.apply {
         }
     }
+    
+    
+    
 
 }

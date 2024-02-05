@@ -16,9 +16,10 @@ abstract class XBaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+       
         BaseAppContext.init(this)
         application = this
-
+        registerActivityLifecycleCallbacks(AppActivityManager.getInstance())
         initDown()
     }
 

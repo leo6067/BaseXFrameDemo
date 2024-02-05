@@ -13,108 +13,70 @@ class Constants {
 //    fAAzohwDUKpfqG0hRqyLHLdlTk+PsJqoiouI01Cmq1lYr5UU6mwSOCcF1wcy75TcI0MDrU0b81tLhyRsN2rjqoLRdrFHoKAf2rbvggUyTEQsDGSW/ePo0Ko8RDf0dzZOQx0TsImMDBHjPqtRLqpp5Xu8EQupEctnVDWJzspirR+Oz+vjzj3PIqscp2NgI+TZSvCR3BNtQRDeZrtBhXNGq6GCGK3EucaGj5gWlioqO1Rf1PUXueOiHVuR7ehB/GqAdD/YuPhEqx6Bu832En/Ye7oIfbikFbIK0pgWAFnd+x5v3ifq3lIBQA==
 
     companion object {
-
-
+    
+    
+        //切换正式 测试环境  正式  true    false debug
+        const val KEY_APP_RELEASE = "key_app_release"
+        
         //域名 上架修改
-//        const val releaseBaseUrl = "https://beta-api.qiyoutui.com"
-//        const val debugBaseUrl = "https://beta-api.qiyoutui.com"
-        const val releaseBaseUrl = "https://api.qiyoutui.com"
-        const val debugBaseUrl = "https://api.qiyoutui.com"
-
-
-        var WebFileUrl :String = "https://qiyoutui.oss-cn-shanghai.aliyuncs.com/app/debug/resource/qiyoutui.zip"
-
-        //会员中心
-        const val vipOrderUrl = "http://h5.qiyoutui.com/activity?token="
-
-
-
-        //apk 版本  web 版本信息
-        const val APK_VERSION =
-            "http://sh-doukeliu-oss.oss-cn-shanghai.aliyuncs.com/doukeliu/apk/app_version.json"
-        const val APK_WEB_VERSION_DEBUG =
-            "http://sh-doukeliu-oss.oss-cn-shanghai.aliyuncs.com/doukeliu/app/debug/resource/dist.json"
-
-
-//    上架修改
-        const val APK_WEB_VERSION_RELEASE =
-            "http://sh-doukeliu-oss.oss-cn-shanghai.aliyuncs.com/doukeliu/app/publish/resource/dist.json"
-
-
+        const val releaseBaseUrl = "http://47.251.38.88:8080/"
+        const val debugBaseUrl = "http://47.251.38.88:8080/"
+        
+        
         //注册协议
-        const val AGREEMENT_PRIVACY = "http://h5.qiyoutui.com/agreement/privacy.html"
-        const val AGREEMENT_SERVICE = "http://h5.qiyoutui.com/agreement/user.html"
+        const val AGREEMENT_PRIVACY = "http://47.251.38.88:8099/getAgreement/?appkey=100000&type=1"
+        const val AGREEMENT_SERVICE = " "
+    
+    
+    
+        //接口加密
+        const val ZS_AES_KEY = "9eYKK6y18IngV4QA"
+        const val ZS_SECRET_KEY = "61bdbc05c842aa07edb84e7e585ec65f"
+    
+    
+        const val NANO_SORT = 59168
 
+ 
 
-        //微信appid
-//        const val WX_APP_ID="wxb66e1a6406d75cbc"
-        const val WX_APP_ID = "wx760c6f8fb2936174"
-
+        var isFirst :Boolean = true
 
         var FILE_IMG_VIDEO =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
                 .toString()
-
-
-        //切换正式 测试环境  正式  true    false debug
-        const val KEY_APP_RELEASE = "key_app_release"
-        const val KEY_PRIVACY = "key_privacy"
-        const val KEY_USER = "key_user"
-
-        //web版本号
-        const val KEY_WEB_CODE = "key_web_code"
-        const val KEY_LOCATION = "key_location"
-
-        //抖音授权
-        const val KEY_DY_TASK = "key_dy_task_id"
-        const val KEY_DY_USER = "key_dy_used_id"
-        const val KEY_DY_FILE = "key_dy_file_path"
-
-        const val KEY_DY_AUTH = "key_dy_auth"
-        const val KEY_DY_SHARE = "key_dy_share"
-
-
-        const val KEY_SEARCH_HISTORY = "key_search_history"
-
-
-        const val EVENT_TYPE = "event_type"
-        const val EVENT_SEARCH_LIST = "event_search_list"
-        const val EVENT_SEARCH_SPINNER = "event_search_spinner"  //4 删除全部客源
-
-        const val EVENT_SELECT = "event_select"  //批量操作
-        const val EVENT_SELECT_CUSTOM = "event_select_custom"  //批量操作
-        const val EVENT_TASK_PL = "event_task_pl"  //脚本评论
-
-
-        const val WEB_ZIP_NAME = "/qiyoutui.zip"
-
-        const val FILE_CACHE_APP = "app_cache"
-
-        //zip 包存放文件名
-        const val WEB_NAME = "/qiyoutui"
-
-
-        const val WEB_URL = "web_url"
-        const val WEB_URL_NAME = "web_url_name"
-
-
-        const val KEY_TASK_MODEL = "taskModel"
-
-        const val KEY_TASK_VIDEO_JG = "taskVideoJG"
-        const val KEY_TASK_VIDEO_JG_STR = "taskVideoJGSTR"
-        const val KEY_CITY = "CityEntity"  //省市区
-        const val KEY_SCREEN = "screen"  //筛选
-
-
-        const val SP_POWER = "SP_POWER"  //权限
-        const val SP_FOLLOW = "SP_FOLLOW"  //关注
-        const val SP_ZAN = "SP_ZAN"  //
-        const val SP_REMARK = "SP_REMARK"  //
-        const val SP_OSS = "oss"  //阿里云
-
-
-        const val EV_PHONE = "ev_phone"
-
+    
+    
+    
+    
+        //key 内部传参
+        const val KEY_BRAND_LIST = "BrandListModel"    //存储本地品牌列表
+        const val KEY_REMOTE = "remoteModel"
+        const val KEY_TV_BRAND = "TV_Brand"
+        const val KEY_TV_BRAND_ID = "TV_Brand_id"
+        const val KEY_FEEDBACK = "feedback"  //是反馈界面 跳转品牌--子品牌选择
+        const val KEY_FILE_TYPE = "key_file_type"//投屏文件类型
+        const val KEY_INIT = "key_init"//投
+    
+    
+    
+        //eventBus
+        const val EVENT_DEVICES = "event_devices"
+    
+    
+    
+    
+    
+        //BaseSharePreference key
+        //首次启动App
+        const val SHARE_FIRST  = "share_first"
+        const val SHARE_LANGUAGE  = "share_language"
+        
+        
+        
+        
+        
+        
+        
+       
 
 //        fun assembleAgreement(context: Context, agreementCheckbox: CheckBox) {
 //            val span = SpannableStringBuilder("我已阅读并同意")

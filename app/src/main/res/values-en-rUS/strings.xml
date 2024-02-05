@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="control_your_tv">Control Your TV</string>
+    <string name="devices">Devices</string>
+    <string name="cast_content_from_phone_to_your_tv">Cast content from phone to your TV.</string>
+    <string name="my_remote">MY REMOTE</string>
+    <string name="add_now">ADD NOW</string>
+    <string name="tv_remote_control_by_mobile">TV Remote Control by Mobile</string>
+    <string name="start">START</string>
+    <string name="cast_screen">CAST Screen</string>
+    <string name="choose_the_type_of_your_tv_remote">Choose the type of your TV remote</string>
+    <string name="ir_tv_remote">IR TV Remote</string>
+    <string name="smart_tv_remote">Smart TV Remote</string>
+    <string name="i_don_t_know">I don\'t know</string>
+    <string name="control_tv_via_ir">Control TV via IR</string>
+    <string name="control_tv_via_wi_fi">Control TV via Wi-Fi</string>
+    <string name="your_phone_needs_to_have_a_n_built_in_ir_infrared_blaster">Your phone needs to have a \n built-in IR (infrared blaster).</string>
+    <string name="your_tv_and_phone_need_to_be_n_on_the_same_wifi_network">Your TV and phone need to be \n on the same WiFi network.</string>
+    <string name="start_now">START NOW</string>
+    <string name="select_tv_brand">Select TV Brand</string>
+    <string name="we_ve_found_5_remote_n_controls_for_your_acer_tv">We\'ve found  %d remote \n controls for your Acer TV.</string>
+    <string name="please_test_them_one_by_one_to_find_the_remote_that_matches_your_tv_model">Please test them one by one to find the remote that matches your TV model.</string>
+    <string name="start_testing">START TESTING</string>
+    <string name="tap_the_buttons_below_to_test_if_the_tv_responds_correctly">Tap the buttons below to test if the TV responds correctly</string>
+    <string name="test_acer_remote">Test Acer remote</string>
+    <string name="does_your_tv_respond">Does your TV respond?</string>
+    <string name="xiaomi_tv_connected">Xiaomi TV connected!</string>
+    <string name="save_the_remote">Save the remote</string>
+    <string name="the_remote_is_now_connected_to_your_tv_please_save_it_for_future_use">The remote is now connected to your TV.\n Please save it for future use.</string>
+    <string name="name_your_remote">Name your remote</string>
+    <string name="rb_default">Default</string>
+    <string name="living_room">Living room</string>
+    <string name="bedroom">Bedroom</string>
+    <string name="dinning_room">Dinning room</string>
+    <string name="media_room">Media room</string>
+    <string name="tv_location">TV location</string>
+    <string name="icon_color">Icon Color</string>
+    <string name="save">SAVE</string>
+    <string name="tv_style_preview">TV style preview</string>
+    <string name="settings">Settings</string>
+    <string name="feedback">Feedback</string>
+    <string name="rate_us">Rate us</string>
+    <string name="share">Share</string>
+    <string name="language_options">Language Options</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="report_bugs_and_tell_us_what_to_improve">Report bugs and tell us what to improve</string>
+    <string name="like_this_app_please_rate_us">Like this app? Please rate us!</string>
+    <string name="share_tv_remote_control_with_your_friends">Share TV Remote Control with your friends</string>
+</resources>

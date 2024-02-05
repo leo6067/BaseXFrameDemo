@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.infrared.AddWayActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/dp_20">
+
+
+        <include
+            android:id="@+id/titleLay"
+            layout="@layout/include_title"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_18"
+            android:gravity="center"
+            android:text="@string/choose_the_type_of_your_tv_remote"
+            android:textColor="#ffffffff"
+            android:textSize="@dimen/sp_24"
+            android:textStyle="bold" />
+
+
+        <com.ruffian.library.widget.RLinearLayout
+            android:id="@+id/irLin"
+            android:onClick="onClick"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_120"
+            android:layout_marginTop="@dimen/dp_30"
+            android:orientation="horizontal"
+            app:background_normal="@drawable/way_lin_bg"
+            app:gradient_orientation="TOP_BOTTOM">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/dp_25"
+                android:background="@drawable/way_ir" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/dp_25"
+                android:text="@string/ir_tv_remote"
+                android:textColor="#ffffffff"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/irIV"
+                android:onClick="onClick"
+                android:layout_width="wrap_content"
+                android:minWidth="@dimen/dp_30"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:src="@drawable/way_question" />
+
+        </com.ruffian.library.widget.RLinearLayout>
+
+
+        <com.ruffian.library.widget.RLinearLayout
+            android:visibility="gone"
+            android:id="@+id/smartLin"
+            android:layout_marginStart="@dimen/dp_20"
+            android:onClick="onClick"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_120"
+            android:layout_marginTop="@dimen/dp_30"
+            android:orientation="horizontal"
+            app:background_normal="@drawable/way_lin_bg">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/dp_25"
+                android:background="@drawable/way_wifi" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/dp_25"
+                android:text="@string/smart_tv_remote"
+                android:textColor="#ffffffff"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1"
+                android:layout_weight="1" />
+
+
+
+            <ImageView
+                android:id="@+id/smartIV"
+                android:onClick="onClick"
+                android:layout_width="wrap_content"
+                android:minWidth="@dimen/dp_30"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:src="@drawable/way_question" />
+
+        </com.ruffian.library.widget.RLinearLayout>
+
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/knowTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_30"
+            android:text="@string/i_don_t_know"
+            android:onClick="onClick"
+            android:autoLink="all"
+            android:textColor="#ffdddddd"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</layout>

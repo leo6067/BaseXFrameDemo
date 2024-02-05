@@ -19,3 +19,15 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+-keep class com.dlong.rep.dlroundmenuview.** {*;}
+-dontwarn com.dlong.rep.dlroundmenuview.**
+
+-keep class com.connectsdk.**       { * ; }
+-keep class com.google.android.gms.ads.** { *; }
+-keep class com.google.ads.** { *; }
+
+
+
+-keep class com.connectsdk.**       { * ; }

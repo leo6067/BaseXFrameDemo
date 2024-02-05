@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:context=".ui.infrared.TurnOnActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <include layout="@layout/include_title" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_60"
+            android:background="@drawable/icon_tv" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_30"
+            android:text="Is your TV turned on?"
+            android:textColor="#ffffffff"
+            android:textSize="@dimen/sp_24" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_35"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/closeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/icon_turn_no"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="NO"
+                android:textColor="#ffffffff"
+                android:textSize="@dimen/sp_18" />
+
+
+            <TextView
+                android:id="@+id/nextTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_30"
+                android:drawableTop="@drawable/icon_turn_yes"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="YES"
+                android:textColor="#ffffffff"
+                android:textSize="@dimen/sp_18" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

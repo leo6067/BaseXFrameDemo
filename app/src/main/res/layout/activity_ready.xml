@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.infrared.ReadyActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <include layout="@layout/include_title" />
+
+
+        <LinearLayout
+            android:id="@+id/irLin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+          >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_60"
+                android:background="@drawable/icon_yk" />
+
+
+            <TextView
+                android:id="@+id/regexNumTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_50"
+                android:gravity="center"
+                android:text="@string/we_ve_found_5_remote_n_controls_for_your_acer_tv"
+                android:textColor="#ffffffff"
+                android:textSize="@dimen/sp_22"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_14"
+                android:text="@string/please_test_them_one_by_one_to_find_the_remote_that_matches_your_tv_model"
+                android:textColor="#ffdddddd"
+                android:textSize="16sp" />
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/startTV"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginHorizontal="@dimen/dp_80"
+                android:layout_marginTop="@dimen/dp_40"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="@string/start_testing"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                app:background_normal="#1C73FF"
+                app:corner_radius="@dimen/dp_20" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/wifiLin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_52"
+                android:background="@drawable/icon_ready_no" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_18"
+                android:gravity="center"
+                android:text="@string/there_is_no_built_in_infrared"
+                android:textColor="#ffdddddd"
+                android:textSize="@dimen/sp_16" />
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/startWifiTV"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginHorizontal="@dimen/dp_80"
+                android:layout_marginTop="@dimen/dp_40"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="@string/try_wifi_remote"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                app:background_normal="#1C73FF"
+                app:corner_radius="@dimen/dp_20" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</layout>

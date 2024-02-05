@@ -8,28 +8,17 @@ android {
 //    }
 
     signingConfigs {
-        normal {//西柚，桃乐，果果
+        normal {
             // 签名store文件路径
-            storeFile file(rootProject.ext.android.storeFile)
-            // 签名store文件的密码
-            storePassword rootProject.ext.android.storePassword
-            // 别名
-            keyAlias rootProject.ext.android.keyAlias
-            // 别名的密码
-            keyPassword rootProject.ext.android.keyPassword
+            storeFile file('../dqvideo.jks')
+            storePassword 'dqvideo'
+            keyAlias 'dqvideo'
+            keyPassword 'dqvideo'
         }
 
 
+        haolu {
 
-        haolu {//好鹿
-            // 签名store文件路径
-            storeFile file(rootProject.ext.android.dqStoreFile)
-            // 签名store文件的密码
-            storePassword rootProject.ext.android.dqStorePassword
-            // 别名
-            keyAlias rootProject.ext.android.dqKeyAlias
-            // 别名的密码
-            keyPassword rootProject.ext.android.dqKeyPassword
         }
     }
 
@@ -37,8 +26,8 @@ android {
     productFlavors {
         xysp {
             applicationId "com.xy.basedemo"
-            versionCode rootProject.ext.android.versionCode
-            versionName rootProject.ext.android.versionName
+            versionCode rootProject.ext.versionCode
+            versionName rootProject.ext.versionName
             manifestPlaceholders = [
                     //友盟配置
                     APP_CHANNEL_VALUE : "xysp_yingyongbao",
@@ -47,8 +36,8 @@ android {
         }
         tlsp {//特殊的桃乐，所有配置均与茜柚一直，包括包名都要一样的，并不是我忘记改了，不要问我为什么，接受事实就好
             applicationId "com.mg.xyvideo"
-            versionCode rootProject.ext.android.versionCode
-            versionName rootProject.ext.android.versionName
+            versionCode rootProject.ext.versionCode
+            versionName rootProject.ext.versionName
             manifestPlaceholders = [
                     UMENG_APPKEY      : "5d59ff453fc195a47d000c8c",
             ]
@@ -71,7 +60,7 @@ android {
 
 walle {
     // 指定渠道包的输出路径
-    apkOutputFolder = new File("${project.buildDir}/${rootProject.ext.android.channel}")
+    apkOutputFolder = new File("${project.buildDir}/${rootProject.ext.channel}")
     println ">>>>>> apkOutputFolder = ${apkOutputFolder.getAbsolutePath()}"
     // 定制渠道包的APK的文件名称 ${appName}-${packageName}-${channels_hhcr}-${buildType}-v${versionName}-${versionCode}-${buildTime}.apk
     apkFileNameFormat = '${appName}_${channel}-v${versionName}-${versionCode}-${buildTime}.apk'

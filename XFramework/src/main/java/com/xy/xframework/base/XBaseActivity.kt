@@ -6,11 +6,14 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.content.pm.ActivityInfo
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
@@ -19,6 +22,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.xy.xframework.R
 import com.xy.xframework.dialog.loading.LoadingDialogProvider
 import com.xy.xframework.statusBar.StatusBarUtil
@@ -48,10 +54,14 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
 
     private var mHelper: SwipeBackActivityHelper? = null
     private var mSwipeBackLayout: SwipeBackLayout? = null
-    private var dialog: Dialog? = null
+    var dialog: Dialog? = null
+    
+    
+    var mRecyclerView :RecyclerView ?=null
 
     abstract fun initView()
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         if (forcePortrait()) {
             try {
@@ -61,7 +71,7 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         }
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, getLayoutId())
-        initParams()
+        initBase()
         addTitleBar(showTitleBar())
         initViewModel()
         binding.setVariable(viewModelId, viewModel)
@@ -75,13 +85,28 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         }
         initSwipeBackLayout()
         registerUIChangeEventCallBack()
-        initBase()
         initView()
+        initParams()
         initViewObservable()
-        AppActivityManager.getInstance()
-
+      
     }
 
+    
+ 
+    fun initRecycler(layManageType : Int, orientation : Int,  gridNum:Int){
+        if (layManageType ==1){
+            if (orientation == 1){
+                mRecyclerView?.layoutManager = LinearLayoutManager(this,RecyclerView.VERTICAL,false)
+            }else{
+                mRecyclerView?.layoutManager = LinearLayoutManager(this,RecyclerView.HORIZONTAL,false)
+            }
+        }else{
+            mRecyclerView?.layoutManager = GridLayoutManager(this,gridNum)
+        }
+    }
+    
+    
+    
     open fun initBase() {
 
     }
@@ -91,6 +116,9 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
      */
     open fun initParams() {
 
+    }
+    open fun onClick(view: View) {
+          finish()
     }
 
     /**
@@ -123,8 +151,6 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
     /**
      * 关闭加载对话框
      * <p>
-     * Author: zhuanghongzhan
-     * Date: 2020-12-24
      */
     open fun dismissLoading() {
         if (dialog != null && dialog!!.isShowing) {

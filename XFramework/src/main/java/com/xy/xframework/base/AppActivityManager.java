@@ -11,6 +11,8 @@ import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.xy.xframework.utils.Globals;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -116,7 +118,7 @@ public class AppActivityManager implements Application.ActivityLifecycleCallback
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         addActivity(activity);
-        Log.e("activityNum","AppManager_Acivity+activityNum="+activityStack.size());
+
     }
 
     @Override
@@ -147,7 +149,7 @@ public class AppActivityManager implements Application.ActivityLifecycleCallback
     @Override
     public void onActivityDestroyed(Activity activity) {
         finishActivity(activity);
-        Log.e("activityNum","AppManager_Acivity+activityNum="+activityStack.size());
+
     }
 
     //获取在栈内的activity数量
@@ -163,7 +165,7 @@ public class AppActivityManager implements Application.ActivityLifecycleCallback
      *
      * @return ActivityUtils.topActivity(this, LoginActivity.class.getName ());
      */
-    public  boolean topActivity(Context mContext, String activityName) {
+    public boolean topActivity(Context mContext, String activityName) {
         android.app.ActivityManager activityManager = (android.app.ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
         List<android.app.ActivityManager.RunningTaskInfo> tasksInfo = activityManager.getRunningTasks(1);
         String packagename = "";

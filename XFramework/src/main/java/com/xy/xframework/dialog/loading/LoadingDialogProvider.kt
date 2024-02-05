@@ -12,8 +12,6 @@ object LoadingDialogProvider {
     /**
      * 设置加载中弹框创建接口
      * <p>
-     * Author: zhuanghongzhan
-     * Date: 2020-12-24
      * @param loadingDialogCreate LoadingDialogCreate
      */
     fun setLoadingDialogCreate(loadingDialogCreate: LoadingDialogCreate) {
@@ -23,8 +21,6 @@ object LoadingDialogProvider {
     /**
      * 创建加载中弹框
      * <p>
-     * Author: zhuanghongzhan
-     * Date: 2020-12-24
      * @param context Context 上下文
      * @param title String? 标题
      * @return Dialog

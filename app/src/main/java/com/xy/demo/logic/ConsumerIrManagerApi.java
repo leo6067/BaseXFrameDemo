@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 
+import com.xy.xframework.utils.Globals;
 import com.xy.xframework.utils.ToastUtils;
 
 //https://blog.csdn.net/u010127332/article/details/98968350?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-98968350-blog-117286742.235%5Ev40%5Epc_relevant_rights_sort&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-98968350-blog-117286742.235%5Ev40%5Epc_relevant_rights_sort&utm_relevant_index=6
@@ -15,6 +16,7 @@ public class ConsumerIrManagerApi {
 
     private ConsumerIrManagerApi(Context context) {
         //Android4.4才开始支持红外功能
+        Globals.log("xxxxxBuild.VERSION.SDK_INT" +Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             // 获取系统的红外遥控服务
             service = (android.hardware.ConsumerIrManager) context.getApplicationContext().getSystemService(Context.CONSUMER_IR_SERVICE);
@@ -49,12 +51,25 @@ public class ConsumerIrManagerApi {
      * @param pattern
      */
     public void transmit(int carrierFrequency, int[] pattern) {
-        if (service != null) {
+        if (service != null  && hasIrEmitter()) {
+//            if (getCarrierFrequencies()!=null && getCarrierFrequencies().length >0){
+//                for (int i = 0; i < getCarrierFrequencies().length ; i++) {
+//                    int minFrequency = getCarrierFrequencies()[i].getMinFrequency();
+//                    int maxFrequency = getCarrierFrequencies()[i].getMaxFrequency();
+//                    if (carrierFrequency >= minFrequency && carrierFrequency <= maxFrequency){
+//
+//                    }else {
+//                        ToastUtils.showShort("不在支持的频段");
+//                    }
+//                }
+//            }else {
+//                ToastUtils.showShort("没有支持的频段");
+//            }
+
             service.transmit(carrierFrequency, pattern);
         } else {
             ToastUtils.showShort("不支持红外功能");
         }
-
     }
 
     /**
@@ -63,7 +78,7 @@ public class ConsumerIrManagerApi {
      * @return
      */
     public android.hardware.ConsumerIrManager.CarrierFrequencyRange[] getCarrierFrequencies() {
-        if (service != null) {
+        if (service != null && hasIrEmitter()) {
             return service.getCarrierFrequencies();
         }
         return null;

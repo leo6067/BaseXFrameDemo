@@ -22,8 +22,6 @@ fun WebView.loadJsBridgeHtml(html: String?) {
 /**
  * 设置WebView client监听代理
  * <p>
- * Author: zhuanghongzhan
- * Date: 2021-01-27
  * @receiver WebView
  * @param webViewClient WebViewClient?
  */
@@ -37,8 +35,7 @@ fun WebView.setWebViewClient(webViewClient: WebViewClient?) {
 /**
  * 设置WebView WebChromeClient监听
  * <p>
- * Author: zhuanghongzhan
- * Date: 2021-01-27
+
  * @receiver WebView
  * @param webChromeClient WebChromeClient?
  */
