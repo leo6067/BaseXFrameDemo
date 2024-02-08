@@ -47,4 +47,14 @@
     <string name="report_bugs_and_tell_us_what_to_improve">Report bugs and tell us what to improve</string>
     <string name="like_this_app_please_rate_us">Like this app? Please rate us!</string>
     <string name="share_tv_remote_control_with_your_friends">Share TV Remote Control with your friends</string>
+    <string name="not_working_at_all">Not working at all</string>
+    <string name="some_buttons_are_not_responding">Some buttons are not responding</string>
+    <string name="can_t_connect_to_tv">Can\'t connect to TV</string>
+    <string name="others">Others</string>
+    <string name="please_enter_feedback">Please enter feedback</string>
+    <string name="please_input_remote_name">please input remote name</string>
+    <string name="please_grant_permission">Please grant permission</string>
+    <string name="network_connected">Network connected</string>
+    <string name="network_disconnected">Network disconnected</string>
+    <string name="no_network">No Network</string>
 </resources>

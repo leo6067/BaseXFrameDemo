@@ -10,12 +10,20 @@ import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.ActivityAddWayBinding
 import com.xy.demo.db.RemoteModel
 import com.xy.demo.ui.dialog.StartWayDialog
+import com.xy.demo.ui.vm.MainViewModel
+import com.xy.network.watch.NetworkStateLiveData
+import com.xy.network.watch.NetworkType
+import com.xy.xframework.utils.Globals
 
 
 //添加 遥控电器  红外或者wifi
-class AddWayActivity : MBBaseActivity<ActivityAddWayBinding, MBBaseViewModel>() {
+class AddWayActivity : MBBaseActivity<ActivityAddWayBinding, MainViewModel>() {
 	
 	var remoteModel = RemoteModel()
+	
+	companion object {
+		var activity: AddWayActivity ?=null
+	}
 	
 	
 	override fun showTitleBar(): Boolean {
@@ -32,7 +40,13 @@ class AddWayActivity : MBBaseActivity<ActivityAddWayBinding, MBBaseViewModel>() 
 	
 	override fun initView() {
 		super.initView()
+		
+		notNetWorkLin = binding.netInclude.netLin
 		binding.knowTV.paint.flags = Paint.UNDERLINE_TEXT_FLAG
+		activity = this
+		
+		viewModel.getBrandListHttp()
+		
 	}
 	
 	
@@ -42,14 +56,11 @@ class AddWayActivity : MBBaseActivity<ActivityAddWayBinding, MBBaseViewModel>() 
 			R.id.irIV -> StartWayDialog().show(supportFragmentManager, "1")
 			R.id.smartIV -> StartWayDialog().show(supportFragmentManager, "2")
 			R.id.irLin -> {
-				
 				remoteModel.type = 1
 				val intent = Intent()
 				intent.putExtra(Constants.KEY_REMOTE, remoteModel)
 				intent.setClass(this@AddWayActivity, BrandActivity::class.java)
 				startActivity(intent)
-				finish()
-				
 			}
 			
 			R.id.smartLin -> {
@@ -58,7 +69,6 @@ class AddWayActivity : MBBaseActivity<ActivityAddWayBinding, MBBaseViewModel>() 
 				intent.putExtra(Constants.KEY_REMOTE, remoteModel)
 				intent.setClass(this@AddWayActivity, BrandActivity::class.java)
 				startActivity(intent)
-				finish()
 			}
 			
 			R.id.knowTV -> {
@@ -67,10 +77,7 @@ class AddWayActivity : MBBaseActivity<ActivityAddWayBinding, MBBaseViewModel>() 
 				intent.putExtra(Constants.KEY_REMOTE, remoteModel)
 				intent.setClass(this@AddWayActivity, BrandActivity::class.java)
 				startActivity(intent)
-				finish()
 			}
-			
-			
 		}
 		
 	}

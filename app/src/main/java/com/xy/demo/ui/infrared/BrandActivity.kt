@@ -34,13 +34,12 @@ import java.util.regex.Pattern
 
 
 //品牌 型号
-class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>()  {
-	
+class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>() {
 	
 	
 	var brandModelList = ArrayList<BrandModel>()
 	var tempList = ArrayList<BrandModel>()
- 
+	
 	val mAdapter = BrandAdapter()
 	
 	
@@ -48,6 +47,10 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>()  {
 	
 	
 	private var isFromFeedBack = false
+	
+	companion object {
+		var activity: BrandActivity? = null
+	}
 	
 	
 	override fun showTitleBar(): Boolean {
@@ -65,14 +68,16 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>()  {
 	
 	override fun initView() {
 		super.initView()
+		activity = this
+		notNetWorkLin = binding.netInclude.netLin
 		
 		
-		if (intent.getSerializableExtra(Constants.KEY_REMOTE)!=null){
-		   remoteModel = intent.getSerializableExtra(Constants.KEY_REMOTE) as RemoteModel
+		if (intent.getSerializableExtra(Constants.KEY_REMOTE) != null) {
+			remoteModel = intent.getSerializableExtra(Constants.KEY_REMOTE) as RemoteModel
 		}
-  
 		
-		if (intent.getStringExtra(Constants.KEY_FEEDBACK )!=null){
+		
+		if (intent.getStringExtra(Constants.KEY_FEEDBACK) != null) {
 			isFromFeedBack = true
 		}
 		
@@ -80,15 +85,15 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>()  {
 		binding.titleLay.titleTV.text = getString(R.string.select_tv_brand)
 		binding.recyclerView.visibility = View.GONE
 		
-		lifecycleScope.launch  {
+		lifecycleScope.launch {
 			delay(1200)
 			binding.shimmerLay.visibility = View.GONE
 			binding.recyclerView.visibility = View.VISIBLE
 		}
 		
-		val brandListStr =  BaseSharePreference.instance.getString(Constants.KEY_BRAND_LIST,"")
+		val brandListStr = BaseSharePreference.instance.getString(Constants.KEY_BRAND_LIST, "")
 		val brandListModel = JSONArray.parseObject(brandListStr, BrandListModel::class.java)
-		
+
 //		brandModelList = JSONArray.parseArray(JsonUtil.paramJson(this@BrandActivity,"BrandList.json"), BrandModel::class.java) as ArrayList<BrandModel>
 		brandModelList = brandListModel.list as ArrayList<BrandModel>
 		
@@ -98,7 +103,7 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>()  {
 			//compareTo（） 字符串比较
 			val lhsStartsWithLetter = Character.isLetter(o1.brandName[0])
 			val rhsStartsWithLetter = Character.isLetter(o2.brandName[0])
-		   if (lhsStartsWithLetter && rhsStartsWithLetter || !lhsStartsWithLetter && !rhsStartsWithLetter) {
+			if (lhsStartsWithLetter && rhsStartsWithLetter || !lhsStartsWithLetter && !rhsStartsWithLetter) {
 				// they both start with letters or not-a-letters
 				o1.brandName.compareTo(o2.brandName)
 			} else if (lhsStartsWithLetter) {
@@ -117,19 +122,17 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>()  {
 		var tipCaseA = "A"
 		//先添加 一条 A
 		var brandModel = BrandModel()
-		brandModel.brandName ="A"
-		brandModelList.add(0,brandModel)
-		for (index in tempList.indices){
-			if (tempList[index].brandName.substring(0,1).uppercase() != tipCaseA){
+		brandModel.brandName = "A"
+		brandModelList.add(0, brandModel)
+		for (index in tempList.indices) {
+			if (tempList[index].brandName.substring(0, 1).uppercase() != tipCaseA) {
 				// 插入一条
 				var brandModel = BrandModel()
-				brandModel.brandName = tempList[index].brandName.substring(0,1)
-				tipCaseA = tempList[index].brandName.substring(0,1)
-				brandModelList.add(index,brandModel)
+				brandModel.brandName = tempList[index].brandName.substring(0, 1)
+				tipCaseA = tempList[index].brandName.substring(0, 1)
+				brandModelList.add(index, brandModel)
 			}
 		}
-		
-		
 		
 		
 		
@@ -140,13 +143,13 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>()  {
 		
 		
 		//排序滑动
-		binding.sideBarLayout.setSideBarLayout{
+		binding.sideBarLayout.setSideBarLayout {
 			//it  开头关键词  根据自己业务实现    大小写 兼容
 			for (position in 0 until brandModelList.size) {
 				if (brandModelList[position].brandName.startsWith(it) || brandModelList[position].brandName.startsWith(it.lowercase(Locale.ROOT))) {
 					moveToPosition(position)
 					break
-				}else if(brandModelList[position].brandName.substring(0,1).matches(Regex("^[a-zA-Z]"))){    //井
+				} else if (brandModelList[position].brandName.substring(0, 1).matches(Regex("^[a-zA-Z]"))) {    //井
 					moveToPosition(position)
 				}
 			}
@@ -159,15 +162,17 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>()  {
 				if (newState == RecyclerView.SCROLL_STATE_IDLE) {    //滑动停止
 					val linearLayoutManager = mRecyclerView?.layoutManager as LinearLayoutManager
 					val firstItemPosition: Int = linearLayoutManager.findFirstVisibleItemPosition()
-					binding.sideBarLayout.onItemScrollUpdateSideBarText(brandModelList[firstItemPosition].brandName.substring(0,1).uppercase(Locale.ROOT))
+					binding.sideBarLayout.onItemScrollUpdateSideBarText(
+						brandModelList[firstItemPosition].brandName.substring(0, 1).uppercase(Locale.ROOT)
+					)
 					
 				}
 			}
 		})
 		
-	
 		
-		binding.searchEt.addTextChangedListener(object :TextWatcher{
+		
+		binding.searchEt.addTextChangedListener(object : TextWatcher {
 			override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 			
 			}
@@ -181,11 +186,11 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>()  {
 				if (!TextUtils.isEmpty(keyWord)) {
 					val searchList: ArrayList<BrandModel> = matcherSearch(keyWord, brandModelList)
 					if (searchList.size > 0) {
-						binding.sideBarLayout.onItemScrollUpdateSideBarText(searchList[0].brandName.substring(0,1).uppercase(Locale.ROOT))
+						binding.sideBarLayout.onItemScrollUpdateSideBarText(searchList[0].brandName.substring(0, 1).uppercase(Locale.ROOT))
 					}
 					mAdapter.setNewInstance(searchList)
 				} else {
-					binding.sideBarLayout.onItemScrollUpdateSideBarText(brandModelList[0].brandName.substring(0,1).uppercase(Locale.ROOT))
+					binding.sideBarLayout.onItemScrollUpdateSideBarText(brandModelList[0].brandName.substring(0, 1).uppercase(Locale.ROOT))
 					mAdapter.setNewInstance(brandModelList)
 				}
 				mAdapter.notifyDataSetChanged()
@@ -196,24 +201,24 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>()  {
 		
 		mAdapter.setOnItemClickListener { adapter, view, position ->
 			val brandModel = adapter.data[position] as BrandModel
-			if (brandModel.brandName.length ==1){
+			if (brandModel.brandName.length == 1) {
 				return@setOnItemClickListener
 			}
 			
-			if (isFromFeedBack){
+			if (isFromFeedBack) {
 				val intent = Intent()
 				intent.putExtra(Constants.KEY_TV_BRAND, brandModel.brandName)
 				intent.putExtra(Constants.KEY_TV_BRAND_ID, brandModel.brandId)
-				setResult(RESULT_OK, intent )
-			}else{
+				setResult(RESULT_OK, intent)
+			} else {
 				remoteModel.brandName = brandModel.brandName //品牌
 				remoteModel.brandId = brandModel.brandId //品牌id
 				val intent = Intent()
-				intent.putExtra(Constants.KEY_REMOTE,remoteModel)
-				intent.setClass(this@BrandActivity,ReadyActivity::class.java)
+				intent.putExtra(Constants.KEY_REMOTE, remoteModel)
+				intent.setClass(this@BrandActivity, ReadyActivity::class.java)
 				startActivity(intent)
 			}
-			finish()
+			
 		}
 	}
 	
@@ -224,8 +229,7 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>()  {
 			mLayoutManager!!.scrollToPositionWithOffset(position, 0)
 		}
 	}
- 
- 
+	
 	
 	/**
 	 * 匹配输入数据
@@ -234,7 +238,7 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>()  {
 	 * @param list
 	 * @return
 	 */
-	fun matcherSearch(keyword: String , list: List<BrandModel>): java.util.ArrayList<BrandModel>  {
+	fun matcherSearch(keyword: String, list: List<BrandModel>): java.util.ArrayList<BrandModel> {
 		val results = java.util.ArrayList<BrandModel>()
 		val patten = Pattern.quote(keyword)
 		val pattern = Pattern.compile(patten, Pattern.CASE_INSENSITIVE)
@@ -250,11 +254,12 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>()  {
 //			if (matcherWord.find() || matcherPin.find() || matcherName.find() || matcherJianPin.find()) {
 //				results.add(list[i])
 //			}
-			if (matcherWord.find()  ) {
+			if (matcherWord.find()) {
 				results.add(list[i])
 			}
 		}
 		return results
 	}
+	
 	
 }

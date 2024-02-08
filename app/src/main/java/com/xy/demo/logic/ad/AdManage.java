@@ -5,6 +5,9 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 
@@ -152,7 +155,7 @@ public class AdManage {
 
     //广告展示
     // 横幅广告
-    public static void showBannerAd(AdView bannerView) {
+    public static void showBannerAd(AdView bannerView, RelativeLayout adLay) {
 
         AdRequest adRequest = new AdRequest.Builder().build();
         bannerView.loadAd(adRequest);
@@ -167,12 +170,14 @@ public class AdManage {
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
                 Globals.log("xxxxxxad  onAdFailedToLoad"+loadAdError.getMessage());
+                adLay.setVisibility(View.GONE);
             }
 
 
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
+                adLay.setVisibility(View.VISIBLE);
                 Globals.log("xxxxxxad  onAdLoaded");
             }
         });

@@ -53,11 +53,10 @@ class SettingActivity : MBBaseActivity<ActivitySettingBinding, MBBaseViewModel>(
 		
 		when (LanguageUtil.getLanguage()) {
 			"en" -> dataList.add(SettingModel(R.drawable.icon_setting_language, getString(R.string.language_options),"English"))
-			"zh" -> dataList.add(SettingModel(R.drawable.icon_setting_language, getString(R.string.language_options),"English"))
+			"zh" -> dataList.add(SettingModel(R.drawable.icon_setting_language, getString(R.string.language_options),"中文"))
 			"tw" -> dataList.add(SettingModel(R.drawable.icon_setting_language, getString(R.string.language_options),"繁体"))
 			"ja" -> dataList.add(SettingModel(R.drawable.icon_setting_language, getString(R.string.language_options),"しろうと"))
 			"ko" -> dataList.add(SettingModel(R.drawable.icon_setting_language, getString(R.string.language_options),"한국어 "))
-	 
 		}
 		
 		
@@ -66,10 +65,7 @@ class SettingActivity : MBBaseActivity<ActivitySettingBinding, MBBaseViewModel>(
 	
 		dataList.add(SettingModel(R.drawable.icon_setting_privacy, getString(R.string.privacy_policy),""))
 		
-		
-		
 		mAdapter.setNewInstance(dataList)
-		
 		
 		binding.versionTV.text = "version "+PackageUtils.getInstance().getVersionName(this)
 		

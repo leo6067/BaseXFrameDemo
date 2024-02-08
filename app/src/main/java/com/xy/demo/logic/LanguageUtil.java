@@ -29,10 +29,12 @@ public class LanguageUtil {
     //如果没有修改过 去系统默认
     public static String getLanguage( ) {
         LANGUAGE =  BaseSharePreference.Companion.getInstance().getString(Constants.SHARE_LANGUAGE, "en");
+
         if (TextUtils.isEmpty(LANGUAGE)) {
 //           return getDefaultLocale(activity).getLanguage();
            return "en";
         }
+
         return LANGUAGE;
     }
 
@@ -135,7 +137,7 @@ public class LanguageUtil {
 
         if (locale.getLanguage().equals("zh")) {
             if (locale.getCountry().equals("CN")) {
-                LANGUAGE = "zh";
+                LANGUAGE = "en"; //获取系统默认语言 -----这个app如果系统默认中文，强制改英文
             } else {
                 LANGUAGE = "tw";
             }
@@ -173,35 +175,35 @@ public class LanguageUtil {
         return country;
     }
 
-    public static String getLanguage(Context context) {
-        Locale locale = context.getResources().getConfiguration().locale;
-        if (locale != null) {
-            return locale.getLanguage();
-        }
-        return "zh";
-    }
-
-
-    public static String recoverLanguage(Activity activity) {
-        String currentLanguage = LanguageUtil.getLanguage(activity);
-        Locale locale1 = activity.getResources().getConfiguration().locale;
-        if (locale1 != null) {
-            if (!locale1.getLanguage().equals("zh")) {
-                if (!locale1.getLanguage().equals(currentLanguage)) {
-                    LanguageUtil.reFreshLanguage(null, activity, null);
-                }
-            } else {
-                if (locale1.getCountry().equals("TW")) {
-                    if (!"tw".equals(currentLanguage)) {
-                        LanguageUtil.reFreshLanguage(null, activity, null);
-                    }
-                } else {
-                    if (!"zh".equals(currentLanguage)) {
-                        LanguageUtil.reFreshLanguage(null, activity, null);
-                    }
-                }
-            }
-        }
-        return currentLanguage;
-    }
+//    public static String getLanguage(Context context) {
+//        Locale locale = context.getResources().getConfiguration().locale;
+//        if (locale != null) {
+//            return locale.getLanguage();
+//        }
+//        return "zh";
+//    }
+//
+//
+//    public static String recoverLanguage(Activity activity) {
+//        String currentLanguage = LanguageUtil.getLanguage(activity);
+//        Locale locale1 = activity.getResources().getConfiguration().locale;
+//        if (locale1 != null) {
+//            if (!locale1.getLanguage().equals("zh")) {
+//                if (!locale1.getLanguage().equals(currentLanguage)) {
+//                    LanguageUtil.reFreshLanguage(null, activity, null);
+//                }
+//            } else {
+//                if (locale1.getCountry().equals("TW")) {
+//                    if (!"tw".equals(currentLanguage)) {
+//                        LanguageUtil.reFreshLanguage(null, activity, null);
+//                    }
+//                } else {
+//                    if (!"zh".equals(currentLanguage)) {
+//                        LanguageUtil.reFreshLanguage(null, activity, null);
+//                    }
+//                }
+//            }
+//        }
+//        return currentLanguage;
+//    }
 }

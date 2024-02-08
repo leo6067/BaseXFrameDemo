@@ -38,7 +38,18 @@ class Constants {
 
  
 
-        var isFirst :Boolean = true
+        //首页广告
+        var showMainTopBanner :Boolean = true
+        var showMainBottomBanner :Boolean = true
+        
+        
+        //是首页列表 进入遥控器信息 保存界面
+        var isHomeToSave = true
+ 
+        
+        
+        
+        
 
         var FILE_IMG_VIDEO =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
@@ -60,6 +71,7 @@ class Constants {
     
         //eventBus
         const val EVENT_DEVICES = "event_devices"
+        const val EVENT_SCROLL_UP = "event_scroll_up"
     
     
     

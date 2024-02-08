@@ -23,9 +23,8 @@ import com.xy.demo.ui.infrared.SaveRemoteActivity
 //首页 设备 适配器
 class DeviceAdapter : BaseQuickAdapter<RemoteModel, BaseViewHolder>(R.layout.item_device) {
 	override fun convert(holder: BaseViewHolder, item: RemoteModel) {
-		holder.setText(R.id.nameTV, item.brandName)
-		holder.setText(R.id.modelTV, item.name)
-		val moreTV = holder.getView<TextView>(R.id.moreTV)
+ 
+		val moreTV = holder.getView<ImageView>(R.id.moreTV)
 		val typeIV = holder.getView<ImageView>(R.id.typeIV)
 		val tvIcon = holder.getView<ImageView>(R.id.tvIcon)
 		Globals.log("xxxxxxhome $item")
@@ -66,6 +65,7 @@ class DeviceAdapter : BaseQuickAdapter<RemoteModel, BaseViewHolder>(R.layout.ite
 		val editTV = contentView.findViewById<TextView>(R.id.editTV)
 		val deleteTV = contentView.findViewById<TextView>(R.id.deleteTV)
 		editTV.setOnClickListener {
+			Constants.isHomeToSave = true
 			val intent = Intent()
 			intent.putExtra(Constants.KEY_REMOTE,remoteModel)
 			intent.setClass(context, SaveRemoteActivity::class.java)

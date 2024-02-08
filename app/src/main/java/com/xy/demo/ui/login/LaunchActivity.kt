@@ -54,7 +54,7 @@ class LaunchActivity : MBBaseActivity<ActivityLaunchBinding, MBBaseViewModel>() 
 //		}
 		
 		AdManage.loadOpenAd(this@LaunchActivity)
-		startActivity(Intent(this@LaunchActivity, MainActivity::class.java))
+		
 		
 		binding.entryTV.setOnClickListener {
 			BaseSharePreference.instance.putBoolean("AddFragment", false)
@@ -77,8 +77,9 @@ class LaunchActivity : MBBaseActivity<ActivityLaunchBinding, MBBaseViewModel>() 
 			.permission(Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE)
 			.request(OnPermissionCallback { permissions, all ->
 				if (all) {
+					startActivity(Intent(this@LaunchActivity, MainActivity::class.java))
 				} else {
-					 ToastUtils.showShort("请授予权限")
+					 ToastUtils.showShort(getString(R.string.please_grant_permission))
 				}
 			})
 	}

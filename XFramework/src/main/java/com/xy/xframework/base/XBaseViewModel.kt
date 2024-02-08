@@ -2,6 +2,8 @@ package com.xy.xframework.base
 
 import android.app.Application
 import android.content.DialogInterface
+import android.renderscript.ScriptGroup.Binding
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.AndroidViewModel
 import com.xy.xframework.base.XBaseApplication.Companion.application
 import com.xy.xframework.dialog.loading.ShowDialogEntity

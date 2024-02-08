@@ -13,8 +13,7 @@
     <string name="smart_tv_remote">智慧電視遙控器</string>
     <string name="i_don_t_know">我不知道</string>
     <string name="control_tv_via_ir">通過IR控制電視</string>
-    <string name="control_tv_via_wi_fi">通過Wi-Fi控制電視</string>
-    <!--    <string name="your_phone_needs_to_have_a_n_built_in_ir_infrared_blaster">Your phone needs to have a \n built-in IR (infrared blaster).</string>-->
+    <string name="control_tv_via_wi_fi">通過Wi-Fi控制電視</string>>
     <string name="your_phone_needs_to_have_a_n_built_in_ir_infrared_blaster">您的手機需要具有內寘的IR（紅外增强器）。</string>
     <string name="your_tv_and_phone_need_to_be_n_on_the_same_wifi_network">您的電視和手機需要位於同一個WiFi網絡上。</string>
     <string name="start_now">現在開始</string>
@@ -47,8 +46,6 @@
     <string name="report_bugs_and_tell_us_what_to_improve">報告錯誤並告訴我們要改進的內容</string>
     <string name="like_this_app_please_rate_us">喜歡這個應用程序嗎？ 請給我們打分！</string>
     <string name="share_tv_remote_control_with_your_friends">與朋友共用電視遙控器</string>
-
-
     <string name="tell_us_the_problem_n_you_encountered">告訴我們您遇到的問題</string>
     <string name="what_s_your_tv_brand">你的電視品牌是什麼*</string>
     <string name="please_select_your_tv_brand">請選擇您的電視品牌</string>
@@ -82,4 +79,14 @@
     <string name="searching_device">正在蒐索設備</string>
     <string name="to_display_the_wi_fi_name_please_allow_location_access_in_settings">要顯示Wi-Fi名稱，請在“設定”中允許“位置”訪問。</string>
     <string name="current_wi_fi">當前Wi-Fi：</string>
+    <string name="not_working_at_all">根本不起作用</string>
+    <string name="some_buttons_are_not_responding">某些按鈕沒有響應</string>
+    <string name="can_t_connect_to_tv">無法連接到電視</string>
+    <string name="others">其他</string>
+    <string name="please_enter_feedback">請輸入迴響</string>
+    <string name="please_input_remote_name">請輸入遠程名稱</string>
+    <string name="please_grant_permission">請授予許可</string>
+    <string name="network_connected">網絡已連接</string>
+    <string name="network_disconnected">網絡已斷開連接</string>
+    <string name="no_network">無網絡</string>
 </resources>

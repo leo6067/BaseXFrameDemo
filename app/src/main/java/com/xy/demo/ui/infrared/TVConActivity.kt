@@ -1,7 +1,13 @@
 package com.xy.demo.ui.infrared
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.View
+import androidx.annotation.RequiresApi
 import com.alibaba.fastjson.JSONArray
 import com.xy.demo.R
 import com.xy.demo.base.Constants
@@ -12,16 +18,18 @@ import com.xy.demo.logic.ConsumerIrManagerApi
 import com.xy.demo.logic.JsonUtil
 import com.xy.demo.logic.parse.ParamParse
 import com.xy.demo.model.OrderListModel
+import com.xy.demo.ui.dialog.CastDialog
 import com.xy.demo.ui.dialog.RemoteMoreDialog
-import com.xy.demo.ui.vm.MainViewModel
+import com.xy.demo.ui.setting.FeedBackActivity
+import com.xy.demo.ui.vm.HttpViewModel
 import com.xy.xframework.utils.Globals
 import com.xy.xframework.utils.ToastUtils
 
 
 //电视 指令 UI  遥控器
-class TVConActivity : MBBaseActivity<ActivityTvconBinding, MainViewModel>() {
+class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 	
-	
+	lateinit var vibrator : Vibrator
 	lateinit var remoteModel: RemoteModel
 	
 	//所有指令
@@ -52,21 +60,23 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, MainViewModel>() {
 	}
 	
 	
-	@SuppressLint("ResourceAsColor")
+	@RequiresApi(Build.VERSION_CODES.O)
+	@SuppressLint("ResourceAsColor", "UseCompatLoadingForDrawables")
 	override fun initView() {
 		super.initView()
-		
-		titleBarView?.tvTitle?.text = "remote"
-		titleBarView?.tvTitle?.setTextColor(R.color.color_333333)
+		notNetWorkLin = binding.netInclude.netLin
 		if (intent.getSerializableExtra(Constants.KEY_REMOTE) != null) {
 			remoteModel = intent.getSerializableExtra(Constants.KEY_REMOTE) as RemoteModel
 		}
 		
+		binding.titleLay.titleTV.text = remoteModel.name
+		binding.titleLay.feedBackIV.visibility = View.VISIBLE
+		binding.titleLay.rightIV.visibility = View.VISIBLE
 		
 		showLoading()
 		viewModel.getOrderListHttp(remoteModel.brandId, remoteModel.modelId)
 		
-		
+		 vibrator  = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 		functionClick()
 	}
 	
@@ -104,9 +114,6 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, MainViewModel>() {
 		moreCodeList = (orderList - commonCodeList.toSet() - numberCodeList.toSet()).toMutableList()
 		
 		
-		
-	 
-		
 		if (numberCodeList.size == 0) {
 			binding.numberTV.setBackgroundResource(R.drawable.shape_con_bg_b)
 		}
@@ -121,6 +128,7 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, MainViewModel>() {
 	}
 	
 	
+	@RequiresApi(Build.VERSION_CODES.O)
 	private fun functionClick() {
 		// 统一lambda接口
 		binding.functionLay.setOnMenuListener {
@@ -143,7 +151,9 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, MainViewModel>() {
 	
 	
 	//圆环
+	@RequiresApi(Build.VERSION_CODES.O)
 	fun functionParam(position: Int) {
+		vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
 		when (position) {
 			-1 -> makeParam("select")
 			0 -> makeParam("up")
@@ -154,34 +164,45 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, MainViewModel>() {
 	}
 	
 	//常规指令
+	@RequiresApi(Build.VERSION_CODES.O)
 	override fun onClick(v: View) {
+		
 		when (v) {
-			
 			binding.titleLay.backIV -> {
 				finish()
 			}
+			binding.titleLay.feedBackIV -> {
+				startActivity(Intent(this@TVConActivity,FeedBackActivity::class.java))
+			}
+			
+			binding.titleLay.rightIV -> {
+				CastDialog().show(supportFragmentManager, "1")
+			}
 			
 			binding.powerTV -> {
+				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
 				makeParam("power")
-				
 			}
 			
 			
 			binding.moreTV -> {
+				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
 				RemoteMoreDialog(moreCodeList).show(supportFragmentManager, "1")
 			}
 			
 			
 			binding.muteTV -> {    // 静音
+				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
 				makeParam("mute")
 			}
 			
 			binding.backTV -> {
+				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
 				makeParam("back")
-				
 			}
 //
 			binding.homeTV -> {
+				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
 				makeParam("home")
 			}
 			
@@ -189,27 +210,26 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, MainViewModel>() {
 				if (numberCodeList.size > 0) {
 					RemoteMoreDialog(numberCodeList).show(supportFragmentManager, "2")
 				}
-				
 			}
 //
 			binding.volAddTV -> {
 				makeParam("vole+")
-				
+				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
 			}
 			
 			binding.volSubTV -> {
 				makeParam("vole-")
-				
+				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
 			}
 			
 			binding.channelAddTV -> {
 				makeParam("channel_up")
-				
+				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
 			}
 			
 			binding.channelSubTV -> {
 				makeParam("channel_down")
-				
+				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
 			}
 		}
 	}
@@ -227,5 +247,7 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, MainViewModel>() {
 		}
 	}
 	
+ 
+ 
 	
 }

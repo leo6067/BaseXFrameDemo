@@ -80,4 +80,14 @@
     <string name="searching_device">Searching device</string>
     <string name="to_display_the_wi_fi_name_please_allow_location_access_in_settings">To display the Wi-Fi name, please allow Location access in Settings.</string>
     <string name="current_wi_fi">Current Wi-Fi:</string>
+    <string name="not_working_at_all">Not working at all</string>
+    <string name="some_buttons_are_not_responding">Some buttons are not responding</string>
+    <string name="can_t_connect_to_tv">Can\'t connect to TV</string>
+    <string name="others">Others</string>
+    <string name="please_enter_feedback">Please enter feedback</string>
+    <string name="please_input_remote_name">please input remote name</string>
+    <string name="please_grant_permission">Please grant permission</string>
+    <string name="network_connected">Network connected</string>
+    <string name="network_disconnected">Network disconnected</string>
+    <string name="no_network">No Network</string>
 </resources>

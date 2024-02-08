@@ -11,7 +11,9 @@ import androidx.lifecycle.lifecycleScope
 import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
+import com.jeremyliao.liveeventbus.LiveEventBus
 import com.xy.demo.R
+import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.databinding.ActivityMainBinding
 import com.xy.demo.db.MyDataBase
@@ -27,11 +29,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class MainActivity : MBBaseActivity<ActivityMainBinding, MainViewModel>() {
 	
-	var backTime: Long = 0
 	
 	override fun getLayoutId(): Int {
 		LanguageUtil.reFreshLanguage(null, this, null)
@@ -47,10 +49,14 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, MainViewModel>() {
 		return false
 	}
 	
+	
+	override fun initView() {
+		super.initView()
+		
+	}
+	
 	override fun onResume() {
 		super.onResume()
-		
-		
 		showLoading()
 		val fragmentManager: FragmentManager = supportFragmentManager // 对于 AppCompatActivity
 		val transaction: FragmentTransaction = fragmentManager.beginTransaction()
@@ -65,24 +71,48 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, MainViewModel>() {
 			
 			delay(1000)
 			dismissLoading()
-			transaction.commit()
+			transaction.commitAllowingStateLoss()
 		}
-		AdManage.showBannerAd(binding.adView)
-		
 	}
 	
 	override fun initParams() {
 		super.initParams()
 		
-		viewModel.getBrandListHttp()
+
 		binding.settingIV.setOnClickListener {
 			startActivity(Intent(this@MainActivity, SettingActivity::class.java))
 		}
 		
 		binding.closeIV.setOnClickListener {
-			binding.adView.visibility =View.GONE
-			binding.closeIV.visibility =View.GONE
+			binding.adLin.visibility = View.GONE
+			Constants.showMainTopBanner = false
 		}
+		
+		
+		binding.bottomCloseIV.setOnClickListener {
+			binding.bottomLay.visibility = View.GONE
+			Constants.showMainBottomBanner = false
+		}
+		
+		
+		
+		if (Constants.showMainTopBanner) {
+			AdManage.showBannerAd(binding.adView, binding.adLin)
+		}
+		
+		if (Constants.showMainBottomBanner) {
+			AdManage.showBannerAd(binding.bottomAdView, binding.bottomLay)
+		}
+		
+		
+		LiveEventBus
+			.get<String>(Constants.EVENT_SCROLL_UP).observe(this) {
+				GlobalScope.launch(Dispatchers.Main) {
+					AdManage.showBannerAd(binding.bottomAdView, binding.bottomLay)
+				}
+			}
+		
+		
 	}
 
 

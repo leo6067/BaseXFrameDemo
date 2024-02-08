@@ -1,8 +1,12 @@
 package com.xy.demo.base
 
 
+import android.content.IntentFilter
+import android.net.ConnectivityManager
+import android.net.wifi.WifiManager
 import androidx.appcompat.app.AppCompatDelegate
 import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.NetworkUtils
 import com.connectsdk.discovery.DiscoveryManager
 import com.connectsdk.discovery.DiscoveryProvider
 import com.connectsdk.service.DIALService
@@ -15,7 +19,6 @@ import com.xy.demo.logic.ad.AdManage
 import com.xy.network.NetworkManager
 import com.xy.xframework.base.BaseAppContext
 import com.xy.xframework.base.XBaseApplication
-import fi.iki.elonen.NanoHTTPD
 
 class MyApplication : XBaseApplication() {
 	
@@ -51,12 +54,10 @@ class MyApplication : XBaseApplication() {
 		initFun()
 		NetworkManager.initNetWatch(this)
 		
+		//红外
 		DIALService.registerApp("Levak")
 		DiscoveryManager.init(this)
-		
 		mDiscoveryManager = DiscoveryManager.getInstance()
-		
-		
 		try {
 			// DLNA
 			mDiscoveryManager?.registerDeviceService(
@@ -71,6 +72,9 @@ class MyApplication : XBaseApplication() {
 		
 		
 		httpService.start(50000,false)
+		
+		
+		
 		
 	}
 	

@@ -22,7 +22,7 @@
                 android:layout_marginBottom="@dimen/dp_20"
                 android:layout_marginTop="@dimen/dp_22"
                 layout="@layout/include_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
 
@@ -84,6 +84,7 @@
                         app:RMCoreMenuNormalBackgroundColor="@color/colorPrimary"
                         app:RMCoreMenuSelectedBackgroundColor="@color/colorLight"
                         app:RMHasCoreMenu="true"
+                        app:RMRoundMenuDrawable="@drawable/icon_right"
                         app:RMRoundMenuNormalBackgroundColor="@color/colorPrimary"
                         app:RMRoundMenuSelectedBackgroundColor="@color/colorLight"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -103,8 +104,7 @@
                         android:scaleType="centerInside"
                         android:src="@drawable/icon_yk_jy"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/functionLay"
-                     />
+                        app:layout_constraintTop_toBottomOf="@+id/functionLay" />
 
 
                     <ImageView
@@ -252,6 +252,11 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </RelativeLayout>
+            <include
+                android:id="@+id/netInclude"
+                layout="@layout/include_net"
+                android:visibility="gone" />
+
         </RelativeLayout>
     </ScrollView>
 

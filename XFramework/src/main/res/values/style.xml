@@ -18,6 +18,10 @@
         <item name="android:windowBackground">@color/colorPrimary</item>
         <item name="android:screenOrientation">portrait</item>
 
+        <!--防止多点触控-->
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:splitMotionEvents">false</item>
+
 
     </style>
 
@@ -104,4 +108,10 @@
         <item name="android:backgroundDimAmount">0.8</item>
     </style>
 
+
+<!--    <declare-styleable name="DLRoundMenuView">-->
+<!--    &lt;!&ndash; 是否有中间OK按钮 &ndash;&gt;-->
+<!--    <attr format="boolean" name="RMRoundMenuDrawable"/>-->
+<!-- -->
+<!--    </declare-styleable>-->
 </resources>

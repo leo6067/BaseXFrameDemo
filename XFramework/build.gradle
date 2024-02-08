@@ -106,7 +106,10 @@ dependencies {
 
 
     //奔溃日志initlog
+    //奔溃日志initlog
     api 'com.simple:spiderman:1.0.2'
+
+
 
     //带有点击效果颜色控件
     api 'com.github.RuffianZhong:RWidgetHelper:androidx.v0.0.14'
@@ -154,6 +157,10 @@ dependencies {
     api 'com.github.qinweiforandroid:QDownload:2.0.0807'
     //多任务下载管理
     api 'com.github.qinweiforandroid.QDownload:download-manager:2.0.0807'
+
+
+    //android  常用工具库
+    api 'com.blankj:utilcodex:1.31.1'
 
 
 }

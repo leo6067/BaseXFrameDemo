@@ -10,15 +10,21 @@ import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.databinding.ActivityReadyBinding
 import com.xy.demo.db.RemoteModel
-import com.xy.demo.logic.ConsumerIrManagerApi
-import com.xy.demo.network.Globals
-import com.xy.demo.ui.vm.MainViewModel
+import com.xy.demo.ui.vm.HttpViewModel
 
 
 //测试设备 准备
-class ReadyActivity : MBBaseActivity<ActivityReadyBinding, MainViewModel>() {
+class ReadyActivity : MBBaseActivity<ActivityReadyBinding, HttpViewModel>() {
 	
 	lateinit var remoteModel: RemoteModel
+	
+	companion object {
+		var activity: ReadyActivity ?=null
+	}
+	
+	
+	
+	
 	override fun showTitleBar(): Boolean {
 		return false
 	}
@@ -39,7 +45,7 @@ class ReadyActivity : MBBaseActivity<ActivityReadyBinding, MainViewModel>() {
 				intent.putExtra(Constants.KEY_REMOTE, remoteModel)
 				intent.setClass(this@ReadyActivity, TurnOnActivity::class.java)
 				startActivity(intent)
-				finish()
+		 
 			}
 			
 			R.id.startWifiTV -> {
@@ -47,7 +53,7 @@ class ReadyActivity : MBBaseActivity<ActivityReadyBinding, MainViewModel>() {
 				intent.putExtra(Constants.KEY_REMOTE, remoteModel)
 				intent.setClass(this@ReadyActivity, TurnOnActivity::class.java)
 				startActivity(intent)
-				finish()
+				
 			}
 			
 		}
@@ -56,7 +62,8 @@ class ReadyActivity : MBBaseActivity<ActivityReadyBinding, MainViewModel>() {
 	
 	override fun initView() {
 		super.initView()
-		
+		activity = this
+		notNetWorkLin = binding.netInclude.netLin
 		showLoading()
 		remoteModel = intent.getSerializableExtra(Constants.KEY_REMOTE) as RemoteModel
 		viewModel.getSubBrandListHttp(remoteModel.brandId)
@@ -77,13 +84,13 @@ class ReadyActivity : MBBaseActivity<ActivityReadyBinding, MainViewModel>() {
 		val  service = getApplicationContext().getSystemService(Context.CONSUMER_IR_SERVICE) as ConsumerIrManager
 		
 		
-		if (service.hasIrEmitter()){
-			binding.irLin.visibility = View.VISIBLE
-			binding.wifiLin.visibility = View.GONE
-		}else{
-			binding.irLin.visibility = View.GONE
-			binding.wifiLin.visibility = View.VISIBLE
-		}
+//		if (service.hasIrEmitter()){
+//			binding.irLin.visibility = View.VISIBLE
+//			binding.wifiLin.visibility = View.GONE
+//		}else{
+//			binding.irLin.visibility = View.GONE
+//			binding.wifiLin.visibility = View.VISIBLE
+//		}
 		
 		
 		

@@ -3,6 +3,7 @@ package com.xy.demo.ui.main
 import android.content.Intent
 import android.view.View
 import com.xy.demo.R
+import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseFragment
 import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.FragmentAddBinding
@@ -30,13 +31,9 @@ class AddFragment : MBBaseFragment<FragmentAddBinding, MBBaseViewModel>() {
 			}
 		}
 		
-		AdManage.showBannerAd(binding.adView)
 		
 		
-		binding.closeIV.setOnClickListener {
-			binding.adView.visibility = View.GONE
-			binding.closeIV.visibility = View.GONE
-		}
+	 
 		
 	}
 	

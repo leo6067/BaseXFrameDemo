@@ -37,49 +37,81 @@
             app:layout_constraintTop_toTopOf="@+id/labelTV" />
 
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/adLin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:id="@+id/adLin"
-            android:layout_marginTop="@dimen/dp_45"
-            android:layout_marginBottom="@dimen/dp_45"
-            app:layout_constraintTop_toBottomOf="@+id/settingIV"
-            android:orientation="horizontal">
-
-
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/labelTV">
 
 
             <com.google.android.gms.ads.AdView
                 android:id="@+id/adView"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:adSize="LARGE_BANNER"
-                android:layout_marginBottom="@dimen/dp_45"
-                app:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
-
+                android:layout_gravity="center"
+                app:adSize="BANNER"
+                app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
 
 
             <ImageView
                 android:id="@+id/closeIV"
                 android:layout_width="@dimen/dp_35"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_close_w"
-                />
+                android:src="@drawable/icon_close_w" />
 
-        </LinearLayout>
-
+        </RelativeLayout>
 
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_10"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLay"
             app:layout_constraintTop_toBottomOf="@+id/adLin" />
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/bottomLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:visibility="gone"
+
+            app:layout_constraintBottom_toBottomOf="parent">
+
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/bottomAdView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:adSize="BANNER"
+                app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+
+
+            <ImageView
+                android:id="@+id/bottomCloseIV"
+                android:layout_width="@dimen/dp_35"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_close_w" />
+
+        </RelativeLayout>
+
+
+        <include
+            android:id="@+id/netInclude"
+            android:visibility="gone"
+            layout="@layout/include_net"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

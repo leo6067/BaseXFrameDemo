@@ -15,6 +15,17 @@ import com.xy.demo.databinding.ActivityTurnOnBinding
 class TurnOnActivity : MBBaseActivity<ActivityTurnOnBinding, MBBaseViewModel>() {
 	
 	
+	
+	companion object {
+		var activity: TurnOnActivity ?=null
+	}
+	
+	
+	override fun initView() {
+		super.initView()
+		activity = this
+	}
+	
 	override fun showTitleBar(): Boolean {
 		return false
 	}
@@ -39,7 +50,7 @@ class TurnOnActivity : MBBaseActivity<ActivityTurnOnBinding, MBBaseViewModel>() 
 				intent.putExtra(Constants.KEY_REMOTE,remoteModel)
 				intent.setClass(this@TurnOnActivity,TestRemoteActivity::class.java)
 				startActivity(intent)
-				finish()
+		 
 			}
 		}
 		

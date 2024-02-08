@@ -9,6 +9,7 @@ import android.view.KeyEvent
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.connectsdk.core.MediaInfo
 import com.connectsdk.core.MediaInfo.Builder
 import com.connectsdk.device.ConnectableDevice
@@ -28,13 +29,12 @@ import com.hjq.permissions.XXPermissions
 import com.xy.demo.R
 import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseActivity
+import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.base.MyApplication
 import com.xy.demo.cast.HttpService
 import com.xy.demo.databinding.ActivitySearchWifiBinding
 import com.xy.demo.network.Globals
 import com.xy.demo.ui.adapter.WifiDeviceAdapter
-import com.xy.demo.ui.infrared.BrandActivity
-import com.xy.demo.ui.vm.MainViewModel
 import com.xy.xframework.imagePicker.RedBookPresenter
 import com.xy.xframework.utils.ToastUtils
 import com.yalantis.ucrop.util.FileUtils
@@ -44,7 +44,7 @@ import com.ypx.imagepicker.bean.MimeType
 import com.ypx.imagepicker.data.OnImagePickCompleteListener
 
 
-class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MainViewModel>(), DiscoveryManagerListener {
+class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewModel>(), DiscoveryManagerListener {
 	private var mDiscoveryManager: DiscoveryManager? = MyApplication.mDiscoveryManager
 	
 	var mConnectableDevice: ConnectableDevice? = null
@@ -155,7 +155,7 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MainViewMod
 	
 	override fun initView() {
 		super.initView()
-		
+		notNetWorkLin = binding.netInclude.netLin
 		animationDrawable = binding.wifiIV.background as AnimationDrawable
 		animationDrawable?.start()
 		this.mRecyclerView = binding.wifiListView
@@ -236,16 +236,8 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MainViewMod
 					
 					requestDataLauncher.launch("FeedBackActivity")
 				}
-				
 			}
-			
-	 
 		}
-		
-		
-	
-		
-		
 		
 	}
 	

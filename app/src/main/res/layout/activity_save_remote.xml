@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
@@ -81,21 +81,24 @@
                     android:layout_marginStart="@dimen/dp_20"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:maxLength="20"
+                    android:maxLength="16"
+                    android:singleLine="true"
                     android:text="客厅的小米电视"
                     android:textColor="#ffffffff"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/sp_16"
 
                     />
 
 
                 <ImageView
                     android:id="@+id/clearTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/dp_25"
+                    android:layout_height="@dimen/dp_25"
+                    android:onClick="onClick"
+                    android:scaleType="centerInside"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="@dimen/dp_20"
-                    android:background="@drawable/close_w" />
+                    android:src="@drawable/close_w" />
 
             </com.ruffian.library.widget.RLinearLayout>
 

@@ -1,8 +1,13 @@
 package com.xy.demo.ui.infrared
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.View
+import androidx.annotation.RequiresApi
 import com.alibaba.fastjson.JSONArray
 import com.xy.demo.R
 import com.xy.demo.base.Constants
@@ -14,12 +19,13 @@ import com.xy.demo.logic.ConsumerIrManagerApi
 import com.xy.demo.logic.JsonUtil
 import com.xy.demo.logic.parse.ParamParse
 import com.xy.demo.model.SubBrandListModel
+import com.xy.demo.ui.vm.HttpViewModel
 import com.xy.demo.ui.vm.MainViewModel
 import com.xy.xframework.utils.Globals
 
 
 //开始测试指令 是否有效
-class TestRemoteActivity : MBBaseActivity<ActivityTestRemoteBinding, MainViewModel>() {
+class TestRemoteActivity : MBBaseActivity<ActivityTestRemoteBinding, HttpViewModel>() {
 	
 	
 	var totalNum = 2
@@ -30,6 +36,14 @@ class TestRemoteActivity : MBBaseActivity<ActivityTestRemoteBinding, MainViewMod
 	
 	
 	lateinit var subModelList: MutableList<SubBrandListModel.SubBrandModel>
+	
+	
+	
+	companion object {
+		var activity: TestRemoteActivity ?=null
+	}
+	
+	
 	
 	override fun showTitleBar(): Boolean {
 		return false
@@ -48,6 +62,8 @@ class TestRemoteActivity : MBBaseActivity<ActivityTestRemoteBinding, MainViewMod
 	@SuppressLint("SetTextI18n")
 	override fun initView() {
 		super.initView()
+		activity = this
+		notNetWorkLin = binding.netInclude.netLin
 		binding.titleLay.titleTV.text = getString(R.string.test_acer_remote)
 		binding.respondLay.visibility = View.GONE
 		
@@ -79,12 +95,18 @@ class TestRemoteActivity : MBBaseActivity<ActivityTestRemoteBinding, MainViewMod
 	}
 	
 	
+	@RequiresApi(Build.VERSION_CODES.O)
 	override fun onClick(view: View) {
+		val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+	 
+  
+		
 		when (view.id) {
 			R.id.backIV -> finish()
 			R.id.voiceIV -> {   //测试指令  根据下标 indexNum 取指令
 				sendOrder()
 				binding.respondLay.visibility = View.VISIBLE
+				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
 			}
 			
 			R.id.leftIV -> {
@@ -134,11 +156,12 @@ class TestRemoteActivity : MBBaseActivity<ActivityTestRemoteBinding, MainViewMod
 			}
 			
 			R.id.validTV -> {
+				Constants.isHomeToSave = false
 				val intent = Intent()
 				intent.putExtra(Constants.KEY_REMOTE, remoteModel)
 				intent.setClass(this@TestRemoteActivity, SaveRemoteActivity::class.java)
 				startActivity(intent)
-				finish()
+				
 			}
 		}
 		

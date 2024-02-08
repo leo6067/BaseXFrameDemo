@@ -23,6 +23,7 @@ class NetworkWatch(var context: Context) : ConnectivityManager.NetworkCallback()
 
     override fun onAvailable(network: Network) {
         super.onAvailable(network)
+        post(NetworkType.CONNECT);
         Log.d("NetworkWatch", "onAvailable: 网络已连接");
     }
 

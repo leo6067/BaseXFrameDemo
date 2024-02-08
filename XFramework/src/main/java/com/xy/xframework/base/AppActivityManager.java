@@ -74,7 +74,6 @@ public class AppActivityManager implements Application.ActivityLifecycleCallback
         if (activity != null) {
             activityStack.remove(activity);
             activity.finish();
-            activity = null;
         }
     }
 
@@ -118,7 +117,6 @@ public class AppActivityManager implements Application.ActivityLifecycleCallback
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         addActivity(activity);
-
     }
 
     @Override

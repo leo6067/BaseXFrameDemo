@@ -1,9 +1,9 @@
 package com.xy.demo.ui.main
 
 import android.content.Intent
-import android.view.View
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.xy.demo.R
 import com.xy.demo.base.Constants
@@ -11,14 +11,10 @@ import com.xy.demo.base.MBBaseFragment
 import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.FragmentHomeBinding
 import com.xy.demo.db.MyDataBase
-import com.xy.demo.db.RemoteModel
-import com.xy.demo.logic.ad.AdManage
 import com.xy.demo.network.Globals
 import com.xy.demo.ui.adapter.DeviceAdapter
 import com.xy.demo.ui.dialog.CastDialog
-import com.xy.demo.ui.dialog.RateDialog
 import com.xy.demo.ui.infrared.AddWayActivity
-import com.xy.demo.ui.infrared.SaveRemoteActivity
 import com.xy.demo.ui.infrared.TVConActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -38,8 +34,8 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MBBaseViewModel>() {
 	}
 	
 	override fun initView() {
- 
- 
+		
+		
 		binding.recyclerView.layoutManager = GridLayoutManager(activity, 2)
 		binding.recyclerView.adapter = mAdapter
 		
@@ -47,7 +43,9 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MBBaseViewModel>() {
 			val allRemote = MyDataBase.instance.RemoteDao().getAllRemote() as MutableList
 			mAdapter.setNewInstance(allRemote)
 			
-			binding.deviceNum.setText("(" + allRemote.size + ")")
+			withContext(Dispatchers.Main) {
+				binding.deviceNum.setText("(" + allRemote.size + ")")
+			}
 		}
 		
 		mAdapter.setOnItemClickListener { adapter, view, position ->
@@ -66,16 +64,26 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MBBaseViewModel>() {
 		
 		binding.topLin.setOnClickListener {
 			activity?.let { it1 ->
-				CastDialog().show(it1.supportFragmentManager, "1") }
+				CastDialog().show(it1.supportFragmentManager, "1")
+			}
 		}
 		
-		AdManage.showBannerAd(binding.adView)
 		
-		
-		binding.closeIV.setOnClickListener {
-			binding.adView.visibility = View.GONE
-			binding.closeIV.visibility = View.GONE
-		}
+		binding.recyclerView.addOnScrollListener(object : OnScrollListener() {
+			override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+				super.onScrollStateChanged(recyclerView, newState)
+				Globals.log("XXXXXXXnewState " + newState)
+			}
+			
+			override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+				super.onScrolled(recyclerView, dx, dy)
+				Globals.log("XXXXXXXnewState dy" + dy)
+				if (dy > 0) {
+					LiveEventBus.get<String>(Constants.EVENT_SCROLL_UP).post("上划")
+				}
+				
+			}
+		})
 		
 	}
 	
@@ -97,6 +105,10 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MBBaseViewModel>() {
 					}
 					
 					mAdapter.setNewInstance(allRemote)
+					withContext(Dispatchers.Main) {
+						binding.deviceNum.setText("(" + allRemote.size + ")")
+					}
+				 
 					dismissLoading()
 				}
 			}

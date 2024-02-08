@@ -14,7 +14,6 @@
     <string name="i_don_t_know">知らなかった</string>
     <string name="control_tv_via_ir">IRによるテレビ制御</string>
     <string name="control_tv_via_wi_fi">Wi-Fiによるテレビ制御</string>>
-    <!--    <string name="your_phone_needs_to_have_a_n_built_in_ir_infrared_blaster">Your phone needs to have a \n built-in IR (infrared blaster).</string>-->
     <string name="your_phone_needs_to_have_a_n_built_in_ir_infrared_blaster">携帯電話には内蔵のIR（赤外線エンハンサー）が必要です。</string>
     <string name="your_tv_and_phone_need_to_be_n_on_the_same_wifi_network">テレビと携帯電話は同じWiFiネットワーク上にある必要があります。</string>
     <string name="start_now">今から始めよう</string>
@@ -47,8 +46,6 @@
     <string name="report_bugs_and_tell_us_what_to_improve">エラーを報告し、改善すべき内容を教えてください</string>
     <string name="like_this_app_please_rate_us">このアプリは好きですか。採点してください！</string>
     <string name="share_tv_remote_control_with_your_friends">友人とテレビのリモコンを共有する</string>
-
-
     <string name="tell_us_the_problem_n_you_encountered">問題点を教えてください</string>
     <string name="what_s_your_tv_brand">あなたのテレビブランドは何ですか*</string>
     <string name="please_select_your_tv_brand">テレビブランドを選択してください</string>
@@ -82,4 +79,14 @@
     <string name="searching_device">デバイスを検索しています</string>
     <string name="to_display_the_wi_fi_name_please_allow_location_access_in_settings">Wi-Fi名を表示するには、「設定」で「場所」アクセスを許可します。</string>
     <string name="current_wi_fi">現在のWi-Fi：</string>
+    <string name="not_working_at_all">まったく役に立たない</string>
+    <string name="some_buttons_are_not_responding">応答しないボタンもあります</string>
+    <string name="can_t_connect_to_tv">テレビに接続できません</string>
+    <string name="others">その他</string>
+    <string name="please_enter_feedback">フィードバックを入力してください</string>
+    <string name="please_input_remote_name">リモート名を入力してください</string>
+    <string name="please_grant_permission">ライセンスを付与してください</string>
+    <string name="network_connected">ネットワークが接続されています</string>
+    <string name="network_disconnected">ネットワークが切断されました</string>
+    <string name="no_network">ネットワークなし</string>
 </resources>

@@ -50,11 +50,11 @@
                 android:orientation="vertical">
 
 
-<!--                <include layout="@layout/item_brand_shimmer_top" />-->
+                <!--                <include layout="@layout/item_brand_shimmer_top" />-->
 
-<!--                <include layout="@layout/item_brand_shimmer_top" />-->
+                <!--                <include layout="@layout/item_brand_shimmer_top" />-->
 
-<!--                <include layout="@layout/item_brand_shimmer_top" />-->
+                <!--                <include layout="@layout/item_brand_shimmer_top" />-->
 
 
                 <TextView
@@ -90,16 +90,12 @@
         </com.facebook.shimmer.ShimmerFrameLayout>
 
 
-
-
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_20"
             android:layout_below="@+id/search_et"
-     />
+            android:layout_marginTop="@dimen/dp_20" />
 
 
         <com.xy.demo.ui.view.slide.SideBarLayout
@@ -113,6 +109,15 @@
             app:sidebarUnSelectTextSize="10sp"
             app:sidebarWordTextColor="@color/color_026DFF"
             app:sidebarWordTextSize="45sp" />
+
+
+
+        <include
+            android:id="@+id/netInclude"
+            android:visibility="gone"
+            layout="@layout/include_net"/>
+
+
     </RelativeLayout>
 
 

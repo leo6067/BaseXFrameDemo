@@ -42,7 +42,7 @@ public class RemoteModel implements Serializable {
 
     // 场景   卧室 客厅
     @ColumnInfo(name = "location")
-    private String location;
+    private String location = "1";
 
     // 颜色 蓝色 红 粉
     @ColumnInfo(name = "color")
@@ -50,7 +50,7 @@ public class RemoteModel implements Serializable {
 
     //类型  1 红外 2 wifi
     @ColumnInfo(name = "type")
-    private int type=1;
+    private int type= 1;
 
     // order指令
     @ColumnInfo(name = "orderStr")

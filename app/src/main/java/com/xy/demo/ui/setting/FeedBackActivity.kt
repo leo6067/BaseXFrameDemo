@@ -4,36 +4,24 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.telephony.ims.RegistrationManager.RegistrationCallback
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupWindow
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContract
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
-import com.jeremyliao.liveeventbus.LiveEventBus
 import com.xy.demo.R
 import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseActivity
-import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.ActivityFeedBackBinding
-import com.xy.demo.db.RemoteModel
-import com.xy.demo.network.Globals
 import com.xy.demo.ui.infrared.BrandActivity
-import com.xy.demo.ui.infrared.SaveRemoteActivity
-import com.xy.demo.ui.vm.MainViewModel
+import com.xy.demo.ui.vm.HttpViewModel
 import com.xy.xframework.utils.ToastUtils
-import kotlinx.android.synthetic.main.activity_feed_back.brandTV
 
 
 //反馈
-class FeedBackActivity : MBBaseActivity<ActivityFeedBackBinding, MainViewModel>() {
+class FeedBackActivity : MBBaseActivity<ActivityFeedBackBinding, HttpViewModel>() {
 	
 	
 	var brandIdStr = ""
@@ -121,7 +109,7 @@ class FeedBackActivity : MBBaseActivity<ActivityFeedBackBinding, MainViewModel>(
 			return
 		}
 		if (binding.detailET.text.toString().isEmpty()) {
-			ToastUtils.showLong("请输入反馈内容")
+			ToastUtils.showLong(getString(R.string.please_enter_feedback))
 			return
 		}
 		
