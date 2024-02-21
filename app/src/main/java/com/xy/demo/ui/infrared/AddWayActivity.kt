@@ -45,7 +45,7 @@ class AddWayActivity : MBBaseActivity<ActivityAddWayBinding, MainViewModel>() {
 		binding.knowTV.paint.flags = Paint.UNDERLINE_TEXT_FLAG
 		activity = this
 		
-		viewModel.getBrandListHttp()
+	
 		
 	}
 	

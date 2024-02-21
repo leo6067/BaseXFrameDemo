@@ -53,9 +53,7 @@ class ReadyActivity : MBBaseActivity<ActivityReadyBinding, HttpViewModel>() {
 				intent.putExtra(Constants.KEY_REMOTE, remoteModel)
 				intent.setClass(this@ReadyActivity, TurnOnActivity::class.java)
 				startActivity(intent)
-				
 			}
-			
 		}
 	}
 	
@@ -84,13 +82,13 @@ class ReadyActivity : MBBaseActivity<ActivityReadyBinding, HttpViewModel>() {
 		val  service = getApplicationContext().getSystemService(Context.CONSUMER_IR_SERVICE) as ConsumerIrManager
 		
 		
-//		if (service.hasIrEmitter()){
-//			binding.irLin.visibility = View.VISIBLE
-//			binding.wifiLin.visibility = View.GONE
-//		}else{
-//			binding.irLin.visibility = View.GONE
-//			binding.wifiLin.visibility = View.VISIBLE
-//		}
+		if (service.hasIrEmitter()){
+			binding.irLin.visibility = View.VISIBLE
+			binding.wifiLin.visibility = View.GONE
+		}else{
+			binding.irLin.visibility = View.GONE
+			binding.wifiLin.visibility = View.VISIBLE
+		}
 		
 		
 		

@@ -8,6 +8,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         android:fillViewport="true">
 
 
@@ -68,7 +70,6 @@
                 android:layout_marginHorizontal="@dimen/dp_20"
                 android:layout_marginTop="@dimen/dp_12"
                 android:orientation="horizontal"
-                android:focusableInTouchMode="true"
                 app:background_normal="@color/colorLight"
                 app:corner_radius="@dimen/dp_20">
 
@@ -81,9 +82,9 @@
                     android:layout_marginStart="@dimen/dp_20"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:maxLength="16"
+                    android:maxLength="15"
                     android:singleLine="true"
-                    android:text="客厅的小米电视"
+                    tools:text="客厅的小米电视"
                     android:textColor="#ffffffff"
                     android:textSize="@dimen/sp_16"
 

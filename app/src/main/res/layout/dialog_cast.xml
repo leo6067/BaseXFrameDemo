@@ -64,7 +64,6 @@
 
 
             <com.ruffian.library.widget.RTextView
-                android:visibility="gone"
                 android:id="@+id/audioTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -74,11 +73,11 @@
                 android:gravity="center"
                 android:text="@string/audio"
                 android:textColor="#ffffffff"
-                android:textSize="@dimen/sp_14" />
+                android:textSize="@dimen/sp_14"
+                android:visibility="gone" />
 
 
             <com.ruffian.library.widget.RTextView
-                android:visibility="gone"
                 android:id="@+id/imageTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -88,17 +87,19 @@
                 android:gravity="center"
                 android:text="@string/image_nonline"
                 android:textColor="#ffffffff"
-                android:textSize="@dimen/sp_14" />
+                android:textSize="@dimen/sp_14"
+                android:visibility="gone" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/castLay"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/dp_5"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_15"
             android:layout_marginBottom="@dimen/dp_30">
 
 

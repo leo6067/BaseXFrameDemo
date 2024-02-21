@@ -1,15 +1,16 @@
 package com.xy.demo.ui.cast
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
+import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
+import android.os.Build
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.connectsdk.core.MediaInfo
 import com.connectsdk.core.MediaInfo.Builder
 import com.connectsdk.device.ConnectableDevice
@@ -31,10 +32,11 @@ import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.base.MyApplication
-import com.xy.demo.cast.HttpService
 import com.xy.demo.databinding.ActivitySearchWifiBinding
 import com.xy.demo.network.Globals
 import com.xy.demo.ui.adapter.WifiDeviceAdapter
+import com.xy.network.watch.NetworkStateLiveData
+import com.xy.network.watch.NetworkType
 import com.xy.xframework.imagePicker.RedBookPresenter
 import com.xy.xframework.utils.ToastUtils
 import com.yalantis.ucrop.util.FileUtils
@@ -59,7 +61,6 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 	lateinit var fileFormat: Set<MimeType>  //文件格式
 	lateinit var fileTypeStr: String
 	lateinit var otherFilePath: String
- 
 	
 	
 	//wifi
@@ -100,7 +101,6 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 	private val deviceListener: ConnectableDeviceListener = object : ConnectableDeviceListener {
 		override fun onPairingRequired(device: ConnectableDevice, service: DeviceService, pairingType: PairingType) {
 			Log.d("xxxxxx2ndScreenAPP", "Connected to " + mConnectableDevice?.getIpAddress())
-			
 			mService = service
 			when (pairingType) {
 				PairingType.FIRST_SCREEN -> {
@@ -161,9 +161,63 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 		this.mRecyclerView = binding.wifiListView
 		initRecycler(1, 1, 1)
 		mRecyclerView?.adapter = mAdapter
-		
 	}
 	
+	
+	override fun onResume() {
+		super.onResume()
+		NetworkStateLiveData.observe(this) {
+			if (it != NetworkType.WIFI) {
+				ToastUtils.showShort("Please use wifi")
+			}
+		}
+		
+		
+		val wifissid = getWIFISSID(this)
+		
+ 
+		if (!wifissid.contains("unknown")){
+			binding.wifiNameTV.text = getString(R.string.current_wi_fi)+wifissid
+		}
+	}
+	
+	
+	fun getWIFISSID(activity: Activity): String {
+ 
+		val ssid = "unknown id"
+		if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O || Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+			val mWifiManager = (activity.applicationContext.getSystemService(WIFI_SERVICE) as WifiManager)
+			val info = mWifiManager.connectionInfo
+			return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+				info.ssid
+			} else {
+				info.ssid.replace("\"", "")
+			}
+		} else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O_MR1) {
+			val connManager = (activity.applicationContext.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager)
+			val networkInfo = connManager.activeNetworkInfo
+			if (networkInfo!!.isConnected) {
+				if (networkInfo.extraInfo != null) {
+					return networkInfo.extraInfo.replace("\"", "")
+				}
+			}
+		}
+		Globals.log("xxxxxxssid"+ssid)
+		return ssid
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+ 
 	
 	override fun initParams() {
 		super.initParams()
@@ -182,8 +236,6 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 //		}
 		
 		
-		
-		
 		val requestDataLauncher = registerForActivityResult(object : ActivityResultContract<String, String>() {
 			override fun createIntent(context: Context, input: String?): Intent {
 				//创建启动页面所需的Intent对象，传入需要传递的参数
@@ -197,16 +249,12 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 			
 			override fun parseResult(resultCode: Int, intent: Intent?): String {
 				//页面回传的数据解析，相当于原onActivityResult方法
-				
 				otherFilePath = intent?.data?.path.toString()
-				
 				return if (resultCode == RESULT_OK) "one" else ""
 			}
 		}) {
-			Globals.log("xxxxxx otherFilePath data" +otherFilePath )
+			Globals.log("xxxxxx otherFilePath data" + otherFilePath)
 		}
-		
-		
 		
 		
 		
@@ -241,8 +289,6 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 		
 	}
 	
-	
- 
 	
 	fun chooseImage() {
 		

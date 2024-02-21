@@ -5,6 +5,13 @@
     tools:context=".ui.main.AddFragment">
 
 
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -141,9 +148,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-
     </LinearLayout>
-
+    </androidx.core.widget.NestedScrollView>
 </layout>

@@ -2,9 +2,10 @@ package com.xy.demo.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 //SubBrandModel
-public class SubBrandListModel {
+public class SubBrandListModel implements Serializable {
 
 
     @SerializedName("list")

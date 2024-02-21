@@ -72,7 +72,7 @@ class LaunchActivity : MBBaseActivity<ActivityLaunchBinding, MBBaseViewModel>() 
 			startActivity(Intent(this@LaunchActivity, TVConActivity::class.java))
 //			finish()
 		}
-		
+		//,Permission.ACCESS_FINE_LOCATION,Permission.ACCESS_COARSE_LOCATION  位置信息 获取wifi
 		XXPermissions.with(this)
 			.permission(Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE)
 			.request(OnPermissionCallback { permissions, all ->

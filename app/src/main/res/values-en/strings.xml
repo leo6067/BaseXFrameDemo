@@ -19,11 +19,11 @@
     <string name="your_tv_and_phone_need_to_be_n_on_the_same_wifi_network">Your TV and phone need to be \n on the same WiFi network.</string>
     <string name="start_now">START NOW</string>
     <string name="select_tv_brand">Select TV Brand</string>
-    <string name="we_ve_found_5_remote_n_controls_for_your_acer_tv">We\'ve found %d remote \n controls for your Acer TV.</string>
+    <string name="we_ve_found_5_remote_n_controls_for_your_acer_tv">We\'ve found %d remote \n controls for your TV.</string>
     <string name="please_test_them_one_by_one_to_find_the_remote_that_matches_your_tv_model">Please test them one by one to find the remote that matches your TV model.</string>
     <string name="start_testing">START TESTING</string>
     <string name="tap_the_buttons_below_to_test_if_the_tv_responds_correctly">Tap the buttons below to test if the TV responds correctly</string>
-    <string name="test_acer_remote">Test Acer remote</string>
+    <string name="test_acer_remote">Test TV remote</string>
     <string name="does_your_tv_respond">Does your TV respond?</string>
     <string name="xiaomi_tv_connected">Xiaomi TV connected!</string>
     <string name="save_the_remote">Save the remote</string>
@@ -90,4 +90,19 @@
     <string name="network_connected">Network connected</string>
     <string name="network_disconnected">Network disconnected</string>
     <string name="no_network">No Network</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="make_sure_your_phone_and_tv_or_wireless_adapter_connect_to_the">Make sure your phone and TV(Or wireless adapter) connect to the </string>
+    <string name="same_wifi">same WiFi </string>
+    <string name="and">and </string>
+    <string name="turn_off_vpn">turn off VPN.</string>
+    <string name="enable_the">Enable the </string>
+    <string name="miracast_display">Miracast Display </string>
+    <string name="function_on_your_tv_you_need_to_enable_it_manually_on_some_devices_go_to_system_settings_to_check">function on your TV.(You need to enable it manually on some devices, go to system settings to check).</string>
+    <string name="click_the">Click the  </string>
+    <string name="start_mirroring">Start Mirroring </string>
+    <string name="button_enable_the_wireless_display_function_on_your_phone_and_wait_for_the_device_searching">button, enable the wireless display function on your phone and wait for the device searching.</string>
+    <string name="the_screen_casting_settings_are_not_found_on_the_device">The screen casting Settings are not found on the device</string>
+    <string name="number">Number</string>
+    <string name="more">More</string>
 </resources>

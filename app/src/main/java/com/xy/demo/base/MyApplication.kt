@@ -74,8 +74,6 @@ class MyApplication : XBaseApplication() {
 		httpService.start(50000,false)
 		
 		
-		
-		
 	}
 	
 	private fun initFun() {

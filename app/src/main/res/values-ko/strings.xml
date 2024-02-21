@@ -18,11 +18,11 @@
     <string name="your_tv_and_phone_need_to_be_n_on_the_same_wifi_network">TV와 휴대 전화는 동일한 WiFi 네트워크에 있어야 합니다.</string>
     <string name="start_now">지금부터</string>
     <string name="select_tv_brand">TV 브랜드 선택</string>
-    <string name="we_ve_found_5_remote_n_controls_for_your_acer_tv">Acer TV에서%d 개의 리모컨을 찾았습니다.</string>
+    <string name="we_ve_found_5_remote_n_controls_for_your_acer_tv">우리는 당신의 텔레비전을 위해%d개의 리모컨을 찾았습니다.</string>
     <string name="please_test_them_one_by_one_to_find_the_remote_that_matches_your_tv_model">TV 모델과 일치하는 리모컨을 찾으려면 하나씩 테스트하십시오.</string>
     <string name="start_testing">테스트 시작</string>
     <string name="tap_the_buttons_below_to_test_if_the_tv_responds_correctly">TV가 제대로 응답하는지 확인하려면 아래 버튼을 클릭하십시오.</string>
-    <string name="test_acer_remote">Acer 리모컨 테스트</string>
+    <string name="test_acer_remote">텔레비전 리모컨을 테스트하다.</string>
     <string name="does_your_tv_respond">당신의 텔레비전은 반응이 있습니까\?</string>
     <string name="xiaomi_tv_connected">샤오미 TV가 연결되었습니다!</string>
     <string name="save_the_remote">리모컨 저장</string>
@@ -89,4 +89,19 @@
     <string name="network_connected">네트워크 연결</string>
     <string name="network_disconnected">네트워크가 연결 해제됨</string>
     <string name="no_network">네트워크 없음</string>
+    <string name="edit">편집</string>
+    <string name="delete">삭제</string>
+    <string name="make_sure_your_phone_and_tv_or_wireless_adapter_connect_to_the">\"휴대폰과 TV (또는 무선 어댑터) 가 연결되어 있는지 확인합니다.\"</string>
+    <string name="same_wifi">동일한 WiFi</string>
+    <string name="and">및</string>
+    <string name="turn_off_vpn">VPN을 닫습니다.</string>
+    <string name="enable_the">사용</string>
+    <string name="miracast_display">\"Miracast 모니터\"</string>
+    <string name="function_on_your_tv_you_need_to_enable_it_manually_on_some_devices_go_to_system_settings_to_check">기능. (일부 장치에서 수동으로 활성화해야 합니다. 시스템 설정으로 이동하여 확인하십시오.)</string>
+    <string name="click_the">클릭</string>
+    <string name="start_mirroring">미러 시작</string>
+    <string name="button_enable_the_wireless_display_function_on_your_phone_and_wait_for_the_device_searching">버튼, 휴대 전화의 무선 디스플레이 기능을 활성화하고 장치 검색을 기다립니다.</string>
+    <string name="the_screen_casting_settings_are_not_found_on_the_device">장치에서 화면 투사 설정을 찾을 수 없음</string>
+    <string name="number">숫자</string>
+    <string name="more">추가</string>
 </resources>

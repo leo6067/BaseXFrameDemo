@@ -20,6 +20,7 @@ import com.xy.demo.logic.parse.ParamParse
 import com.xy.demo.model.OrderListModel
 import com.xy.demo.ui.dialog.CastDialog
 import com.xy.demo.ui.dialog.RemoteMoreDialog
+import com.xy.demo.ui.dialog.RemoteNumberDialog
 import com.xy.demo.ui.setting.FeedBackActivity
 import com.xy.demo.ui.vm.HttpViewModel
 import com.xy.xframework.utils.Globals
@@ -46,7 +47,7 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 	
 	var commonCode =
 		arrayOf("power", "up", "down", "left", "right", "select", "home", "back", "menu", "vole+", "vole-", "channel_up", "channel_down", "mute")
-	var numberCode = arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
+	var numberCode = arrayOf("0","1", "2", "3", "4", "5", "6", "7", "8", "9")
 	
 	
 	override fun showTitleBar(): Boolean = false
@@ -171,6 +172,11 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 			binding.titleLay.backIV -> {
 				finish()
 			}
+			
+			binding.netInclude.titleLay.backIV -> {
+				finish()
+			}
+	 
 			binding.titleLay.feedBackIV -> {
 				startActivity(Intent(this@TVConActivity,FeedBackActivity::class.java))
 			}
@@ -186,14 +192,14 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 			
 			
 			binding.moreTV -> {
-				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+//				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
 				RemoteMoreDialog(moreCodeList).show(supportFragmentManager, "1")
 			}
 			
 			
 			binding.muteTV -> {    // 静音
-				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
-				makeParam("mute")
+//				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+//				makeParam("mute")
 			}
 			
 			binding.backTV -> {
@@ -208,7 +214,7 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 			
 			binding.numberTV -> {
 				if (numberCodeList.size > 0) {
-					RemoteMoreDialog(numberCodeList).show(supportFragmentManager, "2")
+					RemoteNumberDialog(numberCodeList).show(supportFragmentManager, "2")
 				}
 			}
 //

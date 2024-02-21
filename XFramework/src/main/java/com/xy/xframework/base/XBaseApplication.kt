@@ -21,7 +21,7 @@ abstract class XBaseApplication : Application() {
 		application = this
 		registerActivityLifecycleCallbacks(AppActivityManager.getInstance())
 		initDown()
-		initSpiderMan()
+//		initSpiderMan()
 		
 	}
 	

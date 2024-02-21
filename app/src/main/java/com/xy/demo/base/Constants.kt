@@ -19,12 +19,13 @@ class Constants {
         const val KEY_APP_RELEASE = "key_app_release"
         
         //域名 上架修改
-        const val releaseBaseUrl = "http://47.251.38.88:8080/"
-        const val debugBaseUrl = "http://47.251.38.88:8080/"
+        const val releaseBaseUrl = "https://toolapi.shenjiwenhua.com/"
+        const val debugBaseUrl = "https://toolapi.shenjiwenhua.com/"
+//        const val debugBaseUrl = "http://47.251.38.88:8080/"
         
         
         //注册协议
-        const val AGREEMENT_PRIVACY = "http://47.251.38.88:8099/getAgreement/?appkey=100000&type=1"
+        const val AGREEMENT_PRIVACY = "https://toolm.shenjiwenhua.com/getAgreement/?appkey=100000&type=1"
         const val AGREEMENT_SERVICE = " "
     
     

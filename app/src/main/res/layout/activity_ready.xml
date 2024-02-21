@@ -35,6 +35,7 @@
                     android:id="@+id/regexNumTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_40"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/dp_50"
                     android:gravity="center"
@@ -49,6 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/dp_40"
                     android:layout_marginTop="@dimen/dp_14"
+                    android:gravity="center"
                     android:text="@string/please_test_them_one_by_one_to_find_the_remote_that_matches_your_tv_model"
                     android:textColor="#ffdddddd"
                     android:textSize="16sp" />

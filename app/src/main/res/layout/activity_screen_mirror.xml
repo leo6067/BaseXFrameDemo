@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.cast.ScreenMirrorActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/dp_22"
+        android:layout_height="match_parent">
+
+
+        <include
+
+            android:id="@+id/titleLay"
+            layout="@layout/include_title"
+
+           />
+
+
+        <TextView
+            android:id="@+id/firstTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_24"
+            android:layout_marginEnd="@dimen/dp_20"
+            tools:text="12121223123123321231231\n2132135135131231\n213212312312223123"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintTop_toBottomOf="@+id/titleLay" />
+
+
+        <ImageView
+            android:id="@+id/firstIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_14"
+            android:background="@drawable/screen_a"
+            app:layout_constraintBottom_toBottomOf="@+id/firstTV"
+            app:layout_constraintEnd_toStartOf="@+id/firstTV"
+            app:layout_constraintTop_toTopOf="@+id/firstTV" />
+
+
+        <TextView
+            android:id="@+id/secondTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_24"
+            android:layout_marginEnd="@dimen/dp_20"
+            tools:text="12121223123123321231231\n2132135135131231\n213212312312223123"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintTop_toBottomOf="@+id/firstTV" />
+
+
+        <ImageView
+            android:id="@+id/secondIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_14"
+            android:background="@drawable/screen_b"
+            app:layout_constraintBottom_toBottomOf="@+id/secondTV"
+            app:layout_constraintEnd_toStartOf="@+id/secondTV"
+            app:layout_constraintTop_toTopOf="@+id/secondTV" />
+
+
+        <TextView
+            android:id="@+id/thirdTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_24"
+            android:layout_marginEnd="@dimen/dp_20"
+            tools:text="12121223123123321231231\n2132135135131231\n213212312312223123"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintTop_toBottomOf="@+id/secondTV" />
+
+
+        <ImageView
+            android:id="@+id/thirdIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_14"
+            android:background="@drawable/screen_c"
+            app:layout_constraintBottom_toBottomOf="@+id/thirdTV"
+            app:layout_constraintEnd_toStartOf="@+id/thirdTV"
+            app:layout_constraintTop_toTopOf="@+id/thirdTV" />
+
+
+        <ImageView
+            android:id="@+id/startTV"
+            android:onClick="onClick"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:scaleType="fitXY"
+            android:layout_marginTop="@dimen/dp_80"
+            android:background="@drawable/home_start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/thirdTV"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_mirroring"
+            android:textColor="#ffffffff"
+            android:textSize="@dimen/sp_14"
+            android:layout_marginTop="@dimen/dp_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/startTV"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -19,7 +19,7 @@ class RemoteMoreDialog(var dataList: MutableList<OrderListModel.OrderModel>) : M
 	
 	var mAdapter = RemoteMoreAdapter()
 	
-	lateinit var vibrator : Vibrator
+	lateinit var vibrator: Vibrator
 	
 	override fun getLayoutId(): Int {
 		return R.layout.dialog_remote_more
@@ -28,53 +28,33 @@ class RemoteMoreDialog(var dataList: MutableList<OrderListModel.OrderModel>) : M
 	override fun getGravity(): Int {
 		return Gravity.BOTTOM
 	}
+	
 	override fun initView() {
 		
-		vibrator  = context?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-		binding.recyclerView.layoutManager = GridLayoutManager(context,3)
+		vibrator = context?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+		binding.recyclerView.layoutManager = GridLayoutManager(context, 3)
 		binding.recyclerView.adapter = mAdapter
 		
 		// tag 直接传参
-		if (tag.toString() == "1"){   // 菜单 --更多
+//		if (tag.toString() == "1"){   // 菜单 --更多
 //			dataList.clear()
 //			dataList.add("TV")
 //			dataList.add("AV")
 //			dataList.add("PC")
 //			dataList.add("SLEEP")
-			
-			
-			binding.zeroTV.visibility = View.GONE
-			binding.titleTV.text = "More"
 		
-		}else{ // 数字
-//			dataList.clear()
-//			dataList.add("1")
-//			dataList.add("2")
-//			dataList.add("3")
-//			dataList.add("4")
-//			dataList.add("5")
-//			dataList.add("6")
-//			dataList.add("7")
-//			dataList.add("8")
-//			dataList.add("9")
-			binding.titleTV.text = "Number"
-		}
+	 
 		
 		mAdapter.setNewInstance(dataList)
 		
 		
 	}
+	
 	override fun initListener() {
 		binding.closeIV.setOnClickListener {
 			dismiss()
 		}
-		
-		binding.zeroTV.setOnClickListener {
-			makeParam("0")
-			dismiss()
-		}
-		
-		
+	 
 		
 		mAdapter.setOnItemClickListener { adapter, view, position ->
 			//指令
@@ -82,10 +62,8 @@ class RemoteMoreDialog(var dataList: MutableList<OrderListModel.OrderModel>) : M
 			val irInfo = ParamParse.getIrCodeList(orderModel.remoteCode, orderModel.frequency.toInt())
 			//最终 红外 指令
 			ConsumerIrManagerApi.getConsumerIrManager(context).transmit(irInfo.getFrequency(), irInfo.getIrCodeList())
-			dismiss()
 		}
 	}
-	
 	
 	
 	//常规指令
@@ -100,5 +78,5 @@ class RemoteMoreDialog(var dataList: MutableList<OrderListModel.OrderModel>) : M
 		}
 	}
 	
- 
+	
 }

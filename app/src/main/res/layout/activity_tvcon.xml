@@ -19,17 +19,17 @@
 
             <include
                 android:id="@+id/titleLay"
-                android:layout_marginBottom="@dimen/dp_20"
-                android:layout_marginTop="@dimen/dp_22"
                 layout="@layout/include_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_22"
+                android:layout_marginBottom="@dimen/dp_20" />
 
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_below="@+id/titleLay"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_below="@+id/titleLay">
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -98,8 +98,7 @@
                         android:layout_height="@dimen/dp_50"
                         android:layout_marginStart="@dimen/dp_30"
                         android:layout_marginTop="@dimen/dp_30"
-                        android:background="@drawable/select_con_bg"
-
+                        android:background="@drawable/shape_con_bg_b"
                         android:onClick="onClick"
                         android:scaleType="centerInside"
                         android:src="@drawable/icon_yk_jy"
@@ -116,7 +115,6 @@
                         android:clickable="true"
                         android:onClick="onClick"
                         android:scaleType="centerInside"
-
                         android:src="@drawable/icon_yk_back"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -252,6 +250,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </RelativeLayout>
+
             <include
                 android:id="@+id/netInclude"
                 layout="@layout/include_net"

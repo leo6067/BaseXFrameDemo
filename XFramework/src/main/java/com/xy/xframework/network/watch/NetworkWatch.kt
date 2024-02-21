@@ -5,7 +5,10 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import android.net.wifi.WifiInfo
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 
@@ -33,13 +36,14 @@ class NetworkWatch(var context: Context) : ConnectivityManager.NetworkCallback()
         Log.d("NetworkWatch", "onLost: 网络已断开");
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCapabilitiesChanged(network: Network, networkCapabilities: NetworkCapabilities) {
         super.onCapabilitiesChanged(network, networkCapabilities)
         if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
             when {
                 networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
                     Log.d("NetworkWatch", "onCapabilitiesChanged: 网络类型为wifi");
-                    post(NetworkType.WIFI);
+                    post(NetworkType.WIFI)
                 }
                 networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
                     Log.d("NetworkWatch", "onCapabilitiesChanged: 蜂窝网络");

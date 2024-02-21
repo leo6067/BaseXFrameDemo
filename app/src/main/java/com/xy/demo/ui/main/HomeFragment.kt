@@ -1,6 +1,8 @@
 package com.xy.demo.ui.main
 
 import android.content.Intent
+import android.view.GestureDetector
+import android.view.MotionEvent
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
@@ -81,7 +83,6 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MBBaseViewModel>() {
 				if (dy > 0) {
 					LiveEventBus.get<String>(Constants.EVENT_SCROLL_UP).post("上划")
 				}
-				
 			}
 		})
 		
@@ -93,7 +94,6 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MBBaseViewModel>() {
 		LiveEventBus
 			.get<String>(Constants.EVENT_DEVICES).observe(this) {
 				GlobalScope.launch(Dispatchers.Main) {
-					
 					showLoading()
 					withContext(Dispatchers.IO) {
 						MyDataBase.instance.RemoteDao().deleteByName(it)
@@ -108,7 +108,6 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MBBaseViewModel>() {
 					withContext(Dispatchers.Main) {
 						binding.deviceNum.setText("(" + allRemote.size + ")")
 					}
-				 
 					dismissLoading()
 				}
 			}

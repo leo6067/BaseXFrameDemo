@@ -15,7 +15,7 @@
         android:layout_height="@dimen/dp_35"
         android:layout_marginHorizontal="@dimen/dp_20"
         android:gravity="center"
-        android:text="Edit"
+        android:text="@string/edit"
         android:textColor="#ff333333"
         android:textSize="@dimen/sp_12"
         />
@@ -27,7 +27,7 @@
         android:layout_marginHorizontal="@dimen/dp_20"
         android:layout_height="@dimen/dp_35"
         android:gravity="center"
-        android:text="Delete"
+        android:text="@string/delete"
         android:textColor="#ff333333"
         android:textSize="@dimen/sp_12"
         />

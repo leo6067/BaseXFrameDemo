@@ -27,50 +27,50 @@ class PhoneBookUtils {
 
 
         // 可批量 添加 到通讯录
-        fun AddPhoneBook(context: Context, jsonString: String) {
-            XXPermissions.with(context)
-                .permission(Permission.WRITE_CONTACTS, Permission.READ_CONTACTS)
-                .request(OnPermissionCallback { permissions, all ->
-                    if (all) {
-//                        val jsonList = com.alibaba.fastjson.JSONObject.parseArray(jsonString)
-//                        for (position in jsonList.indices) {
-//                            val phoneModel =
-//                                JSON.parseObject(
-//                                    jsonList[position].toString(),
-//                                    PhoneModel::class.java
-//                                )
-//                            val jsonObject = JSONObject() //创建一个JSONObject存储数据
-//                            jsonObject.put("phone", phoneModel.phone)
-//                            jsonObject.put("name", phoneModel.name)
-//                            Globals.log("xxxxxxjsonObject2222", jsonObject.toString())
-//                            CoroutineScope(Dispatchers.IO).launch {
-//                                Globals.log("xxxxxxjsonObject", jsonObject.toString())
-//                                AddContact.instance.insert(
-//                                    AppActivityManager.getCurrentActivity(),
-//                                    jsonObject
-//                                )
-//                            }
-//                        }
-
-                    } else {
-                        ToastUtils.showShort("请先授予读写通讯录权限")
-                    }
-                })
-        }
+//        fun AddPhoneBook(context: Context, jsonString: String) {
+//            XXPermissions.with(context)
+//                .permission(Permission.WRITE_CONTACTS, Permission.READ_CONTACTS)
+//                .request(OnPermissionCallback { permissions, all ->
+//                    if (all) {
+////                        val jsonList = com.alibaba.fastjson.JSONObject.parseArray(jsonString)
+////                        for (position in jsonList.indices) {
+////                            val phoneModel =
+////                                JSON.parseObject(
+////                                    jsonList[position].toString(),
+////                                    PhoneModel::class.java
+////                                )
+////                            val jsonObject = JSONObject() //创建一个JSONObject存储数据
+////                            jsonObject.put("phone", phoneModel.phone)
+////                            jsonObject.put("name", phoneModel.name)
+////                            Globals.log("xxxxxxjsonObject2222", jsonObject.toString())
+////                            CoroutineScope(Dispatchers.IO).launch {
+////                                Globals.log("xxxxxxjsonObject", jsonObject.toString())
+////                                AddContact.instance.insert(
+////                                    AppActivityManager.getCurrentActivity(),
+////                                    jsonObject
+////                                )
+////                            }
+////                        }
+//
+//                    } else {
+//                        ToastUtils.showShort("请先授予读写通讯录权限")
+//                    }
+//                })
+//        }
 
 
         //模糊搜索 模糊删除通讯录
-        fun deleteFuzzy(context: Context, keyword: String) {
-            XXPermissions.with(context)
-                .permission(Permission.WRITE_CONTACTS, Permission.READ_CONTACTS)
-                .request(OnPermissionCallback { permissions, all ->
-                    if (all) {
-                        searchCons(context, keyword)
-                    } else {
-                        ToastUtils.showShort("请先授予读写通讯录权限")
-                    }
-                })
-        }
+//        fun deleteFuzzy(context: Context, keyword: String) {
+//            XXPermissions.with(context)
+//                .permission(Permission.WRITE_CONTACTS, Permission.READ_CONTACTS)
+//                .request(OnPermissionCallback { permissions, all ->
+//                    if (all) {
+//                        searchCons(context, keyword)
+//                    } else {
+//                        ToastUtils.showShort("请先授予读写通讯录权限")
+//                    }
+//                })
+//        }
 
 
         //模糊搜索  并 删除 企优推

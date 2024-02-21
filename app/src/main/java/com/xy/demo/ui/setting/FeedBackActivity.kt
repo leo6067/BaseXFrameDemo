@@ -42,8 +42,7 @@ class FeedBackActivity : MBBaseActivity<ActivityFeedBackBinding, HttpViewModel>(
 	
 	override fun initView() {
 		super.initView()
-		titleBarView?.tvTitle?.text = "Feedback"
-		
+	 
 		
 		//常规带回调启动Activity
 		val requestDataLauncher = registerForActivityResult(object : ActivityResultContract<String, String>() {

@@ -168,7 +168,7 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
 	
 	override fun onResume() {
 		super.onResume()
-		Globals.log("xxxxxxxonResume")
+	 
 	}
 	
 	/**

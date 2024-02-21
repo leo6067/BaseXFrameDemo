@@ -54,7 +54,6 @@ abstract class MBBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : XBaseA
 		var hasNetWork = NetworkUtils.isConnected()
 		
 		NetworkStateLiveData.observe(this) {
-			Globals.log("xxxxxxxnet  " + it)
 			if (it == NetworkType.CONNECT) {
 				ToastUtils.showShort(getString(R.string.network_connected))
 				hasNetWork = true

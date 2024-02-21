@@ -8,6 +8,16 @@ android {
 //    }
 
     signingConfigs {
+        remote {
+            // 签名store文件路径
+            storeFile file('../remote.jks')
+            storePassword 'xmsjremote'
+            keyAlias 'remote'
+            keyPassword 'xmsjremote'
+        }
+
+
+
         normal {
             // 签名store文件路径
             storeFile file('../dqvideo.jks')
@@ -17,13 +27,19 @@ android {
         }
 
 
-        haolu {
 
-        }
     }
 
     //walle多渠道和马甲包配置
     productFlavors {
+        xysj {
+            applicationId "com.xy.remote"
+            versionCode rootProject.ext.versionCode
+            versionName rootProject.ext.versionName
+
+            signingConfig signingConfigs.remote
+        }
+
         xysp {
             applicationId "com.xy.basedemo"
             versionCode rootProject.ext.versionCode

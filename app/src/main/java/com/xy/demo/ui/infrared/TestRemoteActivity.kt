@@ -33,11 +33,7 @@ class TestRemoteActivity : MBBaseActivity<ActivityTestRemoteBinding, HttpViewMod
 	
 	
 	var remoteModel = RemoteModel()
-	
-	
 	lateinit var subModelList: MutableList<SubBrandListModel.SubBrandModel>
-	
-	
 	
 	companion object {
 		var activity: TestRemoteActivity ?=null
@@ -99,8 +95,6 @@ class TestRemoteActivity : MBBaseActivity<ActivityTestRemoteBinding, HttpViewMod
 	override fun onClick(view: View) {
 		val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 	 
-  
-		
 		when (view.id) {
 			R.id.backIV -> finish()
 			R.id.voiceIV -> {   //测试指令  根据下标 indexNum 取指令
@@ -161,7 +155,6 @@ class TestRemoteActivity : MBBaseActivity<ActivityTestRemoteBinding, HttpViewMod
 				intent.putExtra(Constants.KEY_REMOTE, remoteModel)
 				intent.setClass(this@TestRemoteActivity, SaveRemoteActivity::class.java)
 				startActivity(intent)
-				
 			}
 		}
 		
@@ -172,7 +165,6 @@ class TestRemoteActivity : MBBaseActivity<ActivityTestRemoteBinding, HttpViewMod
 	//固定为  音量+ 指令
 	fun sendOrder() {
 		// 根据下标 取指令测试   remoteModel.json  外部进来 全品牌指令  indexNum
-		
 //		commandStr = remoteModel.json.get(indexNum).toString()
 //		val codeModes = JSONArray.parseArray(commandStr, CodeMode::class.java)
 //		for (p in codeModes.indices) {
@@ -183,18 +175,16 @@ class TestRemoteActivity : MBBaseActivity<ActivityTestRemoteBinding, HttpViewMod
 //				Globals.log("xxxxx指令发送：", irInfo.getIrCodeList().toString())
 //			}
 //		}
-		val subBrandModel = subModelList[indexNum-1]
-		
-		remoteModel.modelId = subBrandModel.modelId
-		
-		
-		val irInfo = ParamParse.getIrCodeList(subBrandModel.remoteCode, subBrandModel.frequency.toInt())
-		
-		
-		Globals.log("xxxxx指令发送："+subBrandModel.remoteCode)
-		
-		
-		ConsumerIrManagerApi.getConsumerIrManager(this).transmit(irInfo.getFrequency(), irInfo.getIrCodeList())
+		if (subModelList.size >= indexNum){
+			
+			Globals.log("xxxxxxxxxxx"+indexNum)
+			
+			
+			val subBrandModel = subModelList[indexNum-1]
+			remoteModel.modelId = subBrandModel.modelId
+			val irInfo = ParamParse.getIrCodeList(subBrandModel.remoteCode, subBrandModel.frequency.toInt())
+			ConsumerIrManagerApi.getConsumerIrManager(this).transmit(irInfo.getFrequency(), irInfo.getIrCodeList())
+		}
 	}
 	
 	

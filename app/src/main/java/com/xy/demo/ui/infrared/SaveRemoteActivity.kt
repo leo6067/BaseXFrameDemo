@@ -1,26 +1,27 @@
 package com.xy.demo.ui.infrared
 
-import android.app.ActivityManager
+import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.lifecycle.lifecycleScope
 import com.xy.demo.R
 import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseActivity
-import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.ActivitySaveRemoteBinding
 import com.xy.demo.db.MyDataBase
 import com.xy.demo.db.RemoteModel
 import com.xy.demo.ui.vm.HttpViewModel
-import com.xy.xframework.base.AppActivityManager
+import com.xy.xframework.utils.DigitKeyboardUtils
 import com.xy.xframework.utils.ToastUtils
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.internal.format
+
 
 //保存遥控器
 class SaveRemoteActivity : MBBaseActivity<ActivitySaveRemoteBinding, HttpViewModel>() {
@@ -49,7 +50,6 @@ class SaveRemoteActivity : MBBaseActivity<ActivitySaveRemoteBinding, HttpViewMod
 		binding.modelName.text = String.format(resources.getString(R.string.s_tv_connected), remoteModel.brandName)
 		
 		
-		
 		if (TextUtils.isEmpty(remoteModel.name)) {
 			binding.hardwareET.setText(remoteModel.brandName)
 			remoteModel.name = binding.hardwareET.text.toString()
@@ -62,8 +62,8 @@ class SaveRemoteActivity : MBBaseActivity<ActivitySaveRemoteBinding, HttpViewMod
 		
 		when (remoteModel.location) {
 			"1" -> binding.locationRG.check(R.id.defaultRB)
-			"2" -> binding.locationRG.check(R.id.bedRB)
-			"3" -> binding.locationRG.check(R.id.livingRB)
+			"2" -> binding.locationRG.check(R.id.livingRB)
+			"3" -> binding.locationRG.check(R.id.bedRB)
 			"4" -> binding.locationRG.check(R.id.dinningRB)
 			"5" -> binding.locationRG.check(R.id.mediaRB)
 		}
@@ -99,11 +99,11 @@ class SaveRemoteActivity : MBBaseActivity<ActivitySaveRemoteBinding, HttpViewMod
 					remoteModel.location = "1"
 				}
 				
-				R.id.bedRB -> {
+				R.id.livingRB -> {
 					remoteModel.location = "2"
 				}
 				
-				R.id.livingRB -> {
+				R.id.bedRB -> {
 					remoteModel.location = "3"
 				}
 				
@@ -145,6 +145,8 @@ class SaveRemoteActivity : MBBaseActivity<ActivitySaveRemoteBinding, HttpViewMod
 		}
 
 //		viewModel.getOrderListHttp(remoteModel.brandId, remoteModel.modelId)
+		
+	
 	
 	}
 	
@@ -201,5 +203,36 @@ class SaveRemoteActivity : MBBaseActivity<ActivitySaveRemoteBinding, HttpViewMod
 			}
 		}
 		
+	}
+	
+	
+	override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+		if (ev.action == MotionEvent.ACTION_DOWN) {
+			val v = currentFocus
+			if (isShouldHideInput(v, ev)) {
+				val imm =  getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+				imm?.hideSoftInputFromWindow(v!!.windowToken, 0)
+			}
+			return super.dispatchTouchEvent(ev)
+		}
+		// 必不可少，否则所有的组件都不会有TouchEvent了
+		return if (window.superDispatchTouchEvent(ev)) {
+			true
+		} else onTouchEvent(ev)
+	}
+	
+	
+	fun isShouldHideInput(v: View?, event: MotionEvent): Boolean {
+		if (v != null && v is EditText) {
+			val leftTop = intArrayOf(0, 0)
+			//获取输入框当前的location位置
+			v.getLocationInWindow(leftTop)
+			val left = leftTop[0]
+			val top = leftTop[1]
+			val bottom = top + v.getHeight()
+			val right = left + v.getWidth()
+			return !(event.x > left && event.x < right && event.y > top && event.y < bottom)
+		}
+		return false
 	}
 }

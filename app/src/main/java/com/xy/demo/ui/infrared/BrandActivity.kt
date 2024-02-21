@@ -210,6 +210,7 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>() {
 				intent.putExtra(Constants.KEY_TV_BRAND, brandModel.brandName)
 				intent.putExtra(Constants.KEY_TV_BRAND_ID, brandModel.brandId)
 				setResult(RESULT_OK, intent)
+				finish()
 			} else {
 				remoteModel.brandName = brandModel.brandName //品牌
 				remoteModel.brandId = brandModel.brandId //品牌id

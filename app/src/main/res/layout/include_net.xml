@@ -5,11 +5,15 @@
     <LinearLayout
         android:id="@+id/netLin"
         android:layout_width="match_parent"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
         android:orientation="vertical">
 
-        <include layout="@layout/include_title"/>
+        <include
+            android:id="@+id/titleLay"
+            layout="@layout/include_title"/>
 
 
         <ImageView

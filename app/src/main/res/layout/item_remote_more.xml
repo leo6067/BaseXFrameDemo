@@ -15,12 +15,12 @@
         android:layout_height="@dimen/dp_50"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:maxLength="7"
+        android:maxEms="3"
+        android:ellipsize="end"
         android:text="0"
         android:textColor="@color/white"
         android:textSize="@dimen/sp_16"
         android:textStyle="bold"
-
         app:corner_radius="@dimen/dp_25" />
 
 

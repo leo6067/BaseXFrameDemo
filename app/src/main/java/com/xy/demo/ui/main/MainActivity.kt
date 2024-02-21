@@ -3,7 +3,9 @@ package com.xy.demo.ui.main
 import android.Manifest
 import android.content.Intent
 import android.os.Build
+import android.view.GestureDetector
 import android.view.KeyEvent
+import android.view.MotionEvent
 import android.view.View
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -19,6 +21,7 @@ import com.xy.demo.databinding.ActivityMainBinding
 import com.xy.demo.db.MyDataBase
 import com.xy.demo.logic.LanguageUtil
 import com.xy.demo.logic.ad.AdManage
+import com.xy.demo.network.Globals
 import com.xy.demo.ui.adapter.ControlAdapter
 import com.xy.demo.ui.setting.SettingActivity
 import com.xy.demo.ui.vm.MainViewModel
@@ -29,10 +32,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
 
-class MainActivity : MBBaseActivity<ActivityMainBinding, MainViewModel>() {
+//, GestureDetector.OnGestureListener  触摸 手势
+class MainActivity : MBBaseActivity<ActivityMainBinding, MainViewModel>(){
+	
+	
+	//绑定手势监听  这是前置条件
+	var detector: GestureDetector? = null
 	
 	
 	override fun getLayoutId(): Int {
@@ -61,24 +70,30 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, MainViewModel>() {
 		val fragmentManager: FragmentManager = supportFragmentManager // 对于 AppCompatActivity
 		val transaction: FragmentTransaction = fragmentManager.beginTransaction()
 		
-		lifecycleScope.launch(Dispatchers.IO) {
-			val allRemote = MyDataBase.instance.RemoteDao().getAllRemote() as MutableList
+		
+		runBlocking {
+			
+			val allRemote = withContext(Dispatchers.IO) {
+				MyDataBase.instance.RemoteDao().getAllRemote() as MutableList
+			}
+			
 			if (allRemote.size > 0) {
 				transaction.replace(R.id.fragment_container, HomeFragment())
 			} else {
 				transaction.replace(R.id.fragment_container, AddFragment())
 			}
-			
-			delay(1000)
 			dismissLoading()
 			transaction.commitAllowingStateLoss()
 		}
+ 
+		
+		
 	}
 	
 	override fun initParams() {
 		super.initParams()
+		viewModel.getBrandListHttp()
 		
-
 		binding.settingIV.setOnClickListener {
 			startActivity(Intent(this@MainActivity, SettingActivity::class.java))
 		}
@@ -107,12 +122,14 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, MainViewModel>() {
 		
 		LiveEventBus
 			.get<String>(Constants.EVENT_SCROLL_UP).observe(this) {
-				GlobalScope.launch(Dispatchers.Main) {
-					AdManage.showBannerAd(binding.bottomAdView, binding.bottomLay)
+				lifecycleScope.launch(Dispatchers.Main) {
+					if (binding.bottomLay.visibility == View.GONE) {
+						AdManage.showBannerAd(binding.bottomAdView, binding.bottomLay)
+					}
 				}
 			}
 		
-		
+ 
 	}
 
 
@@ -146,6 +163,8 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, MainViewModel>() {
 		}
 		return super.onKeyDown(keyCode, event)
 	}
+	
+ 
 	
 	
 }

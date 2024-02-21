@@ -19,7 +19,6 @@ public class ParamParse {
                     int count = 0;
                     while(count < arrayList0.size()) {
                         result[count] = Integer.parseInt(((String)arrayList0.get(count)));
-                        Globals.log("xxxxx指result00：", result[count]+ " ");
                         count++;
                     }
                     irModel.setIrCodeList(result);
@@ -40,10 +39,10 @@ public class ParamParse {
                     int j = 0;
                     while(j < len) {
                         result[j] = Integer.parseInt(((String)arrayList1.get(j))) * 26;
-                        Globals.log("xxxxx指result：", result[j]+ " ");
+//                        Globals.log("xxxxx指result：", result[j]+ " ");
                         ++j;
                     }
-                    Globals.log("xxxxx指result：", result[0]+ " ");
+//                    Globals.log("xxxxx指result：", result[0]+ " ");
                     irModel.setIrCodeList(result);
                     irModel.setFrequency(count);
                 }

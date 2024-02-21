@@ -40,80 +40,80 @@ class AddContact {
      * @param progress 进度回调
      * @param listener 完成回调
      */
-    fun insertContacts(
-        context: Context,
-        jsonArray: JSONArray?,
-        progress: ((Int, Int) -> Unit)? = null,
-        listener: ((Boolean, String?) -> Unit)? = null
-    ) {
-        val mHandler = Handler(Looper.getMainLooper())
-        XXPermissions.with(context)
-            .permission(Permission.READ_CONTACTS, Permission.WRITE_CONTACTS)
-            .request { _, all ->
-                if (all) {
-                    Globals.log("xxxxxx----")
-                    if (jsonArray != null) {
-                        executor.submit {
-//                            val groupId = jsonArray title ?: createGroup(context, groupTitle(context))
-                            val groupId = findGroup(context, groupTitle(context)) ?: createGroup(
-                                context,
-                                groupTitle(context)
-                            )
-                            val exists = ArrayList<String>()
-                            val length = jsonArray.length()
-                            Globals.log("xxxxxx====" + jsonArray.toString())
-                            (0 until length).forEach { idx ->
-                                val item = jsonArray.optJSONObject(idx)
-                                Globals.log("xxxxxx====item$item")
-//                                val success = insert(context, item, groupId)
-                                val success = insert(context, item)
-                                if (!success) { // 成功添加，扣除计数
-                                    exists.add(item.optString("customerName"))
-                                }
-                                mHandler.post {
-                                    progress?.invoke(idx + 1, length)
-                                }
-                            }
-
-
-                            val msg = when {
-                                exists.size > 1 -> exists.first() + "等${exists.size}个企业的联系人电话已存在"
-                                exists.isNotEmpty() -> exists.first() + "联系人电话已存在"
-                                else -> null
-                            }
-//                            log.i(false, "[CONTACT] export contact result: $msg")
-                            mHandler.post { listener?.invoke(true, msg) }
-
-                            /*val ops = ArrayList<ContentProviderOperation>()
-                            var rawContactInsertIndex = 0
-                            val length = extraJson.length()
-                            log.i("import contact size is : $length")
-                            (0 until length).forEach { idx ->
-                                rawContactInsertIndex = ops.size
-                                val data = packContact(extraJson.optJSONObject(idx), groupId, rawContactInsertIndex)
-                                ops.addAll(data)
-                                if (idx % 50 == 0 && ops.isNotEmpty()) {
-                                    log.i("import index: $idx")
-                                    context.contentResolver.applyBatch(ContactsContract.AUTHORITY, ops)
-                                    ops.clear()
-                                }
-                            }
-                            val count = if (ops.isNotEmpty()) {
-                                context.contentResolver.applyBatch(ContactsContract.AUTHORITY, ops)
-                            } else -1
-                            log.i(true, "[CONTACT] export contact result: $count")*/
-                        }
-                    } else {
-                        listener?.invoke(false, "没有可导入的联系人！")
-//                        log.w(false, "[CONTACT] No export contacts! 没有可导入的联系人！")
-                    }
-                } else {
-                    val msg = "没有读取与写入通讯录的权限！"
-//                    log.w(false, "[CONTACT] No write contacts permission! $msg！")
-                    listener?.invoke(false, msg)
-                }
-            }
-    }
+//    fun insertContacts(
+//        context: Context,
+//        jsonArray: JSONArray?,
+//        progress: ((Int, Int) -> Unit)? = null,
+//        listener: ((Boolean, String?) -> Unit)? = null
+//    ) {
+//        val mHandler = Handler(Looper.getMainLooper())
+//        XXPermissions.with(context)
+//            .permission(Permission.READ_CONTACTS, Permission.WRITE_CONTACTS)
+//            .request { _, all ->
+//                if (all) {
+//                    Globals.log("xxxxxx----")
+//                    if (jsonArray != null) {
+//                        executor.submit {
+////                            val groupId = jsonArray title ?: createGroup(context, groupTitle(context))
+//                            val groupId = findGroup(context, groupTitle(context)) ?: createGroup(
+//                                context,
+//                                groupTitle(context)
+//                            )
+//                            val exists = ArrayList<String>()
+//                            val length = jsonArray.length()
+//                            Globals.log("xxxxxx====" + jsonArray.toString())
+//                            (0 until length).forEach { idx ->
+//                                val item = jsonArray.optJSONObject(idx)
+//                                Globals.log("xxxxxx====item$item")
+////                                val success = insert(context, item, groupId)
+//                                val success = insert(context, item)
+//                                if (!success) { // 成功添加，扣除计数
+//                                    exists.add(item.optString("customerName"))
+//                                }
+//                                mHandler.post {
+//                                    progress?.invoke(idx + 1, length)
+//                                }
+//                            }
+//
+//
+//                            val msg = when {
+//                                exists.size > 1 -> exists.first() + "等${exists.size}个企业的联系人电话已存在"
+//                                exists.isNotEmpty() -> exists.first() + "联系人电话已存在"
+//                                else -> null
+//                            }
+////                            log.i(false, "[CONTACT] export contact result: $msg")
+//                            mHandler.post { listener?.invoke(true, msg) }
+//
+//                            /*val ops = ArrayList<ContentProviderOperation>()
+//                            var rawContactInsertIndex = 0
+//                            val length = extraJson.length()
+//                            log.i("import contact size is : $length")
+//                            (0 until length).forEach { idx ->
+//                                rawContactInsertIndex = ops.size
+//                                val data = packContact(extraJson.optJSONObject(idx), groupId, rawContactInsertIndex)
+//                                ops.addAll(data)
+//                                if (idx % 50 == 0 && ops.isNotEmpty()) {
+//                                    log.i("import index: $idx")
+//                                    context.contentResolver.applyBatch(ContactsContract.AUTHORITY, ops)
+//                                    ops.clear()
+//                                }
+//                            }
+//                            val count = if (ops.isNotEmpty()) {
+//                                context.contentResolver.applyBatch(ContactsContract.AUTHORITY, ops)
+//                            } else -1
+//                            log.i(true, "[CONTACT] export contact result: $count")*/
+//                        }
+//                    } else {
+//                        listener?.invoke(false, "没有可导入的联系人！")
+////                        log.w(false, "[CONTACT] No export contacts! 没有可导入的联系人！")
+//                    }
+//                } else {
+//                    val msg = "没有读取与写入通讯录的权限！"
+////                    log.w(false, "[CONTACT] No write contacts permission! $msg！")
+//                    listener?.invoke(false, msg)
+//                }
+//            }
+//    }
 
     public fun insert(context: Context, contactJson: JSONObject): Boolean {
         val groupId =

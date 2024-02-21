@@ -18,11 +18,11 @@
     <string name="your_tv_and_phone_need_to_be_n_on_the_same_wifi_network">您的電視和手機需要位於同一個WiFi網絡上。</string>
     <string name="start_now">現在開始</string>
     <string name="select_tv_brand">選擇電視品牌</string>
-    <string name="we_ve_found_5_remote_n_controls_for_your_acer_tv">我們為您的Acer TV找到了%d個遙控器。</string>
+    <string name="we_ve_found_5_remote_n_controls_for_your_acer_tv">我們為您的電視找到了%d個遙控器。</string>
     <string name="please_test_them_one_by_one_to_find_the_remote_that_matches_your_tv_model">請逐一測試，以找到與您的電視型號匹配的遙控器。</string>
     <string name="start_testing">開始測試</string>
     <string name="tap_the_buttons_below_to_test_if_the_tv_responds_correctly">點擊下麵的按鈕以測試電視是否正確響應</string>
-    <string name="test_acer_remote">測試Acer遙控器</string>
+    <string name="test_acer_remote">測試電視遙控器</string>
     <string name="does_your_tv_respond">你的電視有反應嗎？</string>
     <string name="xiaomi_tv_connected">小米電視已連接！</string>
     <string name="save_the_remote">保存遙控器</string>
@@ -40,7 +40,7 @@
     <string name="settings">設定</string>
     <string name="feedback">反饋</string>
     <string name="rate_us">給我們打分</string>
-    <string name="share">共有</string>
+    <string name="share">分享</string>
     <string name="language_options">語言選項</string>
     <string name="privacy_policy">隱私政策</string>
     <string name="report_bugs_and_tell_us_what_to_improve">報告錯誤並告訴我們要改進的內容</string>
@@ -89,4 +89,19 @@
     <string name="network_connected">網絡已連接</string>
     <string name="network_disconnected">網絡已斷開連接</string>
     <string name="no_network">無網絡</string>
+    <string name="edit">編輯</string>
+    <string name="delete">删去</string>
+    <string name="make_sure_your_phone_and_tv_or_wireless_adapter_connect_to_the">“確保您的手機和電視（或無線轉接器）連接到”</string>
+    <string name="same_wifi">“相同的WiFi”</string>
+    <string name="and">和</string>
+    <string name="turn_off_vpn">關閉VPN。</string>
+    <string name="enable_the">“啟用”</string>
+    <string name="miracast_display">“Miracast顯示器”</string>
+    <string name="function_on_your_tv_you_need_to_enable_it_manually_on_some_devices_go_to_system_settings_to_check">功能。（您需要在某些設備上手動啟用它，請轉到系統設置進行檢查）。</string>
+    <string name="click_the">“按一下”</string>
+    <string name="start_mirroring">“開始鏡像”</string>
+    <string name="button_enable_the_wireless_display_function_on_your_phone_and_wait_for_the_device_searching">按鈕，啟用手機上的無線顯示功能，然後等待設備蒐索。</string>
+    <string name="the_screen_casting_settings_are_not_found_on_the_device">在設備上找不到荧幕投射設定</string>
+    <string name="number">數位</string>
+    <string name="more">更多</string>
 </resources>
