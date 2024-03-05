@@ -89,7 +89,7 @@ abstract class WebBaseActivity() : XBaseActivity<BaseWebViewLayoutBinding, WebBa
             domStorageEnabled = true
             databaseEnabled = true
 
-            setAppCacheMaxSize(1024 * 1024 * 9);//设置缓冲大小，我设的是8M
+           
             defaultTextEncodingName = "utf-8"
             // 特别注意：5.1以上默认禁止了https和http混用，以下方式是开启
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

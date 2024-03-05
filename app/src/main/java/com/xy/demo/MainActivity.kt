@@ -19,7 +19,7 @@ import com.xy.demo.ui.SecondActivity
 import com.xy.xframework.base.BaseAppContext
 import com.xy.xframework.base.BaseSharePreference
 import com.xy.xframework.base.XBaseViewModel
-import kotlinx.android.synthetic.main.activity_main.*
+
 import java.io.File
 
 
