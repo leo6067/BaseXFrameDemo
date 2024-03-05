@@ -24,7 +24,8 @@ abstract class MBBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : XBaseA
 	override fun isSwipeBackClose(): Boolean = true
 	
 	override fun initView() {
-		StatusBarUtil.setStatusBarDarkTheme(this, false)
+		StatusBarUtil.setStatusBarDarkTheme(this, true)
+	 
 //        setStatusTextColor(false,)
 	}
 	
@@ -49,7 +50,7 @@ abstract class MBBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : XBaseA
 	
 	override fun initParams() {
 		super.initParams()
-		
+	 
 		
 		var hasNetWork = NetworkUtils.isConnected()
 		

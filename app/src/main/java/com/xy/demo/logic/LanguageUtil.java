@@ -27,17 +27,16 @@ public class LanguageUtil {
 
 
     //如果没有修改过 去系统默认
-    public static String getLanguage( ) {
-        LANGUAGE =  BaseSharePreference.Companion.getInstance().getString(Constants.SHARE_LANGUAGE, "en");
+    public static String getLanguage() {
+        LANGUAGE = BaseSharePreference.Companion.getInstance().getString(Constants.SHARE_LANGUAGE, "en");
 
         if (TextUtils.isEmpty(LANGUAGE)) {
 //           return getDefaultLocale(activity).getLanguage();
-           return "en";
+            return "en";
         }
 
         return LANGUAGE;
     }
-
 
 
     public static void reFreshLanguage(Locale locale, Activity activity, Class<?> homeClass) {
@@ -62,6 +61,9 @@ public class LanguageUtil {
                     break;
                 case "ko":
                     locale = Locale.KOREA;
+                    break;
+                case "ar":
+                    locale = new Locale("ar", "Arabic");
                     break;
                 case "es":
                     locale = new Locale("es", "ES");
@@ -124,7 +126,6 @@ public class LanguageUtil {
      * @param locale
      * @param activity
      * @param homeClass
-
      */
     private static void changeLanguage(Locale locale, Activity activity, Class<?> homeClass) {
         Resources resources = activity.getResources();

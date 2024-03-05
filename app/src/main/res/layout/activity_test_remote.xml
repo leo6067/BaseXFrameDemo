@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.infrared.TestRemoteActivity">
+    tools:context=".ui.infrared.TestOrderActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_48"
+                android:layout_marginTop="@dimen/dp_18"
                 android:background="@drawable/icon_test_tv" />
 
             <TextView
@@ -31,48 +31,40 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dp_40"
                 android:layout_marginTop="@dimen/dp_20"
+                android:gravity="center"
                 android:text="@string/tap_the_buttons_below_to_test_if_the_tv_responds_correctly"
-                android:textColor="#ffffffff"
-                android:textSize="18sp"
+                android:textColor="@color/colorFontBlack"
+                android:textSize="@dimen/sp_18"
                 android:textStyle="bold" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/dp_20"
-                android:layout_marginTop="@dimen/dp_20">
-
-                <com.ruffian.library.widget.RTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    app:background_normal="@color/colorLight"
-                    app:corner_radius="@dimen/dp_20"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="@dimen/dp_30">
 
 
                 <ImageView
                     android:id="@+id/voiceIV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_15"
-                    android:background="@drawable/icon_test_voice"
+                    android:layout_width="@dimen/dp_90"
+                    android:layout_height="@dimen/dp_90"
+                    android:background="@drawable/select_voice_bg"
+                    android:clickable="true"
                     android:onClick="onClick"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
-                <com.ruffian.library.widget.RTextView
+                <ImageView
                     android:id="@+id/controlTV"
-                    android:layout_width="match_parent"
+                    android:layout_width="@dimen/dp_180"
                     android:layout_height="@dimen/dp_50"
-                    android:layout_marginHorizontal="@dimen/dp_70"
-                    android:layout_marginTop="@dimen/dp_15"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="@dimen/dp_25"
                     android:layout_marginBottom="@dimen/dp_20"
-                    app:background_normal="#333333"
-                    app:corner_radius="@dimen/dp_25"
+                    android:background="@drawable/icon_test_order_bg"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/voiceIV" />
 
@@ -95,7 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1/5"
-                    android:textColor="#ffffffff"
+                    android:textColor="@color/colorFontBlack"
                     android:textSize="@dimen/sp_18"
                     app:layout_constraintBottom_toBottomOf="@+id/controlTV"
                     app:layout_constraintEnd_toEndOf="@+id/controlTV"
@@ -124,16 +116,10 @@
                 android:id="@+id/respondLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/dp_20"
-                android:layout_marginTop="@dimen/dp_20">
-
-                <com.ruffian.library.widget.RTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    app:background_normal="#F5F5F5"
-                    app:corner_radius="@dimen/dp_20"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginHorizontal="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@drawable/icon_turn_on_bg"
+                android:paddingVertical="@dimen/dp_15">
 
 
                 <TextView
@@ -143,7 +129,8 @@
                     android:layout_marginTop="@dimen/dp_20"
                     android:text="@string/does_your_tv_respond"
                     android:textColor="#ff333333"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/sp_18"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

@@ -15,7 +15,6 @@ import com.xy.demo.databinding.ActivitySaveRemoteBinding
 import com.xy.demo.db.MyDataBase
 import com.xy.demo.db.RemoteModel
 import com.xy.demo.ui.vm.HttpViewModel
-import com.xy.xframework.utils.DigitKeyboardUtils
 import com.xy.xframework.utils.ToastUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -61,33 +60,25 @@ class SaveRemoteActivity : MBBaseActivity<ActivitySaveRemoteBinding, HttpViewMod
 		
 		
 		when (remoteModel.location) {
-			"1" -> binding.locationRG.check(R.id.defaultRB)
-			"2" -> binding.locationRG.check(R.id.livingRB)
-			"3" -> binding.locationRG.check(R.id.bedRB)
-			"4" -> binding.locationRG.check(R.id.dinningRB)
-			"5" -> binding.locationRG.check(R.id.mediaRB)
+			"1" -> binding.locationRG.check(R.id.livingRB)
+			"2" -> binding.locationRG.check(R.id.bedRB)
+			"3" -> binding.locationRG.check(R.id.dinningRB)
+			"4" -> binding.locationRG.check(R.id.mediaRB)
 		}
 		
 		when (remoteModel.color) {
 			1 -> {
-				binding.colorRG.check(R.id.blueRB)
-				binding.tvIV.setBackgroundResource(R.drawable.icon_save_tv_blue)
+				binding.colorRG.check(R.id.redRB)
 			}
 			
 			2 -> {
-			    binding.colorRG.check(R.id.redRB)
-				binding.tvIV.setBackgroundResource(R.drawable.icon_save_tv_red)
-			}
-			3 -> {
-				binding.colorRG.check(R.id.pinkRG)
-				binding.tvIV.setBackgroundResource(R.drawable.icon_save_tv_pink)
-			}
-		
-			4 -> {
 				binding.colorRG.check(R.id.yellowRB)
-				binding.tvIV.setBackgroundResource(R.drawable.icon_save_tv_yellow)
 			}
-		
+			
+			3 -> {
+				binding.colorRG.check(R.id.blueRB)
+			}
+			
 		}
 		
 		
@@ -95,59 +86,42 @@ class SaveRemoteActivity : MBBaseActivity<ActivitySaveRemoteBinding, HttpViewMod
 		
 		binding.locationRG.setOnCheckedChangeListener { group, checkedId ->
 			when (checkedId) {
-				R.id.defaultRB -> {
+				R.id.livingRB -> {
 					remoteModel.location = "1"
 				}
 				
-				R.id.livingRB -> {
+				R.id.bedRB -> {
 					remoteModel.location = "2"
 				}
 				
-				R.id.bedRB -> {
+				R.id.dinningRB -> {
 					remoteModel.location = "3"
 				}
 				
-				R.id.dinningRB -> {
+				R.id.mediaRB -> {
 					remoteModel.location = "4"
 				}
-				
-				R.id.mediaRB -> {
-					remoteModel.location = "5"
-				}
 			}
-			
 		}
 		
 		
 		
 		binding.colorRG.setOnCheckedChangeListener { group, checkedId ->
 			when (checkedId) {
-				R.id.blueRB -> {
-					binding.tvIV.setBackgroundResource(R.drawable.icon_save_tv_blue)
+				R.id.redRB -> {
 					remoteModel.color = 1
 				}
 				
-				R.id.redRB -> {
-					binding.tvIV.setBackgroundResource(R.drawable.icon_save_tv_red)
+				R.id.yellowRB -> {
 					remoteModel.color = 2
 				}
 				
-				R.id.pinkRG -> {
-					binding.tvIV.setBackgroundResource(R.drawable.icon_save_tv_pink)
+				R.id.blueRB -> {
 					remoteModel.color = 3
-				}
-				
-				R.id.yellowRB -> {
-					binding.tvIV.setBackgroundResource(R.drawable.icon_save_tv_yellow)
-					remoteModel.color = 4
 				}
 			}
 		}
-
 //		viewModel.getOrderListHttp(remoteModel.brandId, remoteModel.modelId)
-		
-	
-	
 	}
 	
 	
@@ -176,12 +150,12 @@ class SaveRemoteActivity : MBBaseActivity<ActivitySaveRemoteBinding, HttpViewMod
 				finish()
 			}
 		} else {
-			AddWayActivity.activity?.finish()
+			AddRemoteActivity.activity?.finish()
 			BrandActivity.activity?.finish()
-			TurnOnActivity.activity?.finish()
+			TvPowerOnActivity.activity?.finish()
 			ReadyActivity.activity?.finish()
-			TestRemoteActivity.activity?.finish()
-		 
+			TestOrderActivity.activity?.finish()
+			
 			lifecycleScope.launch(Dispatchers.IO) {
 				if (MyDataBase.instance.RemoteDao().getByName(remoteModel.name) == null) {
 					MyDataBase.instance.RemoteDao().insert(remoteModel)  // 插入数据
@@ -210,7 +184,7 @@ class SaveRemoteActivity : MBBaseActivity<ActivitySaveRemoteBinding, HttpViewMod
 		if (ev.action == MotionEvent.ACTION_DOWN) {
 			val v = currentFocus
 			if (isShouldHideInput(v, ev)) {
-				val imm =  getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+				val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 				imm?.hideSoftInputFromWindow(v!!.windowToken, 0)
 			}
 			return super.dispatchTouchEvent(ev)

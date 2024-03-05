@@ -7,9 +7,17 @@ import android.view.GestureDetector
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.lifecycleScope
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
+import com.flyco.tablayout.listener.CustomTabEntity
+import com.flyco.tablayout.listener.OnTabSelectListener
+import com.google.android.material.tabs.TabLayoutMediator
 import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
@@ -21,9 +29,10 @@ import com.xy.demo.databinding.ActivityMainBinding
 import com.xy.demo.db.MyDataBase
 import com.xy.demo.logic.LanguageUtil
 import com.xy.demo.logic.ad.AdManage
+import com.xy.demo.model.TabEntity
 import com.xy.demo.network.Globals
 import com.xy.demo.ui.adapter.ControlAdapter
-import com.xy.demo.ui.setting.SettingActivity
+
 import com.xy.demo.ui.vm.MainViewModel
 import com.xy.xframework.base.BaseSharePreference
 import com.xy.xframework.base.XBaseViewModel
@@ -37,11 +46,27 @@ import kotlinx.coroutines.withContext
 
 
 //, GestureDetector.OnGestureListener  触摸 手势
-class MainActivity : MBBaseActivity<ActivityMainBinding, MainViewModel>(){
+class MainActivity : MBBaseActivity<ActivityMainBinding, MainViewModel>() {
 	
 	
-	//绑定手势监听  这是前置条件
-	var detector: GestureDetector? = null
+ 
+	
+	/*文本信息*/
+	lateinit var mTitles: Array<String>
+	
+	/*未选择时的icon*/
+	private val mIconUnselectIds = intArrayOf(
+		R.drawable.icon_tab_home_a, R.drawable.icon_tab_tv_a,
+		R.drawable.icon_tab_setting_a
+	)
+	
+	/*选择时的icon*/
+	private val mIconSelectIds = intArrayOf(
+		R.drawable.icon_tab_home_b, R.drawable.icon_tab_tv_b,
+		R.drawable.icon_tab_setting_b
+	)
+	private val mTabEntities = ArrayList<CustomTabEntity>()
+	private val mFragments = ArrayList<Fragment>()
 	
 	
 	override fun getLayoutId(): Int {
@@ -62,109 +87,102 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, MainViewModel>(){
 	override fun initView() {
 		super.initView()
 		
+		/*文本信息*/
+		mTitles = arrayOf(getString(R.string.my_remote), getString(R.string.cast), getString(R.string.settings))
+		initTabAndViewPager()
 	}
 	
-	override fun onResume() {
-		super.onResume()
-		showLoading()
-		val fragmentManager: FragmentManager = supportFragmentManager // 对于 AppCompatActivity
-		val transaction: FragmentTransaction = fragmentManager.beginTransaction()
-		
-		
-		runBlocking {
-			
-			val allRemote = withContext(Dispatchers.IO) {
-				MyDataBase.instance.RemoteDao().getAllRemote() as MutableList
-			}
-			
-			if (allRemote.size > 0) {
-				transaction.replace(R.id.fragment_container, HomeFragment())
-			} else {
-				transaction.replace(R.id.fragment_container, AddFragment())
-			}
-			dismissLoading()
-			transaction.commitAllowingStateLoss()
-		}
- 
-		
-		
-	}
 	
 	override fun initParams() {
 		super.initParams()
 		viewModel.getBrandListHttp()
-		
-		binding.settingIV.setOnClickListener {
-			startActivity(Intent(this@MainActivity, SettingActivity::class.java))
-		}
-		
-		binding.closeIV.setOnClickListener {
-			binding.adLin.visibility = View.GONE
-			Constants.showMainTopBanner = false
-		}
-		
-		
-		binding.bottomCloseIV.setOnClickListener {
-			binding.bottomLay.visibility = View.GONE
-			Constants.showMainBottomBanner = false
-		}
-		
-		
-		
-		if (Constants.showMainTopBanner) {
-			AdManage.showBannerAd(binding.adView, binding.adLin)
-		}
-		
-		if (Constants.showMainBottomBanner) {
-			AdManage.showBannerAd(binding.bottomAdView, binding.bottomLay)
-		}
-		
-		
-		LiveEventBus
-			.get<String>(Constants.EVENT_SCROLL_UP).observe(this) {
-				lifecycleScope.launch(Dispatchers.Main) {
-					if (binding.bottomLay.visibility == View.GONE) {
-						AdManage.showBannerAd(binding.bottomAdView, binding.bottomLay)
-					}
-				}
-			}
-		
- 
 	}
-
-
-//	fun showNotificationDialog() {
-//		var permission: String? = Permission.NOTIFICATION_SERVICE
-//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-//			permission = Manifest.permission.POST_NOTIFICATIONS
+	
+	
+	private fun initTabAndViewPager() {
+		mFragments.clear()
+		mFragments.add(HomeFragment())
+		mFragments.add(CastFragment())
+		mFragments.add(SettingFragment())
+		
+		//设置adapter
+		binding.viewPager.adapter = fragmentAdapter
+		//设置viewpage的滑动方向
+		binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+		//禁止滑动
+		// binding.viewpager.isUserInputEnabled = false
+		//设置显示的页面，0：是第一页
+		//binding.viewpager.currentItem = 1
+		//设置缓存页
+//		binding.viewPager.offscreenPageLimit = mFragments.size
+		//设置viewPage2切换效果
+		//binding.viewpager.setPageTransformer(TransFormer())
+		
+		
+		for (i in mTitles.indices) {
+			mTabEntities.add(TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]))
+		}
+		
+		binding.tabLay.setTabData(mTabEntities)
+		
+		binding.tabLay.setOnTabSelectListener(object : OnTabSelectListener {
+			override fun onTabSelect(position: Int) {
+				binding.viewPager.currentItem = position
+			}
+			
+			override fun onTabReselect(position: Int) {
+			}
+		})
+		
+		//设置选中事件
+		binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+			override fun onPageSelected(position: Int) {
+				super.onPageSelected(position)
+				binding.tabLay.currentTab = position
+			}
+		})
+		
+		
+		
+		
+//		LiveEventBus.get<Int>("mainTab").observe(this) {
+//			currentPosition = it
+//			binding.viewPager.currentItem = currentPosition
+//			Globals.log("XXXXXXXXXX  it" + currentPosition)
 //		}
-//		if (!XXPermissions.isGranted(activity, permission)) {
-//			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-//				XXPermissions.with(activity).permission(permission).request(OnPermissionCallback { permissions, allGranted -> })
-//			} else {
-//				NotificationDialog(activity).showAllowingStateLoss()
-//			}
-//		}
-//	}
+//
+		
+		val currentPosition = intent.getIntExtra("mainTab", 0);
+		
+		
+		binding.viewPager.currentItem = currentPosition
+		
+	}
+	
+	
+	/**
+	 * viewPager adapter
+	 */
+	private val fragmentAdapter: FragmentStateAdapter by lazy {
+		object : FragmentStateAdapter(this) {
+			override fun getItemCount(): Int {
+				return mFragments.size
+			}
+			
+			override fun createFragment(position: Int): Fragment {
+				return mFragments[position]
+			}
+		}
+	}
 	
 	
 	override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			moveTaskToBack(true)
-//			if (System.currentTimeMillis() - backTime < 2000) {
-////					moveTaskToBack(true)
-////					System.exit(0)
-//
-//			} else {
-//				ToastUtils.showShort("再次点击退出app")
-//			}
-//			backTime = System.currentTimeMillis()
 			return true
 		}
 		return super.onKeyDown(keyCode, event)
 	}
-	
- 
 	
 	
 }

@@ -60,7 +60,7 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="make_sure_your_phone_and_tv_or_wireless_adapter_connect_to_the">Make sure your phone and TV(Or wireless adapter) connect to the </string>
-    <string name="same_wifi">same WiFi </string>
+    <string name="same_wifi">  same WiFi </string>
     <string name="and">and </string>
     <string name="turn_off_vpn">turn off VPN.</string>
     <string name="enable_the">"Enable the "</string>
@@ -72,4 +72,22 @@
     <string name="the_screen_casting_settings_are_not_found_on_the_device">The screen casting Settings are not found on the device</string>
     <string name="number">Number</string>
     <string name="more">More</string>
+    <string name="is_your_tv_turned_on">Is your TV turned on?</string>
+    <string name="your_phone_needs_to_have_a_built_in_ir_infrared_blaster">Your phone needs to have a built-in IR (infrared blaster).</string>
+    <string name="there_is_no_built_in_infrared_blaster_in_your_phone_so_you_can_t_control_tv_via_ir">There is no built-in infrared blaster in your phone,so you can\'t control TV via IR</string>
+    <string name="no_smart_remote_for_the_sony_tv">No smart remote for the SONY TV</string>
+    <string name="maybe_later">Maybe later</string>
+    <string name="please_use_wifi">Please use wifi</string>
+    <string name="no_equipment">No equipment</string>
+    <string name="add_remote">ADD REMOTE</string>
+    <string name="cast">CAST</string>
+    <string name="connecting_way">Connecting  Way</string>
+
+    <string name="music">Music</string>
+    <string name="mirroring">Mirroring</string>
+    <string name="tv_cast_amp_n_stream_mirroring"><![CDATA[TV Cast & \n Stream Mirroring]]></string>
+    <string name="no">NO</string>
+    <string name="yes">YES</string>
+    <string name="test_remote">Test remote</string>
+    <string name="choose_language">Choose Language</string>
 </resources>

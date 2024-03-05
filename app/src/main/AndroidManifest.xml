@@ -3,21 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.xy.demo">
 
+    <!-- 获取本地 wifi 信息名称需要-->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_CONTACTS" /> <!-- 红外遥控 -->
-    <uses-permission android:name="android.permission.TRANSMIT_IR" /> <!-- 是否仅在支持红外的设备上运行 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" /> <!-- 屏幕镜像和远程摄像头所需 -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <!--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
+    <!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
+
+
+    <!-- 读取本地照片 视频 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- 遥控震动 -->
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 红外遥控 --> <!-- 是否仅在支持红外的设备上运行 -->
+    <uses-permission android:name="android.permission.TRANSMIT_IR" />
+
+
+
+    <!-- 屏幕镜像和远程摄像头所需 Connect SDK-->
+    <!--    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />-->
+    <!--    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />-->
+    <!--    <uses-permission android:name="android.permission.CAMERA" />-->
+
+
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"
+        tools:node="remove">
+
+
+    </uses-permission>
+
 
     <uses-feature
         android:name="android.hardware.ConsumerIrManager"
@@ -25,11 +41,12 @@
 
     <application
         android:name=".base.MyApplication"
-        android:icon="@mipmap/app_logo"
+        android:icon="@mipmap/logo_app"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/app_logo_round"
-        android:supportsRtl="true"
+        android:roundIcon="@mipmap/logo_app_round"
+        android:supportsRtl="false"
+        tools:replace="android:supportsRtl"
         android:theme="@style/Theme.BaseDemo"
         android:usesCleartextTraffic="true">
         <activity
@@ -66,17 +83,15 @@
         <activity
             android:name=".ui.setting.PrivacyActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.setting.SettingActivity"
-            android:exported="false" />
+
         <activity
             android:name=".ui.infrared.SaveRemoteActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.infrared.TestRemoteActivity"
+            android:name=".ui.infrared.TestOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.infrared.TurnOnActivity"
+            android:name=".ui.infrared.TvPowerOnActivity"
             android:exported="false" />
         <activity
             android:name=".ui.infrared.ReadyActivity"
@@ -85,7 +100,7 @@
             android:name=".ui.infrared.BrandActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.infrared.AddWayActivity"
+            android:name=".ui.infrared.AddRemoteActivity"
             android:exported="false" />
 
         <meta-data

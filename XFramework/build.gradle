@@ -6,8 +6,8 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion "30.0.2"
+
+    compileSdk 31
 
     defaultConfig {
         minSdkVersion 21
@@ -59,7 +59,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+
 }
+
+
+
+
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -105,7 +111,7 @@ dependencies {
 
 
 
-    //奔溃日志initlog
+
     //奔溃日志initlog
     api 'com.simple:spiderman:1.0.2'
 
@@ -120,6 +126,8 @@ dependencies {
     api 'com.github.getActivity:XXPermissions:18.0'
 
 
+    // 加载动画 loading
+    api 'com.github.ybq:Android-SpinKit:1.4.0'
 
 
 

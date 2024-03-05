@@ -8,6 +8,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:fillViewport="true">
 
         <LinearLayout
@@ -16,7 +17,9 @@
             android:orientation="vertical">
 
 
-            <include layout="@layout/include_title" />
+            <include
+                android:id="@+id/titleLay"
+                layout="@layout/include_title" />
 
 
             <ImageView
@@ -35,7 +38,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/dp_6"
                 android:text="@string/tell_us_the_problem_n_you_encountered"
-                android:textColor="#ffffffff"
+                android:textColor="@color/colorFontBlack"
                 android:textSize="@dimen/sp_22" />
 
 
@@ -45,7 +48,7 @@
                 android:layout_marginStart="@dimen/dp_40"
                 android:layout_marginTop="@dimen/dp_20"
                 android:text="@string/what_s_your_tv_brand"
-                android:textColor="#ffdddddd"
+                android:textColor="@color/colorFontGray"
                 android:textSize="@dimen/sp_14" />
 
 
@@ -55,14 +58,14 @@
                 android:layout_height="@dimen/dp_50"
                 android:layout_marginHorizontal="@dimen/dp_20"
                 android:layout_marginTop="@dimen/dp_8"
-                android:drawableEnd="@drawable/icon_next"
+                android:drawableRight="@drawable/icon_next"
                 android:gravity="center_vertical"
                 android:hint="@string/select_tv_brand"
                 android:paddingHorizontal="@dimen/dp_20"
-                android:textColor="@color/white"
+                android:textColor="@color/colorFontGray"
                 android:textColorHint="#999"
-                app:background_normal="#4F4F4F"
-                app:corner_radius="@dimen/dp_20" />
+                app:background_normal="@color/colorPrimary"
+                app:corner_radius="@dimen/dp_12" />
 
             <TextView
                 android:id="@+id/noBrandTV"
@@ -81,7 +84,7 @@
                 android:layout_marginStart="@dimen/dp_40"
                 android:layout_marginTop="@dimen/dp_20"
                 android:text="@string/what_s_your_problem"
-                android:textColor="#ffdddddd"
+                android:textColor="@color/colorFontGray"
                 android:textSize="@dimen/sp_14" />
 
 
@@ -91,15 +94,15 @@
                 android:layout_height="@dimen/dp_50"
                 android:layout_marginHorizontal="@dimen/dp_20"
                 android:layout_marginTop="@dimen/dp_8"
-                android:drawableEnd="@drawable/icon_spinn"
+                android:drawableRight="@drawable/icon_spinn"
                 android:gravity="center_vertical"
-                android:textColor="@color/white"
                 android:hint="@string/select_the_problem"
                 android:onClick="onClick"
                 android:paddingHorizontal="@dimen/dp_20"
+                android:textColor="@color/colorFontGray"
                 android:textColorHint="#999"
-                app:background_normal="#4F4F4F"
-                app:corner_radius="@dimen/dp_20" />
+                app:background_normal="@color/colorPrimary"
+                app:corner_radius="@dimen/dp_12" />
 
             <TextView
                 android:visibility="gone"
@@ -118,7 +121,7 @@
                 android:layout_marginStart="@dimen/dp_40"
                 android:layout_marginTop="@dimen/dp_20"
                 android:text="@string/more_details"
-                android:textColor="#ffdddddd"
+                android:textColor="@color/colorFontGray"
                 android:textSize="@dimen/sp_14" />
 
 
@@ -132,10 +135,10 @@
                 android:hint="@string/we_can_locate_and_solve_your_problem_faster"
                 android:minHeight="@dimen/dp_90"
                 android:paddingHorizontal="@dimen/dp_20"
-                android:textColor="@color/white"
+                android:textColor="@color/colorFontGray"
                 android:textColorHint="#999"
-                app:background_normal="#4F4F4F"
-                app:corner_radius="@dimen/dp_20" />
+                app:background_normal="@color/colorPrimary"
+                app:corner_radius="@dimen/dp_12" />
 
 
             <com.ruffian.library.widget.RTextView

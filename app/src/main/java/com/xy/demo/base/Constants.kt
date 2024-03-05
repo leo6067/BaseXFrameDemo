@@ -18,6 +18,7 @@ class Constants {
         //切换正式 测试环境  正式  true    false debug
         const val KEY_APP_RELEASE = "key_app_release"
         
+        
         //域名 上架修改
         const val releaseBaseUrl = "https://toolapi.shenjiwenhua.com/"
         const val debugBaseUrl = "https://toolapi.shenjiwenhua.com/"
@@ -26,13 +27,15 @@ class Constants {
         
         //注册协议
         const val AGREEMENT_PRIVACY = "https://toolm.shenjiwenhua.com/getAgreement/?appkey=100000&type=1"
-        const val AGREEMENT_SERVICE = " "
+        
+        //本地设备数据库
+        const val DB_NAME = "sjykq_db"
     
     
     
         //接口加密
-        const val ZS_AES_KEY = "9eYKK6y18IngV4QA"
-        const val ZS_SECRET_KEY = "61bdbc05c842aa07edb84e7e585ec65f"
+        const val ZS_AES_KEY = "4eYKK6y18IngV4QA"
+        const val ZS_SECRET_KEY = "d7f3218f173139d9ef4e45b875008afd"
     
     
         const val NANO_SORT = 59168

@@ -43,6 +43,11 @@ import fi.iki.elonen.NanoHTTPD;
  * FileDownloadUtils.getDefaultSaveRootPath() + File.separator + Constants.FILE_CACHE_APP;
  * <p>
  * 原文链接：https://blog.csdn.net/Crazy_Cw/article/details/131275226
+ *
+ * data/external/audio/media/79121
+ *
+ * data/storage/emulated/0/DCIM/Camera/MVIMG_20240225_083409.jpg
+ * data/storage/emulated/0/Pictures/WeiXin/wx_camera_1702177958984.jpg
  */
 
 public class HttpService extends NanoHTTPD {
@@ -86,14 +91,12 @@ public class HttpService extends NanoHTTPD {
         String uri = session.getUri();
         Map<String, String> files = new HashMap<>();
 
-
-
-
-
         File f = new File(uri);
+
+        Globals.log("xxxxxx otherFilePath data" + pathDomain);
+
+
         return serveFile(uri, headers, new File(pathDomain) ,fileType);
-
-
 
 //            InputStream inputStream = null;
 //            try {
@@ -103,8 +106,6 @@ public class HttpService extends NanoHTTPD {
 //                Globals.log("xxxx  getLocalIpStr(this) -getMessage---" + e.getMessage());  //192.168
 //                return  NanoHTTPD.newFixedLengthResponse("");
 //            }
-
-
 
 
     }

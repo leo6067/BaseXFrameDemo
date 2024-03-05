@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.util.Log
@@ -33,8 +34,11 @@ import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.base.MyApplication
 import com.xy.demo.databinding.ActivitySearchWifiBinding
+import com.xy.demo.logic.file.FileManager
+import com.xy.demo.model.MusicModel
 import com.xy.demo.network.Globals
 import com.xy.demo.ui.adapter.WifiDeviceAdapter
+import com.xy.demo.ui.dialog.MusicDialog
 import com.xy.network.watch.NetworkStateLiveData
 import com.xy.network.watch.NetworkType
 import com.xy.xframework.imagePicker.RedBookPresenter
@@ -52,8 +56,6 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 	var mConnectableDevice: ConnectableDevice? = null
 	var mService: DeviceService? = null
 	
-	
-	var animationDrawable: AnimationDrawable? = null
 	
 	var mAdapter = WifiDeviceAdapter()
 	
@@ -74,8 +76,6 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 //		}
 		
 		mAdapter.addData(device)
-		animationDrawable?.stop()
-		
 		binding.searchLin.visibility = View.GONE
 		binding.deviceLin.visibility = View.VISIBLE
 	}
@@ -83,7 +83,7 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 	override fun onDeviceUpdated(manager: DiscoveryManager, device: ConnectableDevice) {
 		Globals.log("xxxxxxadapter onDeviceUpdated------" + device.toString())
 		mAdapter.addData(device)
-		animationDrawable?.stop()
+		
 		binding.searchLin.visibility = View.GONE
 		binding.deviceLin.visibility = View.VISIBLE
 	}
@@ -156,8 +156,7 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 	override fun initView() {
 		super.initView()
 		notNetWorkLin = binding.netInclude.netLin
-		animationDrawable = binding.wifiIV.background as AnimationDrawable
-		animationDrawable?.start()
+		
 		this.mRecyclerView = binding.wifiListView
 		initRecycler(1, 1, 1)
 		mRecyclerView?.adapter = mAdapter
@@ -168,56 +167,11 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 		super.onResume()
 		NetworkStateLiveData.observe(this) {
 			if (it != NetworkType.WIFI) {
-				ToastUtils.showShort("Please use wifi")
+				ToastUtils.showShort(getString(R.string.please_use_wifi))
 			}
-		}
-		
-		
-		val wifissid = getWIFISSID(this)
-		
- 
-		if (!wifissid.contains("unknown")){
-			binding.wifiNameTV.text = getString(R.string.current_wi_fi)+wifissid
 		}
 	}
 	
-	
-	fun getWIFISSID(activity: Activity): String {
- 
-		val ssid = "unknown id"
-		if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O || Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-			val mWifiManager = (activity.applicationContext.getSystemService(WIFI_SERVICE) as WifiManager)
-			val info = mWifiManager.connectionInfo
-			return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-				info.ssid
-			} else {
-				info.ssid.replace("\"", "")
-			}
-		} else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O_MR1) {
-			val connManager = (activity.applicationContext.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager)
-			val networkInfo = connManager.activeNetworkInfo
-			if (networkInfo!!.isConnected) {
-				if (networkInfo.extraInfo != null) {
-					return networkInfo.extraInfo.replace("\"", "")
-				}
-			}
-		}
-		Globals.log("xxxxxxssid"+ssid)
-		return ssid
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
- 
 	
 	override fun initParams() {
 		super.initParams()
@@ -249,13 +203,39 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 			
 			override fun parseResult(resultCode: Int, intent: Intent?): String {
 				//页面回传的数据解析，相当于原onActivityResult方法
-				otherFilePath = intent?.data?.path.toString()
+				
+				try {
+					otherFilePath = FileUtils.getPath(this@SearchWifiActivity, intent?.data)
+				} catch (_: Exception) {
+				
+				}
+				Globals.log("xxxxxx otherFilePath data000000" + otherFilePath)
 				return if (resultCode == RESULT_OK) "one" else ""
 			}
 		}) {
 			Globals.log("xxxxxx otherFilePath data" + otherFilePath)
 		}
-		
+
+
+//		when (fileTypeStr) {
+//			"image/jpeg" -> {
+//				fileFormat = MimeType.ofImage()
+//				chooseImage()
+//			}
+//
+//			"video/mp4" -> {
+//				fileFormat = MimeType.ofVideo()
+//				chooseImage()
+//			}
+//
+//			"audio/x-wav" -> {
+//				//常规带回调启动Activity
+//				requestDataLauncher.launch("SearchWifiActivity")
+//			}
+//		}
+
+
+//
 		
 		
 		mAdapter.setOnItemClickListener { adapter, view, position ->
@@ -281,8 +261,19 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 				
 				"audio/x-wav" -> {
 					//常规带回调启动Activity
-					
-					requestDataLauncher.launch("FeedBackActivity")
+//					requestDataLauncher.launch("SearchWifiActivity")
+					XXPermissions.with(this)
+						.permission(Permission.CAMERA)
+						.request { permissions, all ->
+							val musicDialog = MusicDialog()
+							musicDialog.show(supportFragmentManager, "")
+							musicDialog.musicAdapter.setOnItemClickListener { adapter, view, position ->
+								val musicModel = adapter.data[position] as MusicModel
+								Globals.log("xxxxxxxmusicAdapter" + musicModel.toString())
+								MyApplication.httpService.setFilePath(musicModel.path, "video/mp4")
+								sendMediaFile(fileTypeStr,musicModel.name)
+							}
+						}
 				}
 			}
 		}
@@ -291,7 +282,6 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 	
 	
 	fun chooseImage() {
-		
 		XXPermissions.with(this)
 			.permission(Permission.CAMERA)
 			.request { permissions, all ->
@@ -324,7 +314,7 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 	}
 	
 	
-	fun sendMediaFile(mimeType: String) {
+	fun sendMediaFile(mimeType: String,title:String ="") {
 		
 		
 		showLoading()
@@ -332,8 +322,7 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 		var iconUrl = "http://" + getLocalIpStr(this) + ":" + Constants.NANO_SORT + "/loadingpng"
 		
 		Globals.log("App Tag" + "Display photo String:  mediaUrl $mediaUrl")
-		
-		val title = "remote"
+ 
 		val description = "screen"
 		
 		val mediaInfo: MediaInfo = Builder(mediaUrl, mimeType)

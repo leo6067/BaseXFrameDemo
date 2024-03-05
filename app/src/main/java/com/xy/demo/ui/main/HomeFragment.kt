@@ -1,8 +1,8 @@
 package com.xy.demo.ui.main
 
 import android.content.Intent
-import android.view.GestureDetector
-import android.view.MotionEvent
+import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
@@ -13,10 +13,11 @@ import com.xy.demo.base.MBBaseFragment
 import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.FragmentHomeBinding
 import com.xy.demo.db.MyDataBase
+import com.xy.demo.logic.ad.AdManage
 import com.xy.demo.network.Globals
 import com.xy.demo.ui.adapter.DeviceAdapter
-import com.xy.demo.ui.dialog.CastDialog
-import com.xy.demo.ui.infrared.AddWayActivity
+
+import com.xy.demo.ui.infrared.AddRemoteActivity
 import com.xy.demo.ui.infrared.TVConActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -35,20 +36,36 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MBBaseViewModel>() {
 		return R.layout.fragment_home
 	}
 	
+	
+	override fun onResume() {
+		super.onResume()
+		
+		lifecycleScope.launch(Dispatchers.IO) {
+			val allRemote = MyDataBase.instance.RemoteDao().getAllRemote() as MutableList
+			withContext(Dispatchers.Main) {
+				mAdapter.setNewInstance(allRemote)
+				if (allRemote.size > 0) {
+					binding.recyclerView.visibility = View.VISIBLE
+					binding.deviceIV.visibility = View.GONE
+					binding.equipmentTV.visibility = View.GONE
+					binding.addDeviceTV.visibility = View.GONE
+				} else {
+					binding.recyclerView.visibility = View.GONE
+					binding.deviceIV.visibility = View.VISIBLE
+					binding.equipmentTV.visibility = View.VISIBLE
+					binding.addDeviceTV.visibility = View.VISIBLE
+				}
+			}
+		}
+	}
+	
 	override fun initView() {
 		
 		
 		binding.recyclerView.layoutManager = GridLayoutManager(activity, 2)
 		binding.recyclerView.adapter = mAdapter
 		
-		GlobalScope.launch(Dispatchers.IO) {
-			val allRemote = MyDataBase.instance.RemoteDao().getAllRemote() as MutableList
-			mAdapter.setNewInstance(allRemote)
-			
-			withContext(Dispatchers.Main) {
-				binding.deviceNum.setText("(" + allRemote.size + ")")
-			}
-		}
+		
 		
 		mAdapter.setOnItemClickListener { adapter, view, position ->
 			activity?.let {
@@ -61,14 +78,13 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MBBaseViewModel>() {
 		
 		
 		binding.addDevice.setOnClickListener {
-			activity?.startActivity(Intent(activity, AddWayActivity::class.java))
+			activity?.startActivity(Intent(activity, AddRemoteActivity::class.java))
 		}
 		
-		binding.topLin.setOnClickListener {
-			activity?.let { it1 ->
-				CastDialog().show(it1.supportFragmentManager, "1")
-			}
+		binding.addDeviceTV.setOnClickListener {
+			activity?.startActivity(Intent(activity, AddRemoteActivity::class.java))
 		}
+		
 		
 		
 		binding.recyclerView.addOnScrollListener(object : OnScrollListener() {
@@ -81,10 +97,36 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MBBaseViewModel>() {
 				super.onScrolled(recyclerView, dx, dy)
 				Globals.log("XXXXXXXnewState dy" + dy)
 				if (dy > 0) {
-					LiveEventBus.get<String>(Constants.EVENT_SCROLL_UP).post("上划")
+					if (binding.bottomLay.visibility == View.GONE) {
+						AdManage.showBannerAd(binding.bottomAdView, binding.bottomLay)
+					}
 				}
 			}
 		})
+		
+	
+	//广告相关
+//		binding.closeIV.setOnClickListener {
+//			binding.adLin.visibility = View.GONE
+//			Constants.showMainTopBanner = false
+//		}
+//
+//
+//		binding.bottomCloseIV.setOnClickListener {
+//			binding.bottomLay.visibility = View.GONE
+//			Constants.showMainBottomBanner = false
+//		}
+//
+//
+//
+//		if (Constants.showMainTopBanner) {
+//			AdManage.showBannerAd(binding.adView, binding.adLin)
+//		}
+//
+//		if (Constants.showMainBottomBanner) {
+//			AdManage.showBannerAd(binding.bottomAdView, binding.bottomLay)
+//		}
+		
 		
 	}
 	
@@ -93,21 +135,16 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MBBaseViewModel>() {
 		super.initViewObservable()
 		LiveEventBus
 			.get<String>(Constants.EVENT_DEVICES).observe(this) {
-				GlobalScope.launch(Dispatchers.Main) {
+				lifecycleScope.launch(Dispatchers.Main) {
 					showLoading()
 					withContext(Dispatchers.IO) {
 						MyDataBase.instance.RemoteDao().deleteByName(it)
 					}
 					delay(1000)
-					
 					val allRemote = withContext(Dispatchers.IO) {
 						MyDataBase.instance.RemoteDao().getAllRemote() as MutableList
 					}
-					
 					mAdapter.setNewInstance(allRemote)
-					withContext(Dispatchers.Main) {
-						binding.deviceNum.setText("(" + allRemote.size + ")")
-					}
 					dismissLoading()
 				}
 			}

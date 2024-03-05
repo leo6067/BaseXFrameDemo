@@ -7,8 +7,8 @@
     android:layout_marginBottom="@dimen/dp_16"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    app:background_normal="@color/color_000000_60"
-    app:corner_radius="@dimen/dp_25">
+    app:background_normal="@color/colorPrimary"
+    app:corner_radius="@dimen/dp_12">
 
     <ImageView
         android:id="@+id/flagIV"
@@ -25,7 +25,7 @@
         android:layout_marginStart="@dimen/dp_21"
         android:text="English"
         android:textStyle="bold"
-        android:textColor="#ffffffff"
+        android:textColor="@color/colorFontBlack"
         android:textSize="@dimen/sp_16" />
 
 

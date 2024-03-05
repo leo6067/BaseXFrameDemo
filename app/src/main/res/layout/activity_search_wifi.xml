@@ -7,7 +7,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/white"
         android:fillViewport="true">
 
         <RelativeLayout
@@ -46,14 +47,6 @@
                         android:indeterminateTintMode="src_in" />
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_28"
-                        android:text="@string/select_device"
-                        android:textColor="#ffffffff"
-                        android:textSize="@dimen/sp_22" />
-
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/wifiListView"
@@ -67,69 +60,53 @@
                 </LinearLayout>
 
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/searchLin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+
+                    >
+
+                    <com.github.ybq.android.spinkit.SpinKitView
+                        android:id="@+id/spinView"
+                        style="@style/SpinKitView.Large.MultiplePulse"
+                        android:layout_width="@dimen/dp_180"
+                        android:layout_height="@dimen/dp_180"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        app:SpinKit_Color="#DCDCDC" />
 
                     <ImageView
-                        android:id="@+id/wifiIV"
+                        android:id="@+id/ykIV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_32"
-                        android:background="@drawable/anim_wifi" />
-
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_6"
-                        android:background="@drawable/icon_launch_yk" />
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dp_36"
+                        android:background="@drawable/icon_search_yk" />
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_20"
+                        android:layout_below="@+id/ykIV"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dp_60"
                         android:text="@string/searching_device"
-                        android:textColor="#ffffffff"
+                        android:textColor="@color/colorFontBlack"
                         android:textSize="@dimen/sp_22" />
 
 
-                    <TextView
-                        android:id="@+id/wifiNameTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_20"
-                        android:text="@string/current_wi_fi"
-                        android:textColor="#ffffffff"
-                        android:textSize="@dimen/sp_16" />
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/dp_40"
-                        android:layout_marginTop="@dimen/dp_8"
-                        android:gravity="center"
-                        android:text="@string/to_display_the_wi_fi_name_please_allow_location_access_in_settings"
-                        android:textColor="#ffdddddd"
-                        android:textSize="@dimen/sp_14" />
-
-
-                </LinearLayout>
+                </RelativeLayout>
 
 
                 <com.ruffian.library.widget.RLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/dp_20"
-                    android:layout_marginTop="@dimen/dp_60"
+                    android:layout_marginTop="@dimen/dp_50"
                     android:layout_marginBottom="@dimen/dp_20"
                     android:orientation="vertical"
-                    app:background_normal="#4F4F4F"
+                    app:background_normal="@color/colorPrimary"
                     app:corner_radius="@dimen/dp_20">
 
 
@@ -139,19 +116,19 @@
                         android:layout_marginStart="@dimen/dp_20"
                         android:layout_marginTop="@dimen/dp_20"
                         android:text="@string/please_make_sure"
-                        android:textColor="#ffffffff"
+                        android:textColor="@color/colorFontBlack"
                         android:textSize="@dimen/sp_16"
                         android:textStyle="bold" />
 
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/dp_20"
                         android:layout_marginTop="@dimen/dp_10"
                         android:layout_marginBottom="@dimen/dp_20"
                         android:text="@string/turn_off_the_vpn_on_your_phone_if_it_s_connected"
-                        android:textColor="#ffffffff"
+                        android:textColor="@color/colorFontGray"
                         android:textSize="@dimen/sp_14"
                         android:textStyle="italic" />
 

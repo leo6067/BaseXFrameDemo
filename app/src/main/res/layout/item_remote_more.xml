@@ -18,7 +18,7 @@
         android:maxEms="3"
         android:ellipsize="end"
         android:text="0"
-        android:textColor="@color/white"
+        android:textColor="@color/colorFontGray"
         android:textSize="@dimen/sp_16"
         android:textStyle="bold"
         app:corner_radius="@dimen/dp_25" />

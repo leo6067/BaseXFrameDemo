@@ -7,6 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:focusableInTouchMode="true"
         android:orientation="vertical">
 
@@ -22,13 +23,13 @@
             android:layout_height="@dimen/dp_50"
             android:layout_marginHorizontal="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_80"
-            android:drawableStart="@drawable/icon_search"
+            android:drawableLeft="@drawable/icon_search"
             android:drawablePadding="@dimen/dp_10"
             android:gravity="center_vertical"
             android:hint="@string/tv_brands"
             android:imeOptions="actionSearch"
             android:lines="1"
-            android:paddingStart="@dimen/dp_15"
+            android:paddingLeft="@dimen/dp_15"
             android:singleLine="true"
             android:textColor="#ff999999"
             android:textColorHint="#ff999999"
@@ -37,11 +38,22 @@
             app:corner_radius="@dimen/dp_25" />
 
 
+        <include
+            android:id="@+id/hotLay"
+            layout="@layout/item_brand_hot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/search_et"
+            android:layout_marginStart="@dimen/dp_18"
+            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginEnd="@dimen/dp_22" />
+
+
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmerLay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/search_et"
+            android:layout_below="@+id/hotLay"
             android:layout_marginEnd="@dimen/dp_30">
 
             <LinearLayout
@@ -61,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_20"
-                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:text="A"
                     android:textColor="#ffffffff"
                     android:textSize="@dimen/sp_18" />
@@ -94,8 +106,8 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/search_et"
-            android:layout_marginTop="@dimen/dp_20" />
+            android:layout_below="@+id/hotLay"
+            android:layout_marginTop="@dimen/dp_10" />
 
 
         <com.xy.demo.ui.view.slide.SideBarLayout
@@ -105,17 +117,16 @@
             android:layout_below="@+id/search_et"
             app:sidebarSelectTextColor="@color/color_026DFF"
             app:sidebarSelectTextSize="12sp"
-            app:sidebarUnSelectTextColor="@color/white"
+            app:sidebarUnSelectTextColor="@color/colorFontGray"
             app:sidebarUnSelectTextSize="10sp"
             app:sidebarWordTextColor="@color/color_026DFF"
             app:sidebarWordTextSize="45sp" />
 
 
-
         <include
             android:id="@+id/netInclude"
-            android:visibility="gone"
-            layout="@layout/include_net"/>
+            layout="@layout/include_net"
+            android:visibility="gone" />
 
 
     </RelativeLayout>

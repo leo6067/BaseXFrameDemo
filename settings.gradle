@@ -6,6 +6,6 @@
 //        jcenter() // Warning: this repository is going to shut down soon
 //    }
 //}
-rootProject.name = "Remote"
+rootProject.name = "BaseXY"
 include ':app'
 include ':XFramework'

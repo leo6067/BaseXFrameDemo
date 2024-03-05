@@ -12,6 +12,7 @@ import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.ActivityPrivacyBinding
+import com.xy.demo.logic.LanguageUtil
 
 
 class PrivacyActivity : MBBaseActivity<ActivityPrivacyBinding, MBBaseViewModel>() {
@@ -33,7 +34,7 @@ class PrivacyActivity : MBBaseActivity<ActivityPrivacyBinding, MBBaseViewModel>(
 	
 	override fun initView() {
 		super.initView()
-		binding.titleLay.titleTV.text = getString(R.string.privacy_policy)
+	 
 		
 		val mWebSettings = binding.webView.getSettings()
 		mWebSettings.setJavaScriptEnabled(true)
@@ -60,7 +61,8 @@ class PrivacyActivity : MBBaseActivity<ActivityPrivacyBinding, MBBaseViewModel>(
 			}
 		})
 		
-		
 		binding.webView.loadUrl(Constants.AGREEMENT_PRIVACY)
+		LanguageUtil.reFreshLanguage(null, this, null)
+		binding.titleLay.titleTV.text = getString(R.string.privacy_policy)
 	}
 }

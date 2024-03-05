@@ -28,11 +28,13 @@ class SJApiInterceptor : Interceptor {
 	
 	
 	
+	//  appkey  每个APP 不一样    隐私政策链接内容   包名  加密密码
+	
 	private fun commonParams(): JSONObject {
 		val paramJson = JSONObject()
 	 
 		paramJson.put("market", "google")
-		paramJson.put("appkey", "100000")
+		paramJson.put("appkey", "100001")
 		paramJson.put("source", "1")//1安卓2ios
 		paramJson.put("v", "1")
 		paramJson.put("version", AppUtils.getAppVersionName())
@@ -71,6 +73,8 @@ class SJApiInterceptor : Interceptor {
 				val httpUrl1 = urlBuilder
 					.addQueryParameter("encryptdata", encrypt)
 					.addQueryParameter("t", time)
+					.addQueryParameter("appkey", "100001")
+					
 					.addQueryParameter("sign", MD5Util.md5(md5Params,Constants.ZS_SECRET_KEY))
 //				httpUrl1.takeIf { k != null }?.addQueryParameter("s", k)
 				
@@ -97,6 +101,7 @@ class SJApiInterceptor : Interceptor {
 					val newBodyBuilder = FormBody.Builder()
 					newBodyBuilder.add("encryptdata", encrypt)
 					newBodyBuilder.add("t", time)
+					newBodyBuilder.add("appkey", "100001")
 					newBodyBuilder.add("sign", MD5Util.md5(md5Params,Constants.ZS_SECRET_KEY))
 					
 					Globals.log("xxxxxxrequestBuilder -------++++++++++ ------respBody "+newBodyBuilder.toString())
@@ -190,10 +195,6 @@ class SJApiInterceptor : Interceptor {
 //							baseApiModel.encryptData
 //						)
 //					)
-					
-				
-				
-				
 				}
 //			var bodyString  = "{\"code\":200,\"message\":\"操作成功\",\"encryptdata\":"+ AesUtils.decrypt(
 //					decryptKey,

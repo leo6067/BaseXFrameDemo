@@ -9,6 +9,7 @@ import android.os.Vibrator
 import android.view.View
 import androidx.annotation.RequiresApi
 import com.alibaba.fastjson.JSONArray
+import com.jeremyliao.liveeventbus.LiveEventBus
 import com.xy.demo.R
 import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseActivity
@@ -18,9 +19,10 @@ import com.xy.demo.logic.ConsumerIrManagerApi
 import com.xy.demo.logic.JsonUtil
 import com.xy.demo.logic.parse.ParamParse
 import com.xy.demo.model.OrderListModel
-import com.xy.demo.ui.dialog.CastDialog
+
 import com.xy.demo.ui.dialog.RemoteMoreDialog
 import com.xy.demo.ui.dialog.RemoteNumberDialog
+import com.xy.demo.ui.main.MainActivity
 import com.xy.demo.ui.setting.FeedBackActivity
 import com.xy.demo.ui.vm.HttpViewModel
 import com.xy.xframework.utils.Globals
@@ -30,7 +32,7 @@ import com.xy.xframework.utils.ToastUtils
 //电视 指令 UI  遥控器
 class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 	
-	lateinit var vibrator : Vibrator
+	lateinit var vibrator: Vibrator
 	lateinit var remoteModel: RemoteModel
 	
 	//所有指令
@@ -47,7 +49,7 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 	
 	var commonCode =
 		arrayOf("power", "up", "down", "left", "right", "select", "home", "back", "menu", "vole+", "vole-", "channel_up", "channel_down", "mute")
-	var numberCode = arrayOf("0","1", "2", "3", "4", "5", "6", "7", "8", "9")
+	var numberCode = arrayOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
 	
 	
 	override fun showTitleBar(): Boolean = false
@@ -77,7 +79,7 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 		showLoading()
 		viewModel.getOrderListHttp(remoteModel.brandId, remoteModel.modelId)
 		
-		 vibrator  = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 		functionClick()
 	}
 	
@@ -105,7 +107,7 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 			
 			for (codeStr in numberCode) { //筛取 数字 指令
 				if (item.remoteKey.equals(codeStr)) {
-					Globals.log("xxxxxnumberCodeList"+item.remoteKey)
+					Globals.log("xxxxxnumberCodeList" + item.remoteKey)
 					numberCodeList.add(item)
 					break
 				}
@@ -176,19 +178,40 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 			binding.netInclude.titleLay.backIV -> {
 				finish()
 			}
-	 
+			
 			binding.titleLay.feedBackIV -> {
-				startActivity(Intent(this@TVConActivity,FeedBackActivity::class.java))
+				startActivity(Intent(this@TVConActivity, FeedBackActivity::class.java))
 			}
 			
 			binding.titleLay.rightIV -> {
-				CastDialog().show(supportFragmentManager, "1")
+				val intent = Intent()
+				intent.putExtra("mainTab", 1)
+				intent.setClass(this@TVConActivity, MainActivity::class.java)
+				startActivity(intent)
+//				LiveEventBus.get<Int>("mainTab").post(1)
 			}
 			
 			binding.powerTV -> {
 				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
 				makeParam("power")
 			}
+			
+			
+			binding.menuTV -> {
+				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+				makeParam("menu")
+			}
+			
+			
+			binding.homeTV -> {
+				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+				makeParam("home")
+			}
+			
+//			binding.signSource -> {
+//				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+//				makeParam("home")
+//			}
 			
 			
 			binding.moreTV -> {
@@ -207,10 +230,6 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 				makeParam("back")
 			}
 //
-			binding.homeTV -> {
-				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
-				makeParam("home")
-			}
 			
 			binding.numberTV -> {
 				if (numberCodeList.size > 0) {
@@ -253,7 +272,5 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 		}
 	}
 	
- 
- 
 	
 }

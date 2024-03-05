@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hot"
+        android:layout_marginStart="@dimen/dp_7"
+        android:textColor="#99000000"
+        android:textSize="@dimen/sp_16"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_13"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:onClick="onClick"
+            android:id="@+id/samIV"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_44"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_3"
+            android:background="@drawable/shape_hot_bg"
+            android:src="@drawable/icon_samsung" />
+
+
+        <ImageView
+            android:onClick="onClick"
+            android:id="@+id/sonyIV"
+            android:padding="@dimen/dp_3"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_44"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_weight="1"
+            android:background="@drawable/shape_hot_bg"
+            android:src="@drawable/icon_sony" />
+
+
+        <ImageView
+            android:onClick="onClick"
+            android:id="@+id/tclIV"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_44"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_3"
+            android:background="@drawable/shape_hot_bg"
+            android:src="@drawable/icon_tcl" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/dp_14"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:onClick="onClick"
+            android:id="@+id/lgIV"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_44"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_3"
+            android:background="@drawable/shape_hot_bg"
+            android:src="@drawable/icon_lg" />
+
+
+        <ImageView
+            android:onClick="onClick"
+            android:id="@+id/rokuIV"
+            android:layout_width="0dp"
+            android:padding="@dimen/dp_3"
+            android:layout_height="@dimen/dp_44"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_weight="1"
+            android:background="@drawable/shape_hot_bg"
+            android:src="@drawable/icon_roku" />
+
+
+        <ImageView
+            android:onClick="onClick"
+            android:id="@+id/hisenseIV"
+            android:layout_width="0dp"
+            android:padding="@dimen/dp_3"
+            android:layout_height="@dimen/dp_44"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_weight="1"
+            android:background="@drawable/shape_hot_bg"
+            android:src="@drawable/icon_hisence" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

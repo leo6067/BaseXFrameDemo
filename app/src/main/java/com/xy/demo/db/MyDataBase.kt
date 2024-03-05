@@ -4,6 +4,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.xy.demo.base.Constants
 import com.xy.demo.base.MyApplication
 import com.xy.demo.network.Globals
 
@@ -20,7 +21,7 @@ abstract class MyDataBase : RoomDatabase() {
 	
 	
 	companion object {
-		val instance = Room.databaseBuilder(MyApplication.instance, MyDataBase::class.java, "remote_db")
+		val instance = Room.databaseBuilder(MyApplication.instance, MyDataBase::class.java, Constants.DB_NAME)
 			.addCallback(object :RoomDatabase.Callback(){
 				//第一次创建数据库时调用
 				override fun onCreate(db: SupportSQLiteDatabase) {

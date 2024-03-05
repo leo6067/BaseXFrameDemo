@@ -1,5 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme.  继承  重写覆盖 主题色 -->
+    <!-- Base application theme.  继承  重写覆盖 主题色     -->
+    <!--    ToolBar上的Title颜色-->
+    <!--    <item name="android:textColorPrimary">@color/textColorPrimary</item>
+    <!    状态栏颜色-->
+    <!--    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+    <!--    控制各个控件被选中时的颜色-->
+    <!--    <item name="colorAccent">@color/colorAccent</item>-->
+    <!--    页面背景色-->
+    <!--    <item name="android:windowBackground">@color/windowBackg</item>-->
+    <!--    底部导航栏颜色-->
+    <!--    <item name="android:navigationBarColor">@color/navigationColor</item>-->
+    <!--    Appbar背景色-->
+    <!--    <item name="android:colorPrimary">@color/colorPrimary</item>-->
+    <!--    各个控制控件的默认颜色-->
+    <!--    <item name="android:colorControlNormal">@color/colorControlNormal</item>-->
+
     <style name="Theme.BaseDemo" parent="@style/AppTheme">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -9,15 +24,13 @@
         <!-- Secondary brand color. -->
         <!--        <item name="colorSecondary">@color/color_FF03DAC5</item>-->
         <!--        <item name="colorSecondaryVariant">@color/color_FF018786</item>-->
-        <item name="colorOnSecondary">@color/color_000000_80</item>
+        <!--        <item name="colorOnSecondary">@color/color_000000_80</item>-->
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:windowBackground">@color/colorTheme</item>
         <item name="android:screenOrientation">portrait</item>
         <!-- Customize your theme here. -->
     </style>
-
-
 
 
     <style name="Theme.Splash" parent="Theme.BaseDemo">
@@ -26,7 +39,7 @@
         <item name="colorPrimaryDark">@color/white</item>
         <!-- <item name="android:windowFullscreen">true</item>-->
         <!--        <item name="android:windowBackground">@drawable/bg_splash_bbspbz</item>-->
-<!--        <item name="android:windowBackground">@drawable/splash</item>-->
+        <!--        <item name="android:windowBackground">@drawable/splash</item>-->
         <!--        <item name="android:windowBackground">@drawable/splash_bg</item>-->
         <item name="android:screenOrientation">portrait</item>
     </style>
@@ -38,9 +51,8 @@
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowNoTitle">true</item><!--除去title-->
         <item name="android:backgroundDimEnabled">true</item><!--半透明-->
-<!--        <item name="android:windowBackground">@color/transparent</item>&lt;!&ndash;除去背景色&ndash;&gt;-->
+        <!--        <item name="android:windowBackground">@color/transparent</item>除去背景色-->
     </style>
-
 
 
     <color name="blue">#008AB8</color>
@@ -48,17 +60,17 @@
 
 
     <declare-styleable name="SideBarView">
-        <attr format="color|reference" name="sidebarSelectTextColor"/>
-        <attr format="color|reference" name="sidebarUnSelectTextColor"/>
-        <attr format="dimension" name="sidebarSelectTextSize"/>
-        <attr format="dimension" name="sidebarUnSelectTextSize"/>
+        <attr name="sidebarSelectTextColor" format="color|reference" />
+        <attr name="sidebarUnSelectTextColor" format="color|reference" />
+        <attr name="sidebarSelectTextSize" format="dimension" />
+        <attr name="sidebarUnSelectTextSize" format="dimension" />
 
-        <attr format="reference" name="sidebarWordBackground"/>
-        <attr format="color|reference" name="sidebarWordTextColor"/>
-        <attr format="dimension" name="sidebarWordTextSize"/>
+        <attr name="sidebarWordBackground" format="reference" />
+        <attr name="sidebarWordTextColor" format="color|reference" />
+        <attr name="sidebarWordTextSize" format="dimension" />
 
-        <attr format="boolean" name="is_auto_play"/>
-        <attr format="integer" name="scroll_time"/>
+        <attr name="is_auto_play" format="boolean" />
+        <attr name="scroll_time" format="integer" />
 
     </declare-styleable>
 </resources>

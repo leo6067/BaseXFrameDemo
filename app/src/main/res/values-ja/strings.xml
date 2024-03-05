@@ -104,4 +104,22 @@
     <string name="the_screen_casting_settings_are_not_found_on_the_device">デバイスにスクリーン投影設定が見つかりません</string>
     <string name="number">数値＃スウスウ＃</string>
     <string name="more">詳細</string>
+    <string name="is_your_tv_turned_on">テレビをつけましたか。</string>
+    <string name="your_phone_needs_to_have_a_built_in_ir_infrared_blaster">携帯電話にはIR（赤外線エンハンサー）を内蔵する必要があります。</string>
+    <string name="there_is_no_built_in_infrared_blaster_in_your_phone_so_you_can_t_control_tv_via_ir">あなたの携帯電話には赤外線エンハンサーが内蔵されていないため、赤外線でテレビを制御することはできません</string>
+    <string name="no_smart_remote_for_the_sony_tv">ソニーのテレビにはスマートリモコンがない</string>
+    <string name="maybe_later">もしかしたら</string>
+    <string name="please_use_wifi">wifiをご利用ください</string>
+    <string name="no_equipment">デバイスなし</string>
+    <string name="add_remote">リモートの追加</string>
+    <string name="cast">鋳造</string>
+    <string name="connecting_way">接続方法</string>
+
+    <string name="music">音楽</string>
+    <string name="mirroring">ミラーリング</string>
+    <string name="tv_cast_amp_n_stream_mirroring"><![CDATA[テレビ放送とストリーミングミラーリング]]></string>
+    <string name="no">いいえ</string>
+    <string name="yes">はい</string>
+    <string name="test_remote">テストリモート</string>
+    <string name="choose_language">言語の選択</string>
 </resources>

@@ -38,24 +38,22 @@ class DeviceAdapter : BaseQuickAdapter<RemoteModel, BaseViewHolder>(R.layout.ite
 			typeIV.setBackgroundResource(R.drawable.wifi)
 		}
 		if (item.color == 1) {
-			tvIcon.setBackgroundResource(R.drawable.icon_save_tv_blue)
+			tvIcon.setBackgroundResource(R.drawable.icon_tv_red)
 		}
 		if (item.color == 2) {
-			tvIcon.setBackgroundResource(R.drawable.icon_save_tv_red)
+			tvIcon.setBackgroundResource(R.drawable.icon_tv_yellew)
 		}
 		if (item.color == 3) {
-			tvIcon.setBackgroundResource(R.drawable.icon_save_tv_pink)
-		}
-		if (item.color == 4) {
-			tvIcon.setBackgroundResource(R.drawable.icon_save_tv_yellow)
+			tvIcon.setBackgroundResource(R.drawable.icon_tv_blue)
 		}
 		
+		
 		when (item.location) {
-			"1" -> locationTV.text =  context.getString(R.string.rb_default)
-			"2" -> locationTV.text =  context.getString(R.string.living_room)
-			"3" -> locationTV.text =  context.getString(R.string.bedroom)
-			"4" -> locationTV.text =  context.getString(R.string.dinning_room)
-			"5" -> locationTV.text =  context.getString(R.string.media_room)
+			
+			"1" -> locationTV.text =  context.getString(R.string.living_room)
+			"2" -> locationTV.text =  context.getString(R.string.bedroom)
+			"3" -> locationTV.text =  context.getString(R.string.dinning_room)
+			"4" -> locationTV.text =  context.getString(R.string.media_room)
 		}
 	}
 	

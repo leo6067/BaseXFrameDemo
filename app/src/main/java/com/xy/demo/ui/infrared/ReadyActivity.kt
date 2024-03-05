@@ -3,7 +3,6 @@ package com.xy.demo.ui.infrared
 import android.content.Context
 import android.content.Intent
 import android.hardware.ConsumerIrManager
-import android.os.Build
 import android.view.View
 import com.xy.demo.R
 import com.xy.demo.base.Constants
@@ -21,7 +20,6 @@ class ReadyActivity : MBBaseActivity<ActivityReadyBinding, HttpViewModel>() {
 	companion object {
 		var activity: ReadyActivity ?=null
 	}
-	
 	
 	
 	
@@ -43,15 +41,7 @@ class ReadyActivity : MBBaseActivity<ActivityReadyBinding, HttpViewModel>() {
 			R.id.startTV -> {
 				val intent = Intent()
 				intent.putExtra(Constants.KEY_REMOTE, remoteModel)
-				intent.setClass(this@ReadyActivity, TurnOnActivity::class.java)
-				startActivity(intent)
-		 
-			}
-			
-			R.id.startWifiTV -> {
-				val intent = Intent()
-				intent.putExtra(Constants.KEY_REMOTE, remoteModel)
-				intent.setClass(this@ReadyActivity, TurnOnActivity::class.java)
+				intent.setClass(this@ReadyActivity, TvPowerOnActivity::class.java)
 				startActivity(intent)
 			}
 		}
@@ -65,8 +55,8 @@ class ReadyActivity : MBBaseActivity<ActivityReadyBinding, HttpViewModel>() {
 		showLoading()
 		remoteModel = intent.getSerializableExtra(Constants.KEY_REMOTE) as RemoteModel
 		viewModel.getSubBrandListHttp(remoteModel.brandId)
-
-//
+		
+		
 //		var subModelList =
 //			JSONArray.parseArray(JsonUtil.paramJson(this@ReadyActivity, "SubBrand.json"), SubBrandListModel::class.java) as ArrayList<SubBrandListModel>
 //
@@ -79,29 +69,37 @@ class ReadyActivity : MBBaseActivity<ActivityReadyBinding, HttpViewModel>() {
 		 
 		
 		// 获取系统的红外遥控服务
-		val  service = getApplicationContext().getSystemService(Context.CONSUMER_IR_SERVICE) as ConsumerIrManager
+		val service = applicationContext.getSystemService(Context.CONSUMER_IR_SERVICE) as ConsumerIrManager
 		
 		
-		if (service.hasIrEmitter()){
-			binding.irLin.visibility = View.VISIBLE
-			binding.wifiLin.visibility = View.GONE
-		}else{
-			binding.irLin.visibility = View.GONE
-			binding.wifiLin.visibility = View.VISIBLE
-		}
-		
-		
-		
+		binding.noRemote.rootLayout.visibility = View.VISIBLE
 		
 		viewModel.subBrandListModel.observe(this) {
 			dismissLoading()
 			binding.regexNumTV.text = String.format(
 				resources.getString(R.string.we_ve_found_5_remote_n_controls_for_your_acer_tv), it.list.size)
 			
-			if (it.list.size ==0){
-				binding.irLin.visibility = View.GONE
-				binding.wifiLin.visibility = View.VISIBLE
-			}
+			
+			binding.irLin.visibility = View.VISIBLE
+			binding.noInfrared.rootLayout.visibility = View.GONE
+			binding.noRemote.rootLayout.visibility = View.GONE
+			
+//
+//			if (service.hasIrEmitter() && it.list.size > 0){
+//				binding.irLin.visibility = View.VISIBLE
+//				binding.noInfrared.rootLayout.visibility = View.GONE
+//				binding.noRemote.rootLayout.visibility = View.GONE
+//
+//			}else if (service.hasIrEmitter() && it.list.size == 0){
+//				binding.irLin.visibility = View.GONE
+//				binding.noInfrared.rootLayout.visibility = View.GONE
+//				binding.noRemote.rootLayout.visibility = View.VISIBLE
+//			}else{
+//				binding.irLin.visibility = View.GONE
+//				binding.noInfrared.rootLayout.visibility = View.VISIBLE
+//				binding.noRemote.rootLayout.visibility = View.GONE
+//			}
+			
 		}
 	}
 }

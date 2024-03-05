@@ -7,16 +7,25 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:paddingTop="@dimen/dp_22"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:paddingTop="@dimen/dp_22">
 
 
         <include
-
             android:id="@+id/titleLay"
-            layout="@layout/include_title"
+            layout="@layout/include_title" />
 
-           />
+
+        <ImageView
+            android:id="@+id/topView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@drawable/icon_mirror_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleLay" />
 
 
         <TextView
@@ -24,12 +33,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_60"
-            android:layout_marginTop="@dimen/dp_24"
+            android:layout_marginTop="@dimen/dp_25"
             android:layout_marginEnd="@dimen/dp_20"
-            tools:text="12121223123123321231231\n2132135135131231\n213212312312223123"
-            android:textColor="@color/white"
+            android:textColor="@color/colorFontBlack"
             android:textSize="@dimen/sp_14"
-            app:layout_constraintTop_toBottomOf="@+id/titleLay" />
+            app:layout_constraintTop_toBottomOf="@+id/topView"
+            tools:text="12121223123123321231231\n2132135135131231\n213212312312223123" />
 
 
         <ImageView
@@ -50,10 +59,10 @@
             android:layout_marginStart="@dimen/dp_60"
             android:layout_marginTop="@dimen/dp_24"
             android:layout_marginEnd="@dimen/dp_20"
-            tools:text="12121223123123321231231\n2132135135131231\n213212312312223123"
-            android:textColor="@color/white"
+            android:textColor="@color/colorFontBlack"
             android:textSize="@dimen/sp_14"
-            app:layout_constraintTop_toBottomOf="@+id/firstTV" />
+            app:layout_constraintTop_toBottomOf="@+id/firstTV"
+            tools:text="12121223123123321231231\n2132135135131231\n213212312312223123" />
 
 
         <ImageView
@@ -74,10 +83,10 @@
             android:layout_marginStart="@dimen/dp_60"
             android:layout_marginTop="@dimen/dp_24"
             android:layout_marginEnd="@dimen/dp_20"
-            tools:text="12121223123123321231231\n2132135135131231\n213212312312223123"
-            android:textColor="@color/white"
+            android:textColor="@color/colorFontBlack"
             android:textSize="@dimen/sp_14"
-            app:layout_constraintTop_toBottomOf="@+id/secondTV" />
+            app:layout_constraintTop_toBottomOf="@+id/secondTV"
+            tools:text="12121223123123321231231\n2132135135131231\n213212312312223123" />
 
 
         <ImageView
@@ -91,30 +100,22 @@
             app:layout_constraintTop_toTopOf="@+id/thirdTV" />
 
 
-        <ImageView
+        <com.ruffian.library.widget.RTextView
             android:id="@+id/startTV"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_25"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:gravity="center"
             android:onClick="onClick"
-            android:layout_width="@dimen/dp_100"
-            android:layout_height="@dimen/dp_100"
-            android:scaleType="fitXY"
-            android:layout_marginTop="@dimen/dp_80"
-            android:background="@drawable/home_start"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/thirdTV"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/start_mirroring"
-            android:textColor="#ffffffff"
-            android:textSize="@dimen/sp_14"
-            android:layout_marginTop="@dimen/dp_12"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/startTV"
-            />
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold"
+            app:background_normal="@drawable/shape_view_bg"
+            app:layout_constraintTop_toBottomOf="@+id/thirdTV" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

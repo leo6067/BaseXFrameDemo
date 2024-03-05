@@ -43,6 +43,7 @@ class FeedBackActivity : MBBaseActivity<ActivityFeedBackBinding, HttpViewModel>(
 	override fun initView() {
 		super.initView()
 	 
+		binding.titleLay.titleTV.text = getString(R.string.feedback)
 		
 		//常规带回调启动Activity
 		val requestDataLauncher = registerForActivityResult(object : ActivityResultContract<String, String>() {

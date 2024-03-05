@@ -104,4 +104,22 @@
     <string name="the_screen_casting_settings_are_not_found_on_the_device">장치에서 화면 투사 설정을 찾을 수 없음</string>
     <string name="number">숫자</string>
     <string name="more">추가</string>
+    <string name="is_your_tv_turned_on">텔레비전이 켜졌습니까\?</string>
+    <string name="your_phone_needs_to_have_a_built_in_ir_infrared_blaster">휴대폰에는 IR(적외선 증강기)이 내장되어 있어야 합니다.</string>
+    <string name="there_is_no_built_in_infrared_blaster_in_your_phone_so_you_can_t_control_tv_via_ir">휴대 전화에 내장 된 적외선 증강기가 없으므로 적외선을 통해 TV를 제어할 수 없습니다.</string>
+    <string name="no_smart_remote_for_the_sony_tv">소니 TV에는 스마트 리모컨이 없어요.</string>
+    <string name="maybe_later">아마 앞으로</string>
+    <string name="please_use_wifi">와이파이를 사용하세요.</string>
+    <string name="no_equipment">장치 없음</string>
+    <string name="add_remote">원격 추가</string>
+    <string name="cast">캐스트</string>
+    <string name="connecting_way">연결 방법</string>
+
+    <string name="music">음악</string>
+    <string name="mirroring">미러링</string>
+    <string name="tv_cast_amp_n_stream_mirroring"><![CDATA[TV 브로드캐스트 및 스트리밍 미러링]]></string>
+    <string name="no">아니요</string>
+    <string name="yes">그래</string>
+    <string name="test_remote">원격 테스트</string>
+    <string name="choose_language">언어 선택</string>
 </resources>

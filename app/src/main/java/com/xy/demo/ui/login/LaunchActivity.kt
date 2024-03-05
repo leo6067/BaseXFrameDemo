@@ -34,10 +34,9 @@ class LaunchActivity : MBBaseActivity<ActivityLaunchBinding, MBBaseViewModel>() 
 	}
 	
 	
- 
 	override fun initView() {
 		super.initView()
-		
+
 //		GlobalScope.launch(Dispatchers.Main) {
 //			if (firstEntry) {
 //				binding.progressView.visibility = View.VISIBLE
@@ -52,38 +51,11 @@ class LaunchActivity : MBBaseActivity<ActivityLaunchBinding, MBBaseViewModel>() 
 //				binding.entryTV.visibility = View.VISIBLE
 //			}
 //		}
+
+//		AdManage.loadOpenAd(this@LaunchActivity)
 		
-		AdManage.loadOpenAd(this@LaunchActivity)
-		
-		
-		binding.entryTV.setOnClickListener {
-			BaseSharePreference.instance.putBoolean("AddFragment", false)
-			startActivity(Intent(this@LaunchActivity, MainActivity::class.java))
-		}
-		
-		
-		binding.addTV.setOnClickListener {
-			BaseSharePreference.instance.putBoolean("AddFragment", true)
-			startActivity(Intent(this@LaunchActivity, MainActivity::class.java))
-//			finish()
-		}
-		
-		binding.languageTV.setOnClickListener {
-			startActivity(Intent(this@LaunchActivity, TVConActivity::class.java))
-//			finish()
-		}
-		//,Permission.ACCESS_FINE_LOCATION,Permission.ACCESS_COARSE_LOCATION  位置信息 获取wifi
-		XXPermissions.with(this)
-			.permission(Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE)
-			.request(OnPermissionCallback { permissions, all ->
-				if (all) {
-					startActivity(Intent(this@LaunchActivity, MainActivity::class.java))
-				} else {
-					 ToastUtils.showShort(getString(R.string.please_grant_permission))
-				}
-			})
+		startActivity(Intent(this@LaunchActivity, MainActivity::class.java))
 	}
-	
 	
 	
 }

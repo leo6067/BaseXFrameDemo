@@ -2,15 +2,12 @@ package com.xy.demo.ui.setting
 
 import android.text.TextUtils
 import android.view.View
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.LocaleListCompat
 import com.xy.demo.R
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.ActivityLanguageBinding
 import com.xy.demo.logic.LanguageUtil
 import com.xy.demo.model.LanguageModel
-import com.xy.demo.model.SettingModel
 import com.xy.demo.ui.adapter.LanguageAdapter
 import java.util.Locale
 
@@ -34,7 +31,7 @@ class LanguageActivity : MBBaseActivity<ActivityLanguageBinding, MBBaseViewModel
 	
 	override fun initView() {
 		super.initView()
-		binding.titleLay.titleTV.text = "Choose Language"
+		binding.titleLay.titleTV.text = getString(R.string.choose_language)
 		this.mRecyclerView = binding.recyclerView
 		initRecycler(1, 1, 0)
 		mRecyclerView!!.adapter = mAdapter
@@ -44,10 +41,11 @@ class LanguageActivity : MBBaseActivity<ActivityLanguageBinding, MBBaseViewModel
 //		optionBeenList.add(LanguageModel("默认语言", "", R.drawable.mcountry,false))
 		
 		
+		optionBeenList.add(LanguageModel("English", "en", R.drawable.mcountry, TextUtils.equals("en", LanguageUtil.getLanguage())))
 		optionBeenList.add(LanguageModel("繁體中文", "tw", R.drawable.icon_zh, TextUtils.equals("tw", LanguageUtil.getLanguage())))
 		optionBeenList.add(LanguageModel("しろうと", "ja", R.drawable.icon_ja, TextUtils.equals("ja", LanguageUtil.getLanguage())))
 		optionBeenList.add(LanguageModel("한국어", "ko", R.drawable.icon_ko, TextUtils.equals("ko", LanguageUtil.getLanguage())))
-		optionBeenList.add(LanguageModel("English", "en", R.drawable.mcountry, TextUtils.equals("en", LanguageUtil.getLanguage())))
+		optionBeenList.add(LanguageModel("العربية", "ar", R.drawable.icon_ar, TextUtils.equals("ar", LanguageUtil.getLanguage())))
 		
 		
 		mAdapter.setNewInstance(optionBeenList)
@@ -64,6 +62,7 @@ class LanguageActivity : MBBaseActivity<ActivityLanguageBinding, MBBaseViewModel
 				"tw" -> mlocale = Locale.TRADITIONAL_CHINESE
 				"ja" -> mlocale = Locale.JAPAN
 				"ko" -> mlocale = Locale.KOREA
+				"ar" -> mlocale = Locale("ar", "Arabic")
 			}
 			LanguageUtil.reFreshLanguage(mlocale, this, LanguageActivity::class.java)
 			

@@ -1,13 +1,13 @@
 package com.xy.demo.ui.infrared
 
 import android.content.Intent
+import android.os.Build
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
@@ -15,32 +15,25 @@ import com.alibaba.fastjson.JSONArray
 import com.xy.demo.R
 import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseActivity
-import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.ActivityBrandBinding
 import com.xy.demo.db.RemoteModel
-import com.xy.demo.logic.JsonUtil
 import com.xy.demo.model.BrandListModel
 import com.xy.demo.model.BrandModel
-import com.xy.demo.network.Globals
-import com.xy.demo.ui.adapter.BrandAdapter
-import com.xy.xframework.base.BaseSharePreference
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.xy.demo.ui.adapter.TVBrandAdapter
+import com.xy.demo.ui.vm.MainViewModel
 import java.util.Collections
 import java.util.Locale
 import java.util.regex.Pattern
 
 
 //品牌 型号
-class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>() {
+class BrandActivity : MBBaseActivity<ActivityBrandBinding, MainViewModel>() {
 	
 	
 	var brandModelList = ArrayList<BrandModel>()
 	var tempList = ArrayList<BrandModel>()
 	
-	val mAdapter = BrandAdapter()
+	val mAdapter = TVBrandAdapter()
 	
 	
 	var remoteModel = RemoteModel()
@@ -71,6 +64,8 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>() {
 		activity = this
 		notNetWorkLin = binding.netInclude.netLin
 		
+		viewModel.getBrandListHttp()
+		
 		
 		if (intent.getSerializableExtra(Constants.KEY_REMOTE) != null) {
 			remoteModel = intent.getSerializableExtra(Constants.KEY_REMOTE) as RemoteModel
@@ -85,61 +80,60 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>() {
 		binding.titleLay.titleTV.text = getString(R.string.select_tv_brand)
 		binding.recyclerView.visibility = View.GONE
 		
-		lifecycleScope.launch {
-			delay(1200)
-			binding.shimmerLay.visibility = View.GONE
-			binding.recyclerView.visibility = View.VISIBLE
-		}
 		
-		val brandListStr = BaseSharePreference.instance.getString(Constants.KEY_BRAND_LIST, "")
-		val brandListModel = JSONArray.parseObject(brandListStr, BrandListModel::class.java)
+		//品牌数据
+		viewModel.brandListModel.observe(this) {
+			
+			if (!TextUtils.isEmpty(it)) {
+				binding.shimmerLay.visibility = View.GONE
+				binding.recyclerView.visibility = View.VISIBLE
+				
+				val brandListModel = JSONArray.parseObject(it, BrandListModel::class.java)
 
 //		brandModelList = JSONArray.parseArray(JsonUtil.paramJson(this@BrandActivity,"BrandList.json"), BrandModel::class.java) as ArrayList<BrandModel>
-		brandModelList = brandListModel.list as ArrayList<BrandModel>
-		
-		
-		
-		Collections.sort(brandModelList, Comparator<BrandModel> { o1, o2 -> //拿到2个bean类中的name字符串进行比较，android中字符串比较是比较的ASCLL码
-			//compareTo（） 字符串比较
-			val lhsStartsWithLetter = Character.isLetter(o1.brandName[0])
-			val rhsStartsWithLetter = Character.isLetter(o2.brandName[0])
-			if (lhsStartsWithLetter && rhsStartsWithLetter || !lhsStartsWithLetter && !rhsStartsWithLetter) {
-				// they both start with letters or not-a-letters
-				o1.brandName.compareTo(o2.brandName)
-			} else if (lhsStartsWithLetter) {
-				// the first string starts with letter and the second one is not
-				-1
-			} else {
-				// the second string starts with letter and the first one is not
-				1
-			}
-		})
-		
-		
-		
-		
-		tempList = brandModelList
-		var tipCaseA = "A"
-		//先添加 一条 A
-		var brandModel = BrandModel()
-		brandModel.brandName = "A"
-		brandModelList.add(0, brandModel)
-		for (index in tempList.indices) {
-			if (tempList[index].brandName.substring(0, 1).uppercase() != tipCaseA) {
-				// 插入一条
+				brandModelList = brandListModel.list as ArrayList<BrandModel>
+				
+				Collections.sort(brandModelList, Comparator<BrandModel> { o1, o2 -> //拿到2个bean类中的name字符串进行比较，android中字符串比较是比较的ASCLL码
+					//compareTo（） 字符串比较
+					val lhsStartsWithLetter = Character.isLetter(o1.brandName[0])
+					val rhsStartsWithLetter = Character.isLetter(o2.brandName[0])
+					if (lhsStartsWithLetter && rhsStartsWithLetter || !lhsStartsWithLetter && !rhsStartsWithLetter) {
+						// they both start with letters or not-a-letters
+						o1.brandName.compareTo(o2.brandName)
+					} else if (lhsStartsWithLetter) {
+						// the first string starts with letter and the second one is not
+						-1
+					} else {
+						// the second string starts with letter and the first one is not
+						1
+					}
+				})
+				
+				
+				tempList = brandModelList
+				var tipCaseA = "A"
+				//先添加 一条 A
 				var brandModel = BrandModel()
-				brandModel.brandName = tempList[index].brandName.substring(0, 1)
-				tipCaseA = tempList[index].brandName.substring(0, 1)
-				brandModelList.add(index, brandModel)
+				brandModel.brandName = "A"
+				brandModelList.add(0, brandModel)
+				for (index in tempList.indices) {
+					if (tempList[index].brandName.substring(0, 1).uppercase() != tipCaseA) {
+						// 插入一条
+						var brandModel = BrandModel()
+						brandModel.brandName = tempList[index].brandName.substring(0, 1)
+						tipCaseA = tempList[index].brandName.substring(0, 1)
+						brandModelList.add(index, brandModel)
+					}
+				}
+				
+				this.mRecyclerView = binding.recyclerView
+				initRecycler(1, 1, 1)
+				binding.recyclerView.adapter = mAdapter
+				mAdapter.setNewInstance(brandModelList)
+				
 			}
+			
 		}
-		
-		
-		
-		this.mRecyclerView = binding.recyclerView
-		initRecycler(1, 1, 1)
-		binding.recyclerView.adapter = mAdapter
-		mAdapter.setNewInstance(brandModelList)
 		
 		
 		//排序滑动
@@ -263,4 +257,66 @@ class BrandActivity : MBBaseActivity<ActivityBrandBinding, MBBaseViewModel>() {
 	}
 	
 	
+	@RequiresApi(Build.VERSION_CODES.O)
+	override fun onClick(view: View) {
+		
+		when (view) {
+			binding.titleLay.backIV -> {
+				finish()
+			}
+			
+			binding.hotLay.samIV -> {
+				hotBrandData("Samsung")
+			}
+			
+			binding.hotLay.sonyIV -> {
+				hotBrandData("Sony")
+			}
+			
+			binding.hotLay.tclIV -> {
+				hotBrandData("TCL")
+			}
+			
+			binding.hotLay.lgIV -> {
+				hotBrandData("LG")
+			}
+			
+			binding.hotLay.rokuIV -> {
+				hotBrandData("Roku")
+			}
+			
+			binding.hotLay.hisenseIV -> {
+				hotBrandData("Hisense")
+			}
+		}
+	}
+	
+	
+	fun hotBrandData(hotBrandStr: String) {
+		
+		for (position in 0 until brandModelList.size) {
+			if (brandModelList[position].brandName.equals(hotBrandStr)) {
+				
+				val brandModel = brandModelList[position] as BrandModel
+				
+				
+				if (isFromFeedBack) {
+					val intent = Intent()
+					intent.putExtra(Constants.KEY_TV_BRAND, brandModel.brandName)
+					intent.putExtra(Constants.KEY_TV_BRAND_ID, brandModel.brandId)
+					setResult(RESULT_OK, intent)
+					finish()
+				} else {
+					remoteModel.brandName = brandModel.brandName //品牌
+					remoteModel.brandId = brandModel.brandId //品牌id
+					val intent = Intent()
+					intent.putExtra(Constants.KEY_REMOTE, remoteModel)
+					intent.setClass(this@BrandActivity, ReadyActivity::class.java)
+					startActivity(intent)
+				}
+			}
+		}
+		
+		
+	}
 }

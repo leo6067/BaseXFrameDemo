@@ -24,8 +24,17 @@ class RateDialog : MBBaseDialogFragment<DialogRateBinding>() {
 		
 		binding.rateBar.setOnRatingChangeListener { rating, numStars ->
 			
-			Globals.log("xxxxxxx" + Math.ceil(rating.toDouble())+ "    numStars  " + numStars)
+			Globals.log("xxxxxxx" + Math.ceil(rating.toDouble()) + "    numStars  " + numStars)
 		}
+		
+		binding.rateTV.setOnClickListener {
+			dismiss()
+		}
+		
+		binding.laterTV.setOnClickListener {
+			dismiss()
+		}
+		
 		
 	}
 	

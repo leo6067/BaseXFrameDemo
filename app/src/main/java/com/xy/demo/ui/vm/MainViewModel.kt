@@ -25,6 +25,9 @@ class MainViewModel(application: Application ) : MBBaseViewModel(application) {
 	
 	
 	
+	
+	var brandListModel = SingleLiveEvent<String>()
+	
 	//获取所有的品牌数据
 	@SuppressLint("SuspiciousIndentation")
 	fun getBrandListHttp() {
@@ -37,10 +40,12 @@ class MainViewModel(application: Application ) : MBBaseViewModel(application) {
 			)
 			BaseSharePreference.instance.putString(Constants.KEY_BRAND_LIST, resultStr)
 //			var brandListModel = JSONArray.parseObject(resultStr, BrandListModel::class.java)
+			
+			brandListModel.postValue(resultStr)
 		}, {
 		
 		})
 	}
 	
- 
+	
 }

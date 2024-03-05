@@ -22,7 +22,7 @@ class WifiDeviceAdapter : BaseQuickAdapter<ConnectableDevice,BaseViewHolder>(R.l
 		val itemName = holder.getView<TextView>(R.id.itemName)
 		
 		val spannableString = SpannableString(item.friendlyName +"\n" +item.services.toList()[0].serviceDescription.serviceID)
-		spannableString.setSpan(ForegroundColorSpan(Color.parseColor("#ffffff")), 0, item.friendlyName.length, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+		spannableString.setSpan(ForegroundColorSpan(Color.parseColor("#60000000")), 0, item.friendlyName.length, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
 		
 		itemName.text = spannableString
 	}

@@ -10,21 +10,12 @@ android {
     signingConfigs {
         remote {
             // 签名store文件路径
-            storeFile file('../remote.jks')
-            storePassword 'xmsjremote'
-            keyAlias 'remote'
-            keyPassword 'xmsjremote'
+            storeFile file('../yaokongqi.jks')
+            storePassword 'sjyaokongqi'
+            keyAlias 'yaokongqi'
+            keyPassword 'sjyaokongqi'
         }
 
-
-
-        normal {
-            // 签名store文件路径
-            storeFile file('../dqvideo.jks')
-            storePassword 'dqvideo'
-            keyAlias 'dqvideo'
-            keyPassword 'dqvideo'
-        }
 
 
 
@@ -32,35 +23,13 @@ android {
 
     //walle多渠道和马甲包配置
     productFlavors {
-        xysj {
-            applicationId "com.xy.remote"
-            versionCode rootProject.ext.versionCode
-            versionName rootProject.ext.versionName
-
+        sjyk {
+            applicationId "com.sjyk.remote"
+            versionCode 2024030401
+            versionName "1.0.0"
             signingConfig signingConfigs.remote
         }
 
-        xysp {
-            applicationId "com.xy.basedemo"
-            versionCode rootProject.ext.versionCode
-            versionName rootProject.ext.versionName
-            manifestPlaceholders = [
-                    //友盟配置
-                    APP_CHANNEL_VALUE : "xysp_yingyongbao",
-            ]
-            signingConfig signingConfigs.normal
-        }
-        tlsp {//特殊的桃乐，所有配置均与茜柚一直，包括包名都要一样的，并不是我忘记改了，不要问我为什么，接受事实就好
-            applicationId "com.mg.xyvideo"
-            versionCode rootProject.ext.versionCode
-            versionName rootProject.ext.versionName
-            manifestPlaceholders = [
-                    UMENG_APPKEY      : "5d59ff453fc195a47d000c8c",
-            ]
-            // 友盟
-            buildConfigField "String", "UM_PUSH_SECRET", "\"d143e8fde23aa21397d80c97a71e03e5\""
-            signingConfig signingConfigs.normal
-        }
     }
 }
 
