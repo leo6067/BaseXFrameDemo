@@ -2,7 +2,9 @@ package com.xy.demo.network
 
 
 import com.bumptech.glide.load.HttpException
+import com.xy.demo.R
 import com.xy.demo.base.Constants
+import com.xy.demo.base.MyApplication
 
 import kotlinx.coroutines.*
 import java.net.ConnectException
@@ -50,7 +52,7 @@ object NetLaunchManager {
                 200 -> {
      
                     var resultStr = AesUtils.decrypt(
-                        Constants.ZS_AES_KEY, it.encryptdata as String)
+                        MyApplication.instance.resources.getString(R.string.AES_KEY), it.encryptdata as String)
                     Globals.log("xxxxx请求数据 onSuccess$resultStr")
                     success(it.encryptdata)
                 }

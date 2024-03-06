@@ -111,11 +111,10 @@
                     android:layout_width="@dimen/dp_224"
                     android:layout_height="@dimen/dp_224"
                     android:layout_marginTop="@dimen/dp_60"
-                    android:background="@drawable/layer_round_bg"
                     app:RMCoreMenuDrawable="@drawable/icon_yk_ok"
                     app:RMCoreMenuNormalBackgroundColor="@color/colorPrimary"
                     app:RMCoreMenuSelectedBackgroundColor="#ececec"
-                    app:RMCoreMenuStrokeColor="#fff"
+                    app:RMCoreMenuStrokeColor="@color/colorPrimary"
                     app:RMCoreMenuStrokeSize="0dp"
                     app:RMHasCoreMenu="true"
                     app:RMRoundMenuDrawable="@drawable/icon_test_right"
@@ -133,48 +132,35 @@
                     android:layout_width="@dimen/dp_75"
                     android:layout_height="@dimen/dp_156"
                     android:layout_marginTop="@dimen/dp_60"
-                    android:background="@drawable/icon_yk_view_bg"
+                    android:background="@drawable/icon_yk_vol"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/functionLay">
 
+
                     <com.ruffian.library.widget.RTextView
                         android:id="@+id/volAddTV"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_55"
+                        android:layout_height="@dimen/dp_65"
                         android:clickable="true"
-                        android:gravity="center"
                         android:onClick="onClick"
-                        android:paddingTop="@dimen/dp_10"
-                        android:text="+"
-                        android:textColor="@color/colorFontGray"
-                        android:textSize="@dimen/dp_26"
-                        android:textStyle="bold"
-                        app:background_pressed="@drawable/icon_yk_view_top" />
+                        app:background_pressed="@drawable/icon_yk_add" />
 
 
-                    <ImageView
-                        android:layout_width="@dimen/dp_30"
+                    <View
+                        android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:src="@drawable/icon_vol_img" />
+                        android:layout_weight="1" />
 
 
                     <com.ruffian.library.widget.RTextView
                         android:id="@+id/volSubTV"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_60"
+                        android:layout_height="@dimen/dp_65"
                         android:clickable="true"
-                        android:gravity="center"
                         android:onClick="onClick"
-                        android:paddingBottom="@dimen/dp_10"
-                        android:text="-"
-                        android:textColor="@color/colorFontGray"
-                        android:textSize="@dimen/dp_26"
-                        android:textStyle="bold"
-                        app:background_pressed="@drawable/icon_yk_view_bottom" />
+                        app:background_pressed="@drawable/icon_yk_sub" />
 
                 </LinearLayout>
 
@@ -238,7 +224,7 @@
                     android:id="@+id/chlin"
                     android:layout_width="@dimen/dp_75"
                     android:layout_height="@dimen/dp_156"
-                    android:background="@drawable/icon_yk_view_bg"
+                    android:background="@drawable/icon_yk_ch"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="@+id/volLin"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -248,31 +234,23 @@
                     <com.ruffian.library.widget.RTextView
                         android:id="@+id/channelAddTV"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_55"
-                        android:drawableLeft="@drawable/icon_yk_up"
+                        android:layout_height="@dimen/dp_65"
+                        android:clickable="true"
                         android:onClick="onClick"
-                        android:paddingStart="@dimen/dp_25"
-                        android:paddingTop="@dimen/dp_10"
-                        app:background_pressed="@drawable/icon_yk_view_top" />
+                        app:background_pressed="@drawable/icon_yk_up" />
 
 
-                    <ImageView
-                        android:layout_width="@dimen/dp_30"
+                    <View
+                        android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:src="@drawable/icon_ch_img" />
-
+                        android:layout_weight="1" />
 
                     <com.ruffian.library.widget.RTextView
                         android:id="@+id/channelSubTV"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_55"
-                        android:drawableLeft="@drawable/icon_yk_down"
+                        android:layout_height="@dimen/dp_65"
                         android:onClick="onClick"
-                        android:paddingStart="@dimen/dp_25"
-                        android:paddingBottom="@dimen/dp_10"
-                        app:background_pressed="@drawable/icon_yk_view_bottom" />
+                        app:background_pressed="@drawable/icon_yk_dow" />
 
 
                 </LinearLayout>

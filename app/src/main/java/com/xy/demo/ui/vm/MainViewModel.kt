@@ -6,8 +6,10 @@ import android.text.TextUtils
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.alibaba.fastjson.JSONArray
+import com.xy.demo.R
 import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseViewModel
+import com.xy.demo.base.MyApplication
 import com.xy.demo.databinding.ActivityMainBinding
 import com.xy.demo.logic.ad.AdManage
 import com.xy.demo.model.BrandListModel
@@ -36,7 +38,7 @@ class MainViewModel(application: Application ) : MBBaseViewModel(application) {
 		hashMap.put("h", "getTvBrandList")
 		launchRequest({ NetManager.mainHttp(hashMap) }, {
 			val resultStr = AesUtils.decrypt(
-				Constants.ZS_AES_KEY, it
+				MyApplication.instance.resources.getString(R.string.AES_KEY), it
 			)
 			BaseSharePreference.instance.putString(Constants.KEY_BRAND_LIST, resultStr)
 //			var brandListModel = JSONArray.parseObject(resultStr, BrandListModel::class.java)

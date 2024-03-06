@@ -4,7 +4,9 @@ package com.xy.demo.network;
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.TimeUtils
 import com.google.gson.Gson
+import com.xy.demo.R
 import com.xy.demo.base.Constants
+import com.xy.demo.base.MyApplication
 import okhttp3.FormBody
 import okhttp3.Headers
 import okhttp3.Interceptor
@@ -24,10 +26,6 @@ import java.util.Date
  */
 class SJApiInterceptor : Interceptor {
 	
-	
-	
-	
-	
 	//  appkey  每个APP 不一样    隐私政策链接内容   包名  加密密码
 	
 	private fun commonParams(): JSONObject {
@@ -44,7 +42,7 @@ class SJApiInterceptor : Interceptor {
 	override fun intercept(chain: Interceptor.Chain): Response {
 		//处理请求
 		//加密密钥
-		var decryptKey = Constants.ZS_AES_KEY
+		var decryptKey = MyApplication.instance.resources.getString(R.string.AES_KEY)
 	
 	
 		
@@ -75,7 +73,7 @@ class SJApiInterceptor : Interceptor {
 					.addQueryParameter("t", time)
 					.addQueryParameter("appkey", "100001")
 					
-					.addQueryParameter("sign", MD5Util.md5(md5Params,Constants.ZS_SECRET_KEY))
+					.addQueryParameter("sign", MD5Util.md5(md5Params,MyApplication.instance.resources.getString(R.string.AES_SECRET)))
 //				httpUrl1.takeIf { k != null }?.addQueryParameter("s", k)
 				
 				Globals.log("xxxxxxrequestBuilder -------++++++++++ ------respBody "+httpUrl1)
@@ -102,7 +100,7 @@ class SJApiInterceptor : Interceptor {
 					newBodyBuilder.add("encryptdata", encrypt)
 					newBodyBuilder.add("t", time)
 					newBodyBuilder.add("appkey", "100001")
-					newBodyBuilder.add("sign", MD5Util.md5(md5Params,Constants.ZS_SECRET_KEY))
+					newBodyBuilder.add("sign", MD5Util.md5(md5Params,MyApplication.instance.resources.getString(R.string.AES_SECRET)))
 					
 					Globals.log("xxxxxxrequestBuilder -------++++++++++ ------respBody "+newBodyBuilder.toString())
 					requestBuilder.post(newBodyBuilder.build()).build()//构造新的请求体//构造新的请求体
@@ -143,10 +141,7 @@ class SJApiInterceptor : Interceptor {
 //		if (contentType != null) {
 //			charset = contentType.charset(UTF8)!!
 //		}
-		
-		
-		
-		
+
 //		if (!isPlaintext(buffer)) {
 //			return response
 //		}

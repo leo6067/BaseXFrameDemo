@@ -48,9 +48,9 @@
 
     <ImageView
         android:id="@+id/moreTV"
-        android:layout_width="@dimen/dp_20"
-        android:layout_height="@dimen/dp_15"
-        android:layout_margin="@dimen/dp_20"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30"
+        android:layout_margin="@dimen/dp_15"
         android:scaleType="centerInside"
         android:src="@drawable/icon_gd"
         app:layout_constraintBottom_toBottomOf="parent"

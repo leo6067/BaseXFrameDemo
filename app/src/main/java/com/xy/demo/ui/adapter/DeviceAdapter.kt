@@ -65,7 +65,7 @@ class DeviceAdapter : BaseQuickAdapter<RemoteModel, BaseViewHolder>(R.layout.ite
 		// 设置弹出窗口的背景色
 		popupWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 		// 设置弹出窗口的位置
-		popupWindow.showAsDropDown(view, -50, 0)
+		popupWindow.showAsDropDown(view, -220, 0)
 		
 		//设置可以获取焦点
 		popupWindow.isFocusable = true

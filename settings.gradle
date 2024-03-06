@@ -6,6 +6,6 @@
 //        jcenter() // Warning: this repository is going to shut down soon
 //    }
 //}
-rootProject.name = "BaseXY"
+rootProject.name = "Base-红外遥控"
 include ':app'
 include ':XFramework'

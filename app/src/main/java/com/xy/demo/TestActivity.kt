@@ -28,10 +28,6 @@ class TestActivity : AppCompatActivity() {
 		
 		
 		
-		
-	 
-		
-		
 		var downUrl =
 			"https://softforspeed.51xiazai.cn/alading/NeteaseCloudMusic_Music_official_2.10.6.200601.exe"
 		

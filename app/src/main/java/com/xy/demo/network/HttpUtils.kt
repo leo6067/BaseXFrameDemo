@@ -1,11 +1,14 @@
 package com.xy.demo.network
 
 
+import android.os.Build
 import com.alibaba.fastjson.JSON
 import com.blankj.utilcode.util.*
 import com.google.gson.reflect.TypeToken
+import com.xy.demo.R
 
 import com.xy.demo.base.Constants
+import com.xy.demo.base.MyApplication
 
 import org.json.JSONObject
 import java.util.*
@@ -18,10 +21,10 @@ object HttpUtils {
 	
 	// 拦截器参数加密
 	fun encryptParam(params: String) :String{
-		val aesParams = AesUtils.encrypt(Constants.ZS_AES_KEY, JSON.toJSONString(params))
+		val aesParams = AesUtils.encrypt(MyApplication.instance.resources.getString(R.string.AES_KEY), JSON.toJSONString(params))
 		val time =  TimeUtils.date2String(Date())
 		val md5Params = hashMapOf("encryptdata" to aesParams, "t" to time)
-		return MD5Util.md5(md5Params, Constants.ZS_SECRET_KEY)
+		return MD5Util.md5(md5Params,  MyApplication.instance.resources.getString(R.string.AES_SECRET))
 	}
 	
 	
@@ -31,7 +34,7 @@ object HttpUtils {
 		val encryptData = json.getString("encryptdata")
 		//根据返回的加密value值取key密钥
 		val k = json.optString("s")
-		val decryptKey = if (k.isNullOrBlank()) Constants.ZS_AES_KEY else keyMaps[k]
+		val decryptKey = if (k.isNullOrBlank()) MyApplication.instance.resources.getString(R.string.AES_KEY) else keyMaps[k]
 		val data = AesUtils.decrypt(decryptKey, encryptData)
 		return data
 	}
@@ -50,10 +53,10 @@ object HttpUtils {
 		commonParams["platform"] = "1" //1、android 2、iOS
 		commonParams.putAll(params)
 	 
-		val aesParams = AesUtils.encrypt(Constants.ZS_AES_KEY, JSON.toJSONString(commonParams))
+		val aesParams = AesUtils.encrypt(MyApplication.instance.resources.getString(R.string.AES_KEY), JSON.toJSONString(commonParams))
 		val time =  TimeUtils.date2String(Date())
 		val md5Params = hashMapOf("encryptdata" to aesParams, "t" to time)
-		md5Params["sign"] = MD5Util.md5(md5Params, Constants.ZS_SECRET_KEY)
+		md5Params["sign"] = MD5Util.md5(md5Params, MyApplication.instance.resources.getString(R.string.AES_SECRET))
 		return md5Params
 	}
  
@@ -99,7 +102,7 @@ object HttpUtils {
 			val encryptData = json.getString("encryptdata")
 			//根据返回的加密value值取key密钥
 			val k = json.optString("s")
-			val decryptKey = if (k.isNullOrBlank()) Constants.ZS_AES_KEY else keyMaps[k]
+			val decryptKey = if (k.isNullOrBlank()) MyApplication.instance.resources.getString(R.string.AES_KEY) else keyMaps[k]
 			val data = AesUtils.decrypt(decryptKey, encryptData)
 			LogUtils.iTag("httpresp", data)
 			GsonUtils.fromJson<T>(data, object : TypeToken<T>() {}.type)

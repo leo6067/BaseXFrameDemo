@@ -59,6 +59,9 @@ android {
         }
         //配置resConfigs 只打包默认与简体中文资源。
 //        resConfigs "zh-rCN", "en-rGB", "th-rTH", "zh-rTW", "es-rES", "pt-rPT"
+
+        resValue "string", "AES_KEY", myProperties.getProperty('AES_KEY')
+        resValue "string", "AES_SECRET", myProperties.getProperty('AES_SECRET')
     }
 
     kotlinOptions {
