@@ -8,7 +8,7 @@
     android:minHeight="80dp"
     android:paddingStart="20dp"
     android:paddingTop="10dp"
-    android:paddingEnd="20dp"
+    android:paddingRight="20dp"
     android:paddingBottom="10dp">
 
     <androidx.core.widget.ContentLoadingProgressBar

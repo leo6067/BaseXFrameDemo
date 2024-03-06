@@ -4,9 +4,25 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowNoTitle">true</item>
         <item name="android:windowDisablePreview">true</item>
-        <item name="colorPrimary">@color/color_FFFFFF</item>
-        <item name="colorPrimaryDark">@color/color_FFFFFF</item>
-        <item name="colorAccent">@color/color_FFFFFF</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- Secondary brand color. -->
+        <!--        <item name="colorSecondary">@color/color_FF03DAC5</item>-->
+        <!--        <item name="colorSecondaryVariant">@color/color_FF018786</item>-->
+        <item name="colorOnSecondary">@color/color_000000_80</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:screenOrientation">portrait</item>
+
+        <!--防止多点触控-->
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:splitMotionEvents">false</item>
+
+
     </style>
 
 
@@ -92,4 +108,10 @@
         <item name="android:backgroundDimAmount">0.8</item>
     </style>
 
+
+<!--    <declare-styleable name="DLRoundMenuView">-->
+<!--    &lt;!&ndash; 是否有中间OK按钮 &ndash;&gt;-->
+<!--    <attr format="boolean" name="RMRoundMenuDrawable"/>-->
+<!-- -->
+<!--    </declare-styleable>-->
 </resources>
