@@ -33,25 +33,25 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MainViewModel>() {
 
     override fun initView() {
 
-        initRecyclerView(binding.recyclerView, LinearLayoutManager.VERTICAL, 0)
+//        initRecyclerView(binding.recyclerView, LinearLayoutManager.VERTICAL, 0)
+//
+//        binding.recyclerView.adapter = homeAdapter
+//
+//        val bannerLin = layoutInflater.inflate(R.layout.include_banner, null)
+//        bannerView = bannerLin.findViewById(R.id.bannerView)
+//        homeAdapter.removeAllHeaderView()
+//        homeAdapter.addHeaderView(bannerLin)
+//        binding.refreshView.setEnableLoadMore(false)
+//        binding.refreshView.setOnRefreshListener { initArgument() }
 
-        binding.recyclerView.adapter = homeAdapter
-
-        val bannerLin = layoutInflater.inflate(R.layout.include_banner, null)
-        bannerView = bannerLin.findViewById(R.id.bannerView)
-        homeAdapter.removeAllHeaderView()
-        homeAdapter.addHeaderView(bannerLin)
-        binding.refreshView.setEnableLoadMore(false)
-        binding.refreshView.setOnRefreshListener { initArgument() }
-
-
-
-
-
-
-
-
+  
         FileUtils.saveStringToFile(activity,"41212121515454515")
+        
+        
+        binding.videoTV.setOnClickListener {
+    
+            startActivity(Intent(activity, VideoPlayActivity::class.java))
+        }
 
 
     }
