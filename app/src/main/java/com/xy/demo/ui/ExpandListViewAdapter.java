@@ -36,7 +36,8 @@ public class ExpandListViewAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return 1;
+//        return 1;  如果有第三层级采用 返回1
+        return mListData.get(groupPosition).getListSecondModel().size();
     }
 
     @Override
@@ -94,9 +95,8 @@ public class ExpandListViewAdapter extends BaseExpandableListAdapter {
                 notifyDataSetChanged();
             }
         });
+
         finalHolder.cb.setChecked(true);
-
-
         for (int i = 0; i < mListData.get(groupPosition).getListSecondModel().size(); i++) {
             SecondModel secondModel = mListData.get(groupPosition).getListSecondModel().get(i);
             if (!secondModel.isCheck()) {
@@ -105,57 +105,61 @@ public class ExpandListViewAdapter extends BaseExpandableListAdapter {
             }
         }
         notifyDataSetChanged();
-
-
         return convertView;
     }
 
     @Override
     public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-//        SecondHolder holder = null;
-//        if (convertView == null) {
-//            holder = new SecondHolder();
-//            convertView = mInflate.inflate(R.layout.item_expand_lv_second, parent, false);
-//            holder.tv = ((TextView) convertView.findViewById(R.id.tv));
-//            holder.cb = ((CheckBox) convertView.findViewById(R.id.cb));
-//            convertView.setTag(holder);
-//        } else {
-//            holder = (SecondHolder) convertView.getTag();
-//        }
-//        holder.tv.setText(mListData.get(groupPosition).getListSecondModel().get(childPosition).getTitle());
-//        holder.cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                mListData.get(groupPosition).getListSecondModel().get(childPosition).setCheck(isChecked);
-//            }
-//        });
-//        holder.cb.setChecked(mListData.get(groupPosition).getListSecondModel().get(childPosition).isCheck());
-//        return convertView;
-//        Object object= (Object) getChild(groupPosition, childPosition);
-//        CustomExpandableListView subObjects= () convertView;;
-//        if (convertView==null) {
-//            subObjects= new CustomExpandableListView(activity);
-//        }
-//        Adapter2 adapter= new Adapter2(activity, object);
-//        subObjects.setAdapter(adapter);
-//
-//        return subObjects
-        CustomExpandableListView lv = ((CustomExpandableListView) convertView);
+        SecondHolder secondHolder = null;
         if (convertView == null) {
-            lv = new CustomExpandableListView(context);
+            secondHolder = new SecondHolder();
+            convertView = mInflate.inflate(R.layout.item_expand_lv_second, parent, false);
+            secondHolder.tv = ((TextView) convertView.findViewById(R.id.tv));
+            secondHolder.cb = ((CheckBox) convertView.findViewById(R.id.cb));
+            convertView.setTag(secondHolder);
+        } else {
+            secondHolder = (SecondHolder) convertView.getTag();
         }
-        SecondAdapter secondAdapter = new SecondAdapter(context, mListData.get(groupPosition).getListSecondModel());
-        lv.setAdapter(secondAdapter);
-        return lv;
+        secondHolder.tv.setText(mListData.get(groupPosition).getListSecondModel().get(childPosition).getTitle());
+        SecondHolder finalSecondHolder = secondHolder;
+        SecondModel secondModel = mListData.get(groupPosition).getListSecondModel().get(childPosition);
+        secondHolder.cb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isChecked = finalSecondHolder.cb.isChecked();
+                Log.d("bigname", "onCheckedChanged: second:" + groupPosition + "," + isChecked);
+                secondModel.setCheck(isChecked);
+//                    for (int i = 0; i < listSecondModel.get(groupPosition).getListThirdModel().size(); i++) {
+//                        ThirdModel thirdModel = listSecondModel.get(groupPosition).getListThirdModel().get(i);
+//                        thirdModel.setCheck(isChecked);
+//                    }
+                notifyDataSetChanged();
+            }
+        });
+
+        secondHolder.cb.setChecked(secondModel.isCheck());
+        finalSecondHolder.cb.setChecked(secondModel.isCheck());
+        return convertView;
+
+
+
+        //如果有第三层   采用以下用法
+//        CustomExpandableListView lv = ((CustomExpandableListView) convertView);
+//        if (convertView == null) {
+//            lv = new CustomExpandableListView(context);
+//        }
+//        SecondAdapter secondAdapter = new SecondAdapter(context, mListData.get(groupPosition).getListSecondModel());
+//        lv.setAdapter(secondAdapter);
+//        return lv;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
     }
 
     /*
-     *   第二层的适配器
+     *   第二层的适配器 （有第三层级的情况 在第二层使用此适配器）
      * */
     class SecondAdapter extends BaseExpandableListAdapter {
         Context context;

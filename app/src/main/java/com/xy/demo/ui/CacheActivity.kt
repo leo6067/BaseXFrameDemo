@@ -35,9 +35,7 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 		
 		mAdapter = ExpandListViewAdapter(mListData, this)
 		binding.recyclerView.setAdapter(mAdapter)
-		binding.recyclerView.setGroupIndicator(null); // 隐藏ExpandableListView自带的图标
-	
-		
+ 
 	}
 	
 	//存储空间信息初始化
@@ -56,13 +54,11 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 	    	已 用：${usedSpaceToGB}GB
 	    	剩 余：${freeSpaceToGB}GB
 	    	""".trimIndent()
-		
-		
+		 
 	}
 	
 	
 	private fun initDate() {
-		
 		
 		val firstModel = FirstModel()
 		val listSecondModel: MutableList<SecondModel> = ArrayList<SecondModel>()
@@ -98,9 +94,6 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 		
 		
 		
-		
-		
-		
 		val firstModelB = FirstModel()
 		val listSecondModelB: MutableList<SecondModel> = ArrayList<SecondModel>()
 		
@@ -117,60 +110,8 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 		mListData.add(firstModelB)
 		
 		
-		
-		
-		
-		
-		
-		
-		
-	 
-//		for (i in 0..19) {
-//			val firstModel = FirstModel()
-//			val listSecondModel: MutableList<SecondModel> = ArrayList<SecondModel>()
-//			firstModel.setCheck(false)
-//			firstModel.setTitle(" 缓存  $i")
-//			firstModel.setListSecondModel(listSecondModel)
-//
-//
-//			mListData.add(firstModel)
-//
-//			for (j in 0..5) {
-//				val secondModel = SecondModel()
-//				val thirdModelList: MutableList<ThirdModel> = ArrayList<ThirdModel>()
-//				secondModel.setCheck(false)
-//				secondModel.setTitle("垃圾 $j")
-//				secondModel.setListThirdModel(thirdModelList)
-//				listSecondModel.add(secondModel)
-//				for (k in 0..2) {
-//					val thirdModel = ThirdModel()
-//					thirdModel.setCheck(false)
-//					thirdModel.setTitle("第三级$k")
-//					thirdModelList.add(thirdModel)
-//				}
-//			}
-//		}
+ 
 	}
-	
-	fun btnOnclick(view: View?) {
-		val selectResult: MutableList<String> = ArrayList()
-		for (i in mListData!!.indices) {
-			val listSecondModel: List<SecondModel> = mListData!!.get(i).getListSecondModel()
-			for (j in listSecondModel.indices) {
-				val listThirdModel: List<ThirdModel> = listSecondModel[j].getListThirdModel()
-				for (k in listThirdModel.indices) {
-					val address = StringBuilder()
-					address.append("一级：").append(i).append(",")
-					address.append("二级：").append(j).append(",")
-					address.append("三级：").append(k).append("||")
-					if (listThirdModel[k].isCheck()) {
-						selectResult.add(address.toString())
-					}
-				}
-			}
-		}
-		Log.d("bigname", "btnOnclick: $selectResult")
-	}
-	
+ 
 	
 }

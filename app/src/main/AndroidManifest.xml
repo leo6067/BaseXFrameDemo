@@ -32,6 +32,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".ui.ProcessActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.CacheActivity"
             android:exported="false" />
         <activity
