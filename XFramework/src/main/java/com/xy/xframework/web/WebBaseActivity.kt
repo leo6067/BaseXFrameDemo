@@ -77,7 +77,7 @@ abstract class WebBaseActivity() : XBaseActivity<BaseWebViewLayoutBinding, WebBa
 
 
     @SuppressLint("JavascriptInterface", "SetJavaScriptEnabled")
-    override fun initBase() {
+    override fun initLogic() {
         titleBarView?.setTitle(title)
         binding.mWebView.settings.apply {
             setSupportZoom(false)

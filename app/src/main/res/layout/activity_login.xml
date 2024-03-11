@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.xy.demo.ui.LoginViewModel" />
+            type="com.xy.demo.vm.LoginViewModel" />
     </data>
 
 

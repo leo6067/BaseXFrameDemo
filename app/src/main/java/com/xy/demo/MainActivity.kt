@@ -1,132 +1,316 @@
 package com.xy.demo
 
+import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.net.Uri
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Environment
-import android.util.AttributeSet
-import android.view.View
-import androidx.appcompat.app.AppCompatDelegate
+import android.provider.Settings
 import androidx.core.content.ContextCompat
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.databinding.ActivityMainBinding
 import com.xy.demo.network.Globals
 import com.xy.demo.network.NetLaunchManager.launchRequest
 import com.xy.demo.network.NetManager
-import com.xy.demo.ui.SecondActivity
+import com.xy.demo.ui.CacheActivity
+import com.xy.demo.ui.ClearMemoryActivity
 import com.xy.xframework.base.BaseAppContext
 import com.xy.xframework.base.BaseSharePreference
 import com.xy.xframework.base.XBaseViewModel
-
+import java.io.BufferedReader
 import java.io.File
+import java.io.FileReader
+import java.io.IOException
 
 
 class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
-
-
-    var downloadId = 0
-    override fun getLayoutId(): Int = R.layout.activity_main
-
-
-    override fun showTitleBar(): Boolean = false
-
-    override fun fitsSystemWindows(): Boolean {
-        return false
-    }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-
-        if (BaseSharePreference.spObject.getString("AppTheme","light").equals("night")) {
-            //设置夜晚主题  需要在setContentView之前
-            setTheme(R.style.AppDarkTheme)
-        } else {
-            //设置白天主题
-            setTheme(R.style.AppLightTheme);
-        }
-        super.onCreate(savedInstanceState)
-    }
-
-
-
-    override fun initView() {
-
-        launchRequest({ NetManager.getStoreCount() }, {}, {})
-
-
-        var downUrl =
-            "https://softforspeed.51xiazai.cn/alading/NeteaseCloudMusic_Music_official_2.10.6.200601.exe"
-
-
-        val rootDirPath = getRootDirPath(BaseAppContext.getInstance());
-        Globals.log("xxxxxfilesDir", getRootDirPath(BaseAppContext.getInstance()))
-        Globals.log("xxxxxfilesDir--本地可用的存储 路劲", filesDir.absolutePath.toString() + "新增的文件名")
-
-
-
-        binding.nightTV.setOnClickListener {
-
-
-            BaseSharePreference.spObject.putString("AppTheme", "night")
-            recreate()
-            // 暗黑模式
-//            setTheme(R.style.AppDarkTheme)
-
-//            startActivity(Intent(this@MainActivity, MainActivity::class.java))
-
-
-        }
-
-        binding.lightTV.setOnClickListener {
-            BaseSharePreference.spObject.putString("AppTheme", "light")
-
-
-            recreate()
-
-//            setTheme(R.style.AppLightTheme)
-//            startActivity(Intent(this@MainActivity, MainActivity::class.java))
-
-
-        }
-
-
-
-
-        binding.nextTV.setOnClickListener {
-
-//            startActivity(Intent(this@MainActivity, SecondActivity::class.java))
-
-
-            var url = "https://HiReadNovel.onelink.me/9gP0/vplay?v=66&c=0";
-            var uri = Uri.parse(url);
-            var intent = Intent();
-            intent.setData(uri);
-            startActivity(intent);
-
-        }
-
-
-    }
-
-
-
-    override fun onResume() {
-        super.onResume()
-
-    }
-
-    fun getRootDirPath(context: Context): String? {
-        return if (Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()) {
-            val file: File = ContextCompat.getExternalFilesDirs(
-                context.applicationContext,
-                null
-            ).get(0)
-            file.absolutePath
-        } else {
-            context.applicationContext.filesDir.absolutePath
-        }
-    }
-
+	
+	
+	var downloadId = 0
+	override fun getLayoutId(): Int = R.layout.activity_main
+	
+	
+	override fun showTitleBar(): Boolean = false
+	
+	override fun fitsSystemWindows(): Boolean {
+		return false
+	}
+	
+	
+	override fun onCreate(savedInstanceState: Bundle?) {
+		
+		if (BaseSharePreference.spObject.getString("AppTheme", "light").equals("night")) {
+			//设置夜晚主题  需要在setContentView之前
+			setTheme(R.style.AppDarkTheme)
+		} else {
+			//设置白天主题
+			setTheme(R.style.AppLightTheme);
+		}
+		super.onCreate(savedInstanceState)
+	}
+	
+	
+	override fun initView() {
+		
+		var downUrl =
+			"https://softforspeed.51xiazai.cn/alading/NeteaseCloudMusic_Music_official_2.10.6.200601.exe"
+		
+		val rootDirPath = getRootDirPath(BaseAppContext.getInstance());
+		Globals.log("xxxxxfilesDir", getRootDirPath(BaseAppContext.getInstance()))
+		Globals.log("xxxxxfilesDir--本地可用的存储 路劲", filesDir.absolutePath.toString() + "新增的文件名")
+		
+		
+		//手动跳转 授权 应用使用情况
+//		startActivity(
+//			Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
+//		)
+		
+		
+		
+		binding.cacheBT.setOnClickListener {
+			startActivity(Intent(this@MainActivity, CacheActivity::class.java))
+		}
+		
+		binding.uninstallTV.setOnClickListener {
+			startActivity(Intent(this@MainActivity, ClearMemoryActivity::class.java))
+		}
+		
+		
+	}
+	
+	
+	override fun onResume() {
+		super.onResume()
+		
+	}
+	
+	fun getRootDirPath(context: Context): String? {
+		return if (Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()) {
+			val file: File = ContextCompat.getExternalFilesDirs(
+				context.applicationContext,
+				null
+			).get(0)
+			file.absolutePath
+		} else {
+			context.applicationContext.filesDir.absolutePath
+		}
+	}
+	
+	
+	/**
+	 * 获取当用户在试用的应用包名，适用于5.0以上
+	 *
+	 * @return
+	 */
+	fun getForegroundApp(): String? {
+		val files = File("/proc").listFiles()
+		var lowestOomScore = Int.MAX_VALUE
+		var foregroundProcess: String? = null
+		for (file in files) {
+			if (!file.isDirectory) {
+				continue
+			}
+			var pid: Int
+			pid = try {
+				file.name.toInt()
+			} catch (e: NumberFormatException) {
+				continue
+			}
+			try {
+				val cgroup = read(String.format("/proc/%d/cgroup", pid))
+				val lines = cgroup.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+				var cpuSubsystem: String
+				var cpuaccctSubsystem: String
+				if (lines.size == 2) { // 有的手机里cgroup包含2行或者3行，我们取cpu和cpuacct两行数据
+					cpuSubsystem = lines[0]
+					cpuaccctSubsystem = lines[1]
+				} else if (lines.size == 3) {
+					cpuSubsystem = lines[0]
+					cpuaccctSubsystem = lines[2]
+				} else if (lines.size == 5) {
+					cpuSubsystem = lines[2]
+					cpuaccctSubsystem = lines[4]
+				} else {
+					continue
+				}
+				if (!cpuaccctSubsystem.endsWith(Integer.toString(pid))) {
+					continue
+				}
+				if (cpuSubsystem.endsWith("bg_non_interactive")) {
+					continue
+				}
+				val cmdline = read(String.format("/proc/%d/cmdline", pid))
+				if (isContainsFilter(cmdline)) {
+					continue
+				}
+				val uid = cpuaccctSubsystem.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[2].split("/".toRegex())
+					.dropLastWhile { it.isEmpty() }
+					.toTypedArray()[1].replace("uid_", "").toInt()
+				if (uid >= 1000 && uid <= 1038) {
+					continue
+				}
+//                var appId: Int = uid - AID_APP
+//                while (appId > AID_USER) {
+//                    appId -= AID_USER
+//                }
+//                if (appId < 0) {
+//                    continue
+//                }
+				val oomScoreAdj = File(String.format("/proc/%d/oom_score_adj", pid))
+				if (oomScoreAdj.canRead()) {
+					val oomAdj = read(oomScoreAdj.absolutePath).toInt()
+					if (oomAdj != 0) {
+						continue
+					}
+				}
+				val oomscore = read(String.format("/proc/%d/oom_score", pid)).toInt()
+				if (oomscore < lowestOomScore) {
+					lowestOomScore = oomscore
+					foregroundProcess = cmdline
+				}
+				if (foregroundProcess == null) {
+					return null
+				}
+				
+				Globals.log("xxxxxxforegroundProcess" + foregroundProcess)
+				val indexOf = foregroundProcess.indexOf(":")
+				if (indexOf != -1) {
+					foregroundProcess = foregroundProcess.substring(0, indexOf)
+				}
+			} catch (e: NumberFormatException) {
+				e.printStackTrace()
+			} catch (e: IOException) {
+				e.printStackTrace()
+			} catch (e: Exception) {
+				e.printStackTrace()
+			}
+		}
+		
+		return foregroundProcess
+	}
+	
+	@Throws(IOException::class)
+	private fun read(path: String): String {
+		val output = StringBuilder()
+		val reader = BufferedReader(FileReader(path))
+		output.append(reader.readLine())
+		var line = reader.readLine()
+		while (line != null) {
+			output.append('\n').append(line)
+			line = reader.readLine()
+		}
+		reader.close()
+		return output.toString().trim { it <= ' ' } // 不调用trim()，包名后会带有乱码
+	}
+	
+	/**
+	 * filter包名过滤
+	 *
+	 * @param cmdline
+	 * @return
+	 */
+	fun isContainsFilter(cmdline: String): Boolean {
+		var flag = false
+		if (filterMap == null || filterMap.isEmpty() || filterMap.size === 0) {
+			initFliter()
+		}
+		if (filterMap != null) {
+			for (key in filterMap.keys) {
+				if (cmdline.contains(key!!)) {
+					flag = true
+					break
+				}
+			}
+		}
+		return flag
+	}
+	
+	
+	/**
+	 * 判断是否为第三方应用，并且有界面的应用
+	 *
+	 * @param context
+	 * @param packageName
+	 * @return true:第三方应用，并且有界面
+	 */
+	fun isUserApp(context: Context, packageName: String): Boolean {
+		val names: MutableList<String> = ArrayList()
+		val packageManager = context.packageManager
+		val intent = Intent(Intent.ACTION_MAIN)
+		intent.addCategory(Intent.CATEGORY_HOME)
+		val list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY) //
+		for (resolveInfo in list) {
+			names.add(resolveInfo.activityInfo.packageName)
+		}
+		if (!names.contains(packageName)) {
+			if (packageManager.getLaunchIntentForPackage(packageName) != null) {
+				return true
+			}
+		}
+		return false
+	}
+	
+	
+	/**
+	 * 初始化filter
+	 */
+	
+	var filterMap = HashMap<String, Int>()
+	fun initFliter() {
+		if (filterMap == null) {
+			filterMap = HashMap<String, Int>()
+		}
+		if (filterMap.isEmpty() || filterMap.size === 0) {
+			filterMap.put("com.android.systemui", 0)
+			filterMap.put("com.aliyun.ams.assistantservice", 0)
+			filterMap.put("com.meizu.cloud", 0)
+			filterMap.put("com.android.incallui", 0)
+			filterMap.put("com.amap.android.location", 0)
+			filterMap.put("com.android.providers.contacts", 0)
+			filterMap.put("com.samsung.android.providers.context", 0)
+			filterMap.put("com.android.dialer", 0)
+			filterMap.put("com.waves.maxxservice", 0)
+			filterMap.put("com.lge.camera", 0)
+			filterMap.put("se.dirac.acs", 0)
+			filterMap.put("/", 0)
+		}
+	}
+	
+	
+	/**
+	 * Kill掉某个正在运行的应用
+	 * @param context
+	 * @param packageToKill
+	 */
+	private fun killAppByPackage(context: Context, packageToKill: String) {
+		val packages: List<ApplicationInfo>
+		val pm: PackageManager
+		pm = context.packageManager
+		//get a list of installed apps.
+		packages = pm.getInstalledApplications(0)
+		val mActivityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+		
+		//利用killBackgroundProcesses方法(API > 8)
+		for (packageInfo in packages) {
+			if (packageInfo.flags and ApplicationInfo.FLAG_SYSTEM == 1) {
+				continue
+			}
+			if (packageInfo.packageName == packageToKill && mActivityManager != null) {
+				mActivityManager.killBackgroundProcesses(packageInfo.packageName)
+			}
+		}
+		
+		//利用反射调用forceStopPackage方法
+		//需要android.permission.FORCE_STOP_PACKAGES权限
+		//需要系统签名
+		try {
+			val method = Class.forName("android.app.ActivityManager").getMethod("forceStopPackage", String::class.java)
+			method.invoke(mActivityManager, packageToKill)
+		} catch (e: java.lang.Exception) {
+			e.printStackTrace()
+		}
+	}
+	
 }

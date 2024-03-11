@@ -6,6 +6,6 @@
 //        jcenter() // Warning: this repository is going to shut down soon
 //    }
 //}
-rootProject.name = "BaseXFrameDemo"
+rootProject.name = "清理工具"
 include ':app'
 include ':XFramework'

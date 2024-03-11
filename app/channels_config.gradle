@@ -21,7 +21,7 @@ android {
     //walle多渠道和马甲包配置
     productFlavors {
         sjyk {
-            applicationId "com.sjyk.remote"
+            applicationId "com.sjyk.clear"
             versionCode 2024030401
             versionName "1.0.0"
             signingConfig signingConfigs.remote

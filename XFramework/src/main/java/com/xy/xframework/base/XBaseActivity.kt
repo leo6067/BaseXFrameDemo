@@ -75,14 +75,14 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         }
         initSwipeBackLayout()
         registerUIChangeEventCallBack()
-        initBase()
         initView()
+        initLogic()
         initViewObservable()
         AppActivityManager.getInstance()
 
     }
 
-    open fun initBase() {
+    open fun initLogic() {
 
     }
 

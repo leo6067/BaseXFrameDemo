@@ -10,51 +10,49 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:background="?attr/bg_main"
         android:orientation="vertical">
-
-
-        <ProgressBar
-            android:id="@+id/progressA"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_20"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="@dimen/dp_20"
-            android:progressDrawable="@drawable/progressbar_color" />
-
-
-        <TextView
-            android:id="@+id/nightTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_30"
-            android:background="?attr/tv_bg"
-            android:textColor="?attr/tv_font"
-            android:text="开始下载" />
-
-
-        <TextView
-            android:id="@+id/lightTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:background="?attr/tv_bg"
-            android:textColor="?attr/tv_font"
-            android:layout_marginTop="@dimen/dp_10"
-            android:text="修改主题" />
 
 
 
         <Button
-            android:id="@+id/nextTV"
-            android:layout_width="wrap_content"
+            android:id="@+id/uninstallTV"
+            android:layout_width="@dimen/dp_150"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_10"
-            android:text="下一步" />
+            android:layout_marginTop="@dimen/dp_50"
+            android:text="应用管理" />
 
+
+
+        <Button
+            android:id="@+id/cacheBT"
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_50"
+            android:text="清理缓存" />
+
+
+
+        <Button
+            android:id="@+id/noticeBT"
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_50"
+            android:text="通知管理" />
+
+
+
+
+
+        <Button
+            android:id="@+id/bigBT"
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_50"
+            android:text="大文件" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
