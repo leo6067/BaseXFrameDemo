@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 import com.xingliuhua.xlhratingbar.IRatingView;
 import com.xy.demo.R;
 
+
+// 星级 等级
 public class SimpleRatingView implements IRatingView {
     ViewGroup mViewGroup;
     @Override

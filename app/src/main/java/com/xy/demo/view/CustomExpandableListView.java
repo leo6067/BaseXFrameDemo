@@ -5,6 +5,8 @@ import android.util.AttributeSet;
 import android.widget.ExpandableListView;
 
 
+
+//多级 展开列表
 public class CustomExpandableListView extends ExpandableListView{
     public CustomExpandableListView(Context context) {
         super(context);

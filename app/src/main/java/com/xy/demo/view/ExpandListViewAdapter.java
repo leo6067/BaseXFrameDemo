@@ -15,7 +15,7 @@ import com.xy.demo.model.SecondModel;
 
 import java.util.List;
 
-
+//多级 展开列表
 public class ExpandListViewAdapter extends BaseExpandableListAdapter {
     private List<FirstModel> mListData;
     private LayoutInflater mInflate;
