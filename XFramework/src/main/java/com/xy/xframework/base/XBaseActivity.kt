@@ -38,6 +38,7 @@ import com.xy.xframework.swipeback.SwipeBackActivityHelper
 import com.xy.xframework.swipeback.SwipeBackLayout
 import com.xy.xframework.titlebar.GlobalTitleBarProvider
 import com.xy.xframework.titlebar.TitleBarView
+import com.xy.xframework.utils.ViewUtil
 
 
 import kotlinx.coroutines.GlobalScope
@@ -343,9 +344,9 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         if (ev.action == MotionEvent.ACTION_DOWN) {
             // 判断连续点击事件时间差
-//            if (ViewUtil.isFastClick()) {
-//                return true
-//            }
+            if (ViewUtil.isFastClick()) {
+                return true
+            }
         }
         return super.dispatchTouchEvent(ev)
     }
