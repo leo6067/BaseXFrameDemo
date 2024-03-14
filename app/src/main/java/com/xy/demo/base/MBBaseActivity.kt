@@ -25,7 +25,7 @@ abstract class MBBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : XBaseA
     override fun onCreate(savedInstanceState: Bundle?) {
 //        ARouter.getInstance().inject(this)
 
-        if (BaseSharePreference.spObject.getString("AppTheme","light").equals("night")) {
+        if (BaseSharePreference.instance.getString("AppTheme","light").equals("night")) {
             //设置夜晚主题  需要在setContentView之前
             setTheme(R.style.AppDarkTheme)
         } else {

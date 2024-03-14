@@ -39,7 +39,7 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        if (BaseSharePreference.spObject.getString("AppTheme","light").equals("night")) {
+        if (BaseSharePreference.instance.getString("AppTheme","light").equals("night")) {
             //设置夜晚主题  需要在setContentView之前
             setTheme(R.style.AppDarkTheme)
         } else {
@@ -69,7 +69,7 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
         binding.nightTV.setOnClickListener {
 
 
-            BaseSharePreference.spObject.putString("AppTheme", "night")
+            BaseSharePreference.instance.putString("AppTheme", "night")
             recreate()
             // 暗黑模式
 //            setTheme(R.style.AppDarkTheme)
@@ -80,7 +80,7 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
         }
 
         binding.lightTV.setOnClickListener {
-            BaseSharePreference.spObject.putString("AppTheme", "light")
+            BaseSharePreference.instance.putString("AppTheme", "light")
 
 
             recreate()

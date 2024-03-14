@@ -8,5 +8,6 @@
     <com.xy.xframework.titlebar.TitleBarView
         android:id="@+id/titleBarView"
         android:layout_width="match_parent"
-        android:layout_height="44dp" />
+        android:paddingTop="@dimen/dp_15"
+        android:layout_height="@dimen/dp_56" />
 </LinearLayout>

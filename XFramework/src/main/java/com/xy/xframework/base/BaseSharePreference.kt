@@ -1,3 +1,5 @@
+
+
 package com.xy.xframework.base
 
 import android.content.Context
@@ -11,31 +13,24 @@ import java.lang.IllegalArgumentException
 import java.util.*
 
 class BaseSharePreference private constructor(private val mContext: Context) {
-    init {
-        mSharedPreferences =
-            mContext.getSharedPreferences(BaseConstants.baseShareName, Context.MODE_PRIVATE)
-    }
-
-
+    
+    private var mSharedPreferences: SharedPreferences = mContext.getSharedPreferences(BaseConstants.baseShareName, Context.MODE_PRIVATE)
+    
     companion object {
-
-
-        lateinit var mSharedPreferences: SharedPreferences
-        //外部使用
-        lateinit var mInstance: BaseSharePreference
+        //内部使用
+        private lateinit var mInstance: BaseSharePreference
         private val mSyncLock = Any()
-
-         val spObject: BaseSharePreference
+        
+        val instance: BaseSharePreference
             get() {
                 synchronized(mSyncLock) {
-                        mInstance = BaseSharePreference(XBaseApplication.application)
+                    mInstance = BaseSharePreference(XBaseApplication.application)
                 }
                 return mInstance
             }
     }
-
-
-
+    
+    
     /**
      * 保存版本升级
      */
@@ -61,7 +56,7 @@ class BaseSharePreference private constructor(private val mContext: Context) {
     fun getBoolean(key: String?, defValue: Boolean): Boolean {
         return mSharedPreferences.getBoolean(key, defValue)
     }
-
+    
     /**
      * 存储一个boolean类型数据
      * @param
@@ -71,7 +66,7 @@ class BaseSharePreference private constructor(private val mContext: Context) {
     fun putBoolean(key: String?, value: Boolean) {
         mSharedPreferences.edit().putBoolean(key, value).commit()
     }
-
+    
     /**
      * 存储一个String类型的数据
      * @param
@@ -81,7 +76,7 @@ class BaseSharePreference private constructor(private val mContext: Context) {
     fun putString(key: String?, value: String?) {
         mSharedPreferences.edit().putString(key, value).commit()
     }
-
+    
     /**
      * 获取一个String类型的数据
      * @param
@@ -92,7 +87,7 @@ class BaseSharePreference private constructor(private val mContext: Context) {
     fun getString(key: String, defValue: String): String? {
         return mSharedPreferences.getString(key, defValue)
     }
-
+    
     /**
      * 存储一个long类型的数据
      * @param
@@ -102,7 +97,7 @@ class BaseSharePreference private constructor(private val mContext: Context) {
     fun putLong(key: String?, value: Long) {
         mSharedPreferences.edit().putLong(key, value).commit()
     }
-
+    
     /**
      * 获取一个long类型的数据
      * @param
@@ -113,7 +108,7 @@ class BaseSharePreference private constructor(private val mContext: Context) {
     fun getLong(key: String?, defValue: Long): Long {
         return mSharedPreferences.getLong(key, defValue)
     }
-
+    
     /**
      * 存储一个int类型的数据
      * @param
@@ -123,7 +118,7 @@ class BaseSharePreference private constructor(private val mContext: Context) {
     fun putInt(key: String?, value: Int) {
         mSharedPreferences.edit().putInt(key, value).commit()
     }
-
+    
     /**
      * 获取一个int类型的数据
      * @param
@@ -134,7 +129,7 @@ class BaseSharePreference private constructor(private val mContext: Context) {
     fun getInt(key: String?, defValue: Int): Int {
         return mSharedPreferences.getInt(key, defValue)
     }
-
+    
     /**
      * 存放实体类以及任意类型
      * @param key
@@ -161,7 +156,7 @@ class BaseSharePreference private constructor(private val mContext: Context) {
             )
         }
     }
-
+    
     fun getBean(key: String?): Any? {
         var obj: Any?
         try {
@@ -178,8 +173,8 @@ class BaseSharePreference private constructor(private val mContext: Context) {
         }
         return obj
     }
-
-
+    
+    
     fun putObject(key: String?, `object`: Any?) {
         if (`object` == null) {
             mSharedPreferences.edit().putString(key, null)
@@ -187,7 +182,7 @@ class BaseSharePreference private constructor(private val mContext: Context) {
         mSharedPreferences.edit().putString(key, Gson().toJson(`object`))
         mSharedPreferences.edit().apply()
     }
-
+    
     fun <T> getObject(key: String, a: Class<T>?): T? {
         val json = mSharedPreferences.getString(key, null)
         if (TextUtils.isEmpty(json)) {
@@ -196,12 +191,12 @@ class BaseSharePreference private constructor(private val mContext: Context) {
             try {
                 return Gson().fromJson(json, a)
             } catch (e: Exception) {
-
+            
             }
         }
         return null
     }
-
+    
     /**
      * Get parsed ArrayList of String from SharedPreferences at 'key'
      *
@@ -217,7 +212,7 @@ class BaseSharePreference private constructor(private val mContext: Context) {
             )
         )
     }
-
+    
     /**
      * Put ArrayList of String into SharedPreferences with 'key' and save
      *
@@ -229,7 +224,7 @@ class BaseSharePreference private constructor(private val mContext: Context) {
         val myStringList = stringList.toTypedArray()
         mSharedPreferences.edit().putString(key, TextUtils.join("‚‗‚", myStringList))?.apply()
     }
-
+    
     /**
      * null keys would corrupt the shared pref file and make them unreadable this is a preventive measure
      *
@@ -237,10 +232,10 @@ class BaseSharePreference private constructor(private val mContext: Context) {
      */
     fun checkForNullKey(key: String?) {
         if (key == null) {
-
+        
         }
     }
-
+    
     /**
      * 存储Map集合
      *
@@ -257,7 +252,7 @@ class BaseSharePreference private constructor(private val mContext: Context) {
         }
         return this
     }
-
+    
     fun <K : Serializable?, V : Serializable?> getMap(key: String): MutableMap<K, V>? {
         try {
             return get(key) as MutableMap<K, V>?
@@ -266,8 +261,8 @@ class BaseSharePreference private constructor(private val mContext: Context) {
         }
         return null
     }
-
-
+    
+    
     /**
      * 存储对象
      */
@@ -287,7 +282,7 @@ class BaseSharePreference private constructor(private val mContext: Context) {
         oos.close()
         putString(key, objectStr)
     }
-
+    
     /**
      * 获取对象
      */
