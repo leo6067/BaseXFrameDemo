@@ -9,12 +9,13 @@ import com.xy.xframework.network.log.LoggingInterceptor
 object NetManager {
     const val TIME_OUT = 10000L
     const val DEFAULT_PAGE_NUM = 20
-    val releaseAPP = BaseSharePreference.spObject.getBoolean(Constants.KEY_APP_RELEASE, true)
-    val domain = if (releaseAPP) {
-        Constants.releaseBaseUrl
-    } else
-        Constants.debugBaseUrl
-
+//    val releaseAPP = BaseSharePreference.instance.getBoolean(Constants.KEY_APP_RELEASE, true)
+//    val domain = if (releaseAPP) {
+//        Constants.releaseBaseUrl
+//    } else
+//        Constants.debugBaseUrl
+    
+    val domain = Constants.releaseBaseUrl
 
     val apiService by lazy {
         NetworkManager.buildWithBaseUrl(domain)

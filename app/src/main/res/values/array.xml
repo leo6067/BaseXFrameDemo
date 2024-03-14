@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="ar_view_bg">
+        <item>#29A2E4</item>
+        <item>#17E5CD</item>
+    </array>
+
+
+</resources>

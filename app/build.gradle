@@ -18,10 +18,10 @@ myProperties.load(br)
 
 android {
 
-    compileSdkVersion 32
+    compileSdk 33
     defaultConfig {
         minSdkVersion 24
-        targetSdkVersion 32
+        targetSdkVersion 33
 
         flavorDimensions "1.0"
         renderscriptTargetApi 28
@@ -93,5 +93,7 @@ dependencies {
     kapt 'com.alibaba:arouter-compiler:1.5.1'
 
 
-    implementation 'com.jaredrummler:android-processes:1.1.1'
+
+    //打星
+    implementation 'com.xingliuhua:xlhratingbar_lib:4.0'
 }

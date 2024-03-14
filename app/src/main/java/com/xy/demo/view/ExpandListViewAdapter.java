@@ -1,4 +1,4 @@
-package com.xy.demo.ui;
+package com.xy.demo.view;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,13 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.xy.demo.R;
 import com.xy.demo.model.FirstModel;
 import com.xy.demo.model.SecondModel;
-import com.xy.demo.model.ThirdModel;
 
 import java.util.List;
 

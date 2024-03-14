@@ -1,21 +1,22 @@
-package com.xy.demo
+package com.xy.demo.ui
 
 import android.app.ActivityManager
+import android.app.AppOpsManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.os.Process
 import android.provider.Settings
 import androidx.core.content.ContextCompat
+import com.xy.demo.R
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.databinding.ActivityMainBinding
 import com.xy.demo.network.Globals
-import com.xy.demo.network.NetLaunchManager.launchRequest
-import com.xy.demo.network.NetManager
-import com.xy.demo.ui.CacheActivity
-import com.xy.demo.ui.ClearMemoryActivity
+import com.xy.demo.ui.setting.SettingActivity
 import com.xy.xframework.base.BaseAppContext
 import com.xy.xframework.base.BaseSharePreference
 import com.xy.xframework.base.XBaseViewModel
@@ -41,7 +42,7 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
 	
 	override fun onCreate(savedInstanceState: Bundle?) {
 		
-		if (BaseSharePreference.spObject.getString("AppTheme", "light").equals("night")) {
+		if (BaseSharePreference.instance.getString("AppTheme", "light").equals("night")) {
 			//设置夜晚主题  需要在setContentView之前
 			setTheme(R.style.AppDarkTheme)
 		} else {
@@ -54,30 +55,71 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
 	
 	override fun initView() {
 		
-		var downUrl =
-			"https://softforspeed.51xiazai.cn/alading/NeteaseCloudMusic_Music_official_2.10.6.200601.exe"
-		
-		val rootDirPath = getRootDirPath(BaseAppContext.getInstance());
-		Globals.log("xxxxxfilesDir", getRootDirPath(BaseAppContext.getInstance()))
-		Globals.log("xxxxxfilesDir--本地可用的存储 路劲", filesDir.absolutePath.toString() + "新增的文件名")
-		
-		
-		//手动跳转 授权 应用使用情况
-//		startActivity(
-//			Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
-//		)
+		binding.lottieIV.setAnimation("main_scan.json");
+// lottieAnimationView01.loop(true);//循环播放动画，已经废弃，但是还可以使用，建议使用下面的两行代码
+//		binding.lottieIV.setRepeatMode(LottieDrawable.REVERSE);//设置播放模式
+		binding.lottieIV.setRepeatCount(-1);//设置重复次数
+		binding.lottieIV.playAnimation()
 		
 		
+		//判断是否开启查看权限 	//手动跳转 授权 应用使用情况
+		val appOps = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+		val mode = appOps.checkOpNoThrow(
+			"android:get_usage_stats",
+			Process.myUid(), getPackageName()
+		)
+		val granted = mode == AppOpsManager.MODE_ALLOWED
 		
-		binding.cacheBT.setOnClickListener {
+		if (!granted) {
+			startActivity(
+				Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
+			)
+		}
+		
+		binding.settingIV.setOnClickListener {
+			startActivity(Intent(this@MainActivity, SettingActivity::class.java))
+		}
+		
+		
+		
+		binding.clearTV.setOnClickListener {
+			startActivity(Intent(this@MainActivity, ClearScanActivity::class.java))
+		}
+		
+		binding.bigClearTV.setOnClickListener {
 			startActivity(Intent(this@MainActivity, CacheActivity::class.java))
 		}
 		
 		binding.uninstallTV.setOnClickListener {
-			startActivity(Intent(this@MainActivity, ClearMemoryActivity::class.java))
+			startActivity(Intent(this@MainActivity, AppManageActivity::class.java))
 		}
 		
+		binding.processTV.setOnClickListener {
+			if (hasPermissionUsage()) {
+				startActivity(Intent(this@MainActivity, ProcessActivity::class.java))
+			} else {
+				startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
+			}
+		}
 		
+		binding.noticeBT.setOnClickListener {
+			var intent = Intent()
+			intent.setAction(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS)
+			startActivity(intent)
+		}
+	}
+	
+	
+	protected fun hasPermissionUsage(): Boolean {
+		val appOps = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+		var mode = 0
+		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+			mode = appOps.checkOpNoThrow(
+				AppOpsManager.OPSTR_GET_USAGE_STATS,
+				Process.myUid(), packageName
+			)
+		}
+		return mode == AppOpsManager.MODE_ALLOWED
 	}
 	
 	

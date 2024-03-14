@@ -11,29 +11,22 @@ import java.lang.IllegalArgumentException
 import java.util.*
 
 class BaseSharePreference private constructor(private val mContext: Context) {
-    init {
-        mSharedPreferences =
-            mContext.getSharedPreferences(BaseConstants.baseShareName, Context.MODE_PRIVATE)
-    }
-
-
+    
+    private var mSharedPreferences: SharedPreferences = mContext.getSharedPreferences(BaseConstants.baseShareName, Context.MODE_PRIVATE)
+    
     companion object {
-
-
-        lateinit var mSharedPreferences: SharedPreferences
-        //外部使用
-        lateinit var mInstance: BaseSharePreference
+        //内部使用
+        private lateinit var mInstance: BaseSharePreference
         private val mSyncLock = Any()
-
-         val spObject: BaseSharePreference
+        
+        val instance: BaseSharePreference
             get() {
                 synchronized(mSyncLock) {
-                        mInstance = BaseSharePreference(XBaseApplication.application)
+                    mInstance = BaseSharePreference(XBaseApplication.application)
                 }
                 return mInstance
             }
     }
-
 
 
     /**

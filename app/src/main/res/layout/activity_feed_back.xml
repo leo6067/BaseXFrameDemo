@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.setting.FeedBackActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/contentET"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_300"
+            android:background="#F3F3F3"
+            android:gravity="top"
+            android:hint="Enter your suggestio"
+            android:padding="@dimen/dp_20"
+            android:textColorHint="#B4B4B4"
+            android:textSize="@dimen/sp_16" />
+
+
+        <com.ruffian.library.widget.RTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_52"
+            android:layout_marginHorizontal="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_177"
+            android:gravity="center"
+            android:text="Feedback"
+            android:textColor="@color/white"
+            app:background_normal="@color/colorFontA"
+            app:corner_radius="@dimen/dp_26" />
+    </LinearLayout>
+
+</layout>

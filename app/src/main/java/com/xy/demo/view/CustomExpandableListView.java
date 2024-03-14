@@ -1,4 +1,4 @@
-package com.xy.demo.ui;
+package com.xy.demo.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

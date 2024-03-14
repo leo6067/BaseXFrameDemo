@@ -37,6 +37,9 @@ class TitleBarView @JvmOverloads constructor(
     fun hideBackBtn() {
         ivBack?.visibility = View.GONE
     }
+    fun setLeftIcon(icon:Int) {
+        ivBack?.setImageResource(icon)
+    }
 
 
     fun setLeftClickListener(clickListener: OnClickListener?) {

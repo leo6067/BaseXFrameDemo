@@ -2,57 +2,197 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.MainActivity">
 
-    tools:context=".MainActivity">
 
-
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:fillViewport="true">
 
 
-
-        <Button
-            android:id="@+id/uninstallTV"
-            android:layout_width="@dimen/dp_150"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_50"
-            android:text="应用管理" />
-
-
-
-        <Button
-            android:id="@+id/cacheBT"
-            android:layout_width="@dimen/dp_150"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_50"
-            android:text="清理缓存" />
-
-
-
-        <Button
-            android:id="@+id/noticeBT"
-            android:layout_width="@dimen/dp_150"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_50"
-            android:text="通知管理" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/dp_20">
 
 
 
 
 
-        <Button
-            android:id="@+id/bigBT"
-            android:layout_width="@dimen/dp_150"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_50"
-            android:text="大文件" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <ImageView
+                android:id="@+id/topView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_main_top_bg"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cleaner"
+                android:layout_marginTop="@dimen/dp_30"
+                android:layout_marginStart="@dimen/dp_20"
+                android:textColor="#ffffffff"
+                android:textSize="20sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/settingIV"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_main_setting"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieIV"
+                android:layout_width="@dimen/dp_200"
+                android:layout_height="@dimen/dp_200"
+                android:layout_marginTop="@dimen/dp_56"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/lottieIV"
+                app:layout_constraintEnd_toEndOf="@+id/lottieIV"
+                app:layout_constraintStart_toStartOf="@+id/lottieIV"
+                app:layout_constraintTop_toTopOf="@+id/lottieIV">
+
+
+                <TextView
+                    android:id="@+id/memoryTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="22"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_28"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_3"
+                    android:text=" %"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_10"
+                    app:layout_constraintBottom_toBottomOf="@+id/memoryTV"
+                    app:layout_constraintStart_toEndOf="@+id/memoryTV" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RAM"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/memoryTV" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/clearTV"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_44"
+                android:layout_marginHorizontal="@dimen/dp_100"
+                android:layout_marginBottom="@dimen/dp_36"
+                android:gravity="center"
+                android:text="清理垃圾"
+                android:textColor="@color/colorFontA"
+                app:background_normal="@color/white"
+                app:corner_radius="@dimen/dp_22"
+                app:layout_constraintBottom_toBottomOf="@+id/topView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/processTV"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_120"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginBottom="@dimen/dp_21"
+                android:drawableTop="@drawable/icon_app_manage"
+                android:gravity="center"
+                android:paddingVertical="@dimen/dp_24"
+                android:text="进程管理"
+                app:background_normal="@color/colorViewBg"
+                app:corner_radius="@dimen/dp_11"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/topView" />
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/uninstallTV"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_120"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginBottom="@dimen/dp_21"
+                android:drawableTop="@drawable/icon_app_manage"
+                android:gravity="center"
+                android:paddingVertical="@dimen/dp_24"
+                android:text="应用管理"
+                app:background_normal="@color/colorViewBg"
+                app:corner_radius="@dimen/dp_11"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/processTV" />
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/bigClearTV"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_120"
+                android:layout_marginTop="@dimen/dp_20"
+
+                android:layout_marginEnd="@dimen/dp_20"
+                android:drawableTop="@drawable/icon_main_notice"
+                android:gravity="center"
+                android:paddingVertical="@dimen/dp_24"
+                android:text="大文件"
+                app:background_normal="@color/colorViewBg"
+                app:corner_radius="@dimen/dp_11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/topView" />
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/noticeBT"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_120"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:layout_marginBottom="@dimen/dp_21"
+                android:drawableTop="@drawable/icon_main_notice"
+                android:gravity="center"
+                android:paddingVertical="@dimen/dp_24"
+                android:text="通知管理"
+                app:background_normal="@color/colorViewBg"
+                app:corner_radius="@dimen/dp_11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bigClearTV" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
 </layout>

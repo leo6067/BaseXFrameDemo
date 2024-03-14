@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <com.ruffian.library.widget.RLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_50"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:background_normal="@color/colorPrimary"
+        app:corner_radius="@dimen/dp_20"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_70"
+            android:text="Rate Us!"
+            android:textColor="#ff1f1f1f"
+            android:textSize="18sp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="Thank you for Using this App!"
+            android:textColor="#ff11bdd8"
+            android:textSize="@dimen/sp_12" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_7"
+            android:text="We work too hard to make better for you."
+            android:textColor="#66000000"
+            android:textSize="@dimen/sp_12" />
+
+        <com.xingliuhua.xlhratingbar.XLHRatingBar
+            android:id="@+id/rateBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_30"
+            android:isIndicator="true"
+            app:numStars="5"
+            app:rating="5"
+            app:ratingViewClass="com.xy.demo.view.SimpleRatingView" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_40"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:orientation="horizontal">
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/rateTV"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/dp_40"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="提交"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                app:background_normal="#DCDCDC"
+                app:corner_radius="@dimen/dp_20" />
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/laterTV"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginStart="@dimen/dp_16"
+                android:gravity="center"
+                android:text="Submit"
+                android:textColor="#42000000"
+                android:textSize="@dimen/sp_16"
+                app:background_normal="#11BDD8"
+                app:corner_radius="@dimen/dp_20" />
+
+
+        </LinearLayout>
+
+    </com.ruffian.library.widget.RLinearLayout>
+
+
+</layout>

@@ -1,17 +1,14 @@
 package com.xy.demo.ui
 
 import android.os.Environment
-import android.util.Log
-import android.view.View
-import android.widget.ExpandableListView
 import com.xy.demo.R
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.ActivityCacheBinding
 import com.xy.demo.model.FirstModel
 import com.xy.demo.model.SecondModel
-import com.xy.demo.model.ThirdModel
 import com.xy.demo.utils.UnitConversion
+import com.xy.demo.view.ExpandListViewAdapter
 import java.io.File
 
 class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
@@ -20,6 +17,17 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 	var mListData = ArrayList<FirstModel>()
 	
 	private var mAdapter: ExpandListViewAdapter? = null
+	
+	
+	override fun showTitleBar(): Boolean {
+		return super.showTitleBar()
+	}
+	
+	override fun fitsSystemWindows(): Boolean {
+		return false
+	}
+	
+	
 	
 	
 	override fun getLayoutId(): Int {
@@ -109,8 +117,6 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 		
 		mListData.add(firstModelB)
 		
-		
- 
 	}
  
 	

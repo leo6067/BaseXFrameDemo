@@ -13,9 +13,7 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
-
-import com.xy.xframework.utils.ToastUtils;
+import android.provider.Settings;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -328,7 +326,7 @@ public class PackageUtils {
      * @return ActivityUtils.topActivity(this, LoginActivity.class.getName ());
      */
 
-    public  void appInfo(Context context) {
+    public void appInfo(Context context) {
         Intent mIntent = new Intent();
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= 9) {
@@ -344,7 +342,39 @@ public class PackageUtils {
 
 
 
+    /**
+     * 应用信息界面 ---权限设置
+     *
+     * @return ActivityUtils.topActivity(this, LoginActivity.class.getName ());
+     */
 
+    public void appInfo(Context context,String packageName) {
+        Intent mIntent = new Intent();
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        mIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+        mIntent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        mIntent.setData(Uri.fromParts("package", packageName, null));
+        context.startActivity(mIntent);
+    }
+
+
+
+
+    /**
+     * 获取应用程序名称
+     */
+    public PackageInfo getAppInfo(Context context,String packageName) {
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(
+                    packageName, 0);
+            int labelRes = packageInfo.applicationInfo.labelRes;
+            return packageInfo;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
     /**

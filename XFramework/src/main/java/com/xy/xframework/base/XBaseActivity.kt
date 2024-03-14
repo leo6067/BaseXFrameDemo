@@ -85,7 +85,7 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         }
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, getLayoutId())
-        initBase()
+        initParams()
         addTitleBar(showTitleBar())
         initViewModel()
         binding.setVariable(viewModelId, viewModel)
@@ -100,11 +100,17 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         initSwipeBackLayout()
         registerUIChangeEventCallBack()
         initView()
+        initLogic()
         initParams()
         initViewObservable()
-        
+        AppActivityManager.getInstance()
+
     }
     
+    
+    open fun initLogic() {
+    
+    }
     
     fun initRecycler(layManageType: Int, orientation: Int, gridNum: Int) {
         if (layManageType == 1) {
@@ -118,12 +124,7 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         }
     }
     
-    
-    open fun initBase() {
-    
-    }
-    
-    
+ 
     /**
      * 初始化参数
      */
