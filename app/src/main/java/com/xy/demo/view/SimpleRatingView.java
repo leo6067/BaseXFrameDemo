@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
 import com.xingliuhua.xlhratingbar.IRatingView;
 import com.xy.demo.R;
 
@@ -25,8 +24,6 @@ public class SimpleRatingView implements IRatingView {
                 ivStar.setImageResource( R.drawable.icon_star_a);
                 break;
         }
-
-
 
     }
 

@@ -101,7 +101,6 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         registerUIChangeEventCallBack()
         initView()
         initLogic()
-  
         initViewObservable()
         AppActivityManager.getInstance()
 

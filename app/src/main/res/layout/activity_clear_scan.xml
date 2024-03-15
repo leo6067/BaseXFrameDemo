@@ -12,39 +12,25 @@
         android:orientation="vertical">
 
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieIV"
-            android:layout_width="@dimen/dp_200"
-            android:layout_height="@dimen/dp_320"
-            android:layout_marginTop="@dimen/dp_12"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true" />
 
 
-        <TextView
-            android:id="@+id/progressTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_205"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_22"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/scanLay"
+            layout="@layout/merge_clear_scan" />
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="%"
-            android:textSize="@dimen/sp_12"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/progressTV"
-            app:layout_constraintStart_toEndOf="@+id/progressTV" />
+
+        <include
+            android:id="@+id/fileLay"
+            layout="@layout/include_clear_file"/>
+
+
+        <include
+            android:id="@+id/clearLay"
+            layout="@layout/merge_clear_clear" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

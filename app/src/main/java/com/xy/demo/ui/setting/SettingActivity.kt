@@ -19,12 +19,29 @@ class SettingActivity : MBBaseActivity<ActivitySettingBinding, MBBaseViewModel>(
 	var mAdapter = SettingAdapter()
 	
 	var dataList = ArrayList<SettingModel>()
+	
+	
+	override fun showTitleBar(): Boolean {
+		return super.showTitleBar()
+	}
+	
+	override fun fitsSystemWindows(): Boolean {
+		return false
+	}
+	
+	
+	
 	override fun getLayoutId(): Int {
 		return R.layout.activity_setting
 	}
 	
 	
 	override fun initView() {
+		
+		titleBarView?.setTitle("Setting")
+		titleBarView?.setBackgroundResource(R.drawable.root_bg)
+		
+		titleBarView?.setLeftIcon(R.drawable.ic_white_back)
 		
 		binding.recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 		binding.recyclerView.adapter = mAdapter

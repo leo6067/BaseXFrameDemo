@@ -44,7 +44,7 @@ class ProcessActivity : MBBaseActivity<ActivityProcessBinding, MBBaseViewModel>(
 	override fun initView() {
 		super.initView()
 		
-		titleBarView?.setBackgroundColor(resources.getColor(R.color.colorBarColor,theme))
+		titleBarView?.setBackgroundResource(R.drawable.root_bg)
 		titleBarView?.tvTitle?.text = "进程管理"
 		titleBarView?.setLeftIcon(R.drawable.ic_white_back)
 		

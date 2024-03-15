@@ -19,7 +19,7 @@ class LanguageActivity : MBBaseActivity<ActivityLanguageBinding,MBBaseViewModel>
 	
 	
 	override fun showTitleBar(): Boolean {
-		return false
+		return true
 	}
 	
 	override fun fitsSystemWindows(): Boolean {

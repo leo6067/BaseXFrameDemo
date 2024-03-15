@@ -76,6 +76,16 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
 			)
 		}
 		
+		
+		
+		
+		binding.memoryTV.text = "99"
+		
+		
+		Globals.log("XXXXXXXXX"+System.currentTimeMillis())
+		
+		
+		
 		binding.settingIV.setOnClickListener {
 			startActivity(Intent(this@MainActivity, SettingActivity::class.java))
 		}

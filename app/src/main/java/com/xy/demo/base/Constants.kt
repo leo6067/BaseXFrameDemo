@@ -36,7 +36,7 @@ class Constants {
         const val AGREEMENT_PRIVACY = "https://toolm.shenjiwenhua.com/getAgreement/?appkey=100001&type=1"
     
         //本地设备数据库
-        const val DB_NAME = "sjykq_db"
+        const val DB_NAME = "sjqlgj_db"
     
      
     

@@ -2,12 +2,12 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/ivBack"
         android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/dp_15"
         android:layout_height="@dimen/dp_45"
         android:layout_marginStart="@dimen/dp_15"
         android:layout_marginLeft="@dimen/dp_15"
@@ -17,7 +17,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:paddingTop="@dimen/dp_15"
         android:ellipsize="end"
         android:lines="1"
         android:textColor="@color/color_323232"
@@ -30,6 +30,7 @@
         android:layout_height="@dimen/dp_56"
         android:layout_alignParentEnd="true"
         android:gravity="center"
+        android:layout_marginTop="@dimen/dp_22"
         android:paddingRight="20dp"
         android:textColor="@color/color_323232"
         android:textSize="@dimen/sp_17"

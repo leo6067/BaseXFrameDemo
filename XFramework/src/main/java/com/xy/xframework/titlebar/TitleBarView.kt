@@ -13,7 +13,7 @@ import com.xy.xframework.R
 /**
  * 基础状态栏
  */
-class TitleBarView @JvmOverloads constructor(
+public class TitleBarView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
         defStyleAttr: Int = 0
