@@ -36,7 +36,7 @@ class ClearScanActivity : MBBaseActivity<ActivityClearScanBinding, MBBaseViewMod
 	
 	
 	override fun showTitleBar(): Boolean {
-		return false
+		return super.showTitleBar()
 	}
 	
 	override fun fitsSystemWindows(): Boolean {
@@ -50,6 +50,10 @@ class ClearScanActivity : MBBaseActivity<ActivityClearScanBinding, MBBaseViewMod
 	
 	override fun initView() {
 		super.initView()
+		titleBarView?.setBackgroundColor(resources.getColor(R.color.colorBarColor,theme))
+		titleBarView?.tvTitle?.text = "Junk Cleaner"
+		titleBarView?.setLeftIcon(R.drawable.ic_white_back)
+		
 		
 		binding.clearLay.processLAV.visibility = View.GONE
 		binding.clearLay.progressTV.visibility = View.GONE
