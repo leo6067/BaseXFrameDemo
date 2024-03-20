@@ -1,8 +1,6 @@
 package com.xy.demo.ui.dialog
 
-import android.util.Log
 import android.view.Gravity
-import com.xingliuhua.xlhratingbar.XLHRatingBar.OnRatingChangeListener
 import com.xy.demo.R
 import com.xy.demo.base.MBBaseDialogFragment
 import com.xy.demo.databinding.DialogRateBinding
@@ -20,10 +18,15 @@ class RateDialog : MBBaseDialogFragment<DialogRateBinding>() {
 		return Gravity.CENTER
 	}
 	
+	override fun getMargin(): Int {
+		val resources = context?.resources
+		val density = resources?.displayMetrics?.density
+		val pixels = Math.round(80 * density!!)   //两边间距 dp 40
+		return pixels
+	}
+	
 	override fun initView() {
-		
 		binding.rateBar.setOnRatingChangeListener { rating, numStars ->
-			
 			Globals.log("xxxxxxx" + Math.ceil(rating.toDouble()) + "    numStars  " + numStars)
 		}
 		
@@ -34,8 +37,6 @@ class RateDialog : MBBaseDialogFragment<DialogRateBinding>() {
 		binding.laterTV.setOnClickListener {
 			dismiss()
 		}
-		
-		
 	}
 	
 	override fun initListener() {

@@ -9,4 +9,25 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="cleaner">Cleaner</string>
+    <string name="clean_junk">Clean junk</string>
+    <string name="background_processes">Background \n Processes</string>
+    <string name="big_files_cleaner">Big Files Cleaner</string>
+    <string name="app_manager">App Manager</string>
+    <string name="messenger_cleaner">Messenger Cleaner</string>
+    <string name="setting">setting</string>
+    <string name="uninstall">UNINSTALL</string>
+    <string name="installed">"Installed: "</string>
+    <string name="size_used">"Size used: "</string>
+    <string name="feeback">FeeBack</string>
+    <string name="rate_us">Rate us</string>
+    <string name="share">Share</string>
+    <string name="language_options">Language Options</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="rate_us_">Rate Us!</string>
+    <string name="thank_you_for_using_this_app">Thank you for Using this App!</string>
+    <string name="we_work_too_hard_to_make_better_for_you">We work too hard to make better for you.</string>
+    <string name="not_now">Not now</string>
+    <string name="submit">Submit</string>
+    <string name="feedback">Feedback</string>
 </resources>

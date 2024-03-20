@@ -39,13 +39,10 @@ abstract class XDialogFragment<VB : ViewDataBinding> : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, getLayoutId(), null, false)
-
-
+        
         initView()
         initListener()
         initViewObservable()
-
-
         return binding.root
     }
 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/dp_30"
+    android:paddingTop="@dimen/dp_20">
+
+
+    <ImageView
+        android:id="@+id/itemIcon"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/itemTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_12"
+        android:textColor="@color/colorFontB"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintStart_toEndOf="@+id/itemIcon"
+        app:layout_constraintTop_toTopOf="@+id/itemIcon"
+        tools:text="facebook" />
+
+
+    <TextView
+        android:id="@+id/itemIns"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_4"
+        android:drawableLeft="@drawable/icon_app_down"
+        android:drawablePadding="@dimen/dp_3"
+        android:textColor="#ff9c9c9c"
+        android:textSize="@dimen/sp_10"
+        app:layout_constraintStart_toStartOf="@+id/itemTitle"
+        app:layout_constraintTop_toBottomOf="@+id/itemTitle"
+        tools:text="Installed:" />
+
+
+    <TextView
+        android:id="@+id/itemSize"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_4"
+        android:drawableLeft="@drawable/icon_app_size"
+        android:drawablePadding="@dimen/dp_3"
+        android:textColor="#ff9c9c9c"
+        android:textSize="@dimen/sp_10"
+        app:layout_constraintStart_toStartOf="@+id/itemIns"
+        app:layout_constraintTop_toBottomOf="@+id/itemIns"
+        tools:text="size:" />
+
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/uninstallTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:padding="@dimen/dp_8"
+        android:text="@string/uninstall"
+        android:textColor="@color/colorFontA"
+        android:textSize="@dimen/sp_12"
+        app:background_normal="@color/colorViewBg"
+        app:corner_radius="@dimen/dp_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

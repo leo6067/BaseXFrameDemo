@@ -12,7 +12,6 @@ import android.os.UserManager;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,37 +23,40 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.xy.demo.R;
-import com.xy.xframework.utils.Globals;
+import com.xy.demo.utils.MyUtils;
+import com.xy.xframework.utils.DateUtils;
 import com.xy.xframework.utils.PackageUtils;
 
+import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
 public class AppAdapter extends BaseQuickAdapter<AppUtils.AppInfo, BaseViewHolder> {
     public AppAdapter() {
-        super(R.layout.item_process);
+        super(R.layout.item_app_manage);
     }
 
     @Override
     protected void convert(@NonNull BaseViewHolder baseViewHolder, AppUtils.AppInfo bean) {
         ImageView itemIcon = baseViewHolder.getView(R.id.itemIcon);
         TextView itemTitle = baseViewHolder.getView(R.id.itemTitle);
+        TextView itemIns = baseViewHolder.getView(R.id.itemIns);
+        TextView itemSize = baseViewHolder.getView(R.id.itemSize);
+        TextView uninstallTV = baseViewHolder.getView(R.id.uninstallTV);
 
-        TextView stopTV = baseViewHolder.getView(R.id.stopTV);
         itemTitle.setText(bean.getName());
-
-
-        PackageInfo appInfo = PackageUtils.getInstance().getAppInfo(getContext(), bean.getPackageName());
-        Globals.log("xxxxxx bean"+appInfo.lastUpdateTime);
         Glide.with(itemIcon.getContext()).load(bean.getIcon()).into(itemIcon);
 
-        stopTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                PackageUtils.getInstance().appInfo(stopTV.getContext(), bean.getPackageName());
-                AppUtils.uninstallApp(bean.getPackageName());
-            }
-        });
+        try{
+            PackageInfo appInfo = PackageUtils.getInstance().getAppInfo(getContext(), bean.getPackageName());
+            itemIns.setText(getContext().getString(R.string.installed) +  DateUtils.getTimeStampString(appInfo.lastUpdateTime,"yyyy-MM-dd",0));
+            long apkSize = new File(appInfo.applicationInfo.sourceDir).length();
+            itemSize.setText(getContext().getString(R.string.size_used) +  MyUtils.byte2FitMemorySize(apkSize));
+        }catch (Exception e){
+            itemIns.setText(getContext().getString(R.string.installed));
+            itemSize.setText(getContext().getString(R.string.size_used));
+        }
+
     }
 
 

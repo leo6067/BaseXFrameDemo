@@ -12,25 +12,18 @@
         android:orientation="vertical">
 
 
-
-
-
         <include
             android:id="@+id/scanLay"
             layout="@layout/merge_clear_scan" />
 
-
-
         <include
             android:id="@+id/fileLay"
-            layout="@layout/include_clear_file"/>
+            layout="@layout/include_clear_file" />
 
 
         <include
             android:id="@+id/clearLay"
             layout="@layout/merge_clear_clear" />
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

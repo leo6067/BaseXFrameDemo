@@ -13,41 +13,38 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="@dimen/dp_20">
-
+            android:layout_height="match_parent">
 
 
             <ImageView
                 android:id="@+id/topView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="0.9"
                 android:background="@drawable/icon_main_top_bg"
+                app:layout_constraintDimensionRatio="0.9"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cleaner"
-                android:layout_marginTop="@dimen/dp_30"
                 android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_35"
+                android:text="@string/cleaner"
                 android:textColor="#ffffffff"
-                android:textSize="20sp"
-                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="@dimen/sp_20"
                 app:layout_constraintStart_toStartOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/settingIV"
-                android:layout_marginEnd="@dimen/dp_20"
-                android:layout_marginTop="@dimen/dp_33"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_37"
+                android:layout_marginEnd="@dimen/dp_20"
                 android:src="@drawable/icon_main_setting"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <com.airbnb.lottie.LottieAnimationView
@@ -74,11 +71,11 @@
                     android:id="@+id/memoryTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="0"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp_28"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="0" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -111,7 +108,7 @@
                 android:layout_marginHorizontal="@dimen/dp_100"
                 android:layout_marginBottom="@dimen/dp_36"
                 android:gravity="center"
-                android:text="清理垃圾"
+                android:text="@string/clean_junk"
                 android:textColor="@color/colorFontA"
                 app:background_normal="@color/white"
                 app:corner_radius="@dimen/dp_22"
@@ -128,9 +125,11 @@
                 android:layout_marginTop="@dimen/dp_20"
                 android:layout_marginBottom="@dimen/dp_21"
                 android:drawableTop="@drawable/icon_app_manage"
-                android:gravity="center"
-                android:paddingVertical="@dimen/dp_24"
-                android:text="进程管理"
+                android:drawablePadding="@dimen/dp_10"
+                android:gravity="center_horizontal"
+                android:paddingTop="@dimen/dp_24"
+                android:text="@string/background_processes"
+                android:textStyle="bold"
                 app:background_normal="@color/colorViewBg"
                 app:corner_radius="@dimen/dp_11"
                 app:layout_constraintStart_toStartOf="parent"
@@ -145,9 +144,11 @@
                 android:layout_marginTop="@dimen/dp_20"
                 android:layout_marginBottom="@dimen/dp_21"
                 android:drawableTop="@drawable/icon_app_manage"
-                android:gravity="center"
-                android:paddingVertical="@dimen/dp_24"
-                android:text="应用管理"
+                android:drawablePadding="@dimen/dp_10"
+                android:gravity="center_horizontal"
+                android:paddingTop="@dimen/dp_24"
+                android:text="@string/app_manager"
+                android:textStyle="bold"
                 app:background_normal="@color/colorViewBg"
                 app:corner_radius="@dimen/dp_11"
                 app:layout_constraintStart_toStartOf="parent"
@@ -159,12 +160,13 @@
                 android:layout_width="@dimen/dp_150"
                 android:layout_height="@dimen/dp_120"
                 android:layout_marginTop="@dimen/dp_20"
-
                 android:layout_marginEnd="@dimen/dp_20"
                 android:drawableTop="@drawable/icon_main_notice"
-                android:gravity="center"
-                android:paddingVertical="@dimen/dp_24"
-                android:text="大文件"
+                android:drawablePadding="@dimen/dp_10"
+                android:gravity="center_horizontal"
+                android:paddingTop="@dimen/dp_24"
+                android:text="@string/big_files_cleaner"
+                android:textStyle="bold"
                 app:background_normal="@color/colorViewBg"
                 app:corner_radius="@dimen/dp_11"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -179,9 +181,11 @@
                 android:layout_marginEnd="@dimen/dp_20"
                 android:layout_marginBottom="@dimen/dp_21"
                 android:drawableTop="@drawable/icon_main_notice"
-                android:gravity="center"
-                android:paddingVertical="@dimen/dp_24"
-                android:text="通知管理"
+                android:drawablePadding="@dimen/dp_10"
+                android:gravity="center_horizontal"
+                android:paddingTop="@dimen/dp_24"
+                android:text="@string/messenger_cleaner"
+                android:textStyle="bold"
                 app:background_normal="@color/colorViewBg"
                 app:corner_radius="@dimen/dp_11"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -13,8 +13,9 @@ import com.xy.demo.model.SettingModel
 class JunkFileAdapter :BaseQuickAdapter<JunkModel,BaseViewHolder>(R.layout.item_junk_file) {
 	override fun convert(holder: BaseViewHolder, item: JunkModel) {
 		val itemIV = holder.getView<ImageView>(R.id.itemIV)
+		val itemSize = holder.getView<TextView>(R.id.itemSize)
 		
-		
+		itemSize.setText(item.junkSize.toString())
 		if (item.junkName.equals("1")){
 			holder.setText(R.id.itemContent,"文件垃圾")
 			Glide.with(itemIV).load(R.drawable.icon_file_junk).into(itemIV)

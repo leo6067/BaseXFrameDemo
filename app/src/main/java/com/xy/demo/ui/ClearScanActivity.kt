@@ -1,12 +1,7 @@
 package com.xy.demo.ui
 
-import android.animation.Animator
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
 import androidx.lifecycle.lifecycleScope
-import com.airbnb.lottie.LottieDrawable
 import com.xy.demo.R
 import com.xy.demo.adapter.JunkFileAdapter
 import com.xy.demo.base.MBBaseActivity
@@ -14,7 +9,7 @@ import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.ActivityClearScanBinding
 import com.xy.demo.db.JunkModel
 import com.xy.demo.db.MyDataBase
-import com.xy.demo.utils.loadAssetLottieDrawable
+import com.xy.demo.logic.CacheUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -50,7 +45,7 @@ class ClearScanActivity : MBBaseActivity<ActivityClearScanBinding, MBBaseViewMod
 	
 	override fun initView() {
 		super.initView()
-		titleBarView?.setBackgroundColor(resources.getColor(R.color.colorBarColor,theme))
+		titleBarView?.setBackgroundColor(resources.getColor(R.color.colorBarColor, theme))
 		titleBarView?.tvTitle?.text = "Junk Cleaner"
 		titleBarView?.setLeftIcon(R.drawable.ic_white_back)
 		
@@ -68,8 +63,8 @@ class ClearScanActivity : MBBaseActivity<ActivityClearScanBinding, MBBaseViewMod
 		binding.scanLay.scanLAV.playAnimation()
 		
 		showFileView()
-
- 
+		
+		
 	}
 	
 	
@@ -95,11 +90,13 @@ class ClearScanActivity : MBBaseActivity<ActivityClearScanBinding, MBBaseViewMod
 				
 				if (junkModelList.isEmpty()) {
 					val junkModel = JunkModel()
-					
 					junkModel.junkName = "1"
 					junkModel.recycleTime = 1710491824999
 					junkModel.isCheck = false
-					junkModel.junkSize = 12123123
+					
+					
+					
+					junkModel.junkSize = CacheUtil().generateValue(junkModel.recycleTime)
 					MyDataBase.instance.JunkDao().insert(junkModel)  // 插入数据
 					
 					val junkModelB = JunkModel()
@@ -107,7 +104,7 @@ class ClearScanActivity : MBBaseActivity<ActivityClearScanBinding, MBBaseViewMod
 					junkModelB.junkName = "2"
 					junkModelB.recycleTime = 1710491824999
 					junkModelB.isCheck = false
-					junkModelB.junkSize = 15615612
+					junkModel.junkSize = CacheUtil().generateValue(junkModel.recycleTime)
 					
 					MyDataBase.instance.JunkDao().insert(junkModelB)  // 插入数据
 					junkModelList.add(junkModel)
@@ -163,6 +160,5 @@ class ClearScanActivity : MBBaseActivity<ActivityClearScanBinding, MBBaseViewMod
 		
 	}
 	
- 
 	
 }

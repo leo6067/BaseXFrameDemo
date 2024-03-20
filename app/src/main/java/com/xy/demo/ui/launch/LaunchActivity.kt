@@ -1,13 +1,12 @@
-package com.xy.demo.ui
+package com.xy.demo.ui.launch
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.xy.demo.R
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.ActivityLaunchBinding
+import com.xy.demo.ui.MainActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

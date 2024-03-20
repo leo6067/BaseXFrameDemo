@@ -118,8 +118,10 @@ class ProcessActivity : MBBaseActivity<ActivityProcessBinding, MBBaseViewModel>(
 		val availableMemory = memoryInfo.availMem
 		val totalMemory = memoryInfo.totalMem
 
-// 可用内存和总内存（以字节为单位）
-		binding.ratioTV.text = ((availableMemory / totalMemory) * 100).toInt().toString() + "%"
+		// 可用内存和总内存（以字节为单位）
+	 
+		
+		binding.ratioTV.text = ((availableMemory * 100 / totalMemory) ).toInt().toString() + "%"
 		binding.memoryTV.text =
 			String.format("%s", MyUtils.byte2FitMemorySize(availableMemory)) + " /" + String.format("%s", MyUtils.byte2FitMemorySize(totalMemory))
 		

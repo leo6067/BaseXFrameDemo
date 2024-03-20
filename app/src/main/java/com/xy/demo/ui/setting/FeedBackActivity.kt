@@ -25,7 +25,7 @@ class FeedBackActivity : MBBaseActivity<ActivityFeedBackBinding,MBBaseViewModel>
 	
 	override fun initView() {
 		super.initView()
-		titleBarView?.setTitle("Feedback")
+		titleBarView?.setTitle(getString(R.string.feedback))
 		titleBarView?.tvTitle?.setTextColor(getColor(R.color.black))
 	}
 }

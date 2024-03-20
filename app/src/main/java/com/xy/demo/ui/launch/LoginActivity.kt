@@ -1,4 +1,4 @@
-package com.xy.demo.ui
+package com.xy.demo.ui.launch
 
 
 import com.xy.demo.R

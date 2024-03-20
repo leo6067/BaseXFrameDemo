@@ -6,30 +6,26 @@
     <com.ruffian.library.widget.RLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dp_40"
-        android:layout_marginTop="@dimen/dp_50"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:background_normal="@color/colorPrimary"
-        app:corner_radius="@dimen/dp_20"
+        app:corner_radius="@dimen/dp_16"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/dp_30"
-            android:layout_marginTop="@dimen/dp_70"
-            android:text="Rate Us!"
+            android:layout_marginTop="@dimen/dp_32"
+            android:text="@string/rate_us_"
             android:textColor="#ff1f1f1f"
-            android:textSize="18sp"
+            android:textSize="@dimen/sp_18" />
 
-            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_16"
-            android:text="Thank you for Using this App!"
+            android:text="@string/thank_you_for_using_this_app"
             android:textColor="#ff11bdd8"
             android:textSize="@dimen/sp_12" />
 
@@ -38,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_7"
-            android:text="We work too hard to make better for you."
+            android:text="@string/we_work_too_hard_to_make_better_for_you"
             android:textColor="#66000000"
             android:textSize="@dimen/sp_12" />
 
@@ -66,11 +62,11 @@
             <com.ruffian.library.widget.RTextView
                 android:id="@+id/rateTV"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="@dimen/dp_40"
                 android:layout_gravity="center"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="提交"
+                android:text="@string/not_now"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_16"
                 app:background_normal="#DCDCDC"
@@ -80,12 +76,12 @@
             <com.ruffian.library.widget.RTextView
                 android:id="@+id/laterTV"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="@dimen/dp_40"
                 android:layout_marginStart="@dimen/dp_16"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="Submit"
-                android:textColor="#42000000"
+                android:text="@string/submit"
+                android:textColor="@color/white"
                 android:textSize="@dimen/sp_16"
                 app:background_normal="#11BDD8"
                 app:corner_radius="@dimen/dp_20" />

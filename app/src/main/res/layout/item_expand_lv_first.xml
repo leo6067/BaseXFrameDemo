@@ -1,25 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
+    android:layout_height="@dimen/dp_40"
     android:layout_gravity="center_vertical"
     android:gravity="center_vertical"
-    android:paddingEnd="@dimen/dp_10">
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/dp_30">
+
+
+    <ImageView
+        android:id="@+id/itemIcon"
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24" />
 
     <TextView
-        android:id="@+id/tv"
+        android:id="@+id/itemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true" />
+        android:layout_marginStart="@dimen/dp_12"
+        android:text="APK"
+        android:textColor="#ff616161"
+        android:textSize="16sp" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_12"
+        android:src="@drawable/icon_big_ex" />
+
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1" />
+
+
+    <TextView
+        android:id="@+id/itemSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_12"
+        android:layout_marginEnd="@dimen/dp_12"
+        android:text="566M"
+        android:textColor="#66000000"
+        android:textSize="@dimen/sp_12" />
+
 
     <CheckBox
-        android:id="@+id/cb"
+        android:id="@+id/itemCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:button="@drawable/select_fb_check"
+        android:button="@drawable/select_cache_check"
         android:checked="true"
         android:focusable="false" />
 
 
-</RelativeLayout>
+</LinearLayout>

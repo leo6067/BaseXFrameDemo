@@ -38,19 +38,18 @@ class SettingActivity : MBBaseActivity<ActivitySettingBinding, MBBaseViewModel>(
 	
 	override fun initView() {
 		
-		titleBarView?.setTitle("Setting")
+		titleBarView?.setTitle(getString(R.string.setting))
 		titleBarView?.setBackgroundResource(R.drawable.root_bg)
-		
 		titleBarView?.setLeftIcon(R.drawable.ic_white_back)
 		
 		binding.recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 		binding.recyclerView.adapter = mAdapter
 		
-		dataList.add(SettingModel(R.drawable.icon_setting_fb, "FeeBack"))
-		dataList.add(SettingModel(R.drawable.icon_setting_rate, "Rate us"))
-		dataList.add(SettingModel(R.drawable.icon_setting_share, "Share"))
-		dataList.add(SettingModel(R.drawable.icon_setting_language, "Language Options"))
-		dataList.add(SettingModel(R.drawable.icon_setting_privacy, "Privacy Policy"))
+		dataList.add(SettingModel(R.drawable.icon_setting_fb, getString(R.string.feeback)))
+		dataList.add(SettingModel(R.drawable.icon_setting_rate, getString(R.string.rate_us)))
+		dataList.add(SettingModel(R.drawable.icon_setting_share, getString(R.string.share)))
+		dataList.add(SettingModel(R.drawable.icon_setting_language, getString(R.string.language_options)))
+		dataList.add(SettingModel(R.drawable.icon_setting_privacy, getString(R.string.privacy_policy)))
 		
 		mAdapter.setNewInstance(dataList)
 		

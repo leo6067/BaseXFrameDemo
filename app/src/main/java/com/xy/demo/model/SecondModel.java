@@ -1,11 +1,36 @@
 package com.xy.demo.model;
 
+import java.io.File;
 import java.util.List;
 
 
 public class SecondModel {
     private boolean isCheck;
     private String title;
+
+    private String fileTime;
+    private long fileSize;
+
+    private String fileSizeStr;
+    private File file;
+
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+    public String getFileSizeStr() {
+        return fileSizeStr;
+    }
+
+    public void setFileSizeStr(String fileSizeStr) {
+        this.fileSizeStr = fileSizeStr;
+    }
+
     private List<ThirdModel> listThirdModel;
 
     public boolean isCheck() {
@@ -32,13 +57,30 @@ public class SecondModel {
         this.listThirdModel = listThirdModel;
     }
 
-    public SecondModel(boolean isCheck, String title, List<ThirdModel> listThirdModel) {
-
-        this.isCheck = isCheck;
-        this.title = title;
-        this.listThirdModel = listThirdModel;
+    public String getFileTime() {
+        return fileTime;
     }
 
-    public SecondModel() {
+    public void setFileTime(String fileTime) {
+        this.fileTime = fileTime;
+    }
+
+    public long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    @Override
+    public String toString() {
+        return "SecondModel{" +
+                "isCheck=" + isCheck +
+                ", title='" + title + '\'' +
+                ", fileTime='" + fileTime + '\'' +
+                ", fileSize='" + fileSize + '\'' +
+                ", listThirdModel=" + listThirdModel +
+                '}';
     }
 }

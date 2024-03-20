@@ -6,6 +6,8 @@
     <color name="colorAccent">#FE5100</color>
 
     <color name="colorBarColor">#29A2E4</color>
+    <color name="colorBarColorB">#11BDD8</color>
+
 
 
 
@@ -13,6 +15,7 @@
     <color name="colorFontA">#11BDD8</color>
     <color name="colorFontB">#96000000</color>
     <color name="colorFontC">#9C9C9C</color>
+    <color name="colorgraybg">#f3f3f3</color>
 
 
 
