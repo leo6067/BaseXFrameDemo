@@ -27,12 +27,10 @@ class HttpViewModel(application: Application) : MBBaseViewModel(application) {
 	
 	
 	// 问题反馈
-	fun postFeedBack(brandId:String,feedType:Int,content:String) {
+	fun postFeedBack(content:String) {
 		var hashMap = HashMap<String, String>()
 		hashMap.put("f", "appkey")
 		hashMap.put("h", "subFeed")
-		hashMap.put("brandId", brandId)
-		hashMap.put("feedType", feedType.toString())
 		hashMap.put("content", content)
 		launchRequest({ NetManager.feedBackHttp(hashMap) }, {
 			val jsonStr = AesUtils.decrypt(

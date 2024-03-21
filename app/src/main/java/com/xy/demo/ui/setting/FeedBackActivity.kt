@@ -39,7 +39,7 @@ class FeedBackActivity : MBBaseActivity<ActivityFeedBackBinding, HttpViewModel>(
 			
 			
 			showLoading()
-//			viewModel.postFeedBack(binding.contentET.text )
+			viewModel.postFeedBack(binding.contentET.text.toString())
 		}
 		
 		

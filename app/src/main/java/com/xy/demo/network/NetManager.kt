@@ -23,8 +23,6 @@ object NetManager {
                 LoggingInterceptor.Builder()
 //                    .loggable(LogUtil.baseConfig.isWatchRequestLog)
                     .setLevel(Level.BASIC)
-                    .request("mmbox")
-                    .response("mmbox")
                     .build()
             )
             .setEnableProxy(true)
