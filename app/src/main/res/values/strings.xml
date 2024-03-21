@@ -12,6 +12,7 @@
     <string name="cleaner">Cleaner</string>
     <string name="clean_junk">Clean junk</string>
     <string name="background_processes">Background \n Processes</string>
+    <string name="background_processes_">Background Processes</string>
     <string name="big_files_cleaner">Big Files Cleaner</string>
     <string name="app_manager">App Manager</string>
     <string name="messenger_cleaner">Messenger Cleaner</string>
@@ -50,4 +51,5 @@
     <string name="video">VIDEO</string>
     <string name="document">DOCUMENT</string>
     <string name="clearing">clearing</string>
+    <string name="running_background_apps">Running background apps</string>
 </resources>

@@ -12,6 +12,7 @@
     <string name="cleaner">청소부</string>
     <string name="clean_junk">쓰레기를 치우다</string>
     <string name="background_processes">배경\n 프로세스</string>
+    <string name="background_processes_">배경 프로세스</string>
     <string name="big_files_cleaner">대용량 파일 정리기</string>
     <string name="app_manager">애플리케이션 관리자</string>
     <string name="messenger_cleaner">메신저 청소기</string>

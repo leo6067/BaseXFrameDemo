@@ -12,6 +12,7 @@
     <string name="cleaner">清潔工</string>
     <string name="clean_junk">清理垃圾</string>
     <string name="background_processes">後台進程</string>
+    <string name="background_processes_">後台進程</string>
     <string name="big_files_cleaner">大檔清理器</string>
     <string name="app_manager">應用程序管理器</string>
     <string name="messenger_cleaner">信使清潔器</string>

@@ -12,6 +12,7 @@
     <string name="cleaner">منظف</string>
     <string name="clean_junk">تنظيف القمامة</string>
     <string name="background_processes">خلفية عملية \\ \\ ن</string>
+    <string name="background_processes_">خلفية عملية ن</string>
     <string name="big_files_cleaner">ملف كبير الأنظف</string>
     <string name="app_manager">مدير التطبيقات</string>
     <string name="messenger_cleaner">ماسنجر الأنظف</string>

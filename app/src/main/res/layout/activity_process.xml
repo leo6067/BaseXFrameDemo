@@ -24,16 +24,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_35"
-            android:text="75"
-            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="75"
             android:textColor="#ffffffff"
             android:textSize="@dimen/sp_40"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
 
 
-
+        <TextView
+            android:id="@+id/fileUnitTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_6"
+            android:layout_marginTop="@dimen/dp_35"
+            android:textColor="#ffffffff"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintBaseline_toBaselineOf="@+id/ratioTV"
+            app:layout_constraintStart_toEndOf="@+id/ratioTV"
+            android:text="%" />
 
         <TextView
             android:id="@+id/memoryTV"
@@ -41,22 +52,21 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/dp_11"
-            android:text="8.0 GB/12 GB"
-            android:textColor="#ffffffff"
+            android:textColor="#DDffffff"
             android:textSize="@dimen/sp_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratioTV" />
+            app:layout_constraintTop_toBottomOf="@+id/ratioTV"
+            tools:text="8.0 GB/12 GB" />
 
 
         <TextView
             android:id="@+id/labelTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_marginTop="@dimen/dp_12"
             android:layout_marginStart="@dimen/dp_30"
-            android:text="Running background apps"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="@string/running_background_apps"
             android:textColor="#66000000"
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="parent"

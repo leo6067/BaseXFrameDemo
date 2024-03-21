@@ -29,6 +29,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
+import java.util.Locale
 
 
 class BigFileActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
@@ -40,7 +41,7 @@ class BigFileActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() 
 	
 	var needClearSize: Long = 0
 	
-	var allFileSize :Long = 0
+	var allFileSize: Long = 0
 	
 	private var mAdapter: ExpandListViewAdapter? = null
 	
@@ -72,13 +73,14 @@ class BigFileActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() 
 		binding.scanLay.scanLAV.setRepeatCount(-1);//设置重复次数
 		binding.scanLay.scanLAV.playAnimation()
 		
-  
+		
 		XXPermissions.with(this)
 			.permission(Permission.MANAGE_EXTERNAL_STORAGE)
 			.request(object : OnPermissionCallback {
 				override fun onGranted(permissions: MutableList<String>, allGranted: Boolean) {
 					initDate()
 				}
+				
 				override fun onDenied(permissions: MutableList<String>, allGranted: Boolean) {
 					ToastUtils.showLong(getString(R.string.please_go_to_application_management_to_grant_permissions))
 					finish()
@@ -111,12 +113,13 @@ class BigFileActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() 
 				withContext(Dispatchers.Main) {
 					binding.finishLay.finisIV.visibility = View.VISIBLE
 					binding.finishLay.finisTV.visibility = View.VISIBLE
-					binding.finishLay.finisTV.text = getString(R.string.cleared_up) +" "+ MyUtils.byte2FitMemorySize(needClearSize) +" "+ getString(R.string.junk)
+					binding.finishLay.finisTV.text =
+						getString(R.string.cleared_up) + " " + MyUtils.byte2FitMemorySize(needClearSize) + " " + getString(R.string.junk)
 					binding.scanLay.scanLAV.visibility = View.GONE
 					binding.scanLay.scanningTV.visibility = View.GONE
 				}
 			}
-	
+			
 		}
 		
 	}
@@ -136,7 +139,7 @@ class BigFileActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() 
 					}
 				}
 			}
-			binding.clearTV.text = getString(R.string.clean)+"  " + MyUtils.byte2FitMemorySize(needClearSize)
+			binding.clearTV.text = getString(R.string.clean) + "  " + MyUtils.byte2FitMemorySize(needClearSize)
 		}
 		
 		
@@ -153,7 +156,7 @@ class BigFileActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() 
 		val usedSpace = totalSpace - freeSpace
 		val usedSpaceToGB: Float = UnitConversion.getGB(usedSpace)
 		
-	 
+		
 	}
 	
 	
@@ -198,7 +201,7 @@ class BigFileActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() 
 		val dir = File(Environment.getExternalStorageDirectory().toString())
 		lateinit var fileSearcher: FileSearcher
 		val firstModel = FirstModel()
-	
+		
 		
 		when (fileType) {
 			FileTools.APK -> {
@@ -245,7 +248,7 @@ class BigFileActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() 
 		for (j in allMusicFiles.indices) {
 			
 			//过滤 大于 10M  的文件 才展示
-			if (allMusicFiles[j].length() <  10 * 1024 * 1024){
+			if (allMusicFiles[j].length() < 10 * 1024 * 1024) {
 				continue
 			}
 			val secondModel = SecondModel()
@@ -254,8 +257,8 @@ class BigFileActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() 
 			secondModel.fileTime = DateUtils.getTimeStampString(allMusicFiles[j].lastModified(), "yyyy-MM-dd HH:mm:ss", 0)
 			secondModel.fileSizeStr = MyUtils.byte2FitMemorySize(allMusicFiles[j].length())
 			secondModel.fileSize = allMusicFiles[j].length()
-		 
-			allFileSize +=allMusicFiles[j].length()
+			
+			allFileSize += allMusicFiles[j].length()
 			secondModel.file = allMusicFiles[j]
 			listSecondModel.add(secondModel)
 		}
@@ -264,8 +267,25 @@ class BigFileActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() 
 		firstModel.listSecondModel = listSecondModel
 		mListData.add(firstModel)
 		
-		binding.fileSizeTV.text = MyUtils.byte2FitMemorySize(allFileSize)
- 
+		
+		val fitMemorySize = MyUtils.byte2FitMemorySize(allFileSize)
+		
+		
+		if (fitMemorySize.contains("KB")) {
+			binding.fileUnitTV.text = "KB"
+			binding.fileSizeTV.text = fitMemorySize.substring(0, fitMemorySize.length - 2)
+		} else if (fitMemorySize.contains("MB")) {
+			binding.fileUnitTV.text = "MB"
+			binding.fileSizeTV.text = fitMemorySize.substring(0, fitMemorySize.length - 2)
+		} else if (fitMemorySize.contains("GB")) {
+			binding.fileUnitTV.text = "GB"
+			binding.fileSizeTV.text = fitMemorySize.substring(0, fitMemorySize.length - 2)
+		} else {
+			binding.fileUnitTV.text = "B"
+			binding.fileSizeTV.text = fitMemorySize.substring(0, fitMemorySize.length - 1)
+		}
+		
+		
 		return ""
 	}
 	

@@ -1,5 +1,6 @@
 package com.xy.demo.ui.launch
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.lifecycle.lifecycleScope
 import com.xy.demo.R
@@ -11,6 +12,7 @@ import com.xy.demo.ui.MainActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@SuppressLint("CustomSplashScreen")
 class LaunchActivity : MBBaseActivity<ActivityLaunchBinding, MBBaseViewModel>() {
 	
 	

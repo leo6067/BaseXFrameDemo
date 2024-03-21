@@ -12,6 +12,7 @@
     <string name="cleaner">清掃員</string>
     <string name="clean_junk">ごみを片付ける</string>
     <string name="background_processes">背景 nプロセス</string>
+    <string name="background_processes_">背景 nプロセス</string>
     <string name="big_files_cleaner">ビッグファイルクリーナ</string>
     <string name="app_manager">アプリケーションマネージャ</string>
     <string name="messenger_cleaner">メッセンジャークリーナ</string>

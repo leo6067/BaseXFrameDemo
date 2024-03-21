@@ -44,7 +44,7 @@ class ProcessActivity : MBBaseActivity<ActivityProcessBinding, MBBaseViewModel>(
 	override fun initView() {
 		super.initView()
 		titleBarView?.setBackgroundColor(resources.getColor(R.color.colorBarColor,theme))
-		titleBarView?.tvTitle?.text = getString(R.string.background_processes)
+		titleBarView?.tvTitle?.text = getString(R.string.background_processes_)
 		titleBarView?.setLeftIcon(R.drawable.ic_white_back)
 		
 		
@@ -121,7 +121,7 @@ class ProcessActivity : MBBaseActivity<ActivityProcessBinding, MBBaseViewModel>(
 		// 可用内存和总内存（以字节为单位）
 	 
 		
-		binding.ratioTV.text = ((availableMemory * 100 / totalMemory) ).toInt().toString() + "%"
+		binding.ratioTV.text = ((availableMemory * 100 / totalMemory) ).toInt().toString()
 		binding.memoryTV.text =
 			String.format("%s", MyUtils.byte2FitMemorySize(availableMemory)) + " /" + String.format("%s", MyUtils.byte2FitMemorySize(totalMemory))
 		

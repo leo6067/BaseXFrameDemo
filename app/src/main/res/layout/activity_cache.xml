@@ -44,8 +44,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+
                 app:layout_constraintVertical_chainStyle="packed"
                 tools:text="75" />
+
+            <TextView
+                android:id="@+id/fileUnitTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_35"
+                android:textColor="#ffffffff"
+                android:layout_marginStart="@dimen/dp_6"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintBaseline_toBaselineOf="@+id/fileSizeTV"
+                app:layout_constraintStart_toEndOf="@+id/fileSizeTV"
+                tools:text="GB" />
 
 
             <TextView
@@ -54,7 +67,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/dp_11"
                 android:text="@string/cleanable"
-                android:textColor="#ffffffff"
+                android:textColor="#DDffffff"
                 android:textSize="@dimen/sp_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
