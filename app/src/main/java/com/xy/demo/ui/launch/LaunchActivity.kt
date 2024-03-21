@@ -6,6 +6,7 @@ import com.xy.demo.R
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.ActivityLaunchBinding
+import com.xy.demo.logic.LanguageUtil
 import com.xy.demo.ui.MainActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -23,6 +24,7 @@ class LaunchActivity : MBBaseActivity<ActivityLaunchBinding, MBBaseViewModel>() 
 	
 	
 	override fun getLayoutId(): Int {
+		LanguageUtil.reFreshLanguage(null, this, null)
 		return R.layout.activity_launch
 	}
 	

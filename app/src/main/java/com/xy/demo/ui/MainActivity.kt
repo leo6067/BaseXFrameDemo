@@ -19,6 +19,7 @@ import com.hjq.permissions.XXPermissions
 import com.xy.demo.R
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.databinding.ActivityMainBinding
+import com.xy.demo.logic.LanguageUtil
 import com.xy.demo.ui.file.BigFileActivity
 import com.xy.demo.ui.setting.SettingActivity
 import com.xy.xframework.base.BaseSharePreference
@@ -29,7 +30,10 @@ import java.io.File
 
 class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
 	
-	override fun getLayoutId(): Int = R.layout.activity_main
+	override fun getLayoutId(): Int {
+		
+		return R.layout.activity_main
+	}
 	
 	override fun showTitleBar(): Boolean = false
 	

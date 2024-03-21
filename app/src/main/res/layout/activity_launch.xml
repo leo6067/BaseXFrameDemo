@@ -26,25 +26,35 @@
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cleaner"
+            android:text="@string/cleaner"
             android:textColor="#ffffffff"
             android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@id/button1"
-            app:layout_constraintBottom_toTopOf="@id/button3"
+            app:layout_constraintBottom_toTopOf="@id/progressView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
 
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button 3"
+
+
+
+        <ProgressBar
+            android:layout_marginTop="@dimen/dp_35"
+            android:id="@+id/progressView"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/dp_100"
+            android:layout_height="@dimen/dp_8"
             app:layout_constraintTop_toBottomOf="@id/button2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorFontA"
+            android:indeterminateTintMode="src_in"
+      />
 
 
 
