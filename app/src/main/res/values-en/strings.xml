@@ -51,4 +51,5 @@
     <string name="video">VIDEO</string>
     <string name="document">DOCUMENT</string>
     <string name="clearing">clearing</string>
+    <string name="running_background_apps">Running background apps</string>
 </resources>
