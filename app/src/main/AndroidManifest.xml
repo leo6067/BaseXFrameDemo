@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
 
 
@@ -74,7 +76,7 @@
             android:name=".ui.ProcessActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.file.CacheActivity"
+            android:name=".ui.file.BigFileActivity"
             android:exported="false" />
         <activity
             android:name=".ui.SecondActivity"

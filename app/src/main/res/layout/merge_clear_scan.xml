@@ -23,7 +23,7 @@
             android:id="@+id/scanningTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="扫描中"
+            android:text="@string/scanning"
             android:textColor="#ffffffff"
             android:textSize="@dimen/sp_16"
             app:layout_constraintBottom_toBottomOf="@+id/scanLAV"

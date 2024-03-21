@@ -33,7 +33,7 @@ class Constants {
     
     
         //注册协议
-        const val AGREEMENT_PRIVACY = "https://toolm.shenjiwenhua.com/getAgreement/?appkey=100001&type=1"
+        const val AGREEMENT_PRIVACY = "https://toolm.shenjiwenhua.com/getAgreement/?appkey=100002&type=1"
     
         //本地设备数据库
         const val DB_NAME = "sjqlgj_db"
@@ -44,6 +44,10 @@ class Constants {
         //首次启动App
         const val SHARE_FIRST  = "share_first"
         const val SHARE_LANGUAGE  = "share_language"
+        
+        
+        const val EVENT_BIG_FILE_SIZE  = "sizeRefresh"
+        const val EVENT_CACHE_FILE_SIZE  = "cacheRefresh"
         
         
 

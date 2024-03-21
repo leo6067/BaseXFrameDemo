@@ -35,7 +35,7 @@ class LanguageActivity : MBBaseActivity<ActivityLanguageBinding,MBBaseViewModel>
 		super.initView()
 		
 		
-		titleBarView?.setTitle("Language Options")
+		titleBarView?.setTitle(getString(R.string.language_options))
 		titleBarView?.tvTitle?.setTextColor(getColor(R.color.black))
 		
 	 

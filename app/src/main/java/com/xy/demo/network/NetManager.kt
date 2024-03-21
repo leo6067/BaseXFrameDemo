@@ -28,7 +28,8 @@ object NetManager {
                     .build()
             )
             .setEnableProxy(true)
-            .addInterceptor(HeadInterceptor())//加入头文件
+    
+            .addInterceptor(SJApiInterceptor())
             .addInterceptor(ResponseInterceptor())
             .createService(Api::class.java)
     }
@@ -41,12 +42,15 @@ object NetManager {
     suspend fun getStoreCount(): MBResponse<String> {
         return apiService.getStoreCount()
     }
-
-
-
-
-
-
+    
+    
+    
+    suspend fun feedBackHttp(hashMap: HashMap<String,String>): MBResponse<String> {
+        return apiService.feedBackHttp(hashMap)
+    }
+    
+    
+    
 }
 
 

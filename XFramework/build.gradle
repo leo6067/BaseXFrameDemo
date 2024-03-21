@@ -115,7 +115,7 @@ dependencies {
 
 
     // 权限申请管理
-    api 'com.github.getActivity:XXPermissions:18.0'
+    api 'com.github.getActivity:XXPermissions:18.62'
 
 
 

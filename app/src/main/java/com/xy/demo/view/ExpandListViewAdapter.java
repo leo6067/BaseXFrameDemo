@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.xy.demo.R;
+import com.xy.demo.base.Constants;
 import com.xy.demo.model.FirstModel;
 import com.xy.demo.model.SecondModel;
 import com.xy.demo.utils.MyUtils;
@@ -23,7 +24,7 @@ import com.xy.demo.utils.MyUtils;
 import java.io.File;
 import java.util.List;
 
-//多级 展开列表   多级列表适配器
+//多级 展开列表   多级列表适配器  大文件
 public class ExpandListViewAdapter extends BaseExpandableListAdapter {
     private List<FirstModel> mListData;
     private LayoutInflater mInflate;
@@ -103,7 +104,7 @@ public class ExpandListViewAdapter extends BaseExpandableListAdapter {
 //                        thirdModel.setCheck(isChecked);
 //                    }
                 }
-                LiveEventBus.get("sizeRefresh").post("refresh");
+                LiveEventBus.get(Constants.EVENT_BIG_FILE_SIZE,String.class).post("refresh");
                 notifyDataSetChanged();
             }
         });
@@ -212,7 +213,7 @@ public class ExpandListViewAdapter extends BaseExpandableListAdapter {
 //                        ThirdModel thirdModel = listSecondModel.get(groupPosition).getListThirdModel().get(i);
 //                        thirdModel.setCheck(isChecked);
 //                    }
-                LiveEventBus.get("sizeRefresh").post("refresh");
+                LiveEventBus.get(Constants.EVENT_BIG_FILE_SIZE,String.class).post("refresh");
                 notifyDataSetChanged();
             }
         });

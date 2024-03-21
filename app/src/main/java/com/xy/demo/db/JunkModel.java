@@ -54,6 +54,10 @@ public class JunkModel implements Serializable {
     @ColumnInfo(name = "paramStr")
     private String paramStr;
 
+
+    @ColumnInfo(name = "isCheck")
+    public boolean isCheck;
+
     public int getId() {
         return id;
     }
@@ -109,12 +113,6 @@ public class JunkModel implements Serializable {
     public void setCheck(boolean check) {
         isCheck = check;
     }
-
-    @ColumnInfo(name = "isCheck")
-    public boolean isCheck;
-
-
-
 
 
 

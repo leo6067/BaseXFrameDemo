@@ -1,12 +1,14 @@
 package com.xy.demo.logic;
 
+import com.xy.demo.network.Globals;
+
 import java.util.Date;
 import java.util.Random;
 
 public class CacheUtil {
 
     private static final int RANDOM_LOWER_BOUND = 0; // 随机数下限
-    private static final int RANDOM_UPPER_BOUND = 20; // 随机数上限
+    private static final int RANDOM_UPPER_BOUND = 66; // 随机数上限
     private static final int MAX_VALUE = 50000; // 最大限制值  5G大小 最大虚假垃圾
     private Date lastAccessTime; // 上次访问时间
     private int currentValue; // 当前累计值
@@ -21,10 +23,13 @@ public class CacheUtil {
         Date now = new Date(); // 当前时间
         long timeDiffInMinutes = (now.getTime() - lastTime) / (60 * 1000); // 时间差（分钟）
 
+
+
         // 如果时间差大于0分钟，则增加相应的随机次数
         if (timeDiffInMinutes > 0) {
             for (int i = 0; i < timeDiffInMinutes; i++) {
                 int randomValue = random.nextInt(RANDOM_UPPER_BOUND - RANDOM_LOWER_BOUND + 1) + RANDOM_LOWER_BOUND; // 生成随机数
+                Globals.log("xxxxxxxitem.junkSize-----    "+randomValue);
                 currentValue += randomValue; // 累加到当前值
 
                 // 检查是否超过最大值，如果超过则不再增加

@@ -6,25 +6,25 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.Process
 import android.provider.Settings
 import androidx.core.content.ContextCompat
+import com.hjq.permissions.OnPermissionCallback
+import com.hjq.permissions.Permission
+import com.hjq.permissions.XXPermissions
 import com.xy.demo.R
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.databinding.ActivityMainBinding
-import com.xy.demo.network.Globals
-import com.xy.demo.ui.file.CacheActivity
+import com.xy.demo.ui.file.BigFileActivity
 import com.xy.demo.ui.setting.SettingActivity
-import com.xy.demo.utils.MyUtils
 import com.xy.xframework.base.BaseSharePreference
 import com.xy.xframework.base.XBaseViewModel
-import java.io.BufferedReader
+import com.xy.xframework.utils.ToastUtils
 import java.io.File
-import java.io.FileReader
-import java.io.IOException
 
 
 class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
@@ -86,7 +86,22 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
 		}
 		
 		binding.bigClearTV.setOnClickListener {
-			startActivity(Intent(this@MainActivity, CacheActivity::class.java))
+			
+			XXPermissions.with(this)
+				.permission(Permission.MANAGE_EXTERNAL_STORAGE)
+				.request(object : OnPermissionCallback {
+					override fun onGranted(permissions: MutableList<String>, allGranted: Boolean) {
+						startActivity(Intent(this@MainActivity, BigFileActivity::class.java))   //大文件清理
+					}
+					
+					override fun onDenied(permissions: MutableList<String>, allGranted: Boolean) {
+						ToastUtils.showLong(getString(R.string.please_go_to_application_management_to_grant_permissions))
+						var intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+						intent.setData(Uri.parse("package:" + getPackageName()));
+						startActivity(intent);
+					}
+				})
+			
 		}
 		
 		binding.uninstallTV.setOnClickListener {

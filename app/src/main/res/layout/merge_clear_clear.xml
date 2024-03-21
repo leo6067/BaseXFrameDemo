@@ -46,6 +46,36 @@
             app:layout_constraintBottom_toBottomOf="@+id/progressTV"
             app:layout_constraintStart_toEndOf="@+id/progressTV" />
 
+
+        <TextView
+            android:id="@+id/clearingTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_25"
+            android:text="@string/clearing"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_22"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/processLAV" />
+
+
+
+        <TextView
+            android:id="@+id/clearTV"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_150"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_22"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
     </merge>
 
 </layout>

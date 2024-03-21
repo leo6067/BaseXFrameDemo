@@ -17,19 +17,20 @@
             android:layout_height="@dimen/dp_300"
             android:background="#F3F3F3"
             android:gravity="top"
-            android:hint="Enter your suggestio"
+            android:hint="@string/enter_your_suggestion_please"
             android:padding="@dimen/dp_20"
             android:textColorHint="#B4B4B4"
             android:textSize="@dimen/sp_16" />
 
 
         <com.ruffian.library.widget.RTextView
+            android:id="@+id/submitTV"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_52"
             android:layout_marginHorizontal="@dimen/dp_40"
             android:layout_marginTop="@dimen/dp_177"
             android:gravity="center"
-            android:text="Feedback"
+            android:text="@string/feedback_"
             android:textColor="@color/white"
             app:background_normal="@color/colorFontA"
             app:corner_radius="@dimen/dp_26" />

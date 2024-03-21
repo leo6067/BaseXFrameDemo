@@ -4,12 +4,12 @@ import android.os.Environment
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SimpleItemAnimator
+import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.xy.demo.R
+import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.ActivityCacheBinding
@@ -29,11 +29,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
-import java.util.Timer
-import kotlin.concurrent.timerTask
 
 
-class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
+class BigFileActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 	
 	
 	var mListData = ArrayList<FirstModel>()
@@ -41,6 +39,8 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 	var needClearFile = ArrayList<File>()
 	
 	var needClearSize: Long = 0
+	
+	var allFileSize :Long = 0
 	
 	private var mAdapter: ExpandListViewAdapter? = null
 	
@@ -62,10 +62,8 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 	override fun initLogic() {
 		
 		titleBarView?.setBackgroundColor(resources.getColor(R.color.colorBarColor, theme))
-		titleBarView?.tvTitle?.text = "Big Files Cleaner"
+		titleBarView?.tvTitle?.text = getString(R.string.big_files_cleaner)
 		titleBarView?.setLeftIcon(R.drawable.ic_white_back)
-		
-		
 		binding.scanLay.scanLAV.visibility = View.VISIBLE
 		binding.scanLay.scanningTV.visibility = View.VISIBLE
 		binding.scanLay.scanLAV.setAnimation("clear_scan.json");
@@ -74,34 +72,25 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 		binding.scanLay.scanLAV.setRepeatCount(-1);//设置重复次数
 		binding.scanLay.scanLAV.playAnimation()
 		
-		
+  
 		XXPermissions.with(this)
-			.permission(Permission.READ_MEDIA_AUDIO, Permission.READ_MEDIA_VIDEO, Permission.READ_MEDIA_IMAGES)
-			.request { permissions, all ->
-				if (all) {
+			.permission(Permission.MANAGE_EXTERNAL_STORAGE)
+			.request(object : OnPermissionCallback {
+				override fun onGranted(permissions: MutableList<String>, allGranted: Boolean) {
 					initDate()
-				} else {
-					ToastUtils.showShort("请去应用管理授予权限")
 				}
-			}
-		
-		
-		spaceMessageInit()
+				override fun onDenied(permissions: MutableList<String>, allGranted: Boolean) {
+					ToastUtils.showLong(getString(R.string.please_go_to_application_management_to_grant_permissions))
+					finish()
+				}
+			})
 		
 		
 		mAdapter = ExpandListViewAdapter(mListData, this)
 		binding.recyclerView.setAdapter(mAdapter)
 		binding.recyclerView.cacheColorHint = 1000
 		
-		
-		
-		
-		
-		
-		
 		binding.clearTV.setOnClickListener {
-			
-			
 			lifecycleScope.launch() {
 				
 				var clearFinish = async {
@@ -113,32 +102,29 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 				}
 				
 				
-				
 				withContext(Dispatchers.Main) {
 					showClearView()
 				}
 				
 				clearFinish.await()
+				//清理完成
 				withContext(Dispatchers.Main) {
 					binding.finishLay.finisIV.visibility = View.VISIBLE
 					binding.finishLay.finisTV.visibility = View.VISIBLE
-					
-					
+					binding.finishLay.finisTV.text = getString(R.string.cleared_up) +" "+ MyUtils.byte2FitMemorySize(needClearSize) +" "+ getString(R.string.junk)
 					binding.scanLay.scanLAV.visibility = View.GONE
 					binding.scanLay.scanningTV.visibility = View.GONE
 				}
-				
 			}
+	
 		}
-		
 		
 	}
 	
 	override fun initViewObservable() {
 		super.initViewObservable()
 		
-		
-		LiveEventBus.get<String>("sizeRefresh").observe(this) {
+		LiveEventBus.get<String>(Constants.EVENT_BIG_FILE_SIZE).observe(this) {
 			needClearSize = 0
 			needClearFile.clear()
 			for (i in mListData.indices) {
@@ -150,7 +136,7 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 					}
 				}
 			}
-			binding.clearTV.text = "clean  " + MyUtils.byte2FitMemorySize(needClearSize)
+			binding.clearTV.text = getString(R.string.clean)+"  " + MyUtils.byte2FitMemorySize(needClearSize)
 		}
 		
 		
@@ -167,12 +153,12 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 		val usedSpace = totalSpace - freeSpace
 		val usedSpaceToGB: Float = UnitConversion.getGB(usedSpace)
 		
-		binding.memoryTV.text = " "
+	 
 	}
 	
 	
 	private fun initDate() {
-		
+		allFileSize = 0
 		viewModel.viewModelScope.launch {
 			val apkResult = async(Dispatchers.IO) {
 				makeFileList(FileTools.APK)
@@ -212,40 +198,41 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 		val dir = File(Environment.getExternalStorageDirectory().toString())
 		lateinit var fileSearcher: FileSearcher
 		val firstModel = FirstModel()
+	
 		
 		when (fileType) {
 			FileTools.APK -> {
 				Globals.log("xxxxxxxfile APK")
 				fileSearcher = FileSearcher(dir, FileTools.APK)
-				firstModel.title = "APK"
+				firstModel.title = getString(R.string.apk)
 				firstModel.icon = R.drawable.icon_big_apk
 			}
 			
 			FileTools.MUSIC -> {
 				Globals.log("xxxxxxxfile MUSIC")
 				fileSearcher = FileSearcher(dir, FileTools.MUSIC)
-				firstModel.title = "MUSIC"
+				firstModel.title = getString(R.string.music)
 				firstModel.icon = R.drawable.icon_big_audio
 			}
 			
 			FileTools.IMAGE -> {
 				Globals.log("xxxxxxxfile IMAGE")
 				fileSearcher = FileSearcher(dir, FileTools.IMAGE)
-				firstModel.title = "IMAGE"
+				firstModel.title = getString(R.string.image)
 				firstModel.icon = R.drawable.icon_big_image
 			}
 			
 			FileTools.VIDEO -> {
 				Globals.log("xxxxxxxfile VIDEO")
 				fileSearcher = FileSearcher(dir, FileTools.VIDEO)
-				firstModel.title = "VIDEO"
+				firstModel.title = getString(R.string.video)
 				firstModel.icon = R.drawable.icon_big_video
 			}
 			
 			FileTools.DOCUMENT -> {
 				Globals.log("xxxxxxxfile DOCUMENT")
 				fileSearcher = FileSearcher(dir, FileTools.DOCUMENT)
-				firstModel.title = "DOCUMENT"
+				firstModel.title = getString(R.string.document)
 				firstModel.icon = R.drawable.icon_big_doc
 			}
 		}
@@ -256,12 +243,19 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 		
 		
 		for (j in allMusicFiles.indices) {
+			
+			//过滤 大于 10M  的文件 才展示
+			if (allMusicFiles[j].length() <  10 * 1024 * 1024){
+				continue
+			}
 			val secondModel = SecondModel()
 			secondModel.isCheck = false
 			secondModel.title = allMusicFiles[j].name
 			secondModel.fileTime = DateUtils.getTimeStampString(allMusicFiles[j].lastModified(), "yyyy-MM-dd HH:mm:ss", 0)
 			secondModel.fileSizeStr = MyUtils.byte2FitMemorySize(allMusicFiles[j].length())
 			secondModel.fileSize = allMusicFiles[j].length()
+		 
+			allFileSize +=allMusicFiles[j].length()
 			secondModel.file = allMusicFiles[j]
 			listSecondModel.add(secondModel)
 		}
@@ -269,6 +263,9 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 		firstModel.isCheck = false
 		firstModel.listSecondModel = listSecondModel
 		mListData.add(firstModel)
+		
+		binding.fileSizeTV.text = MyUtils.byte2FitMemorySize(allFileSize)
+ 
 		return ""
 	}
 	
@@ -284,7 +281,7 @@ class CacheActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
 // 		binding.lottieIV.setRepeatMode(LottieDrawable.REVERSE);//设置播放模式
 		binding.scanLay.scanLAV.setRepeatCount(-1);//设置重复次数
 		binding.scanLay.scanLAV.playAnimation()
-		binding.scanLay.scanningTV.text = "清理中"
+		binding.scanLay.scanningTV.text = getString(R.string.clearing)
 	}
 	
 }

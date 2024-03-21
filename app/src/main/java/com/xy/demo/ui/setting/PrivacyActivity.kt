@@ -16,8 +16,6 @@ import com.xy.demo.logic.LanguageUtil
 
 class PrivacyActivity : MBBaseActivity<ActivityPrivacyBinding,MBBaseViewModel>() {
 	
-	
-	
 	override fun showTitleBar(): Boolean {
 		return super.showTitleBar()
 	}
@@ -65,7 +63,7 @@ class PrivacyActivity : MBBaseActivity<ActivityPrivacyBinding,MBBaseViewModel>()
 		LanguageUtil.reFreshLanguage(null, this, null)
 		
 		
-		titleBarView?.setTitle("Privacy Policy")
+		titleBarView?.setTitle(getString(R.string.privacy_policy))
 		titleBarView?.tvTitle?.setTextColor(getColor(R.color.black))
 //		binding.titleLay.titleTV.text = getString(R.string.privacy_policy)
 	}

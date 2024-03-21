@@ -30,4 +30,24 @@
     <string name="not_now">Not now</string>
     <string name="submit">Submit</string>
     <string name="feedback">Feedback</string>
+    <string name="enter_your_suggestion_please">Enter your suggestion please</string>
+    <string name="feedback_">Feedback</string>
+    <string name="please_enter_feedback">Please enter feedback</string>
+    <string name="junk_cleaner">Junk Cleaner</string>
+    <string name="junk_selected">Junk Selected</string>
+    <string name="scanning">Scanning</string>
+    <string name="junk_files">Junk files</string>
+    <string name="cached_files">Cached files</string>
+    <string name="clean">clean</string>
+    <string name="cleanable">cleanable</string>
+    <string name="cleared_up">Cleared up</string>
+    <string name="junk">junk</string>
+    <string name="please_select_the_garbage_you_want_to_clean_first">Please select the garbage you want to clean first</string>
+    <string name="please_go_to_application_management_to_grant_permissions">Please go to Application Management to grant permissions</string>
+    <string name="apk">APK</string>
+    <string name="music">MUSIC</string>
+    <string name="image">IMAGE</string>
+    <string name="video">VIDEO</string>
+    <string name="document">DOCUMENT</string>
+    <string name="clearing">clearing</string>
 </resources>
