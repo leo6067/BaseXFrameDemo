@@ -43,7 +43,7 @@ class ProcessActivity : MBBaseActivity<ActivityProcessBinding, MBBaseViewModel>(
 	
 	override fun initView() {
 		super.initView()
-		titleBarView?.setBackgroundColor(resources.getColor(R.color.colorBarColor,theme))
+		titleBarView?.setBackgroundColor(resources.getColor(R.color.colorBarColor, theme))
 		titleBarView?.tvTitle?.text = getString(R.string.background_processes_)
 		titleBarView?.setLeftIcon(R.drawable.ic_white_back)
 		
@@ -79,14 +79,15 @@ class ProcessActivity : MBBaseActivity<ActivityProcessBinding, MBBaseViewModel>(
 		val endTime = calendar.timeInMillis
 		calendar.add(Calendar.HOUR_OF_DAY, -12)
 		val usageStatsManager = getSystemService(USAGE_STATS_SERVICE) as UsageStatsManager
-		val queryUsageStats = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, endTime - 60000, endTime)
+		val queryUsageStats = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, endTime - 1000*60*60*30, endTime) //半小时
 		for (usageStats in queryUsageStats) {
+			Globals.log("xxxxxxxxxappusageStats.packageName" + usageStats.packageName)
+			
 			if (TextUtils.equals(usageStats.packageName, BuildConfig.APPLICATION_ID)) {
 				continue
 			}
-			if (usageStats.packageName.contains("android")) {
-				continue
-			}
+			
+			
 			val appInfo = AppUtils.getAppInfo(usageStats.packageName)
 			if (appInfo != null && !appInfo.isSystem) {
 				//无法获取进程所占用的内存，所以用安装包大小倍数假装。。
@@ -98,7 +99,6 @@ class ProcessActivity : MBBaseActivity<ActivityProcessBinding, MBBaseViewModel>(
 				}
 				
 				//更新可加速内存大小
-				
 				val appProcessInfo = AppProcessInfo()
 				appProcessInfo.setAppName(appInfo.name)
 				appProcessInfo.setProcessName(appInfo.packageName)
@@ -117,11 +117,11 @@ class ProcessActivity : MBBaseActivity<ActivityProcessBinding, MBBaseViewModel>(
 		
 		val availableMemory = memoryInfo.availMem
 		val totalMemory = memoryInfo.totalMem
-
-		// 可用内存和总内存（以字节为单位）
-	 
 		
-		binding.ratioTV.text = ((availableMemory * 100 / totalMemory) ).toInt().toString()
+		// 可用内存和总内存（以字节为单位）
+		
+		
+		binding.ratioTV.text = ((availableMemory * 100 / totalMemory)).toInt().toString()
 		binding.memoryTV.text =
 			String.format("%s", MyUtils.byte2FitMemorySize(availableMemory)) + " /" + String.format("%s", MyUtils.byte2FitMemorySize(totalMemory))
 		

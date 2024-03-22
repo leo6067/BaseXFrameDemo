@@ -85,6 +85,7 @@ public class TitleBarView @JvmOverloads constructor(
                 val lp = tvTitle?.layoutParams as LayoutParams
                 lp.removeRule(CENTER_IN_PARENT)
                 lp.addRule(RIGHT_OF, R.id.ivBack)
+              
                 tvTitle?.layoutParams = lp
             }
 

@@ -12,7 +12,8 @@ import com.xy.demo.R
 import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.base.MBBaseViewModel
-import com.xy.demo.databinding.ActivityCacheBinding
+import com.xy.demo.databinding.ActivityBigFileBinding
+
 import com.xy.demo.model.FirstModel
 import com.xy.demo.model.SecondModel
 import com.xy.demo.utils.MyUtils
@@ -29,10 +30,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
-import java.util.Locale
 
 
-class BigFileActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() {
+class BigFileActivity : MBBaseActivity<ActivityBigFileBinding, MBBaseViewModel>() {
 	
 	
 	var mListData = ArrayList<FirstModel>()
@@ -56,7 +56,7 @@ class BigFileActivity : MBBaseActivity<ActivityCacheBinding, MBBaseViewModel>() 
 	
 	
 	override fun getLayoutId(): Int {
-		return R.layout.activity_cache
+		return R.layout.activity_big_file
 	}
 	
 	

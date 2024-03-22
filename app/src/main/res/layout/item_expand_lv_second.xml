@@ -36,7 +36,7 @@
             android:maxEms="10"
             android:lines="1"
             android:ellipsize="end"
-            android:textSize="10sp" />
+            android:textSize="@dimen/sp_12" />
 
         <TextView
             android:id="@+id/itemTime"
@@ -45,7 +45,7 @@
             android:text="22022/10/15"
             android:layout_marginTop="@dimen/dp_2"
             android:textColor="#66000000"
-            android:textSize="10sp"
+            android:textSize="@dimen/sp_12"
             />
 
     </LinearLayout>

@@ -3,11 +3,15 @@
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_vertical"
     android:orientation="vertical">
 
+
+<!--    沉浸式 75 扣去状态栏 25 -->
     <com.xy.xframework.titlebar.TitleBarView
         android:id="@+id/titleBarView"
-        android:layout_gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_56" />
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/dp_20"
+        android:layout_height="@dimen/dp_75" />
 </LinearLayout>

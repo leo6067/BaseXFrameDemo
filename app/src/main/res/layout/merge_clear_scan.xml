@@ -12,6 +12,7 @@
             android:id="@+id/scanLAV"
             android:layout_width="@dimen/dp_200"
             android:layout_height="@dimen/dp_320"
+            android:layout_marginBottom="@dimen/dp_45"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

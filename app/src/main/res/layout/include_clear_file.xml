@@ -13,7 +13,7 @@
     <ImageView
         android:id="@+id/topView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_150"
+        android:layout_height="@dimen/dp_155"
         android:background="@drawable/root_bg_radius"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +22,7 @@
         android:id="@+id/sizeTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_45"
+        android:layout_marginTop="@dimen/dp_30"
         android:text="756.8"
         android:textColor="#ffffffff"
         android:textSize="@dimen/sp_40"
@@ -45,6 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cleanable"
+        android:layout_marginTop="@dimen/dp_6"
         android:textColor="#ffffffff"
         android:textSize="@dimen/sp_16"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,9 +71,11 @@
         android:layout_marginBottom="@dimen/dp_30"
         android:gravity="center"
         android:text="@string/clean"
+        android:textStyle="bold"
+        android:textSize="@dimen/sp_16"
         android:textColor="@color/white"
         app:background_normal="@color/colorFontA"
-        app:corner_radius="@dimen/dp_22"
+        app:corner_radius="@dimen/dp_26"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
