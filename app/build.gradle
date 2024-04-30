@@ -68,6 +68,16 @@ android {
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
+    bundle {
+        language {
+            //多语言不分包处理
+            // Specifies that the app bundle should not support
+            // configuration APKs for language resources. These
+            // resources are instead packaged with each base and
+            // feature APK.
+            enableSplit = false
+        }
+    }
 
 }
 
