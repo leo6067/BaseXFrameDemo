@@ -29,15 +29,19 @@ android {
 
     }
 }
-//android.applicationVariants.all { variant ->
-//    variant.outputs.all {
-//        if (variant.productFlavors[0] == null) {
-//            outputFileName = "qiyoutui_v${variant.versionName}_build${variant.versionCode}.apk"
-//        } else {
-//            outputFileName = "${variant.productFlavors[0].name}_v${variant.versionName}_build${variant.versionCode}.apk"
-//        }
-//    }
-//}
+
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        def buildTime = new Date().format("MM-dd-HH-mm", TimeZone.getDefault());
+        def outputFile = outputs.outputFile
+        if (outputFile != null && outputFile.name[0].endsWith('.apk')) {
+            outputFileName = "${variant.productFlavors[0].name}_v${variant.versionName}_${variant.versionCode}.apk"
+        } else {
+            outputFileName = "${variant.productFlavors[0].name}_v${variant.versionName}_${variant.versionCode}.aab"
+        }
+    }
+}
+
 
 //walle {
 //    // 指定渠道包的输出路径
@@ -56,11 +60,3 @@ android {
 //}
 
 
-walle {
-    // 指定渠道包的输出路径
-    apkOutputFolder = new File("${project.buildDir}/outputs/channels");
-    // 定制渠道包的APK的文件名称
-    apkFileNameFormat = '${appName}-${packageName}-${channel}-${buildType}-v${versionName}-${versionCode}-${buildTime}.apk';
-    // 渠道配置文件
-    channelFile = new File("${project.getProjectDir()}/channel")
-}

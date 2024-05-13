@@ -81,33 +81,22 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
 
         binding.lightTV.setOnClickListener {
             BaseSharePreference.instance.putString("AppTheme", "light")
-
-
             recreate()
-
 //            setTheme(R.style.AppLightTheme)
 //            startActivity(Intent(this@MainActivity, MainActivity::class.java))
-
-
         }
 
 
 
 
         binding.nextTV.setOnClickListener {
-
 //            startActivity(Intent(this@MainActivity, SecondActivity::class.java))
-
-
             var url = "https://HiReadNovel.onelink.me/9gP0/vplay?v=66&c=0";
             var uri = Uri.parse(url);
             var intent = Intent();
             intent.setData(uri);
             startActivity(intent);
-
         }
-
-
     }
 
 
