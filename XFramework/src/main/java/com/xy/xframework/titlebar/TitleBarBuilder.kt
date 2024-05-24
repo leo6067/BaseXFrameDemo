@@ -33,7 +33,7 @@ class TitleBarBuilder {
     /**
      * 标题颜色
      */
-    private var mTitleTextColor: Int = R.color.color_FFFFFF.color()
+    private var mTitleTextColor: Int = R.color.TitleTextColor.color()
 
     /**
      * 标题是否加粗
@@ -43,7 +43,7 @@ class TitleBarBuilder {
     /**
      * 标题栏的背景颜色
      */
-    private var mTitleBarBackgroundColor: Int = R.color.color_FFFFFF.color()
+    private var mTitleBarBackgroundColor: Int = R.color.TitleBarBackgroundColor.color()
 
     /**
      * 标题栏左边的返回图标
@@ -53,7 +53,7 @@ class TitleBarBuilder {
     /**
      * 状态栏颜色
      */
-    private var mStatusBarColor: Int = R.color.color_999999.color()
+    private var mStatusBarColor: Int = R.color.StatusBarColor.color()
 
     /**
      * 点击标题返回

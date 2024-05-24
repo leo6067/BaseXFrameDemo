@@ -9,9 +9,10 @@ import com.xy.xframework.R
 object GlobalTitleBarProvider {
 
     private var titleBarBuilder: TitleBarBuilder = TitleBarBuilder()
-        .setTitleGravity(TitleBarBuilder.CENTER)
-        .setTitleBarBackgroundColorRes(R.color.white)
+        .setTitleGravity(TitleBarBuilder.LEFT)  //标题靠左
+        .setTitleBarBackgroundColorRes(R.color.TitleBarBackgroundColor)
         .setTitleBarLeftBackIcon(R.mipmap.nav_back)
+    
 
 
     fun setTitleBarBuilder(titleBarBuilder: TitleBarBuilder) {
