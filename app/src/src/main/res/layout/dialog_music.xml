@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <com.ruffian.library.widget.RLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:background_normal="#F5F5F5"
+        android:clickable="true"
+        android:focusable="true"
+        app:corner_radius_top_left="@dimen/dp_20"
+        app:corner_radius_top_right="@dimen/dp_20">
+
+
+        <ImageView
+            android:id="@+id/closeIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:minWidth="@dimen/dp_50"
+            android:minHeight="@dimen/dp_40"
+            android:scaleType="centerInside"
+            android:src="@drawable/close_w" />
+
+
+        <TextView
+            android:id="@+id/titleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_m_15"
+            android:text="音乐"
+            android:textStyle="bold"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_22" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_20" />
+
+
+
+    </com.ruffian.library.widget.RLinearLayout>
+
+</layout>

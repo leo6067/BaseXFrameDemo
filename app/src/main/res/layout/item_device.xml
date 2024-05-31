@@ -26,18 +26,20 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_20"
         android:layout_marginTop="@dimen/dp_8"
-        android:background="@drawable/wifi"
+        android:background="@drawable/icon_ir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
         android:id="@+id/nameTV"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/moreTV"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_26"
         android:ellipsize="end"
         android:maxLines="1"
+        android:maxEms="6"
         android:text="Living Room"
         android:textColor="@color/colorFontBlack"
         android:textSize="@dimen/sp_14"

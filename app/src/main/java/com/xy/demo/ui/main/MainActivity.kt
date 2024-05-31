@@ -26,27 +26,16 @@ import com.xy.demo.R
 import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.databinding.ActivityMainBinding
-import com.xy.demo.db.MyDataBase
-import com.xy.demo.logic.LanguageUtil
-import com.xy.demo.logic.ad.AdManage
-import com.xy.demo.model.TabEntity
-import com.xy.demo.network.Globals
-import com.xy.demo.ui.adapter.ControlAdapter
 
-import com.xy.demo.ui.vm.MainViewModel
-import com.xy.xframework.base.BaseSharePreference
-import com.xy.xframework.base.XBaseViewModel
-import com.xy.xframework.utils.ToastUtils
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
+import com.xy.demo.logic.LanguageUtil
+import com.xy.demo.model.TabEntity
+import com.xy.demo.ui.vm.HttpViewModel
+
+
 
 
 //, GestureDetector.OnGestureListener  触摸 手势
-class MainActivity : MBBaseActivity<ActivityMainBinding, MainViewModel>() {
+class MainActivity : MBBaseActivity<ActivityMainBinding, HttpViewModel>() {
 	
 	
  
@@ -95,7 +84,7 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, MainViewModel>() {
 	
 	override fun initParams() {
 		super.initParams()
-		viewModel.getBrandListHttp()
+ 
 	}
 	
 	
@@ -143,20 +132,14 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, MainViewModel>() {
 		})
 		
 		
-		
-		
 //		LiveEventBus.get<Int>("mainTab").observe(this) {
 //			currentPosition = it
 //			binding.viewPager.currentItem = currentPosition
 //			Globals.log("XXXXXXXXXX  it" + currentPosition)
 //		}
 //
-		
 		val currentPosition = intent.getIntExtra("mainTab", 0);
-		
-		
 		binding.viewPager.currentItem = currentPosition
-		
 	}
 	
 	

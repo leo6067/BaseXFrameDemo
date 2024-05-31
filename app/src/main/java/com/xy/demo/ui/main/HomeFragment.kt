@@ -13,17 +13,17 @@ import com.xy.demo.base.MBBaseFragment
 import com.xy.demo.base.MBBaseViewModel
 import com.xy.demo.databinding.FragmentHomeBinding
 import com.xy.demo.db.MyDataBase
-import com.xy.demo.logic.ad.AdManage
+import com.xy.demo.db.RemoteModel
 import com.xy.demo.network.Globals
+import com.xy.demo.ui.ac.ACConActivity
 import com.xy.demo.ui.adapter.DeviceAdapter
-
-import com.xy.demo.ui.infrared.AddRemoteActivity
+import com.xy.demo.ui.common.RemoteTypeActivity
 import com.xy.demo.ui.infrared.TVConActivity
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.Collections
 
 
 // 添加过设备的首页UI
@@ -43,6 +43,7 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MBBaseViewModel>() {
 		lifecycleScope.launch(Dispatchers.IO) {
 			val allRemote = MyDataBase.instance.RemoteDao().getAllRemote() as MutableList
 			withContext(Dispatchers.Main) {
+				allRemote.reverse()
 				mAdapter.setNewInstance(allRemote)
 				if (allRemote.size > 0) {
 					binding.recyclerView.visibility = View.VISIBLE
@@ -60,52 +61,49 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MBBaseViewModel>() {
 	}
 	
 	override fun initView() {
-		
-		
 		binding.recyclerView.layoutManager = GridLayoutManager(activity, 2)
 		binding.recyclerView.adapter = mAdapter
-		
-		
-		
 		mAdapter.setOnItemClickListener { adapter, view, position ->
+			val remoteModel = mAdapter.data.get(position)
 			activity?.let {
 				val intent = Intent()
 				intent.putExtra(Constants.KEY_REMOTE, mAdapter.data.get(position))
-				intent.setClass(it, TVConActivity::class.java)
+				if (remoteModel.type == 1) {
+					intent.setClass(it, TVConActivity::class.java)
+				} else {
+					intent.setClass(it, ACConActivity::class.java)
+				}
 				startActivity(intent)
 			}
 		}
 		
-		
 		binding.addDevice.setOnClickListener {
-			activity?.startActivity(Intent(activity, AddRemoteActivity::class.java))
+			activity?.startActivity(Intent(activity, RemoteTypeActivity::class.java))
 		}
 		
 		binding.addDeviceTV.setOnClickListener {
-			activity?.startActivity(Intent(activity, AddRemoteActivity::class.java))
+			activity?.startActivity(Intent(activity, RemoteTypeActivity::class.java))
 		}
-		
-		
 		
 		binding.recyclerView.addOnScrollListener(object : OnScrollListener() {
 			override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
 				super.onScrollStateChanged(recyclerView, newState)
-				Globals.log("XXXXXXXnewState " + newState)
+				
 			}
 			
 			override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 				super.onScrolled(recyclerView, dx, dy)
 				Globals.log("XXXXXXXnewState dy" + dy)
 				if (dy > 0) {
-					if (binding.bottomLay.visibility == View.GONE) {
-						AdManage.showBannerAd(binding.bottomAdView, binding.bottomLay)
+					if (binding.bottomLay.visibility == View.GONE) {  //广告
+//						AdManage.showBannerAd(binding.bottomAdView, binding.bottomLay)
 					}
 				}
 			}
 		})
 		
-	
-	//广告相关
+		
+		//广告相关
 //		binding.closeIV.setOnClickListener {
 //			binding.adLin.visibility = View.GONE
 //			Constants.showMainTopBanner = false
@@ -144,6 +142,7 @@ class HomeFragment : MBBaseFragment<FragmentHomeBinding, MBBaseViewModel>() {
 					val allRemote = withContext(Dispatchers.IO) {
 						MyDataBase.instance.RemoteDao().getAllRemote() as MutableList
 					}
+					allRemote.reverse()
 					mAdapter.setNewInstance(allRemote)
 					dismissLoading()
 				}

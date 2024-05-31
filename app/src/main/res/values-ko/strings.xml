@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Remote</string>
+    <string name="app_name">TV 리모컨 호스트 - 스마트 TV</string>
     <string name="control_your_tv">TV 제어</string>
     <string name="devices">장치</string>
     <string name="cast_content_from_phone_to_your_tv">핸드폰에서 텔레비전으로 내용을 방송하다.</string>
@@ -18,7 +18,7 @@
     <string name="your_tv_and_phone_need_to_be_n_on_the_same_wifi_network">TV와 휴대 전화는 동일한 WiFi 네트워크에 있어야 합니다.</string>
     <string name="start_now">지금부터</string>
     <string name="select_tv_brand">TV 브랜드 선택</string>
-    <string name="we_ve_found_5_remote_n_controls_for_your_acer_tv">우리는 당신의 텔레비전을 위해%d개의 리모컨을 찾았습니다.</string>
+    <string name="we_ve_found_5_remote_n_controls_for_your_acer_tv">장치에 대한%d 리모컨을 찾았습니다.</string>
     <string name="please_test_them_one_by_one_to_find_the_remote_that_matches_your_tv_model">TV 모델과 일치하는 리모컨을 찾으려면 하나씩 테스트하십시오.</string>
     <string name="start_testing">테스트 시작</string>
     <string name="tap_the_buttons_below_to_test_if_the_tv_responds_correctly">TV가 제대로 응답하는지 확인하려면 아래 버튼을 클릭하십시오.</string>
@@ -62,7 +62,7 @@
     <string name="tv_brands">TV 브랜드</string>
     <string name="there_is_no_built_in_infrared">휴대 전화에 내장 된 적외선 증강기가 없으므로 적외선을 통해 TV를 제어할 수 없습니다.</string>
     <string name="try_wifi_remote">WIFI 원격 시도</string>
-    <string name="s_tv_connected">%s TV 연결됨</string>
+    <string name="s_tv_connected">%s TV 연결됨!</string>
     <string name="the_name_change_has_already_been_used">이름 변경이 이미 사용 중입니다.</string>
     <string name="we_are_working_hard_for">우리는 더 나은 사용자 경험을 위해 노력하고 있습니다.만약 당신이 우리에게 점수를 매길 수 있다면, 우리는 대단히 감사할 것입니다.</string>
     <string name="the_best_we_can_get">우리가 얻을 수 있는 가장 좋은 것은:)</string>
@@ -92,21 +92,21 @@
     <string name="edit">편집</string>
     <string name="delete">삭제</string>
     <string name="make_sure_your_phone_and_tv_or_wireless_adapter_connect_to_the">\"휴대폰과 TV (또는 무선 어댑터) 가 연결되어 있는지 확인합니다.\"</string>
-    <string name="same_wifi">동일한 WiFi</string>
+    <string name="same_wifi">&#160; 동일한 WiFi&#160; </string>
     <string name="and">및</string>
-    <string name="turn_off_vpn">VPN을 닫습니다.</string>
+    <string name="turn_off_vpn">&#160;VPN을 닫습니다.</string>
     <string name="enable_the">사용</string>
-    <string name="miracast_display">\"Miracast 모니터\"</string>
+    <string name="miracast_display">&#160; Miracast 모니터 &#160;</string>
     <string name="function_on_your_tv_you_need_to_enable_it_manually_on_some_devices_go_to_system_settings_to_check">기능. (일부 장치에서 수동으로 활성화해야 합니다. 시스템 설정으로 이동하여 확인하십시오.)</string>
     <string name="click_the">클릭</string>
-    <string name="start_mirroring">미러 시작</string>
+    <string name="start_mirroring">&#160;미러 시작&#160;</string>
     <string name="button_enable_the_wireless_display_function_on_your_phone_and_wait_for_the_device_searching">버튼, 휴대 전화의 무선 디스플레이 기능을 활성화하고 장치 검색을 기다립니다.</string>
     <string name="the_screen_casting_settings_are_not_found_on_the_device">장치에서 화면 투사 설정을 찾을 수 없음</string>
     <string name="number">숫자</string>
     <string name="more">추가</string>
     <string name="is_your_tv_turned_on">텔레비전이 켜졌습니까\?</string>
     <string name="your_phone_needs_to_have_a_built_in_ir_infrared_blaster">휴대폰에는 IR(적외선 증강기)이 내장되어 있어야 합니다.</string>
-    <string name="there_is_no_built_in_infrared_blaster_in_your_phone_so_you_can_t_control_tv_via_ir">휴대 전화에 내장 된 적외선 증강기가 없으므로 적외선을 통해 TV를 제어할 수 없습니다.</string>
+    <string name="there_is_no_built_in_infrared_blaster_in_your_phone_so_you_can_t_control_tv_via_ir">휴대 전화에 내장 된 적외선 증폭기가 없으므로 적외선을 통해 장치를 제어할 수 없습니다.</string>
     <string name="no_smart_remote_for_the_sony_tv">소니 TV에는 스마트 리모컨이 없어요.</string>
     <string name="maybe_later">아마 앞으로</string>
     <string name="please_use_wifi">와이파이를 사용하세요.</string>
@@ -122,4 +122,44 @@
     <string name="yes">그래</string>
     <string name="test_remote">원격 테스트</string>
     <string name="choose_language">언어 선택</string>
+    <string name="tv_remote_control">텔레비전 리모컨</string>
+
+
+
+
+    <string name="select_ac_brand">AC 브랜드 선택</string>
+    <string name="ac_brands">AC 브랜드</string>
+    <string name="no_smart_remote_for_the_device">장치에 스마트 리모컨이 없습니다.</string>
+    <string name="please_test_them_one_by_one_to_find_the_remote_that_matches_your_device">장치와 일치하는 리모컨을 찾으려면 하나씩 테스트하십시오.</string>
+    <string name="test_ac_remote">AC 원격 테스트</string>
+    <string name="tap_the_buttons_below_to_test_if_the_ac_responds_correctly">아래 버튼을 클릭하여 에어컨이 올바르게 응답하는지 테스트</string>
+    <string name="does_your_ac_respond">당신의 AC는 반응이 있습니까\?</string>
+    <string name="s_ac_connected">%s AC가 연결되었습니다!</string>
+    <string name="the_remote_is_now_connected_to_your_ac_please_save_it_for_future_use">리모컨이 AC에 연결되었습니다. 나중에 사용할 수 있도록 저장하십시오.</string>
+    <string name="on_off">켜기 / 끄기</string>
+    <string name="temp_adjustment">온도 조절</string>
+    <string name="fan_speed">팬 회전 속도</string>
+    <string name="mode">모드</string>
+    <string name="swing">흔들림</string>
+    <string name="auto">자동차</string>
+    <string name="low">낮음</string>
+    <string name="medium">중간</string>
+    <string name="high">높음</string>
+    <string name="cool">멋지다!</string>
+    <string name="heating">가열</string>
+    <string name="ventilate">환기</string>
+    <string name="xeransis">Xeransis</string>
+    <string name="swing_off">회전</string>
+    <string name="swing_on">열기</string>
+    <string name="dry">말랐어</string>
+    <string name="ac_location">AC 위치</string>
+    <string name="select_icon">아이콘 선택</string>
+    <string name="air_conditioning">에어컨</string>
+    <string name="remote_control">리모컨</string>
+    <string name="test_remote_control">원격 제어 테스트</string>
+    <string name="test">퀴즈</string>
+    <string name="remote">아득히 멀다</string>
+    <string name="add_remote_a">원격 추가</string>
+    <string name="import_brand">수입 브랜드</string>
+
 </resources>

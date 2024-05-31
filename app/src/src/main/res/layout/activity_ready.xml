@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.common.ReadyActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <include
+                android:id="@+id/titleLay"
+                layout="@layout/include_title" />
+
+
+            <LinearLayout
+                android:id="@+id/irLin"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dp_50"
+                    android:background="@drawable/icon_remote_ir" />
+
+
+                <TextView
+                    android:id="@+id/regexNumTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="@dimen/dp_40"
+                    android:layout_marginTop="@dimen/dp_50"
+                    android:gravity="center"
+                    android:text="@string/we_ve_found_5_remote_n_controls_for_your_acer_tv"
+                    android:textColor="@color/colorFontBlack"
+                    android:textSize="@dimen/sp_22"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_40"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:gravity="center"
+                    android:text="@string/please_test_them_one_by_one_to_find_the_remote_that_matches_your_device"
+                    android:textColor="@color/colorFontGray"
+                    android:textSize="16sp" />
+
+                <com.ruffian.library.widget.RTextView
+                    android:id="@+id/startTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_78"
+                    android:layout_marginHorizontal="@dimen/dp_48"
+                    android:layout_marginTop="@dimen/dp_40"
+                    android:gravity="center"
+                    android:onClick="onClick"
+                    android:text="@string/start_testing"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold"
+                    app:background_normal="@drawable/icon_tv_bg"
+                    app:corner_radius="@dimen/dp_20" />
+
+            </LinearLayout>
+
+
+            <include
+                android:id="@+id/noInfrared"
+                android:visibility="gone"
+                layout="@layout/include_no_infrared" />
+
+            <include
+                android:id="@+id/noRemote"
+                android:visibility="gone"
+                layout="@layout/include_no_remote" />
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/netInclude"
+            layout="@layout/include_net"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</layout>

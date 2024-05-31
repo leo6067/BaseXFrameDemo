@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.sjyk.ykq",
+  "variantName": "sjykRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 2024053001,
+      "versionName": "1.0.3",
+      "outputFile": "sjyk_v1.0.3_2024053001.apk"
+    }
+  ],
+  "elementType": "File"
+}

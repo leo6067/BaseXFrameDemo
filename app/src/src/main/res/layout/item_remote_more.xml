@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/zeroTV"
+        android:layout_marginTop="@dimen/dp_20"
+        android:clickable="true"
+        app:background_normal="@color/colorAccent"
+        app:background_pressed="@color/colorPress"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_50"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:maxEms="3"
+        android:ellipsize="end"
+        android:text="0"
+        android:textColor="@color/colorFontGray"
+        android:textSize="@dimen/sp_16"
+        android:textStyle="bold"
+        app:corner_radius="@dimen/dp_25" />
+
+
+</RelativeLayout>

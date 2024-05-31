@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="waveSideBar">
+        <attr name="textColor" format="color|reference"/>
+        <attr name="backgroundColor" format="color|reference"/>
+        <attr name="chooseTextColor" format="color|reference"/>
+        <attr name="textSize" format="dimension"/>
+        <attr name="hintTextSize" format="dimension"/>
+        <attr name="radius" format="dimension"/>
+        <attr name="circleRadius" format="dimension"/>
+    </declare-styleable>
+
+
+    <style name="foodRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/layer_rate</item>
+        <item name="android:minHeight">@dimen/dp_40</item>
+        <item name="android:maxHeight">@dimen/dp_80</item>
+        <item name="android:minWidth">@dimen/dp_200</item>
+        <item name="android:maxWidth">@dimen/dp_240</item>
+    </style>
+
+</resources>
+
+
+

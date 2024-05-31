@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.setting.FeedBackActivity">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <include
+                android:id="@+id/titleLay"
+                layout="@layout/include_title" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_20"
+                android:background="@drawable/icon_fb_icon"
+                android:minWidth="@dimen/dp_40"
+                android:minHeight="@dimen/dp_40"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_6"
+                android:text="@string/tell_us_the_problem_n_you_encountered"
+                android:textColor="@color/colorFontBlack"
+                android:textSize="@dimen/sp_22" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@string/what_s_your_tv_brand"
+                android:textColor="@color/colorFontGray"
+                android:textSize="@dimen/sp_14" />
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/brandTV"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
+                android:drawableRight="@drawable/icon_next"
+                android:gravity="center_vertical"
+                android:hint="@string/select_tv_brand"
+                android:paddingHorizontal="@dimen/dp_20"
+                android:textColor="@color/colorFontGray"
+                android:textColorHint="#999"
+                app:background_normal="@color/colorPrimary"
+                app:corner_radius="@dimen/dp_12" />
+
+            <TextView
+                android:id="@+id/noBrandTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_40"
+                android:text="@string/please_select_your_tv_brand"
+                android:textColor="#ffff4f4c"
+                android:visibility="gone"
+                android:textSize="@dimen/sp_12" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@string/what_s_your_problem"
+                android:textColor="@color/colorFontGray"
+                android:textSize="@dimen/sp_14" />
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/problemTV"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
+                android:drawableRight="@drawable/icon_fb_down"
+                android:gravity="center_vertical"
+                android:hint="@string/select_the_problem"
+                android:onClick="onClick"
+                android:paddingHorizontal="@dimen/dp_20"
+                android:textColor="@color/colorFontGray"
+                android:textColorHint="#999"
+                app:background_normal="@color/colorPrimary"
+                app:corner_radius="@dimen/dp_12" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/noProblemTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_40"
+                android:text="@string/please_select_your_problem"
+                android:textColor="#ffff4f4c"
+                android:textSize="@dimen/sp_12" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@string/more_details"
+                android:textColor="@color/colorFontGray"
+                android:textSize="@dimen/sp_14" />
+
+
+            <com.ruffian.library.widget.REditText
+                android:id="@+id/detailET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_8"
+                android:gravity="top"
+                android:hint="@string/we_can_locate_and_solve_your_problem_faster"
+                android:minHeight="@dimen/dp_90"
+                android:paddingHorizontal="@dimen/dp_20"
+                android:textColor="@color/colorFontGray"
+                android:textSize="@dimen/sp_16"
+                android:textColorHint="#999"
+                app:background_normal="@color/colorPrimary"
+                app:corner_radius="@dimen/dp_12" />
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/submitTV"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/dp_80"
+                android:layout_marginTop="@dimen/dp_40"
+                android:layout_marginBottom="@dimen/dp_54"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                app:background_normal="@drawable/shape_view_bg"
+                app:corner_radius="@dimen/dp_20" />
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

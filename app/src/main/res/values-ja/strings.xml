@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Remote</string>
+    <string name="app_name">ユニバーサルリモコン方式スマートテレビ</string>
     <string name="control_your_tv">テレビの制御</string>
     <string name="devices">デバイス</string>
     <string name="cast_content_from_phone_to_your_tv">携帯電話からテレビにコンテンツを再生する。</string>
@@ -18,7 +18,7 @@
     <string name="your_tv_and_phone_need_to_be_n_on_the_same_wifi_network">テレビと携帯電話は同じWiFiネットワーク上にある必要があります。</string>
     <string name="start_now">今から始めよう</string>
     <string name="select_tv_brand">テレビブランドの選択</string>
-    <string name="we_ve_found_5_remote_n_controls_for_your_acer_tv">私たちはあなたのテレビのために%d個のリモコンを見つけました。</string>
+    <string name="we_ve_found_5_remote_n_controls_for_your_acer_tv">私たちはあなたのデバイスのために%d個のリモコンを見つけました。</string>
     <string name="please_test_them_one_by_one_to_find_the_remote_that_matches_your_tv_model">テレビモデルと一致するリモコンを見つけるために、1つずつテストしてください。</string>
     <string name="start_testing">テストを開始</string>
     <string name="tap_the_buttons_below_to_test_if_the_tv_responds_correctly">次のボタンをクリックして、テレビが正しく応答しているかどうかをテストします</string>
@@ -62,7 +62,7 @@
     <string name="tv_brands">テレビブランド</string>
     <string name="there_is_no_built_in_infrared">あなたの携帯電話には赤外線エンハンサーが内蔵されていないため、赤外線でテレビを制御することはできません</string>
     <string name="try_wifi_remote">WIFIリモートの試行</string>
-    <string name="s_tv_connected">%sテレビが接続されています</string>
+    <string name="s_tv_connected">%sテレビが接続されています!</string>
     <string name="the_name_change_has_already_been_used">名前変更が使用されました</string>
     <string name="we_are_working_hard_for">私たちはより良いユーザー体験のために努力しています。もしあなたが私たちに点数をつけることができたら、私たちは感謝に堪えません。</string>
     <string name="the_best_we_can_get">私たちが得ることができる最高のもの：）</string>
@@ -92,21 +92,21 @@
     <string name="edit">編集</string>
     <string name="delete">削除</string>
     <string name="make_sure_your_phone_and_tv_or_wireless_adapter_connect_to_the">「携帯電話とテレビ（またはワイヤレスアダプタ）が接続されていることを確認してください」</string>
-    <string name="same_wifi">「同じWiFi」</string>
+    <string name="same_wifi">&#160; 同じWiFi &#160;</string>
     <string name="and">と</string>
-    <string name="turn_off_vpn">VPNをオフにします。</string>
+    <string name="turn_off_vpn"> &#160; VPNをオフにします。&#160;</string>
     <string name="enable_the">有効化(Enable)</string>
-    <string name="miracast_display">「Miracastディスプレイ」</string>
+    <string name="miracast_display"> &#160; Miracastディスプレイ &#160;</string>
     <string name="function_on_your_tv_you_need_to_enable_it_manually_on_some_devices_go_to_system_settings_to_check">機能。（一部のデバイスで手動で有効にする必要があります。チェックするにはシステム設定に進んでください）。</string>
     <string name="click_the">[クリック]</string>
-    <string name="start_mirroring">[ミラーリングを開始]</string>
+    <string name="start_mirroring">&#160; ミラーリングを開始 &#160;</string>
     <string name="button_enable_the_wireless_display_function_on_your_phone_and_wait_for_the_device_searching">ボタンを押して、携帯電話のワイヤレス表示機能を有効にし、デバイスの検索を待ちます。</string>
     <string name="the_screen_casting_settings_are_not_found_on_the_device">デバイスにスクリーン投影設定が見つかりません</string>
     <string name="number">数値＃スウスウ＃</string>
     <string name="more">詳細</string>
     <string name="is_your_tv_turned_on">テレビをつけましたか。</string>
     <string name="your_phone_needs_to_have_a_built_in_ir_infrared_blaster">携帯電話にはIR（赤外線エンハンサー）を内蔵する必要があります。</string>
-    <string name="there_is_no_built_in_infrared_blaster_in_your_phone_so_you_can_t_control_tv_via_ir">あなたの携帯電話には赤外線エンハンサーが内蔵されていないため、赤外線でテレビを制御することはできません</string>
+    <string name="there_is_no_built_in_infrared_blaster_in_your_phone_so_you_can_t_control_tv_via_ir">あなたの携帯電話には赤外線エンハンサーが内蔵されていないため、赤外線制御デバイスを使用することはできません</string>
     <string name="no_smart_remote_for_the_sony_tv">ソニーのテレビにはスマートリモコンがない</string>
     <string name="maybe_later">もしかしたら</string>
     <string name="please_use_wifi">wifiをご利用ください</string>
@@ -122,4 +122,44 @@
     <string name="yes">はい</string>
     <string name="test_remote">テストリモート</string>
     <string name="choose_language">言語の選択</string>
+    <string name="tv_remote_control">テレビリモコン</string>
+
+
+
+
+    <string name="select_ac_brand">ACブランドを選択</string>
+    <string name="ac_brands">MACブランド</string>
+    <string name="no_smart_remote_for_the_device">デバイスにスマートリモコンがない</string>
+    <string name="please_test_them_one_by_one_to_find_the_remote_that_matches_your_device">デバイスに一致するリモコンを見つけるために、1つずつテストしてください</string>
+    <string name="test_ac_remote">ACリモートのテスト</string>
+    <string name="tap_the_buttons_below_to_test_if_the_ac_responds_correctly">下のボタンをクリックして、エアコンが正しく応答しているかどうかをテストします</string>
+    <string name="does_your_ac_respond">あなたのACは反応しますか。</string>
+    <string name="s_ac_connected">%s ACが接続されています！</string>
+    <string name="the_remote_is_now_connected_to_your_ac_please_save_it_for_future_use">リモコンがACに接続されました。将来の使用に備えて保存してください。</string>
+    <string name="on_off">オン/オフ</string>
+    <string name="temp_adjustment">おんどちょうせつ</string>
+    <string name="fan_speed">ファン回転数</string>
+    <string name="mode">パターン＃パターン＃</string>
+    <string name="swing">ぶらんこに乗る</string>
+    <string name="auto">じどうしゃ</string>
+    <string name="low">低い</string>
+    <string name="medium">ミディアム</string>
+    <string name="high">高い</string>
+    <string name="cool">かっこいい！</string>
+    <string name="heating">かねつ</string>
+    <string name="ventilate">換気</string>
+    <string name="xeransis">Xeransis</string>
+    <string name="swing_off">かいてん</string>
+    <string name="swing_on">開く</string>
+    <string name="dry">乾いた</string>
+    <string name="ac_location">AC位置</string>
+    <string name="select_icon">アイコンを選択</string>
+    <string name="air_conditioning">クーラー</string>
+    <string name="remote_control">リモコン</string>
+    <string name="test_remote_control">リモート制御のテスト</string>
+    <string name="test">テスト</string>
+    <string name="remote">はるか</string>
+    <string name="add_remote_a">リモートの追加</string>
+    <string name="import_brand">輸入ブランド</string>
+
 </resources>

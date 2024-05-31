@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Remote</string>
+    <string name="app_name">العالمي للتحكم عن بعد التلفزيون الذكي</string>
     <string name="control_your_tv">السيطرة على التلفزيون</string>
     <string name="devices">معدات</string>
     <string name="cast_content_from_phone_to_your_tv">تشغيل المحتوى من الهاتف إلى التلفزيون .</string>
@@ -18,7 +18,7 @@
     <string name="your_tv_and_phone_need_to_be_n_on_the_same_wifi_network">التلفزيون والهاتف المحمول الخاص بك يجب أن تكون موجودة على نفس شبكة واي فاي .</string>
     <string name="start_now">تبدأ الآن</string>
     <string name="select_tv_brand">اختيار العلامة التجارية التلفزيون</string>
-    <string name="we_ve_found_5_remote_n_controls_for_your_acer_tv">وجدنا د التحكم عن بعد للتلفزيون الخاص بك .</string>
+    <string name="we_ve_found_5_remote_n_controls_for_your_acer_tv">وجدنا د التحكم عن بعد لجهازك .</string>
     <string name="please_test_them_one_by_one_to_find_the_remote_that_matches_your_tv_model">اختبار واحد من جانب واحد للعثور على جهاز التحكم عن بعد التي تطابق نموذج التلفزيون الخاص بك .</string>
     <string name="start_testing">بدء اختبار</string>
     <string name="tap_the_buttons_below_to_test_if_the_tv_responds_correctly">اضغط على الزر أدناه لاختبار ما إذا كان التلفزيون يستجيب بشكل صحيح</string>
@@ -62,7 +62,7 @@
     <string name="tv_brands">العلامة التجارية التلفزيون</string>
     <string name="there_is_no_built_in_infrared">لا يوجد جهاز تكثيف الأشعة تحت الحمراء في الهاتف الخاص بك ، لذلك لا يمكنك التحكم في التلفزيون عن طريق الأشعة تحت الحمراء</string>
     <string name="try_wifi_remote">محاولة واي فاي عن بعد</string>
-    <string name="s_tv_connected">س التلفزيون متصل</string>
+    <string name="s_tv_connected">إس التلفزيون متصلإ</string>
     <string name="the_name_change_has_already_been_used">تغيير الاسم وقد استخدم</string>
     <string name="we_are_working_hard_for">نحن نعمل على تحسين تجربة المستخدم . ونحن نقدر أنه إذا كنت يمكن أن تعطي لنا علامة .</string>
     <string name="the_best_we_can_get">يمكننا الحصول على أفضل : )</string>
@@ -106,7 +106,7 @@
     <string name="more">أكثر .</string>
     <string name="is_your_tv_turned_on">هو التلفزيون الخاص بك على ؟</string>
     <string name="your_phone_needs_to_have_a_built_in_ir_infrared_blaster">الهاتف الخاص بك يتطلب المدمج في الأشعة تحت الحمراء ( الأشعة تحت الحمراء محسن ) .</string>
-    <string name="there_is_no_built_in_infrared_blaster_in_your_phone_so_you_can_t_control_tv_via_ir">لا يوجد جهاز تكثيف الأشعة تحت الحمراء في الهاتف الخاص بك ، لذلك لا يمكنك التحكم في التلفزيون عن طريق الأشعة تحت الحمراء</string>
+    <string name="there_is_no_built_in_infrared_blaster_in_your_phone_so_you_can_t_control_tv_via_ir">لا يوجد جهاز تكثيف الأشعة تحت الحمراء في الهاتف الخاص بك ، لذلك لا يمكن أن تمر من خلال جهاز التحكم بالأشعة تحت الحمراء</string>
     <string name="no_smart_remote_for_the_sony_tv">سوني التلفزيون لا تحكم ذكي عن بعد</string>
     <string name="maybe_later">ربما في وقت لاحق</string>
     <string name="please_use_wifi">يرجى استخدام واي فاي</string>
@@ -122,4 +122,44 @@
     <string name="yes">حق .</string>
     <string name="test_remote">اختبار عن بعد</string>
     <string name="choose_language">اختيار اللغة</string>
+    <string name="tv_remote_control">تلفزيون التحكم عن بعد</string>
+
+
+
+
+    <string name="select_ac_brand">اختيار العلامة التجارية ميلان</string>
+    <string name="ac_brands">ميلان العلامة التجارية</string>
+    <string name="no_smart_remote_for_the_device">لا يوجد جهاز التحكم عن بعد الذكية</string>
+    <string name="please_test_them_one_by_one_to_find_the_remote_that_matches_your_device">اختبار واحد من جانب واحد للعثور على جهاز التحكم عن بعد التي تطابق الجهاز الخاص بك</string>
+    <string name="test_ac_remote">اختبار التيار المتردد عن بعد</string>
+    <string name="tap_the_buttons_below_to_test_if_the_ac_responds_correctly">اضغط على الزر أدناه لاختبار ما إذا كان تكييف الهواء يستجيب بشكل صحيح</string>
+    <string name="does_your_ac_respond">هل لديك أي رد على ميلان ؟</string>
+    <string name="s_ac_connected">س ميلان متصل !</string>
+    <string name="the_remote_is_now_connected_to_your_ac_please_save_it_for_future_use">جهاز التحكم عن بعد متصل الآن إلى ميلان الخاص بك . حفظ لاستخدامها في المستقبل .</string>
+    <string name="on_off">على / قبالة</string>
+    <string name="temp_adjustment">تنظيم درجة الحرارة</string>
+    <string name="fan_speed">سرعة المروحة</string>
+    <string name="mode">نمط</string>
+    <string name="swing">أرجوحة</string>
+    <string name="auto">السيارات</string>
+    <string name="low">منخفض</string>
+    <string name="medium">متوسط</string>
+    <string name="high">عالية</string>
+    <string name="cool">هذا رائع</string>
+    <string name="heating">تدفئة</string>
+    <string name="ventilate">تهوية</string>
+    <string name="xeransis">زيرانسيس</string>
+    <string name="swing_off">دوران</string>
+    <string name="swing_on">فتح .</string>
+    <string name="dry">جاف</string>
+    <string name="ac_location">ميلان الكلمات</string>
+    <string name="select_icon">اختيار الرموز</string>
+    <string name="air_conditioning">تكييف الهواء</string>
+    <string name="remote_control">جهاز التحكم عن بعد</string>
+    <string name="test_remote_control">اختبار التحكم عن بعد</string>
+    <string name="test">اختبار</string>
+    <string name="remote">بعيد</string>
+    <string name="add_remote_a">إضافة عن بعد</string>
+    <string name="import_brand">العلامة التجارية المستوردة</string>
+
 </resources>

@@ -15,7 +15,7 @@ import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.xy.demo.BuildConfig
 import com.xy.demo.cast.HttpService
-import com.xy.demo.logic.ad.AdManage
+
 import com.xy.network.NetworkManager
 import com.xy.xframework.base.BaseAppContext
 import com.xy.xframework.base.XBaseApplication
@@ -47,7 +47,7 @@ class MyApplication : XBaseApplication() {
 	
 	override fun onCreate() {
 		super.onCreate()
-		AdManage.initAdMob(this)
+//		AdManage.initAdMob(this)
 		BaseAppContext.init(this)
 		instance = this
 		// 路由初始化

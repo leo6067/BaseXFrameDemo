@@ -14,6 +14,9 @@ import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.databinding.ActivitySaveRemoteBinding
 import com.xy.demo.db.MyDataBase
 import com.xy.demo.db.RemoteModel
+import com.xy.demo.ui.common.AddRemoteActivity
+import com.xy.demo.ui.common.BrandActivity
+import com.xy.demo.ui.common.ReadyActivity
 import com.xy.demo.ui.vm.HttpViewModel
 import com.xy.xframework.utils.ToastUtils
 import kotlinx.coroutines.Dispatchers
@@ -42,12 +45,9 @@ class SaveRemoteActivity : MBBaseActivity<ActivitySaveRemoteBinding, HttpViewMod
 	
 	override fun initView() {
 		super.initView()
-		
 		remoteModel = intent.getSerializableExtra(Constants.KEY_REMOTE) as RemoteModel
-		
 		binding.titleLay.titleTV.text = getString(R.string.save_the_remote)
 		binding.modelName.text = String.format(resources.getString(R.string.s_tv_connected), remoteModel.brandName)
-		
 		
 		if (TextUtils.isEmpty(remoteModel.name)) {
 			binding.hardwareET.setText(remoteModel.brandName)
@@ -55,9 +55,6 @@ class SaveRemoteActivity : MBBaseActivity<ActivitySaveRemoteBinding, HttpViewMod
 		} else {
 			binding.hardwareET.setText(remoteModel.name)
 		}
-		
-		
-		
 		
 		when (remoteModel.location) {
 			"1" -> binding.locationRG.check(R.id.livingRB)
@@ -82,8 +79,6 @@ class SaveRemoteActivity : MBBaseActivity<ActivitySaveRemoteBinding, HttpViewMod
 		}
 		
 		
-		
-		
 		binding.locationRG.setOnCheckedChangeListener { group, checkedId ->
 			when (checkedId) {
 				R.id.livingRB -> {
@@ -103,8 +98,6 @@ class SaveRemoteActivity : MBBaseActivity<ActivitySaveRemoteBinding, HttpViewMod
 				}
 			}
 		}
-		
-		
 		
 		binding.colorRG.setOnCheckedChangeListener { group, checkedId ->
 			when (checkedId) {
@@ -150,7 +143,7 @@ class SaveRemoteActivity : MBBaseActivity<ActivitySaveRemoteBinding, HttpViewMod
 				finish()
 			}
 		} else {
-			AddRemoteActivity.activity?.finish()
+		 
 			BrandActivity.activity?.finish()
 			TvPowerOnActivity.activity?.finish()
 			ReadyActivity.activity?.finish()

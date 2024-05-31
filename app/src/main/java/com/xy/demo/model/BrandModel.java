@@ -2,6 +2,8 @@ package com.xy.demo.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Locale;
+
 //品牌列表   ---遥控器model 保存db
 public class BrandModel {
 
@@ -34,9 +36,16 @@ public class BrandModel {
 
 
     public String getBrandName() {
-        return brandName;
+        return capitalizeFirstLetter(brandName) ;
     }
 
+
+    public String capitalizeFirstLetter(String input) {
+        if (input == null || input.length() == 0) {
+            return input;
+        }
+        return input.substring(0, 1).toUpperCase() + input.substring(1);
+    }
     public void setBrandName(String brandName) {
         this.brandName = brandName;
     }

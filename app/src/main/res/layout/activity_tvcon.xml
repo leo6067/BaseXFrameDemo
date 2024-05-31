@@ -5,32 +5,31 @@
     tools:context=".ui.infrared.TVConActivity">
 
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
 
-        <RelativeLayout
+        <include
+            android:id="@+id/titleLay"
+            layout="@layout/include_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:orientation="vertical">
+            android:layout_marginTop="@dimen/dp_35"
+            />
 
-
-            <include
-                android:id="@+id/titleLay"
-                layout="@layout/include_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_22"
-                android:layout_marginBottom="@dimen/dp_20" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/titleLay"
+            android:layout_marginTop="@dimen/dp_30"
+            android:fillViewport="true">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/titleLay"
-                android:layout_centerInParent="true"
                 android:layout_marginHorizontal="@dimen/dp_20"
                 android:paddingBottom="@dimen/dp_60">
 
@@ -117,7 +116,7 @@
                     app:RMCoreMenuStrokeColor="@color/colorPrimary"
                     app:RMCoreMenuStrokeSize="0dp"
                     app:RMHasCoreMenu="true"
-                    app:RMRoundMenuDrawable="@drawable/icon_test_right"
+                    app:RMRoundMenuDrawable="@drawable/icon_tcv_jt"
                     app:RMRoundMenuNormalBackgroundColor="@color/colorPrimary"
                     app:RMRoundMenuSelectedBackgroundColor="#ececec"
                     app:RMRoundMenuStrokeColor="@color/white"
@@ -255,17 +254,15 @@
 
                 </LinearLayout>
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+        </ScrollView>
 
-            <include
-                android:id="@+id/netInclude"
-                layout="@layout/include_net"
-                android:visibility="gone" />
-
-        </RelativeLayout>
-    </ScrollView>
+        <include
+            android:id="@+id/netInclude"
+            layout="@layout/include_net"
+            android:visibility="gone" />
+    </RelativeLayout>
 
 
 </layout>

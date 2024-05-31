@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layoutDirection="ltr"
+    tools:context=".ui.ac.ACConActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorTheme"
+        android:focusableInTouchMode="true"
+
+        android:orientation="vertical">
+
+
+        <include
+            android:id="@+id/titleLay"
+            layout="@layout/include_title" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titleLay">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/titleLay"
+                android:paddingTop="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_30">
+
+                <ImageView
+                    android:id="@+id/thermometerBG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ac_con_top"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/thermometerTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_50"
+                    android:textColor="#99000000"
+                    android:textSize="@dimen/sp_40"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/thermometerBG"
+                    app:layout_constraintStart_toStartOf="@+id/thermometerBG"
+                    app:layout_constraintTop_toTopOf="@+id/thermometerBG" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="°c"
+                    android:textColor="#99000000"
+                    android:textSize="@dimen/sp_18"
+                    app:layout_constraintStart_toEndOf="@+id/thermometerTV"
+                    app:layout_constraintTop_toTopOf="@+id/thermometerTV" />
+
+                <TextView
+                    android:id="@+id/windTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_38"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:gravity="center"
+                    android:textColor="#99000000"
+                    android:textSize="@dimen/sp_14"
+                    app:layout_constraintEnd_toEndOf="@+id/thermometerBG"
+                    app:layout_constraintStart_toStartOf="@+id/thermometerBG"
+                    app:layout_constraintTop_toBottomOf="@+id/thermometerTV" />
+
+
+                <TextView
+                    android:id="@+id/powerTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_18"
+                    android:background="@drawable/ac_con_bg_a"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="@dimen/dp_21"
+                    android:text="@string/on_off"
+                    android:textColor="#ff666666"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/thermometerBG" />
+
+
+                <ImageView
+                    android:id="@+id/powerIV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_20"
+                    android:background="@drawable/ac_power_off"
+                    android:onClick="onClick"
+                    app:layout_constraintBottom_toBottomOf="@+id/powerTV"
+                    app:layout_constraintEnd_toEndOf="@+id/powerTV"
+                    app:layout_constraintTop_toTopOf="@+id/powerTV" />
+
+
+                <!--  温度调节-->
+
+                <TextView
+                    android:id="@+id/thermometerDes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_15"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:text="@string/temp_adjustment"
+                    android:textColor="#ff666666"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/powerTV"
+                    app:layout_constraintTop_toBottomOf="@+id/powerTV" />
+
+
+                <TextView
+                    android:id="@+id/acTBG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_18"
+                    android:background="@drawable/ac_con_bg_b"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/thermometerDes" />
+
+
+                <com.ruffian.library.widget.RTextView
+                    android:id="@+id/adTCubTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_20"
+                    android:onClick="onClick"
+                    app:icon_src_normal="@drawable/ac_acc_sub"
+                    app:icon_src_pressed="@drawable/ac_t_sub"
+                    app:layout_constraintBottom_toBottomOf="@+id/acTBG"
+                    app:layout_constraintStart_toStartOf="@+id/acTBG"
+                    app:layout_constraintTop_toTopOf="@+id/acTBG" />
+
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/progressView"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_35"
+                    android:layout_marginHorizontal="@dimen/dp_10"
+                    android:progress="0"
+                    app:indicatorColor="#54CEA4"
+                    app:layout_constraintBottom_toBottomOf="@+id/acTBG"
+                    app:layout_constraintEnd_toStartOf="@+id/adTAddTV"
+                    app:layout_constraintStart_toEndOf="@+id/adTCubTV"
+                    app:layout_constraintTop_toTopOf="@+id/acTBG"
+                    app:trackColor="#DDDDDD"
+                    app:trackCornerRadius="@dimen/dp_10"
+                    app:trackThickness="@dimen/dp_20" />
+
+
+                <com.ruffian.library.widget.RTextView
+                    android:id="@+id/adTAddTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_20"
+                    android:onClick="onClick"
+                    app:icon_src_normal="@drawable/ac_ac_add"
+                    app:icon_src_pressed="@drawable/ac_t_add"
+                    app:layout_constraintBottom_toBottomOf="@+id/acTBG"
+                    app:layout_constraintEnd_toEndOf="@+id/acTBG"
+                    app:layout_constraintTop_toTopOf="@+id/acTBG" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:text="16"
+                    android:textColor="#ffffffff"
+                    android:textSize="@dimen/sp_11"
+                    app:layout_constraintBottom_toBottomOf="@+id/progressView"
+                    app:layout_constraintStart_toStartOf="@+id/progressView"
+                    app:layout_constraintTop_toTopOf="@+id/progressView" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_5"
+                    android:text="30"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/sp_11"
+                    app:layout_constraintBottom_toBottomOf="@+id/progressView"
+                    app:layout_constraintEnd_toEndOf="@+id/progressView"
+                    app:layout_constraintTop_toTopOf="@+id/progressView" />
+
+
+                <!--风速-->
+                <TextView
+                    android:id="@+id/windSpeedTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_15"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:text="@string/fan_speed"
+                    android:textColor="#ff666666"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/acTBG"
+                    app:layout_constraintTop_toBottomOf="@+id/acTBG" />
+
+
+                <TextView
+                    android:id="@+id/windBG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_18"
+                    android:background="@drawable/ac_con_bg_c"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/windSpeedTV" />
+
+
+                <RadioGroup
+                    android:id="@+id/speedRG"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/dp_8"
+                    app:layout_constraintBottom_toBottomOf="@+id/windBG"
+                    app:layout_constraintEnd_toEndOf="@+id/windBG"
+                    app:layout_constraintStart_toStartOf="@+id/windBG"
+                    app:layout_constraintTop_toBottomOf="@+id/windSpeedTV"
+                    app:layout_constraintTop_toTopOf="@+id/windBG">
+
+
+                    <RadioButton
+                        android:id="@+id/speedARB"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:button="@null"
+                        android:drawableTop="@drawable/select_ac_bb_a"
+                        android:drawablePadding="@dimen/dp_3"
+                        android:gravity="center"
+                        android:text="@string/auto"
+                        android:textColor="#ff666666"
+                        android:textSize="@dimen/sp_12" />
+
+
+                    <RadioButton
+                        android:id="@+id/speedBRB"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:button="@null"
+                        android:drawableTop="@drawable/select_ac_bb_b"
+                        android:drawablePadding="@dimen/dp_3"
+                        android:gravity="center"
+                        android:text="@string/low"
+                        android:textColor="#ff666666"
+                        android:textSize="@dimen/sp_12" />
+
+                    <RadioButton
+                        android:id="@+id/speedCRB"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:button="@null"
+                        android:drawableTop="@drawable/select_ac_bb_c"
+                        android:drawablePadding="@dimen/dp_3"
+                        android:gravity="center"
+                        android:text="@string/medium"
+                        android:textColor="#ff666666"
+                        android:textSize="@dimen/sp_12" />
+
+
+                    <RadioButton
+                        android:id="@+id/speedDRB"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:button="@null"
+                        android:drawableTop="@drawable/select_ac_bb_d"
+                        android:drawablePadding="@dimen/dp_3"
+                        android:gravity="center"
+                        android:text="@string/high"
+                        android:textColor="#ff666666"
+                        android:textSize="@dimen/sp_12" />
+                </RadioGroup>
+
+
+                <!--模式-->
+                <TextView
+                    android:id="@+id/modelTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_15"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:text="@string/mode"
+                    android:textColor="#ff666666"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/acTBG"
+                    app:layout_constraintTop_toBottomOf="@+id/windBG" />
+
+                <TextView
+                    android:id="@+id/acModelBG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_18"
+                    android:background="@drawable/ac_con_bg_c"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/modelTV" />
+
+
+                <RadioGroup
+                    android:id="@+id/modeRG"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/dp_8"
+                    android:paddingStart="@dimen/dp_15"
+                    android:paddingEnd="@dimen/dp_8"
+                    app:layout_constraintBottom_toBottomOf="@+id/acModelBG"
+                    app:layout_constraintEnd_toEndOf="@+id/acModelBG"
+                    app:layout_constraintStart_toStartOf="@+id/acModelBG"
+                    app:layout_constraintTop_toBottomOf="@+id/modelTV"
+                    app:layout_constraintTop_toTopOf="@+id/acModelBG">
+
+
+                    <RadioButton
+                        android:id="@+id/modeARB"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:button="@null"
+                        android:drawableTop="@drawable/select_ac_cc_a"
+                        android:drawablePadding="@dimen/dp_3"
+                        android:gravity="center"
+                        android:text="@string/cool"
+                        android:textColor="#ff666666"
+                        android:textSize="@dimen/sp_12" />
+
+
+                    <RadioButton
+                        android:id="@+id/modeBRB"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:button="@null"
+                        android:drawableTop="@drawable/select_ac_cc_b"
+                        android:drawablePadding="@dimen/dp_3"
+                        android:gravity="center"
+                        android:text="@string/heating"
+                        android:textColor="#ff666666"
+                        android:textSize="@dimen/sp_12" />
+
+                    <RadioButton
+                        android:id="@+id/modeCRB"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:button="@null"
+                        android:drawableTop="@drawable/select_ac_cc_c"
+                        android:drawablePadding="@dimen/dp_3"
+                        android:gravity="center"
+                        android:text="@string/ventilate"
+                        android:textColor="#ff666666"
+                        android:textSize="@dimen/sp_12" />
+
+                    <RadioButton
+                        android:id="@+id/modeDRB"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:button="@null"
+                        android:drawableTop="@drawable/select_ac_cc_d"
+                        android:drawablePadding="@dimen/dp_3"
+                        android:gravity="center"
+                        android:text="@string/dry"
+                        android:textColor="#ff666666"
+                        android:textSize="@dimen/sp_12" />
+
+                    <RadioButton
+                        android:id="@+id/modeERB"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:button="@null"
+                        android:drawableTop="@drawable/select_ac_cc_e"
+                        android:drawablePadding="@dimen/dp_3"
+                        android:gravity="center"
+                        android:text="@string/auto"
+                        android:textColor="#ff666666"
+                        android:textSize="@dimen/sp_12" />
+
+
+                </RadioGroup>
+
+
+                <TextView
+                    android:id="@+id/swingBG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_18"
+                    android:background="@drawable/ac_con_bg_c"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/acModelBG" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_20"
+                    android:drawableLeft="@drawable/ac_winding"
+                    android:drawablePadding="@dimen/dp_7"
+                    android:gravity="center"
+                    android:text="@string/swing"
+                    android:textColor="#666666"
+                    android:textSize="@dimen/sp_16"
+                    app:layout_constraintBottom_toBottomOf="@+id/swingBG"
+                    app:layout_constraintStart_toStartOf="@+id/swingBG"
+                    app:layout_constraintTop_toTopOf="@+id/swingBG" />
+
+
+                <RadioButton
+                    android:id="@+id/swingARB"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_15"
+                    android:layout_weight="1"
+                    android:button="@drawable/select_ac_swing_a"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/swingBG"
+                    app:layout_constraintEnd_toStartOf="@+id/swingBRB"
+                    app:layout_constraintTop_toTopOf="@+id/swingBG" />
+
+                <RadioButton
+                    android:id="@+id/swingBRB"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_21"
+                    android:layout_weight="1"
+                    android:button="@drawable/select_ac_swing_b"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/swingBG"
+                    app:layout_constraintEnd_toEndOf="@+id/swingBG"
+                    app:layout_constraintTop_toTopOf="@+id/swingBG" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <include
+            android:id="@+id/netInclude"
+            layout="@layout/include_net"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</layout>

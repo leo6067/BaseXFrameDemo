@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.ac.ACSaveRemoteActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:focusableInTouchMode="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <include
+                android:id="@+id/titleLay"
+                layout="@layout/include_title" />
+
+
+            <ImageView
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_66"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_5"
+                android:background="@drawable/icon_save_top" />
+
+
+            <TextView
+                android:id="@+id/modelName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorFontBlack"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/dp_44"
+                android:layout_marginTop="@dimen/dp_8"
+                android:gravity="center"
+                android:text="@string/the_remote_is_now_connected_to_your_ac_please_save_it_for_future_use"
+                android:textColor="@color/colorFontGray"
+                android:textSize="@dimen/sp_14" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_30"
+                android:text="@string/name_your_remote"
+                android:textColor="@color/colorFontBlack"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+
+            <com.ruffian.library.widget.RLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_12"
+                android:orientation="horizontal"
+                app:background_normal="@color/colorLight"
+                app:corner_radius="@dimen/dp_12">
+
+
+                <EditText
+                    android:id="@+id/hardwareET"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/dp_15"
+                    android:layout_marginStart="@dimen/dp_20"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:maxLength="15"
+                    android:singleLine="true"
+                    android:textColor="@color/colorFontGray"
+                    android:textSize="@dimen/sp_16"
+                    tools:text="客厅的小米电视"
+
+                    />
+
+
+                <ImageView
+                    android:id="@+id/clearTV"
+                    android:layout_width="@dimen/dp_25"
+                    android:layout_height="@dimen/dp_25"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/dp_20"
+                    android:onClick="onClick"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/close_w" />
+
+            </com.ruffian.library.widget.RLinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_30"
+                android:text="@string/ac_location"
+                android:textColor="@color/colorFontBlack"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                android:scrollbars="none">
+
+
+                <RadioGroup
+                    android:id="@+id/locationRG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_20"
+                    android:checkedButton="@id/livingRB"
+                    android:orientation="horizontal">
+
+
+                    <com.ruffian.library.widget.RRadioButton
+                        android:id="@+id/livingRB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:paddingHorizontal="@dimen/dp_20"
+                        android:paddingVertical="@dimen/dp_10"
+                        android:text="@string/living_room"
+                        android:textSize="@dimen/sp_16"
+                        app:background_checked="@color/color_026DFF"
+                        app:background_normal="@color/colorLight"
+                        app:corner_radius="@dimen/dp_12"
+                        app:text_color_checked="@color/white"
+                        app:text_color_normal="@color/colorFontGray" />
+
+                    <com.ruffian.library.widget.RRadioButton
+                        android:id="@+id/bedRB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_12"
+                        android:button="@null"
+                        android:paddingHorizontal="@dimen/dp_20"
+                        android:paddingVertical="@dimen/dp_10"
+                        android:text="@string/bedroom"
+                        android:textSize="@dimen/sp_16"
+                        app:background_checked="@color/color_026DFF"
+                        app:background_normal="@color/colorLight"
+                        app:corner_radius="@dimen/dp_12"
+                        app:text_color_checked="@color/white"
+                        app:text_color_normal="@color/colorFontGray" />
+
+
+                    <com.ruffian.library.widget.RRadioButton
+                        android:id="@+id/dinningRB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_12"
+                        android:button="@null"
+                        android:paddingHorizontal="@dimen/dp_20"
+                        android:paddingVertical="@dimen/dp_10"
+                        android:text="@string/dinning_room"
+                        android:textSize="@dimen/sp_16"
+                        app:background_checked="@color/color_026DFF"
+                        app:background_normal="@color/colorLight"
+                        app:corner_radius="@dimen/dp_12"
+                        app:text_color_checked="@color/white"
+                        app:text_color_normal="@color/colorFontGray" />
+
+
+                    <com.ruffian.library.widget.RRadioButton
+                        android:id="@+id/mediaRB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_12"
+                        android:button="@null"
+                        android:paddingHorizontal="@dimen/dp_20"
+                        android:paddingVertical="@dimen/dp_10"
+                        android:text="@string/media_room"
+                        android:textSize="@dimen/sp_16"
+                        app:background_checked="@color/color_026DFF"
+                        app:background_normal="@color/colorLight"
+                        app:corner_radius="@dimen/dp_12"
+                        app:text_color_checked="@color/white"
+                        app:text_color_normal="@color/colorFontGray" />
+
+
+                    <View
+                        android:layout_width="@dimen/dp_40"
+                        android:layout_height="@dimen/dp_5" />
+                </RadioGroup>
+
+
+            </HorizontalScrollView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_30"
+                android:text="@string/select_icon"
+                android:textColor="@color/colorFontBlack"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_8"
+                android:background="@drawable/ac_ac_icon" />
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/saveTV"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_78"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/dp_41"
+                android:layout_marginTop="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_54"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="@string/save"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                app:background_normal="@drawable/icon_tv_bg"
+                app:corner_radius="@dimen/dp_20" />
+        </LinearLayout>
+    </ScrollView>
+
+</layout>
+
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ruffian.library.widget.RLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_60"
+    android:layout_marginHorizontal="@dimen/dp_20"
+    android:layout_marginBottom="@dimen/dp_16"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    app:background_normal="@color/colorPrimary"
+    app:corner_radius="@dimen/dp_12">
+
+    <ImageView
+        android:id="@+id/flagIV"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginStart="@dimen/dp_30"
+        android:src="@drawable/bg_0375ff_radius_4" />
+
+
+    <TextView
+        android:id="@+id/titleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_21"
+        android:text="English"
+        android:textStyle="bold"
+        android:textColor="@color/colorFontBlack"
+        android:textSize="@dimen/sp_16" />
+
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/checkTV"
+        android:layout_width="@dimen/dp_16"
+        android:layout_height="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_30"
+  />
+
+
+</com.ruffian.library.widget.RLinearLayout>

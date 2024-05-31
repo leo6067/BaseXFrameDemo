@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorTheme">#F3F3F3</color>
+    <color name="colorPrimary">#F3F3F3</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#E7E7E7</color>
+    <color name="colorLight">#EEEEEE</color>
+    <color name="colorPress">#DCDCDC</color>
+
+
+<!--    字体色-->
+    <color name="colorFontBlack">#000000</color>
+    <color name="colorFontGray">#616161</color>
+
+
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

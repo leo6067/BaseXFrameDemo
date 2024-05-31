@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.cast.SearchWifiActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_20"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+
+                <include
+
+                    android:id="@+id/titleLin"
+                    layout="@layout/include_title" />
+
+
+                <LinearLayout
+                    android:id="@+id/deviceLin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ProgressBar
+                        android:id="@+id/progressView"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_8"
+                        android:indeterminate="true"
+                        android:indeterminateTint="@color/color_00A3FF"
+                        android:indeterminateTintMode="src_in" />
+
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/wifiListView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dp_20"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:minHeight="@dimen/dp_230" />
+
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/searchLin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
+
+                    <com.github.ybq.android.spinkit.SpinKitView
+                        android:id="@+id/spinView"
+                        style="@style/SpinKitView.Large.MultiplePulse"
+                        android:layout_width="@dimen/dp_180"
+                        android:layout_height="@dimen/dp_180"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        app:SpinKit_Color="#DCDCDC" />
+
+                    <ImageView
+                        android:id="@+id/ykIV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dp_36"
+                        android:background="@drawable/icon_search_yk" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ykIV"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dp_60"
+                        android:text="@string/searching_device"
+                        android:textColor="@color/colorFontBlack"
+                        android:textSize="@dimen/sp_22" />
+
+
+                </RelativeLayout>
+
+
+                <com.ruffian.library.widget.RLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_50"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    android:orientation="vertical"
+                    app:background_normal="@color/colorPrimary"
+                    app:corner_radius="@dimen/dp_20">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_20"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:text="@string/please_make_sure"
+                        android:textColor="@color/colorFontBlack"
+                        android:textSize="@dimen/sp_16"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dp_20"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginBottom="@dimen/dp_20"
+                        android:text="@string/turn_off_the_vpn_on_your_phone_if_it_s_connected"
+                        android:textColor="@color/colorFontGray"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="italic" />
+
+                </com.ruffian.library.widget.RLinearLayout>
+
+
+            </LinearLayout>
+
+            <include
+                android:id="@+id/netInclude"
+                layout="@layout/include_net"
+                android:visibility="gone" />
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+</layout>

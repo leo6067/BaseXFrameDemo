@@ -263,7 +263,7 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 					//常规带回调启动Activity
 //					requestDataLauncher.launch("SearchWifiActivity")
 					XXPermissions.with(this)
-						.permission(Permission.CAMERA)
+						.permission(Permission.READ_MEDIA_AUDIO)
 						.request { permissions, all ->
 							val musicDialog = MusicDialog()
 							musicDialog.show(supportFragmentManager, "")
@@ -283,7 +283,7 @@ class SearchWifiActivity : MBBaseActivity<ActivitySearchWifiBinding, MBBaseViewM
 	
 	fun chooseImage() {
 		XXPermissions.with(this)
-			.permission(Permission.CAMERA)
+			.permission(Permission.READ_MEDIA_IMAGES,Permission.READ_MEDIA_VIDEO)
 			.request { permissions, all ->
 				ImagePicker.withMulti(RedBookPresenter()) //设置presenter
 					.setMaxCount(1) //设置选择数量

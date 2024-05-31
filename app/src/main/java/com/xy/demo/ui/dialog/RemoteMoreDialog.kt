@@ -13,13 +13,13 @@ import com.xy.demo.logic.parse.ParamParse
 import com.xy.demo.model.OrderListModel
 import com.xy.demo.ui.adapter.RemoteMoreAdapter
 import com.xy.xframework.utils.Globals
+import java.lang.Exception
 
 class RemoteMoreDialog(var dataList: MutableList<OrderListModel.OrderModel>) : MBBaseDialogFragment<DialogRemoteMoreBinding>() {
 	
 	
 	var mAdapter = RemoteMoreAdapter()
 	
-	lateinit var vibrator: Vibrator
 	
 	override fun getLayoutId(): Int {
 		return R.layout.dialog_remote_more
@@ -30,8 +30,6 @@ class RemoteMoreDialog(var dataList: MutableList<OrderListModel.OrderModel>) : M
 	}
 	
 	override fun initView() {
-		
-		vibrator = context?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 		binding.recyclerView.layoutManager = GridLayoutManager(context, 3)
 		binding.recyclerView.adapter = mAdapter
 		
@@ -43,25 +41,25 @@ class RemoteMoreDialog(var dataList: MutableList<OrderListModel.OrderModel>) : M
 //			dataList.add("PC")
 //			dataList.add("SLEEP")
 		
-	 
-		
 		mAdapter.setNewInstance(dataList)
-		
-		
 	}
 	
 	override fun initListener() {
 		binding.closeIV.setOnClickListener {
 			dismiss()
 		}
-	 
+		
 		
 		mAdapter.setOnItemClickListener { adapter, view, position ->
 			//指令
 			val orderModel = dataList[position]
 			val irInfo = ParamParse.getIrCodeList(orderModel.remoteCode, orderModel.frequency.toInt())
 			//最终 红外 指令
-			ConsumerIrManagerApi.getConsumerIrManager(context).transmit(irInfo.getFrequency(), irInfo.getIrCodeList())
+			try {
+				ConsumerIrManagerApi.getConsumerIrManager(context).transmit(irInfo.getFrequency(), irInfo.getIrCodeList())
+			} catch (e: Exception) {
+//				binding.invalidTV.performClick()
+			}
 		}
 	}
 	
@@ -72,8 +70,11 @@ class RemoteMoreDialog(var dataList: MutableList<OrderListModel.OrderModel>) : M
 			if (dataList[p].remoteKey == key) {
 				val irInfo = ParamParse.getIrCodeList(dataList[p].remoteCode, dataList[p].frequency.toInt())
 				//最终 红外 指令
-				ConsumerIrManagerApi.getConsumerIrManager(context).transmit(irInfo.getFrequency(), irInfo.getIrCodeList())
-				Globals.log("xxxxx指令发送：", irInfo.getIrCodeList().toString())
+				try {
+					ConsumerIrManagerApi.getConsumerIrManager(context).transmit(irInfo.getFrequency(), irInfo.getIrCodeList())
+				} catch (e: Exception) {
+//				binding.invalidTV.performClick()
+				}
 			}
 		}
 	}

@@ -60,21 +60,22 @@
                     android:id="@+id/controlTV"
                     android:layout_width="@dimen/dp_180"
                     android:layout_height="@dimen/dp_50"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="@dimen/dp_25"
                     android:layout_marginBottom="@dimen/dp_20"
                     android:background="@drawable/icon_test_order_bg"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/voiceIV" />
 
 
                 <ImageView
                     android:id="@+id/leftIV"
-                    android:layout_width="@dimen/dp_45"
+                    android:layout_width="@dimen/dp_55"
                     android:layout_height="@dimen/dp_45"
-                    android:layout_margin="@dimen/dp_15"
+                    android:paddingStart="@dimen/dp_15"
                     android:onClick="onClick"
+                    android:background="@drawable/selector_tvc_left_a"
                     android:scaleType="centerInside"
                     android:src="@drawable/icon_test_left"
                     app:layout_constraintBottom_toBottomOf="@+id/controlTV"
@@ -92,16 +93,16 @@
                     app:layout_constraintBottom_toBottomOf="@+id/controlTV"
                     app:layout_constraintEnd_toEndOf="@+id/controlTV"
                     app:layout_constraintStart_toStartOf="@+id/controlTV"
-                    app:layout_constraintTop_toTopOf="@+id/controlTV"
+                    app:layout_constraintTop_toTopOf="@+id/controlTV" />
 
-                    />
 
 
                 <ImageView
-                    android:id="@+id/rightIV"
-                    android:layout_width="@dimen/dp_45"
+                    android:id="@+id/rightIVTV"
+                    android:layout_width="@dimen/dp_55"
                     android:layout_height="@dimen/dp_45"
-                    android:layout_margin="@dimen/dp_15"
+                    android:paddingEnd="@dimen/dp_15"
+                    android:background="@drawable/selector_tvc_right_a"
                     android:onClick="onClick"
                     android:scaleType="centerInside"
                     android:src="@drawable/icon_test_right"

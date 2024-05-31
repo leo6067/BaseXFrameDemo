@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.infrared.ReadyActivity">
+    tools:context=".ui.common.ReadyActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,11 +14,14 @@
             android:orientation="vertical">
 
 
-            <include layout="@layout/include_title" />
+            <include
+                android:id="@+id/titleLay"
+                layout="@layout/include_title" />
 
 
             <LinearLayout
                 android:id="@+id/irLin"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -51,7 +54,7 @@
                     android:layout_marginHorizontal="@dimen/dp_40"
                     android:layout_marginTop="@dimen/dp_14"
                     android:gravity="center"
-                    android:text="@string/please_test_them_one_by_one_to_find_the_remote_that_matches_your_tv_model"
+                    android:text="@string/please_test_them_one_by_one_to_find_the_remote_that_matches_your_device"
                     android:textColor="@color/colorFontGray"
                     android:textSize="16sp" />
 
@@ -75,10 +78,12 @@
 
             <include
                 android:id="@+id/noInfrared"
+                android:visibility="gone"
                 layout="@layout/include_no_infrared" />
 
             <include
                 android:id="@+id/noRemote"
+                android:visibility="gone"
                 layout="@layout/include_no_remote" />
 
         </LinearLayout>

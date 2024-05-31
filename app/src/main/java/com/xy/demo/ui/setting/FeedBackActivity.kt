@@ -15,7 +15,7 @@ import com.xy.demo.R
 import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.databinding.ActivityFeedBackBinding
-import com.xy.demo.ui.infrared.BrandActivity
+import com.xy.demo.ui.common.BrandActivity
 import com.xy.demo.ui.vm.HttpViewModel
 import com.xy.xframework.utils.ToastUtils
 
@@ -25,7 +25,7 @@ class FeedBackActivity : MBBaseActivity<ActivityFeedBackBinding, HttpViewModel>(
 	
 	
 	var brandIdStr = ""
-	var feedType = 1
+	var feedType = 0
 	
 	
 	override fun showTitleBar(): Boolean {
@@ -42,7 +42,7 @@ class FeedBackActivity : MBBaseActivity<ActivityFeedBackBinding, HttpViewModel>(
 	
 	override fun initView() {
 		super.initView()
-	 
+		
 		binding.titleLay.titleTV.text = getString(R.string.feedback)
 		
 		//常规带回调启动Activity
@@ -76,7 +76,7 @@ class FeedBackActivity : MBBaseActivity<ActivityFeedBackBinding, HttpViewModel>(
 	override fun initViewObservable() {
 		super.initViewObservable()
 		
-		viewModel.resultStr.observe(this){
+		viewModel.resultStr.observe(this) {
 			dismissLoading()
 			finish()
 		}
@@ -101,13 +101,18 @@ class FeedBackActivity : MBBaseActivity<ActivityFeedBackBinding, HttpViewModel>(
 		
 		if (binding.brandTV.text.isEmpty()) {
 			binding.noBrandTV.visibility = View.VISIBLE
-			return
+			
 		}
 		
 		if (binding.problemTV.text.isEmpty()) {
 			binding.noProblemTV.visibility = View.VISIBLE
+			
+		}
+		
+		if (binding.problemTV.text.isEmpty() || binding.brandTV.text.isEmpty()) {
 			return
 		}
+		
 		if (binding.detailET.text.toString().isEmpty()) {
 			ToastUtils.showLong(getString(R.string.please_enter_feedback))
 			return
@@ -117,7 +122,7 @@ class FeedBackActivity : MBBaseActivity<ActivityFeedBackBinding, HttpViewModel>(
 		//接口
 		
 		showLoading()
-		viewModel.postFeedBack(brandIdStr,feedType,binding.detailET.text.toString())
+		viewModel.postFeedBack(brandIdStr, feedType, binding.detailET.text.toString())
 		
 		
 	}
@@ -132,7 +137,7 @@ class FeedBackActivity : MBBaseActivity<ActivityFeedBackBinding, HttpViewModel>(
 		popupWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 		// 设置弹出窗口的位置
 		popupWindow.showAsDropDown(view, 40, 0)
-		
+		binding.problemTV.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.icon_fb_up, 0);
 		//设置可以获取焦点
 		popupWindow.isFocusable = true
 		//设置可以触摸弹出框以外的区域
@@ -144,6 +149,31 @@ class FeedBackActivity : MBBaseActivity<ActivityFeedBackBinding, HttpViewModel>(
 		val sbRB = contentView.findViewById<RadioButton>(R.id.sbRB)
 		val ccRB = contentView.findViewById<RadioButton>(R.id.ccRB)
 		val otherRB = contentView.findViewById<RadioButton>(R.id.otherRB)
+		
+		when (feedType) {
+			1 -> {
+				radioGroup.check(R.id.nwRB)
+			}
+			
+			2 -> {
+				radioGroup.check(R.id.sbRB)
+			}
+			
+			3 -> {
+				radioGroup.check(R.id.ccRB)
+			}
+			
+			4 -> {
+				radioGroup.check(R.id.otherRB)
+			}
+		}
+		
+		popupWindow.isOutsideTouchable = false
+		popupWindow.setOnDismissListener {
+			binding.problemTV.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.icon_fb_down, 0);
+		}
+		
+		
 		
 		
 		radioGroup.setOnCheckedChangeListener { group, checkedId ->
@@ -170,6 +200,8 @@ class FeedBackActivity : MBBaseActivity<ActivityFeedBackBinding, HttpViewModel>(
 			}
 			binding.noProblemTV.visibility = View.GONE
 			popupWindow.dismiss()
+			
+			binding.problemTV.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.icon_fb_down, 0);
 		}
 		
 		

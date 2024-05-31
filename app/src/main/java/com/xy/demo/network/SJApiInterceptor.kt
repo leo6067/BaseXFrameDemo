@@ -5,20 +5,19 @@ import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.TimeUtils
 import com.google.gson.Gson
 import com.xy.demo.R
-import com.xy.demo.base.Constants
 import com.xy.demo.base.MyApplication
 import okhttp3.FormBody
 import okhttp3.Headers
 import okhttp3.Interceptor
 import okhttp3.Response
-import okhttp3.ResponseBody.Companion.toResponseBody
 import okio.Buffer
 import okio.GzipSource
 import org.json.JSONObject
 import java.io.EOFException
 import java.nio.charset.Charset
-import java.nio.charset.UnsupportedCharsetException
+import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 
 /**
@@ -43,8 +42,6 @@ class SJApiInterceptor : Interceptor {
 		//处理请求
 		//加密密钥
 		var decryptKey = MyApplication.instance.resources.getString(R.string.AES_KEY)
-	
-	
 		
 		var request = chain.request()
 		val requestBuilder = request.newBuilder()
@@ -60,19 +57,19 @@ class SJApiInterceptor : Interceptor {
 				}
 				//除了获取密钥组，其他都要走下面if步骤
 				//获取随机key,value
-			
 				Globals.log("request params"+paramJson.toString())
 			
 				//加密参数
 				val encrypt = AesUtils.encrypt(decryptKey, paramJson.toString())
-				val time = TimeUtils.date2String(Date())
+				
+				val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+				val time = TimeUtils.date2String(Date(),sdf)
 				val md5Params = hashMapOf("encryptdata" to encrypt, "t" to time)
 				
 				val httpUrl1 = urlBuilder
 					.addQueryParameter("encryptdata", encrypt)
 					.addQueryParameter("t", time)
 					.addQueryParameter("appkey", "100001")
-					
 					.addQueryParameter("sign", MD5Util.md5(md5Params,MyApplication.instance.resources.getString(R.string.AES_SECRET)))
 //				httpUrl1.takeIf { k != null }?.addQueryParameter("s", k)
 				
@@ -92,7 +89,8 @@ class SJApiInterceptor : Interceptor {
 					
 					Globals.log("post request params"+paramJson.toString())
 					//重新组装请求体
-					val time = TimeUtils.date2String(Date())
+					val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+					val time = TimeUtils.date2String(Date(),sdf)
 					val encrypt = AesUtils.encrypt(decryptKey, paramJson.toString())
 					val md5Params =
 						hashMapOf("encryptdata" to encrypt, "t" to time)
@@ -121,8 +119,6 @@ class SJApiInterceptor : Interceptor {
 		val headers = response.headers
 		
 		
-		
-		
 		if (bodyHasUnknownEncoding(response.headers)  )
 			return response
 		val source = responseBody!!.source()
@@ -146,10 +142,7 @@ class SJApiInterceptor : Interceptor {
 //			return response
 //		}
 		
-		
-		
 		if (contentLength != 0L) {
-	
 			kotlin.runCatching {
 				val resp = buffer.clone().readString((charset))
 				
@@ -224,8 +217,6 @@ class SJApiInterceptor : Interceptor {
 //				return response
 			}
 		}
-		
-	 
 		return response
 	}
 	

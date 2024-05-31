@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.common.AddRemoteActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <include
+                android:id="@+id/titleLay"
+                layout="@layout/include_title" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_108"
+                android:background="@drawable/way_ir" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="@string/ir_tv_remote"
+                android:textColor="@color/colorFontBlack"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_40"
+                android:gravity="center"
+                android:text="@string/your_phone_needs_to_have_a_built_in_ir_infrared_blaster"
+                android:textColor="#66000000"
+                android:textSize="@dimen/sp_14" />
+
+
+
+
+
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/startTV"
+                android:layout_marginBottom="@dimen/dp_62"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_78"
+                android:layout_marginHorizontal="@dimen/dp_48"
+                android:layout_marginTop="@dimen/dp_120"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="@string/start_now"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                app:background_normal="@drawable/icon_tv_bg"
+                app:corner_radius="@dimen/sp_16" />
+
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/netInclude"
+            layout="@layout/include_net"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</layout>

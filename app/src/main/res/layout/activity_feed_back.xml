@@ -94,7 +94,7 @@
                 android:layout_height="@dimen/dp_50"
                 android:layout_marginHorizontal="@dimen/dp_20"
                 android:layout_marginTop="@dimen/dp_8"
-                android:drawableRight="@drawable/icon_spinn"
+                android:drawableRight="@drawable/icon_fb_down"
                 android:gravity="center_vertical"
                 android:hint="@string/select_the_problem"
                 android:onClick="onClick"
@@ -136,6 +136,7 @@
                 android:minHeight="@dimen/dp_90"
                 android:paddingHorizontal="@dimen/dp_20"
                 android:textColor="@color/colorFontGray"
+                android:textSize="@dimen/sp_16"
                 android:textColorHint="#999"
                 app:background_normal="@color/colorPrimary"
                 app:corner_radius="@dimen/dp_12" />

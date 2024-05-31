@@ -1,38 +1,36 @@
 package com.xy.demo.ui.infrared
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.View
 import androidx.annotation.RequiresApi
-import com.alibaba.fastjson.JSONArray
-import com.jeremyliao.liveeventbus.LiveEventBus
 import com.xy.demo.R
 import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.databinding.ActivityTvconBinding
 import com.xy.demo.db.RemoteModel
 import com.xy.demo.logic.ConsumerIrManagerApi
-import com.xy.demo.logic.JsonUtil
 import com.xy.demo.logic.parse.ParamParse
 import com.xy.demo.model.OrderListModel
-
 import com.xy.demo.ui.dialog.RemoteMoreDialog
 import com.xy.demo.ui.dialog.RemoteNumberDialog
 import com.xy.demo.ui.main.MainActivity
 import com.xy.demo.ui.setting.FeedBackActivity
 import com.xy.demo.ui.vm.HttpViewModel
 import com.xy.xframework.utils.Globals
-import com.xy.xframework.utils.ToastUtils
+import java.lang.Exception
 
 
 //电视 指令 UI  遥控器
 class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 	
-	lateinit var vibrator: Vibrator
+ 
 	lateinit var remoteModel: RemoteModel
 	
 	//所有指令
@@ -78,8 +76,6 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 		
 		showLoading()
 		viewModel.getOrderListHttp(remoteModel.brandId, remoteModel.modelId)
-		
-		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 		functionClick()
 	}
 	
@@ -87,7 +83,6 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 		super.initViewObservable()
 		viewModel.orderListModel.observe(this) {
 			dismissLoading()
-			
 			paramList(it.list)
 			allCodeList = it.list
 		}
@@ -116,17 +111,14 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 		
 		moreCodeList = (orderList - commonCodeList.toSet() - numberCodeList.toSet()).toMutableList()
 		
-		
 		if (numberCodeList.size == 0) {
 			binding.numberTV.setBackgroundResource(R.drawable.shape_con_bg_b)
 		}
-		
 		
 		if (moreCodeList.size == 0) {
 			binding.moreTV.isClickable = false
 			binding.moreTV.setBackgroundResource(R.drawable.shape_con_bg_b)
 		}
-		
 		
 	}
 	
@@ -156,7 +148,7 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 	//圆环
 	@RequiresApi(Build.VERSION_CODES.O)
 	fun functionParam(position: Int) {
-		vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+		touchVibrator()
 		when (position) {
 			-1 -> makeParam("select")
 			0 -> makeParam("up")
@@ -192,41 +184,41 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 			}
 			
 			binding.powerTV -> {
-				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+				touchVibrator()
 				makeParam("power")
 			}
 			
 			
 			binding.menuTV -> {
-				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+				touchVibrator()
 				makeParam("menu")
 			}
 			
 			
 			binding.homeTV -> {
-				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+				touchVibrator()
 				makeParam("home")
 			}
 			
 //			binding.signSource -> {
-//				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+//				touchVibrator()
 //				makeParam("home")
 //			}
 			
 			
 			binding.moreTV -> {
-//				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+//				touchVibrator()
 				RemoteMoreDialog(moreCodeList).show(supportFragmentManager, "1")
 			}
 			
 			
 			binding.muteTV -> {    // 静音
-//				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+//				touchVibrator()
 //				makeParam("mute")
 			}
 			
 			binding.backTV -> {
-				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+				touchVibrator()
 				makeParam("back")
 			}
 //
@@ -239,22 +231,22 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 //
 			binding.volAddTV -> {
 				makeParam("vole+")
-				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+				touchVibrator()
 			}
 			
 			binding.volSubTV -> {
 				makeParam("vole-")
-				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+				touchVibrator()
 			}
 			
 			binding.channelAddTV -> {
 				makeParam("channel_up")
-				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+				touchVibrator()
 			}
 			
 			binding.channelSubTV -> {
 				makeParam("channel_down")
-				vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+				touchVibrator()
 			}
 		}
 	}
@@ -266,9 +258,33 @@ class TVConActivity : MBBaseActivity<ActivityTvconBinding, HttpViewModel>() {
 			if (commonCodeList[p].remoteKey == key) {
 				val irInfo = ParamParse.getIrCodeList(commonCodeList[p].remoteCode, commonCodeList[p].frequency.toInt())
 				//最终 红外 指令
-				ConsumerIrManagerApi.getConsumerIrManager(this).transmit(irInfo.getFrequency(), irInfo.getIrCodeList())
-				Globals.log("xxxxx指令发送：", irInfo.getIrCodeList().toString())
+				try {
+					ConsumerIrManagerApi.getConsumerIrManager(this).transmit(irInfo.getFrequency(), irInfo.getIrCodeList())
+				} catch (e: Exception) {
+//				binding.invalidTV.performClick()
+				}
 			}
+		}
+	}
+	
+	
+	//点击震动
+	// 检查 VIBRATE 权限是否已授予
+ 
+	fun touchVibrator(){
+		if (checkSelfPermission(Manifest.permission.VIBRATE) == PackageManager.PERMISSION_GRANTED) {
+			// 权限已授予，可以安全地使用振动器
+			val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+			if (vibrator.hasVibrator()) {	// 设备有振动器，触发振动
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+					vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+				} else {
+					vibrator.vibrate(200)
+				}
+			}
+		} else {
+			// 权限未授予，但对于 VIBRATE，我们不需要在这里请求它，因为它是一个正常权限
+			// 如果你的应用有其他需要在运行时请求的权限，你可以在这里请求它们
 		}
 	}
 	

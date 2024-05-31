@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ruffian.library.widget.RLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="@dimen/dp_100"
+    android:minHeight="@dimen/dp_76"
+    app:background_normal="@color/white"
+    android:orientation="vertical"
+    app:corner_radius="@dimen/dp_8">
+
+
+
+    <TextView
+        android:id="@+id/editTV"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_35"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:gravity="center"
+        android:text="@string/edit"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_12"
+        />
+
+
+    <TextView
+        android:id="@+id/deleteTV"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:layout_height="@dimen/dp_35"
+        android:gravity="center"
+        android:text="@string/delete"
+        android:textColor="#ff333333"
+        android:textSize="@dimen/sp_12"
+        />
+
+</com.ruffian.library.widget.RLinearLayout>

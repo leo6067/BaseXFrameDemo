@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ruffian.library.widget.RLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_16"
+    android:minHeight="@dimen/dp_60"
+    android:orientation="horizontal"
+    app:background_normal="@color/colorLight"
+    app:corner_radius="@dimen/dp_16">
+
+
+    <ImageView
+        android:id="@+id/itemIV"
+        android:layout_width="@dimen/dp_58"
+        android:layout_height="@dimen/dp_58"
+        android:scaleType="fitXY"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/dp_12"
+        />
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_10"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/itemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            tools:text="Feedback"
+            android:textColor="@color/colorFontBlack"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/itemSrc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:text="Share TV Remote Control with your friends"
+            android:textColor="@color/colorFontGray"
+            android:textSize="@dimen/sp_12" />
+
+
+    </LinearLayout>
+
+
+</com.ruffian.library.widget.RLinearLayout>

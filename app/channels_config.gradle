@@ -21,36 +21,23 @@ android {
     //walle多渠道和马甲包配置
     productFlavors {
         sjyk {
-            applicationId "com.sjyk.remote"
-            versionCode 2024030401
-            versionName "1.0.0"
+            applicationId "com.sjyk.ykq"
+            versionCode 2024053001
+            versionName "1.0.3"
             signingConfig signingConfigs.remote
         }
 
     }
 }
 
-//android.applicationVariants.all { variant ->
-//    variant.outputs.all {
-//        if (variant.productFlavors[0] == null) {
-//            outputFileName = "qiyoutui_v${variant.versionName}_build${variant.versionCode}.apk"
-//        } else {
-//            outputFileName = "${variant.productFlavors[0].name}_v${variant.versionName}_build${variant.versionCode}.apk"
-//        }
-//    }
-//}
-
-walle {
-    // 指定渠道包的输出路径
-    apkOutputFolder = new File("${project.buildDir}/${rootProject.ext.channel}")
-    println ">>>>>> apkOutputFolder = ${apkOutputFolder.getAbsolutePath()}"
-    // 定制渠道包的APK的文件名称 ${appName}-${packageName}-${channels_hhcr}-${buildType}-v${versionName}-${versionCode}-${buildTime}.apk
-    apkFileNameFormat = '${appName}_${channel}-v${versionName}-${versionCode}-${buildTime}.apk'
-
-    // 渠道配置文件
-//    channelFile = new File("${project.getProjectDir()}/channels/channels_${rootProject.ext.channel}")
-//    channelFile = new File("${project.getProjectDir()}/channel")
-//    : rootProject.file('channel_file')
-    channelFile =    new File("${project.getProjectDir()}/channel")
-    println ">>>>>> channelFile = ${channelFile.getAbsolutePath()}"
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        def buildTime = new Date().format("MM-dd-HH-mm", TimeZone.getDefault());
+        def outputFile = outputs.outputFile
+        if (outputFile != null && outputFile.name[0].endsWith('.apk')) {
+            outputFileName = "${variant.productFlavors[0].name}_v${variant.versionName}_${variant.versionCode}.apk"
+        } else {
+            outputFileName = "${variant.productFlavors[0].name}_v${variant.versionName}_${variant.versionCode}.aab"
+        }
+    }
 }

@@ -16,7 +16,7 @@
             android:layout_height="@dimen/dp_56"
             android:layout_marginStart="@dimen/dp_20"
             android:gravity="center_vertical"
-            android:text="@string/control_your_tv"
+            android:text="@string/remote_control"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_20"
             android:textStyle="bold"
@@ -44,13 +44,13 @@
             app:layout_constraintTop_toBottomOf="@+id/labelTV">
 
 
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/adView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:adSize="BANNER"
-                app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+<!--            <com.google.android.gms.ads.AdView-->
+<!--                android:id="@+id/adView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                app:adSize="BANNER"-->
+<!--                app:adUnitId="ca-app-pub-3940256099942544/6300978111" />-->
 
 
             <ImageView
@@ -100,7 +100,7 @@
 
         <com.ruffian.library.widget.RTextView
             android:id="@+id/addDeviceTV"
-            android:layout_width="@dimen/dp_184"
+            android:layout_width="@dimen/dp_200"
             android:layout_height="@dimen/dp_70"
             android:layout_marginTop="@dimen/dp_28"
             android:drawableLeft="@drawable/icon_add_w"
@@ -126,13 +126,13 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
 
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/bottomAdView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:adSize="BANNER"
-                app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+<!--            <com.google.android.gms.ads.AdView-->
+<!--                android:id="@+id/bottomAdView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                app:adSize="BANNER"-->
+<!--                app:adUnitId="ca-app-pub-3940256099942544/6300978111" />-->
 
 
             <ImageView

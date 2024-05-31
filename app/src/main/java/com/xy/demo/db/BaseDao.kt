@@ -3,6 +3,7 @@ package com.xy.demo.db
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Update
 
 //@Dao， 使用@Dao注解定义为一个BaseDao接口，增加基本的插入、删除、修改方法，再定义一个UserDao去扩展BaseDao接口，增加需要的方法。
@@ -23,6 +24,10 @@ import androidx.room.Update
 //原文链接：https://blog.csdn.net/yang553566463/article/details/125008322
 @Dao
 interface BaseDao<T> {
+	
+	//覆盖插入  有就覆盖  只能针对主键
+	@Insert(onConflict = OnConflictStrategy.REPLACE)
+	fun insertOrReplace(bean: T)
 	@Insert
 	fun insert(bean: T)
 	

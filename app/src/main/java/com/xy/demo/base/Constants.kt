@@ -26,7 +26,7 @@ class Constants {
         
         
         //注册协议
-        const val AGREEMENT_PRIVACY = "https://toolm.shenjiwenhua.com/getAgreement/?appkey=100000&type=1"
+        const val AGREEMENT_PRIVACY = "https://toolm.shenjiwenhua.com/getAgreement/?appkey=100001&type=1"
         
         //本地设备数据库
         const val DB_NAME = "sjykq_db"
@@ -70,6 +70,8 @@ class Constants {
         const val KEY_FEEDBACK = "feedback"  //是反馈界面 跳转品牌--子品牌选择
         const val KEY_FILE_TYPE = "key_file_type"//投屏文件类型
         const val KEY_INIT = "key_init"//投
+        const val KEY_REMOTE_TYPE = "key_remote_type"// 1.红外 电视遥控器  2 wifi 电视遥控器   3 红外 空调 遥控器
+        
     
     
     

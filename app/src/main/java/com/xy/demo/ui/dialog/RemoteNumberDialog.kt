@@ -15,11 +15,9 @@ import com.xy.demo.logic.parse.ParamParse
 import com.xy.demo.model.OrderListModel
 import com.xy.demo.ui.adapter.RemoteMoreAdapter
 import com.xy.xframework.utils.Globals
+import java.lang.Exception
 
 class RemoteNumberDialog(var dataList: MutableList<OrderListModel.OrderModel>) : MBBaseDialogFragment<DialogRemoteNumberBinding>() {
-	
-	
-	lateinit var vibrator: Vibrator
 	
 	
 	override fun getLayoutId(): Int {
@@ -31,10 +29,6 @@ class RemoteNumberDialog(var dataList: MutableList<OrderListModel.OrderModel>) :
 	}
 	
 	override fun initView() {
-		
-		vibrator = context?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-		
-		
 	}
 	
 	override fun initListener() {
@@ -82,8 +76,6 @@ class RemoteNumberDialog(var dataList: MutableList<OrderListModel.OrderModel>) :
 		binding.nineTV.setOnClickListener {
 			makeParam("9")
 		}
-		
-		
 	}
 	
 	
@@ -93,8 +85,11 @@ class RemoteNumberDialog(var dataList: MutableList<OrderListModel.OrderModel>) :
 			if (dataList[p].remoteKey == key) {
 				val irInfo = ParamParse.getIrCodeList(dataList[p].remoteCode, dataList[p].frequency.toInt())
 				//最终 红外 指令
-				ConsumerIrManagerApi.getConsumerIrManager(context).transmit(irInfo.getFrequency(), irInfo.getIrCodeList())
-				Globals.log("xxxxx指令发送：", irInfo.getIrCodeList().toString())
+				try {
+					ConsumerIrManagerApi.getConsumerIrManager(context).transmit(irInfo.getFrequency(), irInfo.getIrCodeList())
+				} catch (e: Exception) {
+//				binding.invalidTV.performClick()
+				}
 			}
 		}
 	}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:id="@+id/rootLayout"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@drawable/icon_no_infrare" />
+
+
+    <TextView
+        android:layout_marginHorizontal="@dimen/dp_40"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_40"
+        android:text="@string/there_is_no_built_in_infrared_blaster_in_your_phone_so_you_can_t_control_tv_via_ir"
+        android:textColor="#99000000"
+        android:textSize="@dimen/sp_16" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

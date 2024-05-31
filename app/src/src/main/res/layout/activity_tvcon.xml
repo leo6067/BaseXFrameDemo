@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.infrared.TVConActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/titleLay"
+            layout="@layout/include_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_35"
+            />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/titleLay"
+            android:layout_marginTop="@dimen/dp_30"
+            android:fillViewport="true">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:paddingBottom="@dimen/dp_60">
+
+
+                <LinearLayout
+                    android:id="@+id/topLin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_11"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <ImageView
+                        android:id="@+id/powerTV"
+                        android:layout_width="@dimen/dp_75"
+                        android:layout_height="@dimen/dp_75"
+                        android:background="@drawable/select_con_bg"
+                        android:onClick="onClick"
+                        android:scaleType="center"
+                        android:src="@drawable/icon_yk_power" />
+
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/homeTV"
+                        android:layout_width="@dimen/dp_75"
+                        android:layout_height="@dimen/dp_75"
+                        android:background="@drawable/select_con_bg"
+                        android:clickable="true"
+                        android:onClick="onClick"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/icon_yk_home" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/menuTV"
+                        android:layout_width="@dimen/dp_75"
+                        android:layout_height="@dimen/dp_75"
+                        android:background="@drawable/select_con_bg"
+                        android:clickable="true"
+                        android:onClick="onClick"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/icon_yk_menu" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_1"
+                        android:layout_weight="1" />
+
+
+                    <ImageView
+                        android:id="@+id/moreTV"
+                        android:layout_width="@dimen/dp_75"
+                        android:layout_height="@dimen/dp_75"
+                        android:background="@drawable/select_con_bg"
+                        android:gravity="center"
+                        android:onClick="onClick"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/icon_yk_more"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+                <com.dlong.rep.dlroundmenuview.DLRoundMenuView
+                    android:id="@+id/functionLay"
+                    android:layout_width="@dimen/dp_224"
+                    android:layout_height="@dimen/dp_224"
+                    android:layout_marginTop="@dimen/dp_60"
+                    app:RMCoreMenuDrawable="@drawable/icon_yk_ok"
+                    app:RMCoreMenuNormalBackgroundColor="@color/colorPrimary"
+                    app:RMCoreMenuSelectedBackgroundColor="#ececec"
+                    app:RMCoreMenuStrokeColor="@color/colorPrimary"
+                    app:RMCoreMenuStrokeSize="0dp"
+                    app:RMHasCoreMenu="true"
+                    app:RMRoundMenuDrawable="@drawable/icon_tcv_jt"
+                    app:RMRoundMenuNormalBackgroundColor="@color/colorPrimary"
+                    app:RMRoundMenuSelectedBackgroundColor="#ececec"
+                    app:RMRoundMenuStrokeColor="@color/white"
+                    app:RMRoundMenuStrokeSize="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/topLin" />
+
+
+                <LinearLayout
+                    android:id="@+id/volLin"
+                    android:layout_width="@dimen/dp_75"
+                    android:layout_height="@dimen/dp_156"
+                    android:layout_marginTop="@dimen/dp_60"
+                    android:background="@drawable/icon_yk_vol"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/functionLay">
+
+
+                    <com.ruffian.library.widget.RTextView
+                        android:id="@+id/volAddTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_65"
+                        android:clickable="true"
+                        android:onClick="onClick"
+                        app:background_pressed="@drawable/icon_yk_add" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+
+                    <com.ruffian.library.widget.RTextView
+                        android:id="@+id/volSubTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_65"
+                        android:clickable="true"
+                        android:onClick="onClick"
+                        app:background_pressed="@drawable/icon_yk_sub" />
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/muteTV"
+                    android:layout_width="@dimen/dp_75"
+                    android:layout_height="@dimen/dp_75"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:background="@drawable/shape_con_bg_b"
+                    android:onClick="onClick"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_yk_jy"
+                    app:layout_constraintStart_toEndOf="@+id/volLin"
+                    app:layout_constraintTop_toTopOf="@+id/volLin" />
+
+
+                <ImageView
+                    android:id="@+id/numberTV"
+                    android:layout_width="@dimen/dp_75"
+                    android:layout_height="@dimen/dp_75"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:background="@drawable/select_con_bg"
+                    android:onClick="onClick"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_yk_number"
+                    app:layout_constraintBottom_toBottomOf="@+id/volLin"
+                    app:layout_constraintStart_toStartOf="@+id/muteTV"
+                    app:layout_constraintTop_toBottomOf="@+id/muteTV" />
+
+
+                <ImageView
+                    android:id="@+id/backTV"
+                    android:layout_width="@dimen/dp_75"
+                    android:layout_height="@dimen/dp_75"
+                    android:background="@drawable/select_con_bg"
+                    android:onClick="onClick"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_yk_back"
+                    app:layout_constraintEnd_toStartOf="@+id/chlin"
+                    app:layout_constraintStart_toEndOf="@+id/muteTV"
+                    app:layout_constraintTop_toTopOf="@+id/volLin" />
+
+
+                <ImageView
+                    android:id="@+id/signSource"
+                    android:layout_width="@dimen/dp_75"
+                    android:layout_height="@dimen/dp_75"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:background="@drawable/shape_con_bg_b"
+                    android:onClick="onClick"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_yk_share"
+                    app:layout_constraintBottom_toBottomOf="@+id/volLin"
+                    app:layout_constraintEnd_toStartOf="@+id/chlin"
+                    app:layout_constraintStart_toEndOf="@+id/numberTV"
+                    app:layout_constraintTop_toBottomOf="@+id/backTV" />
+
+
+                <LinearLayout
+                    android:id="@+id/chlin"
+                    android:layout_width="@dimen/dp_75"
+                    android:layout_height="@dimen/dp_156"
+                    android:background="@drawable/icon_yk_ch"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="@+id/volLin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/volLin">
+
+
+                    <com.ruffian.library.widget.RTextView
+                        android:id="@+id/channelAddTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_65"
+                        android:clickable="true"
+                        android:onClick="onClick"
+                        app:background_pressed="@drawable/icon_yk_up" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <com.ruffian.library.widget.RTextView
+                        android:id="@+id/channelSubTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_65"
+                        android:onClick="onClick"
+                        app:background_pressed="@drawable/icon_yk_dow" />
+
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <include
+            android:id="@+id/netInclude"
+            layout="@layout/include_net"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+
+</layout>

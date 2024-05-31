@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <array name="waveSideBarLetters">
+        <item>\u2606</item>
+        <item>\u0023</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+        <item>I</item>
+        <item>J</item>
+        <item>K</item>
+        <item>L</item>
+        <item>M</item>
+        <item>N</item>
+        <item>O</item>
+        <item>P</item>
+        <item>Q</item>
+        <item>R</item>
+        <item>S</item>
+        <item>T</item>
+        <item>U</item>
+        <item>V</item>
+        <item>W</item>
+        <item>X</item>
+        <item>Y</item>
+        <item>Z</item>
+    </array>
+
+
+
+
+
+
+
+    <!--左下到右上-->
+    <array name="array_bl_tr">
+        <item>#FA8BFF</item>
+        <item>#2BD2FF</item>
+        <item>#2BFF88</item>
+    </array>
+
+
+
+    <!--右上到左下-->
+    <array name="array_tr_bl">
+        <item>#FF3CAC</item>
+        <item>#784BA0</item>
+        <item>#2B86C5</item>
+    </array>
+
+    <array name="card_top_bot">
+        <item>#555555</item>
+        <item>#3A3A3A</item>
+    </array>
+
+    <array name="start_bg">
+        <item>#1C73FF</item>
+        <item>#73A8FF</item>
+    </array>
+
+     <array name="card_border">
+        <item>#666666</item>
+        <item>#333333</item>
+    </array>
+
+
+
+
+</resources>
