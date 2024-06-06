@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+<!--简要说明：
+不带external 是程序安装目录下的目录，cache-path 指程序安装目录下的cache目录。
+带有external 的是指sdcard 目录下对应包名的专属目录，例如external-cache-path 指sdcard 目录下对应包名的专属cache目录。-->
+
+<!--    FileDownloadUtils.getDefaultSaveRootPath()/app_cache/-->
+    <external-cache-path
+        name="path4"
+        path="/app_cache/" />
+
+    <external-path name="external_files" path="."/>
+    <files-path name="project" path="project"/>
+    <root-path name="root_files" path="." />
+    <external-cache-path
+        name="path4"
+        path="/app_cache/" />
+ <external-cache-path
+        name="path8"
+        path="/files/" />
+    <external-files-path
+        name="path9"
+        path="/files/" />
+
+    <external-path
+        name="path1"
+        path="/data/dir1/" />
+    <external-path
+        name="path2"
+        path="/files" />
+    <external-files-path
+        name="path3"
+        path="/files" />
+
+    <cache-path
+        name="path5"
+        path="/files" />
+    <files-path
+        name="path6"
+        path="/files" />
+
+
+    <files-path
+        name="appFile"
+        path="/files" />
+</paths>

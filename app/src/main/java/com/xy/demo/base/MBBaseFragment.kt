@@ -13,19 +13,13 @@ abstract class MBBaseFragment<T : ViewDataBinding, VM : XBaseViewModel> : XBaseF
     {
 
     val TAG: String = this::class.java.simpleName
-
-
-
     override fun initVariableId(): Int = BR.viewModel
-
-
-
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -50,6 +44,5 @@ abstract class MBBaseFragment<T : ViewDataBinding, VM : XBaseViewModel> : XBaseF
 
     override fun onDestroy() {
         super.onDestroy()
-
     }
 }

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.EditListActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/dp_16"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_62"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/renameTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/select_edit"
+                android:drawablePadding="@dimen/dp_5"
+                android:enabled="true"
+                android:gravity="center"
+                android:text="重命名"
+                android:textColor="@color/select_edit_text"
+                android:textSize="12sp" />
+
+
+            <TextView
+                android:id="@+id/deleteTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/icon_detele"
+                android:drawablePadding="@dimen/dp_5"
+                android:gravity="center"
+                android:text="删除"
+                android:textColor="#ff212121"
+                android:textSize="@dimen/sp_12" />
+
+
+            <TextView
+                android:id="@+id/shareTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/select_share"
+                android:enabled="true"
+                android:gravity="center"
+                android:text="分享"
+                android:textColor="@color/select_edit_text"
+                android:textSize="@dimen/sp_12" />
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/finishTV"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_45"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="完成"
+                android:textColor="@color/white"
+                app:background_normal="#0B52FE"
+                app:corner_radius="@dimen/dp_22" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</layout>

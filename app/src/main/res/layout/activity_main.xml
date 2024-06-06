@@ -2,59 +2,33 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     tools:context=".MainActivity">
 
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center_horizontal"
-        android:background="?attr/bg_main"
         android:orientation="vertical">
 
 
-        <ProgressBar
-            android:id="@+id/progressA"
-            style="?android:attr/progressBarStyleHorizontal"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/mViewPager"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_20"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="@dimen/dp_20"
-            android:progressDrawable="@drawable/progressbar_color" />
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
 
-        <TextView
-            android:id="@+id/nightTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_30"
-            android:background="?attr/tv_bg"
-            android:textColor="?attr/tv_font"
-            android:text="开始下载" />
+        <com.flyco.tablayout.CommonTabLayout
+            android:id="@+id/mTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            app:tl_indicator_color="#2C97DE"
+            app:tl_textSelectColor="#2C97DE"
+            app:tl_textUnselectColor="#66000000"
+            app:tl_underline_color="#DDDDDD"
+            app:tl_underline_height="1dp" />
 
 
-        <TextView
-            android:id="@+id/lightTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:background="?attr/tv_bg"
-            android:textColor="?attr/tv_font"
-            android:layout_marginTop="@dimen/dp_10"
-            android:text="修改主题" />
-
-
-
-        <Button
-            android:id="@+id/nextTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_10"
-            android:text="下一步" />
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </LinearLayout>
 </layout>

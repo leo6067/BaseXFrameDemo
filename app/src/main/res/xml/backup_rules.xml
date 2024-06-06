@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<full-backup-content>
+    <!-- 不包含任何<include>标签意味着不备份任何内容 -->
+</full-backup-content>

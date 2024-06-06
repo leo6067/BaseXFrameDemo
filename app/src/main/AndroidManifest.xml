@@ -6,24 +6,63 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" /> <!-- Android11额外添加 -->
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission
+        android:name="android.permission.WRITE_CONTACTS"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.READ_CONTACTS"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.REQUEST_INSTALL_PACKAGES"
+        tools:node="remove" />
 
-    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <application
         android:name=".base.MyApplication"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication">
+        android:supportsRtl="false"
+        android:theme="@style/Theme.MyApplication"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:supportsRtl,android:allowBackup ">
         <activity
-            android:name=".ui.SecondActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:name=".ui.mine.PrivacyActivity"
+            android:exported="false" />
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.image.CreatePDFActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.image.ImagePDFActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.image.DragSortActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.image.DealImageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.EditListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.PDFActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.PdfListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.mine.LanguageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.mine.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -34,6 +73,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.base.FileProvide"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider"
+                tools:replace="android:resource" />
+        </provider>
     </application>
 
 </manifest>

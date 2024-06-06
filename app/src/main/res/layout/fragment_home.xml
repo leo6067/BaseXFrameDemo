@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/pdf_convert"
+            android:textColor="#ff212121"
+            android:textSize="@dimen/sp_24"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_25"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:background="@drawable/icon_search_b"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:id="@+id/topLin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_75"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/dp_20"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/imageTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_home_top_a"
+                android:gravity="center"
+                android:text="@string/image_to_pdf"
+                android:textColor="#ff212121"
+                android:textSize="@dimen/sp_12" />
+
+            <TextView
+                android:id="@+id/compressTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_home_top_b"
+                android:gravity="center"
+                android:text="@string/compress"
+                android:textColor="#ff212121"
+                android:textSize="@dimen/sp_12" />
+
+
+            <TextView
+                android:id="@+id/addTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_home_top_c"
+                android:gravity="center"
+                android:text="@string/add_text"
+                android:textColor="#ff212121"
+                android:textSize="@dimen/sp_12" />
+
+            <TextView
+                android:id="@+id/lockTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_home_top_d"
+                android:gravity="center"
+                android:text="@string/lock_pdf"
+                android:textColor="#ff212121"
+                android:textSize="@dimen/sp_12" />
+
+        </LinearLayout>
+
+
+        <com.ruffian.library.widget.RLinearLayout
+            android:id="@+id/bottomLin"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_30"
+            app:background_normal="@color/white"
+            app:corner_radius_top_left="@dimen/dp_16"
+            app:corner_radius_top_right="@dimen/dp_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topLin" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_16"
+            android:text="@string/recent"
+            android:textColor="#ff212121"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bottomLin" />
+
+
+        <ImageView
+            android:id="@+id/editIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:background="@drawable/ic_home_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bottomLin" />
+
+
+        <View
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:background="#D9D9D9"
+            app:layout_constraintBottom_toBottomOf="@+id/editIV"
+            app:layout_constraintEnd_toStartOf="@+id/editIV"
+            app:layout_constraintTop_toBottomOf="@+id/topLin"
+            app:layout_constraintTop_toTopOf="@+id/editIV" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/dp_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editIV" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

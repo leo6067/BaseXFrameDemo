@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FAFAFB"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/dp_20">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/setting"
+            android:textColor="#ff212121"
+            android:textSize="@dimen/sp_24"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/loginTV"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_80"
+            android:layout_marginTop="@dimen/dp_30"
+            android:drawableStart="@drawable/setting_login"
+            android:drawableEnd="@drawable/setting_next"
+            android:drawablePadding="@dimen/dp_16"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/dp_20"
+            android:text="去登录账号"
+            android:textColor="#ff212121"
+            android:textSize="@dimen/sp_18"
+            app:background_normal="@color/white"
+            app:corner_radius="@dimen/dp_16" />
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:paddingVertical="@dimen/dp_12"
+            android:paddingHorizontal="@dimen/dp_20"
+            android:background="@drawable/shape_setting_bg"/>
+
+    </LinearLayout>
+
+</layout>

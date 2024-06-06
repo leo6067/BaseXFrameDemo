@@ -69,6 +69,10 @@ android {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
     bundle {
+        // 设置为true生成AAB包
+        abi {
+            enableSplit = true
+        }
         language {
             //多语言不分包处理
             // Specifies that the app bundle should not support
@@ -101,6 +105,33 @@ dependencies {
     //阿里路由
     api 'com.alibaba:arouter-api:1.5.1'
     kapt 'com.alibaba:arouter-compiler:1.5.1'
+    implementation 'com.droidninja:filepicker:2.2.5'
+    implementation 'com.vincent.filepicker:MultiTypeFilePicker:1.0.8'
+
+
+    //room 数据库
+    String room_version = "2.4.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+
+
+    //pdfview
+    implementation 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
+
+    implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
+    implementation 'com.gemalto.jp2:jp2-android:1.0.3'
+//    implementation("io.github.pixee:java-security-toolkit:1.1.2")
+
+    //图片裁剪
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+
+
+    //拖拽排序recycler
+    implementation 'com.dsiner.lib:pulllayout:2.0.0'
+
+    //打星
+    implementation 'com.xingliuhua:xlhratingbar_lib:4.0'
+
 
 
 }

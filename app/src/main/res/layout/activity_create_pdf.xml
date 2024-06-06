@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:context=".ui.image.CreatePDFActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+
+        android:orientation="vertical">
+
+
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_71"
+            android:background="@drawable/icon_create_img" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="转换成功！"
+            android:textColor="#ff212121"
+            android:textSize="@dimen/sp_18" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="文件大小：2.4MB"
+            android:textColor="#ff212121"
+            android:textSize="@dimen/sp_14" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="(去压缩 >)"
+            android:textColor="#ff0b52fe"
+            android:textSize="@dimen/sp_14" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_72">
+
+
+            <com.ruffian.library.widget.RTextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_110"
+                app:background_normal="@color/white"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/pdfIV"
+                android:layout_width="@dimen/dp_56"
+                android:layout_height="@dimen/dp_56"
+                android:layout_marginStart="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_12"
+                app:background_normal="@drawable/icon_pdf"
+                app:corner_radius="@dimen/dp_8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:layout_width="@dimen/dp_16"
+                android:layout_height="@dimen/dp_16"
+                android:layout_marginStart="@dimen/dp_12"
+                android:background="@drawable/icon_create_file"
+                app:layout_constraintBottom_toBottomOf="@+id/pdfIV"
+                android:layout_marginBottom="@dimen/dp_6"
+                app:layout_constraintStart_toEndOf="@+id/pdfIV" />
+
+
+            <TextView
+                android:id="@+id/nameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginStart="@dimen/dp_12"
+                android:text="Image to PDF_20240513"
+                android:textColor="#ff212121"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintStart_toEndOf="@+id/pdfIV"
+                app:layout_constraintTop_toTopOf="@+id/pdfIV" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginStart="@dimen/dp_35"
+                android:text="位置："
+                android:textColor="#ff212121"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintStart_toEndOf="@+id/pdfIV"
+                app:layout_constraintTop_toBottomOf="@+id/nameTV" />
+
+
+
+            <TextView
+                android:id="@+id/locationTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginStart="@dimen/dp_35"
+                android:text="位置：/Internal Storage/Documents/lmageto PDF Converter"
+                android:textColor="#ff212121"
+                android:textSize="@dimen/sp_12"
+                android:layout_marginEnd="@dimen/dp_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pdfIV"
+                app:layout_constraintTop_toBottomOf="@+id/nameTV" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.ruffian.library.widget.RTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45"
+            app:background_normal="#0B52FE"
+            android:layout_marginTop="@dimen/dp_40"
+            android:text="查看"
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:corner_radius="@dimen/dp_22"
+            android:layout_marginHorizontal="@dimen/dp_80"/>
+
+
+
+        <com.ruffian.library.widget.RTextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp_16"
+            android:layout_height="@dimen/dp_45"
+            app:background_normal="#120b52fe"
+            android:text="分享"
+            android:textColor="#0B52FE"
+            android:gravity="center"
+            app:corner_radius="@dimen/dp_22"
+            android:layout_marginHorizontal="@dimen/dp_80"/>
+
+    </LinearLayout>
+
+</layout>
