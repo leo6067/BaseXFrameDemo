@@ -12,7 +12,7 @@ import java.lang.Exception
 import java.lang.IllegalArgumentException
 import java.util.*
 
-class BaseSharePreference private constructor(private val mContext: Context) {
+class BaseSharePreference private constructor(mContext: Context) {
     
     private var mSharedPreferences: SharedPreferences = mContext.getSharedPreferences(BaseConstants.baseShareName, Context.MODE_PRIVATE)
     
