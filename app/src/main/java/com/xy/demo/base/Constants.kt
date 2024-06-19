@@ -15,10 +15,8 @@ class Constants {
     companion object {
      
         //域名 上架修改
-//        const val releaseBaseUrl = "https://beta-api.qiyoutui.com"
-//        const val debugBaseUrl = "https://beta-api.qiyoutui.com"
-        const val releaseBaseUrl = "https://api.qiyoutui.com"
-        const val debugBaseUrl = "https://api.qiyoutui.com"
+        const val releaseBaseUrl = "https://toolapi.shenjiwenhua.com/"
+        const val debugBaseUrl = "https://toolapi.shenjiwenhua.com/"
 
  
         const val DB_NAME = "pdf_tool"
@@ -27,35 +25,67 @@ class Constants {
         //注册协议
         const val AGREEMENT_PRIVACY = "https://toolm.shenjiwenhua.com/getAgreement/?appkey=100001&type=1"
         
-        
-        const val AGREEMENT_SERVICE = "http://h5.qiyoutui.com/agreement/user.html"
+   
     
     
         @kotlin.jvm.JvmField
-        var FILE_IMG_VIDEO =
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                .toString()
+        val downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).path
+        
+        //app 私有目录-----缓存图片
+        @kotlin.jvm.JvmField
+        val xxyDir =  MyApplication.instance.getExternalFilesDir(Environment.DIRECTORY_PICTURES)?.path+ "/xxy/"
+        
+        //手机公共目录
+        @kotlin.jvm.JvmField
+        val publicXXYDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).path+"/"
 
 
         //切换正式 测试环境  正式  true    false debug
         const val KEY_APP_RELEASE = "key_app_release"
-        const val KEY_PRIVACY = "key_privacy"
-        const val KEY_USER = "key_user"
+  
     
+        const val BITMAP_LIST = "bitmap_list"
+        const val TEXT_LIST = "text_list"
     
-    
-    
-    
-    
-    
-    
-    
-        const val EVENT_FILE_SELECT = "event_file_select"
+     
     
     
         //首次启动App
- 
         const val SHARE_LANGUAGE  = "share_language"
+        
+        
+        //pdf  提取文字切割符文
+        const val PDF_TEXT_SPLIT  = "PDF_TEXT_SPLIT"
+        
+        
+        
+        //pdf 列表入口
+        //1：主页 2 文件页    4 压缩 5 提取文字 6 提取图片  7 加密pdf  8 解锁pdf
+        const val PDF_FROM_HOME = 1
+        const val PDF_FROM_FILE = 2
+        const val PDF_FROM_COMPRESS = 4
+        const val PDF_FROM_WORD = 5
+        const val PDF_FROM_BITMAP = 6
+        const val PDF_FROM_LOCK = 7
+        const val PDF_FROM_UNLOCK = 8
+        
+        
+        
+        
+        //LiveBus
+        const val EVENT_REFRESH_FILE = "event_refresh_file"  // 刷新文件列表---  大小更改
+        const val EVENT_REFRESH_FILE_EDIT = "event_refresh_file_edit"  // 刷新文件列表---文件名字  删除
+        
+        
+        const val EVENT_REFRESH_FILE_FRAGMENT = "event_refresh_file_fragment"  // 刷新文件列表---
+        
+        
+        
+        
+        const val  ENCRYPT_FORMAT= "encrypt.pdf"
+        const val  COMPRESS_FORMAT= "compress.pdf"
+        
+        
         
 
  

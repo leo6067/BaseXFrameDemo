@@ -25,7 +25,7 @@
         android:layout_marginStart="@dimen/dp_30"
         android:layout_marginTop="@dimen/dp_m_20"
         android:textStyle="bold"
-        android:text="重命名"
+        android:text="@string/rename"
         android:textColor="#ff212121"
         android:textSize="@dimen/sp_20" />
 
@@ -38,7 +38,8 @@
         android:layout_marginTop="@dimen/dp_30"
         android:paddingVertical="@dimen/dp_15"
         android:paddingStart="@dimen/dp_20"
-        android:text="文件_20240513"
+        android:hint="@string/input_file_name"
+        android:inputType="text"
         android:textColor="#ff212121"
         android:textSize="@dimen/sp_15"
         app:background_normal="#F3F3F3"
@@ -53,7 +54,7 @@
         android:layout_marginVertical="@dimen/dp_30"
         android:gravity="center"
         android:paddingVertical="@dimen/dp_12"
-        android:text="确定"
+        android:text="@string/confirm"
         android:textSize="@dimen/sp_16"
         android:textColor="@color/white"
         app:background_normal="#0B52FE"

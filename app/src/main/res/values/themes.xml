@@ -37,10 +37,12 @@
     </style>
 
 
+<!--    //设置启动页主题 附带背景图-->
     <style name="Theme.Splash" parent="Theme.MyApplication">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="android:windowBackground">@drawable/launch_bg</item>
         <!-- <item name="android:windowFullscreen">true</item>-->
         <!--        <item name="android:windowBackground">@drawable/bg_splash_bbspbz</item>-->
 <!--        <item name="android:windowBackground">@drawable/splash</item>-->

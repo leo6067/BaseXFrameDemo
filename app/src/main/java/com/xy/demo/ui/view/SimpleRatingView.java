@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 import com.xingliuhua.xlhratingbar.IRatingView;
 import com.xy.demo.R;
 
+
+//星星等级 打分
 public class SimpleRatingView implements IRatingView {
     ViewGroup mViewGroup;
     @Override
@@ -23,8 +25,6 @@ public class SimpleRatingView implements IRatingView {
                 ivStar.setImageResource( R.drawable.icon_star_a);
                 break;
         }
-
-
 
     }
 

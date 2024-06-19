@@ -24,7 +24,6 @@ public class ResponseInterceptor implements Interceptor {
         //获取请求体
         Request request = chain.request();
         RequestBody requestBody = request.body();
-
         String reqBody = null;
         if (requestBody != null) {
             Buffer buffer = new Buffer();

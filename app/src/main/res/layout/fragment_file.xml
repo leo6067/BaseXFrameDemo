@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     tools:context=".ui.main.HomeFragment">
 
     <LinearLayout
@@ -16,19 +15,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/dp_20"
-            android:text="文件"
+            android:text="@string/files"
             android:textColor="#ff212121"
             android:textSize="@dimen/sp_24"
             android:textStyle="bold" />
 
 
-        <com.ruffian.library.widget.REditText
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/searchEdit"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_44"
             android:drawableStart="@drawable/ic_search_gray"
             android:drawablePadding="@dimen/dp_10"
             android:gravity="center_vertical"
-            android:hint="输入文件名搜索"
+            android:hint="@string/enter_file_name_search"
             android:paddingStart="@dimen/dp_12"
             android:textColor="#ff989898"
             android:textSize="14sp"
@@ -47,7 +47,7 @@
                 android:id="@+id/allTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="全部文件"
+                android:text="@string/all_files"
                 android:textColor="#ff000000"
                 android:textSize="@dimen/sp_18"
                 android:textStyle="bold" />
@@ -72,6 +72,7 @@
 
 
             <ImageView
+                android:id="@+id/editIV"
                 android:layout_width="@dimen/dp_25"
                 android:layout_height="@dimen/dp_20"
                 android:layout_gravity="center_vertical"
@@ -85,6 +86,7 @@
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+
             android:layout_weight="1" />
 
     </LinearLayout>

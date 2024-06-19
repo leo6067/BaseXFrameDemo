@@ -2,6 +2,7 @@ package com.xy.demo.base
 
 import androidx.appcompat.app.AppCompatDelegate
 import com.alibaba.android.arouter.launcher.ARouter
+import com.jeremyliao.liveeventbus.LiveEventBus
 
 
 import com.scwang.smart.refresh.footer.ClassicsFooter
@@ -46,8 +47,6 @@ class MyApplication : XBaseApplication() {
 		// 路由初始化
 		
 		initFun()
-		
-		
 		NetworkManager.initNetWatch(this)
 		//pdf
 		PDFBoxResourceLoader.init(getApplicationContext());
@@ -58,6 +57,12 @@ class MyApplication : XBaseApplication() {
 			AppCompatDelegate.MODE_NIGHT_NO
 		)
 		initRouter()
+		
+		
+		LiveEventBus
+			.config()
+			.lifecycleObserverAlwaysActive(true)
+			.autoClear(false);
  
 	}
 	

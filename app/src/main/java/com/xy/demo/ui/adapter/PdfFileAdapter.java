@@ -25,9 +25,6 @@ public class PdfFileAdapter extends BaseQuickAdapter<PdfFileModel, BaseViewHolde
         TextView itemSrcTV = baseViewHolder.getView(R.id.itemSrcTV);
         ImageView itemIconIv = baseViewHolder.getView(R.id.itemIconIv);
         itemNameTV.setText(pdfFileModel.name);
-        itemSrcTV.setText(pdfFileModel.lastTime + "    " + pdfFileModel.size + "  " + pdfFileModel.totalPages);
-
-
-        Globals.log("xxxxxxxxxPdfFileAdapter"+pdfFileModel.path);
+        itemSrcTV.setText(pdfFileModel.lastTime + "    " + pdfFileModel.size);
     }
 }

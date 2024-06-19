@@ -14,6 +14,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.xy.xframework.dialog.loading.LoadingDialogProvider
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.lang.reflect.ParameterizedType
 
 abstract class XBaseFragment<T : ViewDataBinding, VM : XBaseViewModel> : Fragment() {
@@ -158,6 +161,13 @@ abstract class XBaseFragment<T : ViewDataBinding, VM : XBaseViewModel> : Fragmen
         dialog?.setCanceledOnTouchOutside(isCancelOutside)
         dialog?.setOnCancelListener(onCancelListener)
         dialog?.show()
+        GlobalScope.launch {
+            delay(4500)
+            if (dialog != null && dialog!!.isShowing) {
+                dialog!!.dismiss()
+                dialog = null
+            }
+        }
     }
 
 
@@ -170,4 +180,7 @@ abstract class XBaseFragment<T : ViewDataBinding, VM : XBaseViewModel> : Fragmen
         binding.setVariable(viewModelId, viewModel)
         binding.lifecycleOwner = this
     }
+    
+  
+    
 }

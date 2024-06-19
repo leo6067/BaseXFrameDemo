@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ruffian.library.widget.RLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:background_normal="@color/white"
+    app:corner_radius="@dimen/dp_12">
+
+
+    <ImageView
+        android:id="@+id/closeIV"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_30"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/dp_16"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_close_gray" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_m_20"
+        android:text="@string/deletion_confirmation"
+        android:textColor="#ff212121"
+        android:textSize="@dimen/sp_20"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/contentTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_24"
+        android:text="@string/the_file_will_be_deleted_from_the_phone_s_internal_storage_are_you_sure_you_want_to_delete_it"
+        android:textColor="#ff3d3d3d"
+        android:textSize="@dimen/sp_15" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:orientation="horizontal">
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/negativeTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/dp_30"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="@dimen/dp_12"
+            android:text="@string/cancel"
+            android:textColor="#464646"
+            android:textSize="@dimen/sp_16"
+            app:background_normal="#F3F3F3"
+            app:corner_radius="@dimen/dp_22" />
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/positiveTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/dp_30"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingVertical="@dimen/dp_12"
+            android:text="@string/delete"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16"
+            app:background_normal="#F86255"
+            app:corner_radius="@dimen/dp_22" />
+
+    </LinearLayout>
+
+
+</com.ruffian.library.widget.RLinearLayout>

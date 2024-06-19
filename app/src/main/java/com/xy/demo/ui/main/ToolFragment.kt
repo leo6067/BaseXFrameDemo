@@ -1,33 +1,21 @@
 package com.xy.demo.ui.main
 
-import android.content.ContentResolver
-import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
-import android.provider.MediaStore
-import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
-import com.vincent.filepicker.Constant
-import com.vincent.filepicker.activity.NormalFilePickActivity
 import com.xy.demo.R
+import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseFragment
-import com.xy.demo.base.MBBaseViewModel
-import com.xy.demo.databinding.FragmentHomeBinding
 import com.xy.demo.databinding.FragmentToolBinding
+import com.xy.demo.ui.common.PdfListActivity
 import com.xy.demo.ui.adapter.TransformAdapter
+import com.xy.demo.ui.image.DealImageActivity
 import com.xy.demo.ui.vm.MainViewModel
 import com.xy.xframework.imagePicker.WeChatPresenter
-import com.xy.xframework.utils.Globals
-import com.xy.xframework.utils.ToastUtils
 import com.ypx.imagepicker.ImagePicker
 import com.ypx.imagepicker.bean.MimeType
-import com.ypx.imagepicker.bean.selectconfig.CropConfig
 import com.ypx.imagepicker.data.OnImagePickCompleteListener
-import droidninja.filepicker.FilePickerBuilder
-
 
 
 //所有工具
@@ -41,41 +29,63 @@ open class ToolFragment : MBBaseFragment<FragmentToolBinding, MainViewModel>() {
 	}
 	
 	override fun initView() {
-		binding.transformRecycler.layoutManager = GridLayoutManager(activity,3)
-		binding.editRecycler.layoutManager = GridLayoutManager(activity,3)
+		binding.transformRecycler.layoutManager = GridLayoutManager(activity, 3)
+		binding.editRecycler.layoutManager = GridLayoutManager(activity, 3)
 		binding.transformRecycler.adapter = transformAdapter
 		binding.editRecycler.adapter = editTransformAdapter
-		viewModel.getTransList()
-		viewModel.getEditList()
+		activity?.let {
+			viewModel.getTransList(it)
+			viewModel.getEditList(it)
+		}
 		initObserve()
 	}
 	
 	
-	
-	fun  initObserve(){
-		
-		
-		viewModel.transModels.observe(this){
+	fun initObserve() {
+		viewModel.transModels.observe(this) {
 			transformAdapter.setNewInstance(it)
 		}
 		
 		
-		viewModel.editModels.observe(this){
+		viewModel.editModels.observe(this) {
 			editTransformAdapter.setNewInstance(it)
 		}
 		
-		transformAdapter.setOnItemClickListener { adapter, view, position ->  }
-		editTransformAdapter.setOnItemClickListener { adapter, view, position ->  }
-		
+		transformAdapter.setOnItemClickListener { adapter, view, position ->
+			when (position) {
+				0 -> imageToPdf()
+				1 -> activity?.let { it1 -> PdfListActivity.newInstance(it1, Constants.PDF_FROM_BITMAP) }
+			}
+			
+		}
+		editTransformAdapter.setOnItemClickListener { adapter, view, position ->
+			when (position) {
+				0 -> activity?.let { it1 -> PdfListActivity.newInstance(it1, Constants.PDF_FROM_COMPRESS) }
+				1 -> activity?.let { it1 -> PdfListActivity.newInstance(it1, Constants.PDF_FROM_WORD) }
+				2 -> activity?.let { it1 -> PdfListActivity.newInstance(it1, Constants.PDF_FROM_LOCK) }
+				3 -> activity?.let { it1 -> PdfListActivity.newInstance(it1, Constants.PDF_FROM_UNLOCK) }
+			}
+		}
+	}
+	
+	
+	fun imageToPdf() {
+		val imgList = ArrayList<String>()
+		ImagePicker.withMulti(WeChatPresenter()) //设置presenter
+			.setMaxCount(20) //设置选择数量
+			.setColumnCount(3) //设置列数
+			.mimeTypes(MimeType.JPEG, MimeType.PNG, MimeType.WEBP)
+			//设置需要过滤掉加载的文件类型
+			.setPreview(true)
+			.pick(activity, OnImagePickCompleteListener {
+//						val imageItem = it[0] as ImageItem
+				for (index in 0 until it.size) {
+					imgList.add(it[index].path)
+				}
+				activity?.let { it1 -> DealImageActivity.newInstance(it1, imgList) }
+			})
 		
 	}
- 
-	
-	
-	
- 
-	
-	
 	
 	
 }

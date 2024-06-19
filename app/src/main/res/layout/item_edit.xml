@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ruffian.library.widget.REditText xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/editTT"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="@dimen/dp_5"
+
+    android:padding="@dimen/dp_10"
+    android:scrollbars="vertical"
+    android:textColorHint="#B7B7B7"
+    android:textSize="@dimen/sp_12"
+    app:background_normal="@color/white"
+    app:corner_radius="@dimen/dp_5">
+
+
+</com.ruffian.library.widget.REditText>

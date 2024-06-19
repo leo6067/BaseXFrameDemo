@@ -8,9 +8,12 @@ import android.graphics.Matrix
 import android.graphics.drawable.Drawable
 import android.os.Environment
 import android.view.View
+import android.view.View.GONE
+import android.view.View.OnClickListener
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.xy.demo.R
+import com.xy.demo.base.Constants
 import com.xy.demo.base.MBBaseActivity
 import com.xy.demo.databinding.ActivityDealImageBinding
 import com.xy.demo.model.ImgModel
@@ -21,24 +24,19 @@ import java.io.File
 import java.io.FileOutputStream
 
 
+//裁剪 旋转
 class DealImageActivity : MBBaseActivity<ActivityDealImageBinding, MainViewModel>() {
 	
 	val mAdapter = ImageAdapter()
 	val imageList = arrayListOf<ImgModel>()
-	
-	
-	var doIndex =  0   //操作图片角标
-	
+	var doIndex = 0   //操作图片角标
 	var rotate: Float = 0f   //旋转角度
-	
 	var doAction = 0  //旋转  剪裁 删除
-	
-	
 	lateinit var originalBitmap: Bitmap  // 当前预览的bitmap
 	
+	var totalNum = 2
+	var indexNum = 1
 	
-	
- 
 	companion object {
 		fun newInstance(activity: Activity, imgList: ArrayList<String>) {
 			val intent = Intent()
@@ -65,8 +63,11 @@ class DealImageActivity : MBBaseActivity<ActivityDealImageBinding, MainViewModel
 	
 	override fun initView() {
 		super.initView()
-		titleBarView?.setTitle("编辑图片")
-		titleBarView?.setRightText("取消")
+		titleBarView?.setTitle(getString(R.string.edge_image))
+		titleBarView?.setRightText(getString(R.string.cancel))
+		titleBarView?.getRightTextView()?.visibility = GONE
+		binding.rotateTV.isSelected = true
+		binding.deleteTV.isSelected = true
 		
 		mRecyclerView = binding.recyclerview
 		initRecycler(1, 2, 0)
@@ -80,36 +81,52 @@ class DealImageActivity : MBBaseActivity<ActivityDealImageBinding, MainViewModel
 		}
 		
 		mAdapter.setNewInstance(imageList)
-		
 		upCenterImg()
-		
 		initListener()
-	
-		
 	}
 	
 	
-	
-	fun initListener(){
+	fun initListener() {
 		
 		mAdapter.setOnItemClickListener { adapter, view, position ->
 			rotate = 0f
 			doIndex = position
+			indexNum = position + 1
 			val imgModel = mAdapter.data[position]
 			binding.cropImageView.setImageBitmap(imgModel.bitmapImg)
 			Glide.with(this).load(imgModel.bitmapImg).into(binding.imageView)
 			originalBitmap = imgModel.bitmapImg
+			upNumUI()
+			upNumIV()
 			
+			mAdapter.selectIndex(doIndex)
 		}
+		
+		binding.leftIV.setOnClickListener {
+			if (indexNum > 1) {
+				indexNum--
+				upNumUI()
+			}
+			upNumIV()
+		}
+		
+		binding.rightIV.setOnClickListener {
+			if (indexNum < totalNum) {
+				indexNum++
+				upNumUI()
+			}
+			upNumIV()
+		}
+		
 		
 		binding.rotateTV.setOnClickListener {    // 旋转
 //			binding.cropImageView.rotateImage(90)
 			doAction = 1
 			rotate += 90
 			binding.imageView.rotation = rotate
-			val downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).path
+			
 			val timeMillis = System.currentTimeMillis()
-			var fileName = downloadDir + "/xxy" + "/" + timeMillis + ".png"
+			var fileName = Constants.xxyDir + timeMillis + ".png"
 			val rotatedBitmap = rotateBitmap(originalBitmap, rotate)
 			mAdapter.data[doIndex].setBitmapImg(rotatedBitmap)
 			mAdapter.data[doIndex].setImgPath(fileName)
@@ -126,8 +143,10 @@ class DealImageActivity : MBBaseActivity<ActivityDealImageBinding, MainViewModel
 				binding.finishTV.visibility = View.GONE
 				binding.positiveTV.visibility = View.VISIBLE
 				
-				binding.rotateTV.isEnabled = false
-				binding.deleteTV.isEnabled = false
+				binding.rotateTV.isSelected = false
+				binding.deleteTV.isSelected = false
+				binding.rotateTV.isClickable = false
+				binding.deleteTV.isClickable = false
 				
 				titleBarView?.getRightTextView()?.visibility = View.VISIBLE
 			} else {
@@ -137,9 +156,11 @@ class DealImageActivity : MBBaseActivity<ActivityDealImageBinding, MainViewModel
 				binding.finishTV.visibility = View.VISIBLE
 				binding.positiveTV.visibility = View.GONE
 				
-				binding.rotateTV.isEnabled = true
-				binding.deleteTV.isEnabled = true
-				
+				binding.rotateTV.isSelected = true
+				binding.deleteTV.isSelected = true
+				binding.rotateTV.isClickable = true
+				binding.deleteTV.isClickable = true
+				binding.cropTV.isChecked = false
 				titleBarView?.getRightTextView()?.visibility = View.GONE
 			}
 			
@@ -156,32 +177,23 @@ class DealImageActivity : MBBaseActivity<ActivityDealImageBinding, MainViewModel
 		
 		
 		binding.positiveTV.setOnClickListener {
-			
-			val downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).path
 			val timeMillis = System.currentTimeMillis()
-			
-			var fileName = downloadDir+"/xxy"+"/"+timeMillis+".png"
-			
-			Globals.log("XXXXXXXXdownloadDir"+downloadDir)
-			Globals.log("XXXXXXXX timeMillis"+timeMillis)
-			Globals.log("XXXXXXXX fileName"+fileName)
-			
+			var fileName = Constants.xxyDir + timeMillis + ".png"
 			if (doAction == 1) {    //保存旋转过的照片
 				val rotatedBitmap = rotateBitmap(originalBitmap, rotate)
 				mAdapter.data[doIndex].setBitmapImg(rotatedBitmap)
 				mAdapter.data[doIndex].setImgPath(fileName)
 				
-				saveBitmapToDownloadDir( rotatedBitmap, "$timeMillis.png")
+				saveBitmapToDownloadDir(rotatedBitmap, "$timeMillis.png")
 			} else if (doAction == 2) {  //裁剪
 				val cropBitmap = binding.cropImageView.croppedImage
 				binding.imageView.setImageBitmap(cropBitmap)
 				mAdapter.data[doIndex].setBitmapImg(cropBitmap)
 				mAdapter.data[doIndex].setImgPath(fileName)
-				saveBitmapToDownloadDir(cropBitmap,"$timeMillis.png")
+				saveBitmapToDownloadDir(cropBitmap, "$timeMillis.png")
 			}
 			
 			mAdapter.notifyItemChanged(doIndex)
-			
 			binding.cropTV.isChecked = false
 			binding.finishTV.visibility = View.VISIBLE
 			binding.positiveTV.visibility = View.GONE
@@ -193,12 +205,30 @@ class DealImageActivity : MBBaseActivity<ActivityDealImageBinding, MainViewModel
 			for (index in 0 until mAdapter.data.size) {
 				imageList.add(mAdapter.data[index].imgPath)
 			}
-			DragSortActivity.newInstance(this@DealImageActivity,imageList)
+			DragSortActivity.newInstance(this@DealImageActivity, imageList)
+			finish()
 		}
+		
+		titleBarView?.setRightClickListener(object : OnClickListener {
+			override fun onClick(p0: View?) {
+				binding.cropTV.isChecked = false
+				binding.cropImageView.visibility = View.GONE
+				binding.imageView.visibility = View.VISIBLE
+				binding.finishTV.visibility = View.VISIBLE
+				binding.positiveTV.visibility = View.GONE
+			}
+		})
+		
+		
 	}
 	
 	
-	fun upCenterImg(){
+	fun upCenterImg() {
+		
+		totalNum = imageList.size
+		binding.numberTV.text = "$indexNum/$totalNum"
+		upNumIV()
+		
 		Glide.with(binding.imageView)
 			.asBitmap()
 			.load(mAdapter.data[doIndex].imgPath)
@@ -208,9 +238,37 @@ class DealImageActivity : MBBaseActivity<ActivityDealImageBinding, MainViewModel
 					binding.cropImageView.setImageBitmap(resource)
 					originalBitmap = resource
 				}
+				
 				override fun onLoadCleared(placeholder: Drawable?) {
 				}
 			})
+	}
+	
+	fun upNumUI() {
+		binding.numberTV.text = "$indexNum/$totalNum"
+		rotate = 0f
+		doIndex = indexNum - 1
+		val imgModel = mAdapter.data[doIndex]
+		binding.cropImageView.setImageBitmap(imgModel.bitmapImg)
+		Glide.with(this).load(imgModel.bitmapImg).into(binding.imageView)
+		originalBitmap = imgModel.bitmapImg
+		
+	}
+	
+	
+	//更新 序号
+	fun upNumIV() {
+		
+		if (indexNum == 1) {
+			binding.leftIV.setImageResource(R.drawable.icon_img_left_a)
+		} else {
+			binding.leftIV.setImageResource(R.drawable.icon_img_left_b)
+		}
+		if (indexNum == totalNum) {
+			binding.rightIV.setImageResource(R.drawable.icon_img_right_a)
+		} else {
+			binding.rightIV.setImageResource(R.drawable.icon_img_right_b)
+		}
 	}
 	
 	
@@ -222,24 +280,19 @@ class DealImageActivity : MBBaseActivity<ActivityDealImageBinding, MainViewModel
 	}
 	
 	// 保存Bitmap到文件的方法
- 
-	fun saveBitmapToDownloadDir( bitmap: Bitmap,fileName:String) {
-		// 获取Download目录的路径
-		val downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-		
+	
+	fun saveBitmapToDownloadDir(bitmap: Bitmap, fileName: String) {
 		// 创建子目录xxy
-		val xxyDir = File(downloadDir, "xxy")
+		val xxyDir = File(Constants.xxyDir)
 		if (!xxyDir.exists()) {
 			if (!xxyDir.mkdirs()) {
 				// 处理目录创建失败的情况
 				return
 			}
 		}
-		
 		// 构建文件路径和名称
 //		val fileName = "20240605.jpg" // 假设你想保存为JPEG格式
 		val file = File(xxyDir, fileName)
-		
 		// 将Bitmap保存到文件
 		try {
 			FileOutputStream(file).use { fos ->
@@ -250,8 +303,6 @@ class DealImageActivity : MBBaseActivity<ActivityDealImageBinding, MainViewModel
 			e.printStackTrace()
 		}
 	}
-	
-	
 	
 	
 }

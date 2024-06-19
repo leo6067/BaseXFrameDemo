@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ruffian.library.widget.RLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:background_normal="@color/white"
+    app:corner_radius="@dimen/dp_12">
+
+
+    <ImageView
+        android:id="@+id/closeIV"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_30"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/dp_16"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_close_gray" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_m_20"
+        android:text="@string/login_registration"
+        android:textColor="#ff212121"
+        android:textSize="@dimen/sp_20"
+        android:textStyle="bold" />
+
+
+    <com.ruffian.library.widget.REditText
+        android:id="@+id/emailET"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:layout_marginHorizontal="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_30"
+        android:hint="@string/please_enter_your_email_address"
+        android:paddingStart="@dimen/dp_20"
+        android:textSize="@dimen/sp_15"
+        app:background_normal="#F3F3F3"
+        app:corner_radius="@dimen/dp_26" />
+
+
+    <com.ruffian.library.widget.RLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:layout_marginHorizontal="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_30"
+        android:orientation="horizontal"
+        app:background_normal="#F3F3F3"
+        app:corner_radius="@dimen/dp_26">
+
+
+        <com.ruffian.library.widget.REditText
+            android:id="@+id/yzmET"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_weight="1"
+            android:hint="@string/verification_code"
+            android:paddingStart="@dimen/dp_20"
+            android:textSize="@dimen/sp_15"
+            app:background_normal="#F3F3F3" />
+
+        <TextView
+            android:id="@+id/yzmTV"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:text="@string/get_code"
+            android:textColor="#fff41b1b"
+            android:textSize="15sp" />
+
+
+    </com.ruffian.library.widget.RLinearLayout>
+
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/loginTV"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_45"
+        android:layout_marginHorizontal="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_32"
+        android:gravity="center"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:background_normal="#0B52FE"
+        app:corner_radius="@dimen/dp_22" />
+
+
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/googleTV"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_45"
+        android:layout_marginHorizontal="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_32"
+        android:gravity="center"
+        android:text="@string/sign_in_with_a_google_account"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/sp_15"
+        app:background_normal="#55FF4548"
+        app:corner_radius="@dimen/dp_22" />
+
+
+
+
+</com.ruffian.library.widget.RLinearLayout>

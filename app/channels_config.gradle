@@ -8,12 +8,12 @@ android {
 //    }
 
     signingConfigs {
-        remote {
+        pdf {
             // 签名store文件路径
-            storeFile file('../dqvideo.jks')
-            storePassword 'dqvideo'
-            keyAlias 'dqvideo'
-            keyPassword 'dqvideo'
+            storeFile file('../pdf_reader.jks')
+            storePassword 'pdfconvert'
+            keyAlias 'pdf_reader'
+            keyPassword 'pdfconvert'
         }
 
     }
@@ -22,9 +22,9 @@ android {
     productFlavors {
         pdf {
             applicationId "com.pdf.pdf"
-            versionCode 2024030401
+            versionCode 20240619
             versionName "1.0.0"
-            signingConfig signingConfigs.remote
+            signingConfig signingConfigs.pdf
         }
 
     }

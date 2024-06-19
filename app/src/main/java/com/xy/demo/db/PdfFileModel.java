@@ -7,6 +7,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Set;
 
 
@@ -46,6 +47,11 @@ public class PdfFileModel implements Serializable {
     public boolean selectStatus;
 
 
+    @ColumnInfo(name = "file_type")
+    public int fileType;   // 1 普通文件类型  2  压缩文件 3 加密文件
+
+
+
     //备用1
     @ColumnInfo(name = "parameter")
     private String parameter;
@@ -62,6 +68,14 @@ public class PdfFileModel implements Serializable {
 
     public void setUid(int uid) {
         this.uid = uid;
+    }
+
+    public int getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(int fileType) {
+        this.fileType = fileType;
     }
 
     public String getName() {
@@ -152,5 +166,25 @@ public class PdfFileModel implements Serializable {
 
     public void setSelectStatus(boolean selectStatus) {
         this.selectStatus = selectStatus;
+    }
+
+
+    @Override
+    public String toString() {
+        return "PdfFileModel{" +
+                "uid=" + uid +
+                ", name='" + name + '\'' +
+                ", lastTime='" + lastTime + '\'' +
+                ", totalPages='" + totalPages + '\'' +
+                ", path='" + path + '\'' +
+                ", isCollect='" + isCollect + '\'' +
+                ", size='" + size + '\'' +
+                ", bitmap=" + Arrays.toString(bitmap) +
+                ", dealType=" + dealType +
+                ", selectStatus=" + selectStatus +
+                ", fileType=" + fileType +
+                ", parameter='" + parameter + '\'' +
+                ", parameterB='" + parameterB + '\'' +
+                '}';
     }
 }

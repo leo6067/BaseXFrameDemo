@@ -24,6 +24,7 @@ interface PdfFileDao : BaseDao<PdfFileModel> {
 	@Query("delete from pdfFile where file_name = :name")
 	fun deleteByName(name: String)
 	
+ 
 	
 	/**
 	 * 修改指定 参数

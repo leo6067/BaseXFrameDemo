@@ -1,5 +1,6 @@
 package com.xy.demo.network
 import com.xy.demo.base.Constants
+
 import com.xy.network.NetworkManager
 import com.xy.xframework.base.BaseSharePreference
 import com.xy.xframework.network.log.Level
@@ -22,30 +23,35 @@ object NetManager {
                 LoggingInterceptor.Builder()
 //                    .loggable(LogUtil.baseConfig.isWatchRequestLog)
                     .setLevel(Level.BASIC)
-                    .request("mmbox")
-                    .response("mmbox")
+//                    .request("mmbox")
+//                    .response("mmbox")
                     .build()
             )
             .setEnableProxy(true)
-            .addInterceptor(HeadInterceptor())//加入头文件
+//            .addInterceptor(HeadInterceptor())//加入头文件
+            .addInterceptor(SJApiInterceptor())
             .addInterceptor(ResponseInterceptor())
+//            .addInterceptor(RequestEncryptInterceptor())
+//            .addInterceptor(ResponseDecryptInterceptor())
             .createService(Api::class.java)
     }
 
-//    //盲盒详情
-//    suspend fun blindBoxDetail(id: Int?): MBResponse<BlindBoxDetailBean> =
-//        apiService.blindBoxDetail(id)
+ 
 
-
-    suspend fun getStoreCount(): MBResponse<String> {
-        return apiService.getStoreCount()
+    suspend fun getGood(): MBResponse<String> {
+        return apiService.getGood()
     }
-
-
-
-
-
-
+    
+ 
+    
+     suspend fun mainHttp(hashMap: HashMap<String,String>): MBResponse<String> {
+        return apiService.mainHttp(hashMap)
+    }
+    suspend fun feedBackHttp(hashMap: HashMap<String,String>): MBResponse<String> {
+        return apiService.feedBackHttp(hashMap)
+    }
+    
+    
 }
 
 
