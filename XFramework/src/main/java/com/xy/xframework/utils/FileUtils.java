@@ -2,8 +2,6 @@ package com.xy.xframework.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Build;
 import android.util.Log;
 
 
@@ -17,8 +15,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -1199,7 +1195,7 @@ public class FileUtils {
             e.printStackTrace();
             Log.e("xxx获取文件大小失败", "获取文件大小失败!");
         }
-        return FormetFileSize(blockSize, sizeType);
+        return FormatFileSize(blockSize, sizeType);
     }
 
     /**
@@ -1221,7 +1217,7 @@ public class FileUtils {
             e.printStackTrace();
 
         }
-        return FormetFileSize(blockSize);
+        return FormatFileSize(blockSize);
     }
 
     /**
@@ -1270,7 +1266,7 @@ public class FileUtils {
      * @param fileS
      * @return
      */
-    private static String FormetFileSize(long fileS) {
+    private static String FormatFileSize(long fileS) {
         DecimalFormat df = new DecimalFormat("#.00");
         String fileSizeString = "";
         String wrongSize = "0B";
@@ -1296,7 +1292,7 @@ public class FileUtils {
      * @param sizeType
      * @return
      */
-    private static double FormetFileSize(long fileS, int sizeType) {
+    public static double FormatFileSize(long fileS, int sizeType) {
         DecimalFormat df = new DecimalFormat("#.00");
         double fileSizeLong = 0;
         switch (sizeType) {

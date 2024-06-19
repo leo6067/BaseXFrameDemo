@@ -8,7 +8,7 @@ plugins {
 android {
 
 
-    compileSdk 33
+    compileSdkVersion 33
 
     defaultConfig {
         minSdkVersion 21
@@ -155,6 +155,10 @@ dependencies {
     api 'com.github.qinweiforandroid:QDownload:2.0.0807'
     //多任务下载管理
     api 'com.github.qinweiforandroid.QDownload:download-manager:2.0.0807'
+
+
+    //android  常用工具库
+    api 'com.blankj:utilcodex:1.31.1'
 
 
 }

@@ -1,3 +1,4 @@
+
 package com.xy.xframework.base
 
 import android.annotation.SuppressLint
@@ -37,10 +38,10 @@ import com.xy.xframework.statusBar.StatusBarUtil
 import com.xy.xframework.swipeback.SwipeBackActivityHelper
 import com.xy.xframework.swipeback.SwipeBackLayout
 import com.xy.xframework.titlebar.GlobalTitleBarProvider
+import com.xy.xframework.titlebar.TitleBarBuilder
 import com.xy.xframework.titlebar.TitleBarView
-import com.xy.xframework.utils.ViewUtil
 
-
+import com.xy.xframework.view.ViewUtil
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -61,16 +62,12 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
     private val titleBarBuilder = GlobalTitleBarProvider.getTitleBarBuilder()
     
     var titleBarView: TitleBarView? = null
-    
     private var mHelper: SwipeBackActivityHelper? = null
     private var mSwipeBackLayout: SwipeBackLayout? = null
     var dialog: Dialog? = null
     
-    
     var mRecyclerView: RecyclerView? = null
     var notNetWorkLin: View? = null
-    
-    
     abstract fun initView()
     
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -83,7 +80,7 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         }
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, getLayoutId())
-        initParams()
+        initBase()
         addTitleBar(showTitleBar())
         initViewModel()
         binding.setVariable(viewModelId, viewModel)
@@ -98,16 +95,11 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         initSwipeBackLayout()
         registerUIChangeEventCallBack()
         initView()
-        initLogic()
+        initParams()
         initViewObservable()
-        AppActivityManager.getInstance()
         
     }
     
-    
-    open fun initLogic() {
-    
-    }
     
     fun initRecycler(layManageType: Int, orientation: Int, gridNum: Int) {
         if (layManageType == 1) {
@@ -122,11 +114,40 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
     }
     
     
+    open fun initBase() {
+    
+    }
+    
+    
     /**
      * 初始化参数
      */
     open fun initParams() {
-    
+
+//		var hasNetWork = NetworkUtils.isConnected()
+//
+//		NetworkStateLiveData.observe(this) {
+//			Globals.log("xxxxxxxnet  " + it)
+//			if (it == NetworkType.CONNECT) {
+//				ToastUtils.showShort("Network connected")
+//				hasNetWork = true
+//			}
+//			if (it == NetworkType.NONE){
+//				ToastUtils.showShort("Network disconnected")
+//				hasNetWork = false
+//			}
+//		}
+//
+//
+//		if (hasNetWork) {
+//			if (notNetWorkLin != null) {
+//				notNetWorkLin?.visibility = View.GONE
+//			}
+//		} else {
+//			if (notNetWorkLin != null) {
+//				notNetWorkLin?.visibility = View.VISIBLE
+//			}
+//		}
     }
     
     open fun onClick(view: View) {
@@ -204,6 +225,27 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         }
     }
     
+    
+    open fun showLoadingA(
+        title: String? = "",
+        isCancelable: Boolean = true,
+        isCancelOutside: Boolean = false,
+        onCancelListener: DialogInterface.OnCancelListener? = null
+    ) {
+        
+        if (!isDestroyed) {
+            if (dialog == null) {
+                dialog = LoadingDialogProvider.createLoadingDialog(this, title)
+            }
+            dialog?.setCancelable(isCancelable)
+            dialog?.setCanceledOnTouchOutside(isCancelOutside)
+            dialog?.setOnCancelListener(onCancelListener)
+            dialog?.show()
+            
+     
+        }
+    }
+    
     /**
      * 设置状态栏颜色
      */
@@ -256,6 +298,8 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
     }
     
     private fun initToolBar() {
+        //设置标题在 左边
+        titleBarBuilder.setTitleGravity(TitleBarBuilder.LEFT)
         titleBarView?.setTitleBarBuilder(titleBarBuilder)
         titleBarView?.setLeftClickListener { onLeftClick() }
         
@@ -352,3 +396,4 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
     }
     
 }
+

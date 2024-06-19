@@ -164,8 +164,8 @@ public class AppActivityManager implements Application.ActivityLifecycleCallback
      * @return ActivityUtils.topActivity(this, LoginActivity.class.getName ());
      */
     public  boolean topActivity(Context mContext, String activityName) {
-        android.app.ActivityManager activityManager = (android.app.ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
-        List<android.app.ActivityManager.RunningTaskInfo> tasksInfo = activityManager.getRunningTasks(1);
+        ActivityManager activityManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> tasksInfo = activityManager.getRunningTasks(1);
         String packagename = "";
         if (tasksInfo == null || tasksInfo.size() == 0) {
             return false;

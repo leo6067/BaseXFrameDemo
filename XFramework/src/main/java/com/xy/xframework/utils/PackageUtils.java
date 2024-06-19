@@ -46,7 +46,7 @@ public class PackageUtils {
     }
 
     public static PackageUtils getInstance() {
-        return PackageUtils.SingletonHolder.instance;
+        return SingletonHolder.instance;
     }
 
 
