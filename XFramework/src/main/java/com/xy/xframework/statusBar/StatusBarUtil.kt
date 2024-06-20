@@ -50,10 +50,13 @@ object StatusBarUtil {
 
     /**
      * 是否沉浸式
-     * true:不沉浸式 false：沉浸式
+     * 不沉浸式 false     沉浸式 true
      */
-    fun setFitsSystemWindows(activity: Activity, fitsSystemWindows: Boolean) {
-        if (fitsSystemWindows) {
+    fun setImmersionBar(activity: Activity, isImmersionBar: Boolean) {
+        if (isImmersionBar) {
+            setRootViewFitsSystemWindows(activity, false)
+            setTranslucentStatus(activity)
+        } else {
             setRootViewFitsSystemWindows(activity, true)
             setTranslucentStatus(activity)
             if (!setStatusBarDarkTheme(activity, true)) {
@@ -63,9 +66,6 @@ object StatusBarUtil {
             } else {
                 setStatusBarColor(activity, ContextCompat.getColor(activity, R.color.color_FFFFFF))
             }
-        } else {
-            setRootViewFitsSystemWindows(activity, false)
-            setTranslucentStatus(activity)
         }
     }
 

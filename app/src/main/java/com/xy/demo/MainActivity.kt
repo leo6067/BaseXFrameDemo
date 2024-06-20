@@ -32,7 +32,7 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
 
     override fun showTitleBar(): Boolean = false
 
-    override fun fitsSystemWindows(): Boolean {
+    override fun isImmersionBar(): Boolean {
         return false
     }
 
@@ -88,12 +88,12 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
 
 
         binding.nextTV.setOnClickListener {
-//            startActivity(Intent(this@MainActivity, SecondActivity::class.java))
-            var url = "https://HiReadNovel.onelink.me/9gP0/vplay?v=66&c=0";
-            var uri = Uri.parse(url);
-            var intent = Intent();
-            intent.setData(uri);
-            startActivity(intent);
+            startActivity(Intent(this@MainActivity, SecondActivity::class.java))
+//            var url = "https://HiReadNovel.onelink.me/9gP0/vplay?v=66&c=0";
+//            var uri = Uri.parse(url);
+//            var intent = Intent();
+//            intent.setData(uri);
+//            startActivity(intent);
         }
     }
 

@@ -5,14 +5,10 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.DialogInterface
-import android.content.IntentFilter
 import android.content.pm.ActivityInfo
 import android.graphics.Color
-import android.net.ConnectivityManager
-import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -86,11 +82,11 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         binding.setVariable(viewModelId, viewModel)
         binding.lifecycleOwner = this
         
-        if (fitsSystemWindows()) {
-            StatusBarUtil.setStatusBarColor(this, titleBarBuilder.getStatusBarColor())
+        if (isImmersionBar()) {
+            StatusBarUtil.setStatusBarColor(this, Color.TRANSPARENT)  //沉浸式 透明颜色
+            StatusBarUtil.setImmersionBar(this, true)
         } else {
-            StatusBarUtil.setStatusBarColor(this, Color.TRANSPARENT)
-            StatusBarUtil.setFitsSystemWindows(this, fitsSystemWindows())
+            StatusBarUtil.setStatusBarColor(this, titleBarBuilder.getStatusBarColor())    // 不沉浸式  用默认配置颜色 getStatusBarColor
         }
         initSwipeBackLayout()
         registerUIChangeEventCallBack()
@@ -340,9 +336,9 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
     }
     
     /**
-     * 是沉浸式  true:不沉浸式 false：沉浸式
+     * 是沉浸式  true: 沉浸式 false：不沉浸式
      */
-    open fun fitsSystemWindows(): Boolean {
+    open fun isImmersionBar(): Boolean {
         return true
     }
     

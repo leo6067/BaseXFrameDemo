@@ -8,8 +8,19 @@ import com.xy.demo.databinding.ActivitySecondBinding
 
 class SecondActivity : MBBaseActivity<ActivitySecondBinding,LoginViewModel>() {
 
-
+ 
+    
+    
     override fun getLayoutId(): Int = R.layout.activity_second
+    
+    
+    override fun showTitleBar(): Boolean {
+        return false
+    }
+    
+    override fun isImmersionBar(): Boolean {
+        return false
+    }
 
     override fun initView() {
         super.initView()

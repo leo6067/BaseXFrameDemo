@@ -9,18 +9,14 @@ import android.view.KeyEvent
 import android.view.View
 import android.webkit.WebSettings
 import android.widget.Toast
-import androidx.databinding.ViewDataBinding
 import com.bumptech.glide.Glide
-import com.gyf.immersionbar.ImmersionBar
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.xy.xframework.BR
 import com.xy.xframework.R
 import com.xy.xframework.base.XBaseActivity
 import com.xy.xframework.base.XBaseApplication
-import com.xy.xframework.base.XBaseViewModel
 import com.xy.xframework.databinding.BaseWebViewLayoutBinding
 import com.xy.xframework.statusBar.StatusBarUtil
-import java.util.*
 
 /**
  * 默认webView容器类，目前功能比较简单
@@ -116,7 +112,7 @@ abstract class WebBaseActivity() : XBaseActivity<BaseWebViewLayoutBinding, WebBa
   private  fun handleTitleBar() {
         try {
             if (!isShowTitleBar) {
-                StatusBarUtil.setFitsSystemWindows(this, false)
+                StatusBarUtil.setImmersionBar(this, false)
                 titleBarView?.visibility = View.GONE
                 statusBarBgColor?.let {
                     StatusBarUtil.setStatusBarColor(this, Color.parseColor("#$it"))
