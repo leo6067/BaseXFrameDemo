@@ -1,12 +1,9 @@
 package com.xy.demo.utils;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.pdf.PdfDocument;
-import android.os.Environment;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
@@ -21,31 +18,10 @@ import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.tom_roush.pdfbox.android.PDFBoxResourceLoader;
 import com.tom_roush.pdfbox.pdmodel.PDDocument;
 import com.tom_roush.pdfbox.pdmodel.PDPage;
 import com.tom_roush.pdfbox.pdmodel.PDPageContentStream;
 import com.tom_roush.pdfbox.pdmodel.common.PDRectangle;
-import com.tom_roush.pdfbox.pdmodel.font.PDType1Font;
-import com.tom_roush.pdfbox.pdmodel.graphics.image.LosslessFactory;
-import com.tom_roush.pdfbox.pdmodel.graphics.image.PDImageXObject;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.List;
-
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
-
-import com.tom_roush.pdfbox.android.PDFBoxResourceLoader;
-import com.tom_roush.pdfbox.pdmodel.PDDocument;
-import com.tom_roush.pdfbox.pdmodel.PDPage;
-import com.tom_roush.pdfbox.pdmodel.PDPageContentStream;
-import com.tom_roush.pdfbox.pdmodel.common.PDRectangle;
-import com.tom_roush.pdfbox.pdmodel.font.PDType1Font;
 import com.tom_roush.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import com.tom_roush.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import com.xy.demo.base.Constants;
@@ -53,8 +29,8 @@ import com.xy.demo.model.ImagePdfParam;
 import com.xy.demo.ui.success.ImgToPdfActivity;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
 
 public class ImageToPdfConverter {
 
@@ -97,37 +73,130 @@ public class ImageToPdfConverter {
             Background event = new Background();
             writer.setPageEvent(event);
             document.open();
+            boolean autoRotate = imagePdfParam.direction == 2;
+            if(autoRotate){
+                rectangle = new Rectangle(rectangle.getHeight(),rectangle.getWidth());
+            }
+            document.setPageSize(rectangle);
             for (int i = 0; i < imagePdfParam.imgPathList.size(); i++) {
                 Image img = Image.getInstance(imagePdfParam.imgPathList.get(i));
-                boolean autoRotate = imagePdfParam.direction == 2;
-                boolean imageIsLandscape = img.getWidth() > img.getHeight();
-                if (autoRotate && imageIsLandscape) {
-                    rectangle = new Rectangle(rectangle.getHeight(), rectangle.getWidth());
-                }
-                document.setPageSize(rectangle);
+
                 document.newPage();
+
+//                boolean imageIsLandscape = img.getWidth() > img.getHeight();
+//                if (autoRotate && imageIsLandscape) {
+//                    rectangle = new Rectangle(rectangle.getHeight(), rectangle.getWidth());
+//                }
+//                document.setPageSize(rectangle);
+//                document.newPage();
+//                float newWidth = 0;
+//                float newHeight = 0;
+//                if (img.getWidth() > rectangle.getWidth()) {
+//                    newWidth = (float) (rectangle.getWidth() * 0.9);
+//                } else {
+//                    if (img.getWidth() < rectangle.getWidth() && img.getWidth() > (rectangle.getWidth() - 20)) {
+//                        newWidth = (float) (img.getWidth() * 0.9);
+//                    } else {
+//                        newWidth = img.getWidth();
+//                    }
+//                }
+//                if (img.getHeight() > rectangle.getHeight()) {
+//                    newHeight = (float) (rectangle.getHeight() * 0.9);
+//                } else {
+//                    if (img.getHeight() < rectangle.getHeight() && img.getHeight() > (rectangle.getHeight() - 20)) {
+//                        newHeight = (float) (img.getHeight() * 0.9);
+//                    } else {
+//                        newHeight = img.getHeight();
+//                    }
+//                }
+//                img.scaleAbsolute(newWidth, newHeight);
+//                img.setAbsolutePosition((rectangle.getWidth() - img.getScaledWidth()) / 2, (rectangle.getHeight() - img.getScaledHeight()) / 2);
+//
+
+//                int count = 1;
+//                if(img.getWidth() > rectangle.getWidth() && img.getHeight() > rectangle.getHeight()){
+//                    count = (int) Math.ceil(img.getWidth() / rectangle.getWidth());
+//                }
+                int count1 = 1;
+                int count2 = 1;
+                int count = 1;
+                if(img.getWidth() > rectangle.getWidth() && img.getHeight() > rectangle.getHeight()){
+                    count1 = (int) Math.ceil(img.getWidth() / rectangle.getWidth());
+                    count2 = (int) Math.ceil(img.getHeight() / rectangle.getHeight());
+                    if(count1 >= count2){
+                        count = count1;
+                    }
+                    else{
+                        count = count2;
+                    }
+                }
+
+                float newImgWidth = img.getWidth();
+                float newImgHeight = img.getHeight();
+                if(count > 1){
+                    newImgWidth = img.getWidth() / (count * 72) * 72 ;
+                    newImgHeight = img.getHeight() / (count * 72) * 72;
+                }
+
+                img.scaleAbsolute(newImgWidth,newImgHeight);
+                boolean imageIsLandscape = img.getScaledWidth() > img.getScaledHeight();
+
+
                 float newWidth = 0;
                 float newHeight = 0;
-                if (img.getWidth() > rectangle.getWidth()) {
-                    newWidth = (float) (rectangle.getWidth() * 0.9);
-                } else {
-                    if (img.getWidth() < rectangle.getWidth() && img.getWidth() > (rectangle.getWidth() - 20)) {
-                        newWidth = (float) (img.getWidth() * 0.9);
-                    } else {
-                        newWidth = img.getWidth();
+                float newRectangleWidth = (float) (rectangle.getWidth() * 0.9);
+                float newRectangleHeight = (float) (rectangle.getHeight() * 0.9 - 58);
+                float imgscale = img.getScaledWidth() / img.getScaledHeight();
+                if(newRectangleWidth > img.getScaledWidth() && newRectangleHeight > img.getScaledHeight()){
+                    newWidth = img.getScaledWidth();
+                    newHeight = img.getScaledHeight();
+                }
+                else if(newRectangleWidth <= img.getScaledWidth() && newRectangleHeight > img.getScaledHeight()){
+                    newWidth = newRectangleWidth;
+                    newHeight = newWidth / imgscale;
+                }
+                else if(newRectangleWidth > img.getScaledWidth() && newRectangleHeight < img.getScaledHeight()){
+                    newHeight = newRectangleHeight;
+                    newWidth = newHeight * imgscale;
+                }
+                else if(newRectangleWidth <= img.getScaledWidth() && newRectangleHeight <= img.getScaledHeight()){
+                    float widthScale = newRectangleWidth / img.getScaledWidth();
+                    float heighScale = newRectangleHeight / img.getScaledHeight();
+                    if(widthScale > heighScale){
+                        newHeight = newRectangleHeight;
+                        newWidth = newRectangleHeight * imgscale;
+                    }
+                    else{
+                        newWidth = newRectangleWidth;
+                        newHeight = newRectangleWidth / imgscale;
                     }
                 }
-                if (img.getHeight() > rectangle.getHeight()) {
-                    newHeight = (float) (rectangle.getHeight() * 0.9);
-                } else {
-                    if (img.getHeight() < rectangle.getHeight() && img.getHeight() > (rectangle.getHeight() - 20)) {
-                        newHeight = (float) (img.getHeight() * 0.9);
-                    } else {
-                        newHeight = img.getHeight();
-                    }
-                }
-                img.scaleAbsolute(newWidth, newHeight);
-                img.setAbsolutePosition((rectangle.getWidth() - img.getScaledWidth()) / 2, (rectangle.getHeight() - img.getScaledHeight()) / 2);
+//                float imgscale = img.getWidth() / img.getHeight();
+//                if(img.getWidth() > rectangle.getWidth()){
+//                    newWidth = (float) (rectangle.getWidth() * 0.9);
+//                }
+//                else{
+//                    if(img.getWidth() < rectangle.getWidth() && img.getWidth() > (rectangle.getWidth() - 20)){
+//                        newWidth = (float) (img.getWidth() * 0.9);
+//                    }
+//                    else{
+//                        newWidth = img.getWidth();
+//                    }
+//
+//                }
+//                if(img.getHeight() > rectangle.getHeight()){
+//                    newHeight = (float) (rectangle.getHeight() * 0.9);
+//                }
+//                else{
+//                    if(img.getHeight() < rectangle.getHeight() && img.getHeight() > (rectangle.getHeight() - 20)){
+//                        newHeight = (float) (img.getHeight() * 0.9);
+//                    }
+//                    else{
+//                        newHeight = img.getHeight();
+//                    }
+//                }
+                img.scaleAbsolute(newWidth,newHeight);
+                img.setAbsolutePosition((rectangle.getWidth() - img.getScaledWidth()) / 2,(rectangle.getHeight() - img.getScaledHeight()) / 2);
                 addPageNumber(rectangle, writer, i + 1, imagePdfParam.imgPathList.size());
                 document.add(img);
             }
@@ -153,15 +222,15 @@ public class ImageToPdfConverter {
 
     private void addPageNumber(Rectangle rectangle, PdfWriter pdfWriter, int index, int total) {  //页码 角标
         PdfContentByte pdfContentByte = pdfWriter.getDirectContent();
-        float f = (rectangle.getRight() + rectangle.getLeft()) / 2.0f;
-        float f1 = rectangle.getBottom() + 20.0f;
+        float f = (rectangle.getRight() + rectangle.getLeft()) / 2.0f-30;     //设置页码 居中
+        float f1 = rectangle.getBottom() + 20.0f;  // 距离底部距离
         String pageNumberStyle = "pg_num_style_x_of_n";
         ColumnText.showTextAligned(pdfContentByte, 6, getPhrase( pageNumberStyle, index, total), f, f1, 0.0f);
     }
 
     private Phrase getPhrase( String s, int index, int total) {
         Chunk chunk = new Chunk(String.format("%d / %d", index, total));
-        chunk.setFont(new Font(Font.FontFamily.HELVETICA, 30)); // 设置字体大小和字体系列
+        chunk.setFont(new Font(Font.FontFamily.COURIER, 30)); // 设置字体大小和字体系列  页码字体
         Phrase phrase = new Phrase();
         phrase.add(chunk); // 将Chunk添加到Phrase中
 //        if (!s.equals("pg_num_style_page_x_of_n")) {
