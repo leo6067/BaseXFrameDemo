@@ -63,9 +63,7 @@ class MainActivity : MBBaseActivity<ActivityMainBinding, XBaseViewModel>() {
         val rootDirPath = getRootDirPath(BaseAppContext.getInstance());
         Globals.log("xxxxxfilesDir", getRootDirPath(BaseAppContext.getInstance()))
         Globals.log("xxxxxfilesDir--本地可用的存储 路劲", filesDir.absolutePath.toString() + "新增的文件名")
-
-
-
+ 
         binding.nightTV.setOnClickListener {
 
 

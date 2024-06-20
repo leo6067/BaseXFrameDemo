@@ -5,5 +5,7 @@ enum class NetworkType(desc: String) {
     WIFI("wifi"),//WIFI
     CMNET("手机上网CMNET"), //手机上网
     CMWAP("手机上网CMWAP"), //手机上网
-    NONE("无网络NONE")  //无网络
+    NONE("无网络NONE"), //无网络
+    CONNECT("网络连接")  //无网络
+    
 }
