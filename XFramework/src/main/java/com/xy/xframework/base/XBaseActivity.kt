@@ -93,7 +93,6 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         initView()
         initParams()
         initViewObservable()
-        
     }
     
     
@@ -173,7 +172,6 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
         
         viewModel.mUiEvent.dismissDialogEvent.observe(this) { dismissLoading() }
         viewModel.mUiEvent.finishEvent.observe(this) { finish() }
-        
         viewModel.mUiEvent.onBackPressedEvent.observe(this) { onBackPressed() }
     }
     
@@ -237,8 +235,6 @@ abstract class XBaseActivity<T : ViewDataBinding, VM : XBaseViewModel> : AppComp
             dialog?.setCanceledOnTouchOutside(isCancelOutside)
             dialog?.setOnCancelListener(onCancelListener)
             dialog?.show()
-            
-     
         }
     }
     
