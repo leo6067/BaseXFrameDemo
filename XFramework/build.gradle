@@ -8,6 +8,7 @@ plugins {
 
 android {
 
+
     compileSdk 34
     defaultConfig {
         minSdkVersion 21
@@ -44,8 +45,8 @@ android {
         viewBinding = false
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     // 优化编译速度 如果有用到kapt添加如下配置
     kapt {
@@ -57,7 +58,7 @@ android {
 
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
 }
 

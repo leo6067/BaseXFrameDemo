@@ -37,15 +37,6 @@ android {
         resValue "string", "AES_SECRET", myProperties.getProperty('AES_SECRET')
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    kapt {
-        arguments {
-            arg("AROUTER_MODULE_NAME", project.getName())
-        }
-    }
 
     buildFeatures {
         dataBinding = true
@@ -58,10 +49,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    kapt {
+        arguments {
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
+    }
+
+    //保持与java 版本一致
+    kotlinOptions {
+        jvmTarget = "11"
+    }
     //配置java 版本
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     //此处添加你要过滤。重复文件
