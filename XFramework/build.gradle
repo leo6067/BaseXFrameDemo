@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'maven-publish'
+
 }
 
 android {
@@ -24,8 +25,8 @@ android {
             consumerProguardFiles "consumer-rules.pro"
         }
         release {
-            minifyEnabled true   //开启混淆
-            zipAlignEnabled true  //压缩优化
+            minifyEnabled false   //开启混淆
+            zipAlignEnabled false  //压缩优化
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             consumerProguardFiles "consumer-rules.pro"
         }
@@ -141,10 +142,7 @@ dependencies {
     //流布局  https://blog.51cto.com/u_12657710/5024217
     api 'com.hyman:flowlayout-lib:1.1.2'
 
-
     api 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
-
-
 
     //多线程下载  https://github.com/qinweiforandroid/QDownload
     api 'com.github.qinweiforandroid:QDownload:2.0.0807'
@@ -155,8 +153,7 @@ dependencies {
     //android  常用工具库
     api 'com.blankj:utilcodex:1.31.1'
 }
-
-
+ 
 afterEvaluate {
     publishing {
         publications {
@@ -165,7 +162,7 @@ afterEvaluate {
 
                 groupId = 'com.github.leo6067'
                 artifactId = 'BaseXFrameDemo'
-                version = '1.0'
+                version = '1.0.4'
 
                 pom {
                     name = 'BaseXFrameDemo'
