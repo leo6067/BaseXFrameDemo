@@ -3,16 +3,15 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
+    id 'maven-publish'
 }
 
 android {
 
-
-    compileSdkVersion 33
-
+    compileSdk 34
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
     }
@@ -94,7 +93,6 @@ dependencies {
     api 'com.scwang.smart:refresh-footer-classics:2.0.3'
 
 
-
     //lottie 动画
     api 'com.airbnb.android:lottie:4.1.0'
     api 'com.alibaba:fastjson:1.1.71.android'
@@ -116,10 +114,6 @@ dependencies {
 
     // 权限申请管理
     api 'com.github.getActivity:XXPermissions:18.0'
-
-
-
-
 
     //webview
     api 'com.just.agentweb:agentweb-androidx:4.1.4' // (必选)
@@ -159,6 +153,46 @@ dependencies {
 
     //android  常用工具库
     api 'com.blankj:utilcodex:1.31.1'
+}
 
 
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.github.leo6067'
+                artifactId = 'BaseXFrameDemo'
+                version = '1.0'
+
+                pom {
+                    name = 'BaseXFrameDemo'
+                    description = 'A description of MyLibrary'
+                    url = 'https://github.com/leo6067/BaseXFrameDemo'
+
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+
+//                developers {
+//                    developer {
+//                        id = 'developer-id'
+//                        name = 'Developer Name'
+//                        email = 'developer@example.com'
+//                    }
+//                }
+
+                    scm {
+                        connection = 'scm:git:github.com/leo6067/BaseXFrameDemo.git'
+                        developerConnection = 'scm:git:ssh://github.com/leo6067/BaseXFrameDemo.git'
+                        url = 'https://github.com/leo6067/BaseXFrameDemo'
+                    }
+                }
+            }
+        }
+    }
 }
